@@ -1,0 +1,50 @@
+
+@contentBgColor: #fff;
+@contentColor: inherit;
+
+@borderColor: #ddd;
+
+@textColor: inherit;
+@headerColor: inherit;
+
+@linkColor: #d9d9d9;
+
+.contentStyle (@color: @textColor, @bgColor: @contentBgColor) {
+  color: @color;
+  background-color: @bgColor;
+}
+
+.borderStyle (@color: @borderColor, @pixel: 1px, @style: solid) {
+  border: @color @pixel @style;
+}
+
+.top-bar.expanded .title-area,
+.contain-to-grid {
+  background-color: rgba(46, 61, 82, 0.97);
+}
+
+table {
+  .contentStyle();
+  .borderStyle();
+  tr td,
+  tr th {
+    color: @textColor;
+  }
+  tr.even,
+  tr.alt,
+  tr:nth-of-type(even) {
+    background-color: lighten(@contentBgColor, 3);
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: @headerColor;
+}
+.main,
+.news-holder {
+  .contentStyle();
+}
+.news {
+  .borderStyle(#ddd);
+  padding: 10px;
+}

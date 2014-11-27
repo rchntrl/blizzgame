@@ -1,0 +1,20 @@
+<div class="off-canvas-wrap" data-offcanvas>
+    <div class="inner-wrap">
+        <a class="left-off-canvas-toggle" href="#" >Menu</a>
+        <aside class="left-off-canvas-menu">
+            <ul class="side-nav">
+                <% if $Parent.Parent %>
+                    <% with $Parent.Parent  %>
+                        <% include SideNavMenuItems %>
+                    <% end_with %>
+                <% else_if $Parent %>
+                    <% with $Parent %>
+                        <% include SideNavMenuItems %>
+                    <% end_with %>
+                <% else %>
+                    <% include SideNavMenuItems %>
+                <% end_if %>
+            </ul>
+        </aside>
+    </div>
+</div>
