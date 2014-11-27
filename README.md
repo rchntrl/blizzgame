@@ -5,7 +5,7 @@ Base project folder for a Blizzgame website ([http://blizzgame.ru](http://blizzg
 ## Requirements
 
 * [`Silverstripe 3.1.* framework`](https://github.com/silverstripe/Sapphire)
-* [`Silverstripe 3.1.* CMS`](https://github.com/silverstripe/cms)
+* [`Silverstripe 3.1.* CMS`](https://github.com/silverstripe/silverstripe-cms)
 * [`Subsites Module 1.0.4`](https://github.com/silverstripe/silverstripe-subsites)
 * [`Silverstripe 3 Newsmodule 5.1 `](https://github.com/Firesphere/silverstripe-newsmodule/)
 * [`Google Sitemaps Module `](https://github.com/silverstripe-labs/silverstripe-googlesitemaps)

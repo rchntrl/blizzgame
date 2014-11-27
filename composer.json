@@ -17,5 +17,9 @@
         "silverstripe/subsites": "1.0.4",
         "firesphere/silverstripe-newsmodule": "5.1",
         "silverstripe/googlesitemaps": "1.2.2"
-	}
+	},
+    "config": {
+        "process-timeout": 600
+    },
+    "minimum-stability": "dev"
 }

@@ -1,6 +1,6 @@
 <?php
 
-class BlizzgamePageExtension extends Extension {
+class BlizzgamePageExtension extends DataExtension {
 
     protected function translateCyrilicToLatin($string){
         $arr = array(
@@ -28,6 +28,6 @@ class BlizzgamePageExtension extends Extension {
         $t = str_replace('&','-and-',$t);
         $t = preg_replace('/[^A-Za-z0-9]+/', '-', $t);
         $t = preg_replace('/-+/', '-', $t);
-        return parent::generateURLSegment($t);
+        return  $this->owner->generateURLSegment($t);
     }
 } 
