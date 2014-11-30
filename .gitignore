@@ -1,4 +1,3 @@
-_config.php
 framework/
 cms/
 /googlesitemaps
@@ -14,5 +13,6 @@ silverstripe-cache
 .idea
 .DS_Store
 vendor/
-#/web.config
-#/.htaccess
+/web.config
+/.htaccess
+mysite/_config.php

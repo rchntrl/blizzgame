@@ -41,7 +41,7 @@ class PeopleFace extends DataObject {
    	static $default_sort = 'TitleEN ASC';
 
     public function getTitle() {
-        return $this->getField('TitleEn') . $this->getField('Nick');
+        return $this->getField('TitleEN') . ($this->getField('Nick') ? ' (' . $this->getField('Nick') . ')' : '');
     }
 
     /**
