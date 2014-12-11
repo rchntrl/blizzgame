@@ -1,7 +1,11 @@
 framework/
 cms/
 /googlesitemaps
+/gridfieldextensions
+/memberprofiles
+/gridfield-bulk-editing-tools
 /silverstripe-newsmodule
+/foundationforms
 /composer.lock
 assets/*
 _ss_environment.php
@@ -13,6 +17,7 @@ silverstripe-cache
 .idea
 .DS_Store
 vendor/
+/install.php
 /web.config
 /.htaccess
 mysite/_config.php

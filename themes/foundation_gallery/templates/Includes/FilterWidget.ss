@@ -6,6 +6,19 @@
         </dd>
     <% end_loop %>
 </dl>
+<% if getAppliedTags() %>
+<dl class="sub-nav">
+    <h4 id="inline-lists"></h4>
+    <dt><%t Gallery.FILTER_SIZE_TITLE 'Примененные теги' %>:</dt>
+    <% loop $Top.getAppliedTags() %>
+        <dd>
+            <a href="$Top.getClearTagUrl($LastLinkSegment)" title="$TitleEN">
+                <span class="label radius">$TitleRU</span>
+            </a>
+        </dd>
+    <% end_loop %>
+</dl>
+<% end_if %>
 <ul class="button-group">
     <li> <button href="#" data-dropdown="filter-by-author" aria-controls="filter-by-author" aria-expanded="false" class="small secondary radius button dropdown">
         <%t Gallery.FILTER_AUTHOR_TITLE 'Фильтр по художнику' %>
@@ -13,7 +26,7 @@
         <br>
         <ul id="filter-by-author" data-dropdown-content class="small f-dropdown" aria-hidden="true" tabindex="-1">
             <% loop filterByAuthor %>
-                <li><a href="$Top.getFilterUrl('author', $LastLinkSegment)"><span>$TitleEN</span></a></li>
+                <li><a href="$Top.getFilterUrl('author', $LastLinkSegment)"><span>$Title</span></a></li>
             <% end_loop %>
         </ul>
     </li>
@@ -24,7 +37,7 @@
         <br>
         <ul id="filter-by-tag" data-dropdown-content class="small f-dropdown" aria-hidden="true" tabindex="-1">
             <% loop FilterByTags %>
-                <li><a href="$Top.getFilterUrl('tag', $LastLinkSegment)"><span>$TitleEN</span></a></li>
+                <li><a href="$Top.getAddTagUrl($LastLinkSegment)"><span>$TitleEN</span></a></li>
             <% end_loop %>
         </ul>
     </li>

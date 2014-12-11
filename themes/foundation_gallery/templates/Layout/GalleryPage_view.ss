@@ -1,7 +1,8 @@
 <link rel="stylesheet" type="text/less" href="$ThemeDir/css/gallery.css" />
 <div class="large-10 columns">
     <div class="large-centered columns">
-        <img class="gallery-image small-centered columns" src="$GalleryImage.Image.getUrl()" />
+        <img class="gallery-image small-centered columns" src="$GalleryImage.Image.setSize(1024, 760).getUrl()" />
+        <h4 class="gallery-title">$Title</h4>
     </div>
 </div>
 <aside class="large-2 columns">

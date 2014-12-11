@@ -5,9 +5,10 @@
  *
  * @property string TitleEN
  * @property string TitleRU
- * @property Image Icon
- * @property ElementLinkGroup ElementLinkGroup
  * @property string LastLinkSegment
+ * @method Image Icon()
+ * @method Subsite Subsite()
+ * @method ElementLinkGroup ElementLinkGroup()
  */
 class ElementLink extends DataObject
 {
@@ -15,16 +16,14 @@ class ElementLink extends DataObject
 		'TitleEN' => 'Varchar(255)',
 		'TitleRU' => 'Varchar(255)',
 		'LinkURL' => 'Varchar(255)',
-		'LinkURL2' => 'Int',
-		'OverTitleEN' => 'Varchar(255)',
-		'OverTitleRU' => 'Varchar(255)',
+		'LinkURL2' => 'Int', // link to Page
 		'LastLinkSegment' => 'Varchar(255)'
 	);
 
     private static $has_one = array (
-		'Icon' => 'Image',
+        'ElementLinkGroup' => 'ElementLinkGroup',
         'Subsite' => 'Subsite',
-		'ElementLinkGroup' => 'ElementLinkGroup'
+		'Icon' => 'Image',
 	);
 
     private static $searchable_fields = array(
@@ -32,7 +31,7 @@ class ElementLink extends DataObject
     );
 
     private static $summary_fields = array (
-        'ID', 'TitleEN', 'TitleRU', 'ElementLinkGroup.Title'
+        'ID', 'Title', 'ElementLinkGroup.Title'
     );
 
     private static $field_labels = array(
@@ -46,11 +45,16 @@ class ElementLink extends DataObject
         if(class_exists('Subsite')){
             $fields->push(new HiddenField('SubsiteID','SubsiteID', Subsite::currentSubsiteID()));
         }
+        $fields->replaceField('LinkURL2',
+            new TreeDropdownField("LinkURL2", "Link Page", 'Page', 'ID', 'TreeTitle')
+        );
+        $fields->dataFieldByName('LinkURL')->setReadonly(true);
+        $fields->dataFieldByName('LastLinkSegment')->setReadonly(true);
         return $fields;
     }
 	
 	function  Thumbnail() {
-		$Image = $this->Icon;
+		$Image = $this->Icon();
 		if ( $Image ) {
 			return $Image->CroppedImage(30,30);
 		} else {
@@ -59,6 +63,6 @@ class ElementLink extends DataObject
 	}
 
     public function getTitle() {
-        return $this->getField('TitleEN');
+        return $this->getField('TitleRU') . ' (' . $this->getField('TitleEN') . ')';
     }
 }

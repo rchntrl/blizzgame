@@ -1,3 +1,16 @@
+<div id="header-branding">
+    <div class="container">
+        <div class="row">
+            <div class="small-6 medium-7">
+                <h1>
+                    <a href="/">
+                        <img src="$themedir/images/logo/blizzgame-logo.jpg" width="250" height="47" alt="">
+                    </a>
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="contain-to-grid sticky">
     <nav class="top-bar" data-topbar role="navigation">
         <ul class="title-area">

@@ -1,6 +1,5 @@
 <!-- HEADER SECTION -->
-<div class="contain-to-grid header-section">
-
+<div class="header-section">
     <!-- TOPBAR SECTION -->
     <nav class="top-bar important-class" data-topbar>
 

@@ -1,4 +1,9 @@
 <?php
+
+/**
+ * Class Page
+ *
+ */
 class Page extends SiteTree {
 
 	private static $db = array(
@@ -6,6 +11,12 @@ class Page extends SiteTree {
 
 	private static $has_one = array(
 	);
+
+    function Icon() {
+        /** @var ElementLink $tag */
+        $tag = DataObject::get_one('ElementLink', 'ElementLink.LinkURL2 = ' . Convert::raw2sql($this->ID));
+        return $tag ? $tag->Icon() : false;
+    }
 }
 
 class Page_Controller extends ContentController {
@@ -34,30 +45,15 @@ class Page_Controller extends ContentController {
         // See: http://doc.silverstripe.org/framework/en/reference/requirements
     }
 
-    /**
-     * @param ArrayList|null $pages
-     * @param int $itemsPerPage
-     * @param SQLQuery $query
-     * @return null|PaginatedList
-     */
-    protected function getPaginatedPages($pages = null, $itemsPerPage = 20, SQLQuery $query)
-    {
-        $pages = new PaginatedList($pages, $this->request);
-        if ($query) {
-            $pages->setPaginationFromQuery($query);
-        }
-        $pages->setPageLength($itemsPerPage);
-        return $pages;
-    }
-
     function InSectionNeed(){
-        return (strpos($this->Link(),'Library')||strpos($this->Link(),'encyclopedia'))?true:false;
+        return (strpos($this->Link(), 'Library') || strpos($this->Link(), 'encyclopedia')) ? true : false;
     }
 
     function getLastUpdateEncyclopedia($limit) {
         $ds = DataObject::get("SiteTree",' ClassName = '."'Page'".' AND Content IS NOT NULL', 'LastEdited DESC', null, $limit);
         $itemData = new DataList("SiteTree");
-        $i=0;
+        $i = 0;
+        /** @var Page $v */
         foreach($ds as $v) {
             if(strpos($v->Link(),'encyclopedia') && $v->URLSegment != 'encyclopedia'){
                 $itemData->push($v);
