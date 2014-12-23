@@ -1,19 +1,29 @@
-<!-- HEADER SECTION -->
-<div class="header-section">
-    <!-- TOPBAR SECTION -->
-    <nav class="top-bar important-class" data-topbar>
-
-        <!-- TITLE AREA & LOGO -->
+<div id="header-branding">
+    <div class="container">
+        <div class="row">
+            <div class="small-6 medium-7">
+                <h1>
+                    <a href="/">
+                        <img src="$themedir/images/logo/logo-transparent.png" />
+                    </a>
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="contain-to-grid sticky">
+    <nav class="top-bar" data-topbar role="navigation">
         <ul class="title-area">
+            <!-- Title Area -->
             <li class="name">
-                <img src="$themedir/images/Acme_Colour.png" data-large-src="$themedir/images/Acme_Monogram_Colour" data-small-src="$themedir/images/Acme_Colour.png" alt="$SiteConfig.Title" id="logo-image">
+                <h1><a href="#"><span>$SiteConfig.Title</span></a></h1>
             </li>
-            <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
-        </ul> <!-- END TITLE AREA & LOGO -->
-
-        <!-- MENU ITEMS -->
+            <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+            <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+        </ul>
         <section class="top-bar-section">
             <ul class="right">
+                <li class="name"><!-- Leave this empty --></li>
                 <% loop Menu(1) %>
                     <li class="<% if $LinkingMode == "current" || $LinkingMode == "section" %>active<% end_if %>">
                         <a href="$Link" title="Go to the $Title.ATT">$MenuTitle</a>
@@ -21,9 +31,6 @@
                     <% if not $Last %><li class="divider"></li><% end_if %>
                 <% end_loop %>
             </ul>
-        </section> <!-- END MENU ITEMS -->
-    </nav> <!-- END TOPBAR SECTION -->
-</div> <!-- END HEADER SECTION
-
-		<!-- CONTENT FILL WHEN SCROLL = 0 -->
-<div class="header-fill"></div>
+        </section>
+    </nav>
+</div>

@@ -2,10 +2,14 @@
 HEADER SECTION
 */
 #header-branding {
-    background: #515151 url("../images/brand-bg.jpg") no-repeat center center;
+    background: #333d4f url("../images/brand-bg.jpg") no-repeat center center;
     background-size: cover;
     box-shadow: inset 0px 0px 15px #000;
     text-shadow: 1px 1px 1px black;
+}
+
+#header-branding img {
+    height: 200px;
 }
 
 .header-section {
@@ -43,6 +47,7 @@ HEADER SECTION
   margin: -10px 0 0 0;
 }
 
+@media only screen and (min-width: 64em) {
 .top-bar .top-bar-section ul {
   background: none;
 }
@@ -106,7 +111,7 @@ HEADER SECTION
   background: none;
   color: #222;
 }
-
+}
 .top-bar .has-dropdown > a:after {
   border-color: rgba(0, 0, 0, 0.5) transparent transparent;
   margin-top: -5px;

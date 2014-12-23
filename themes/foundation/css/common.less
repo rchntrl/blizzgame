@@ -18,9 +18,20 @@
   border: @color @pixel @style;
 }
 
+.top-bar-section ul li > a,
+.top-bar .top-bar-section ul,
 .top-bar.expanded .title-area,
 .contain-to-grid {
   background-color: #333d4f;
+}
+
+.top-bar-section ul li.active > a,
+.top-bar-section ul li:hover:not(.has-form) > a {
+  background-color: #2D3645;
+}
+
+.top-bar-section ul li.active > a {
+  color: #ff0000;
 }
 
 table {

@@ -2,7 +2,7 @@
 
 class BlizzgamePageExtension extends DataExtension {
 
-    protected function translateCyrilicToLatin($string){
+    protected function transliterate($string){
         $arr = array(
             'А' => 'A', 'Б' => 'B', 'В' => 'V', 'Г' => 'G', 'Д' => 'D', 'Е' => 'E', 'Ё' => 'YO', 'Ж' => 'ZH',
             'З' => 'Z', 'И' => 'I', 'Й' => 'Y', 'К' => 'K', 'Л' => 'L', 'М' => 'M', 'Н' => 'N', 'О' => 'O',
@@ -21,13 +21,8 @@ class BlizzgamePageExtension extends DataExtension {
         return $translate;
     }
 
-    public function generateURLSegment($title) {
+    public function updateURLSegment(&$t, $title) {
         $t = (function_exists('mb_strtolower')) ? mb_strtolower($title) : strtolower($title);
-        $t = $this->translateCyrilicToLatin($t);
-        $t = str_replace('&amp;', '-and-', $t);
-        $t = str_replace('&','-and-',$t);
-        $t = preg_replace('/[^A-Za-z0-9]+/', '-', $t);
-        $t = preg_replace('/-+/', '-', $t);
-        return  $this->owner->generateURLSegment($t);
+        $t = $this->transliterate($t);
     }
 } 

@@ -16,10 +16,12 @@
         "silverstripe/cms": "~3.1",
         "silverstripe/subsites": "1.0.4",
         "firesphere/silverstripe-newsmodule": "5.1",
+        "silverstripe-australia/gridfieldextensions": "*",
 		"firesphere/social": "dev-master",
         "silverstripe/memberprofiles": "dev-master",
-        "rywa/silverstripe-foundation-forms": "dev-master",
-        "silverstripe/googlesitemaps": "1.2.2"
+        "silverstripe/tagfield": "dev-master",
+        "silverstripe/googlesitemaps": "1.2.2",
+        "rywa/silverstripe-foundation-forms": "dev-master"
 	},
     "config": {
         "process-timeout": 600

@@ -13,9 +13,11 @@
     </div>
     <ul class="inline-list">
         <% loop $GalleryImage.Tags() %>
-            <li><a href="$Top.getTagUrl($LastLinkSegment)">$Title</a></li>
+            <li><a href="$Top.getFilterUrl('tag', $LastLinkSegment)">$Title</a></li>
         <% end_loop %>
     </ul>
+    $GalleryImage.prevNextPage('prev').thumbnail
+    $GalleryImage.prevNextPage('next').thumbnail
 </aside>
 <% require javascript(themes/foundation/bower_components/jquery/dist/jquery.min.js) %>
 <% require javascript(themes/foundation/javascript/gallery.js) %>

@@ -1,11 +1,14 @@
 framework/
 cms/
+/subsites
 /googlesitemaps
 /gridfieldextensions
 /memberprofiles
 /gridfield-bulk-editing-tools
 /silverstripe-newsmodule
 /foundationforms
+/tagfield
+/silverstripe-social
 /composer.lock
 assets/*
 _ss_environment.php
