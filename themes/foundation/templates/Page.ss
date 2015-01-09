@@ -19,7 +19,8 @@
 	<%--See [Requirements](http://doc.silverstripe.org/framework/en/reference/requirements) for loading from controller--%>
 	<link rel="stylesheet" href="$ThemeDir/css/app.css" />
 	<link rel="stylesheet" href="$ThemeDir/css/style.css" />
-	<link rel="stylesheet" type="text/less" href="$ThemeDir/css/common.less" />
+	<link rel="stylesheet" type="text/less" href="style/variables" />
+
 	<script src="$ThemeDir/bower_components/modernizr/modernizr.js"></script>
     <script>
         less = {
@@ -27,6 +28,7 @@
         }
     </script>
 	<script src="$ThemeDir/javascript/less-1.7.0.min.js"></script>
+    <script src="$ThemeDir/bower_components/jquery/dist/jquery.min.js"></script>
 	<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -63,7 +65,7 @@
 	</footer>
 
 	<%--See [Requirements](http://doc.silverstripe.org/framework/en/reference/requirements) for loading from controller--%>
-	<script src="$ThemeDir/bower_components/jquery/dist/jquery.min.js"></script>
+
 	<script src="$ThemeDir/bower_components/foundation/js/foundation.min.js"></script>
 	<script src="$ThemeDir/javascript/app.js"></script>
 	<script src="$ThemeDir/javascript/init.js"></script>

@@ -1,12 +1,6 @@
 /*
 HEADER SECTION
 */
-#header-branding {
-    background: #333d4f url("../images/brand-bg.jpg") no-repeat center center;
-    background-size: cover;
-    box-shadow: inset 0px 0px 15px #000;
-    text-shadow: 1px 1px 1px black;
-}
 
 #header-branding img {
     height: 200px;

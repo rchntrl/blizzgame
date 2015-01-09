@@ -1,0 +1,3 @@
+Director:
+  rules:
+    'style//$Action/$ID/$OtherID': 'LessController'

@@ -1,12 +1,10 @@
+@BgImage: @BackgroundImage;
 
 @contentBgColor: #fff;
 @contentColor: inherit;
-
 @borderColor: #ddd;
-
 @textColor: inherit;
 @headerColor: inherit;
-
 @linkColor: #d9d9d9;
 
 .contentStyle (@color: @textColor, @bgColor: @contentBgColor) {
@@ -16,6 +14,13 @@
 
 .borderStyle (@color: @borderColor, @pixel: 1px, @style: solid) {
   border: @color @pixel @style;
+}
+
+#header-branding {
+  background: #333d4f url(@BgImage) no-repeat center center;
+  background-size: cover;
+  box-shadow: inset 0px 0px 15px #000;
+  text-shadow: 1px 1px 1px black;
 }
 
 .top-bar-section ul li > a,
@@ -51,10 +56,12 @@ table {
 h1, h2, h3, h4, h5, h6 {
   color: @headerColor;
 }
+
 .main,
 .news-holder {
   .contentStyle();
 }
+
 .news {
   .borderStyle(#ddd);
   padding: 10px;

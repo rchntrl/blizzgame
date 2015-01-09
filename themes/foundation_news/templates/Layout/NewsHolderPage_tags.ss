@@ -1,6 +1,6 @@
 <div class="container">
 	<div id="tags" class="row">
-		<div class="col-xs-12 cloud">
+		<div class="large-12 cloud">
 			<div class="tagCloud">
 				<% loop allTags %>
 					<a href="{$Top.URLSegment}/tag/$URLSegment" rel="$News.count()" >$Title</a>

@@ -1,11 +1,11 @@
 <div class="container">
-	<div class="row col-xs-10">
-		<div class="col-xs-12">
+	<div class="row large-10">
+		<div class="large-12">
 			<h1><%t NewsHolderPage.ITEMS_BY_AUTHOR "All items by " %>$CurrentAuthor.OriginalName.XML</h1>
 		</div>
 	<% if $allNews %>
 		<% loop $allNews %>
-		<div class="col-xs-4 $FirstLast">
+		<div class="large-4 $FirstLast">
 			<% include SingleSummaryItem %>
 		</div>
 		<% end_loop %>
@@ -43,7 +43,7 @@
 	<% end_if %>
 	</div>
 	<!--Optional, include the sidebar with Archive overview-->
-	<div id="sidebar" class="col-xs-2">
+	<div id="sidebar" class="large-2">
 		<% include ArchiveOverview %>
 	</div>
 </div>

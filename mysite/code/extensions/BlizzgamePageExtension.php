@@ -16,9 +16,13 @@ class BlizzgamePageExtension extends DataExtension {
         );
         $key = array_keys($arr);
         $val = array_values($arr);
-        $translate = str_replace($key, $val, $string);
-        $translate = (function_exists('mb_strtolower')) ? mb_strtolower($translate) : strtolower($translate);
-        return $translate;
+        $string = str_replace($key, $val, $string);
+        $string = (function_exists('mb_strtolower')) ? mb_strtolower($string) : strtolower($string);
+        $string = str_replace('&amp;', '-and-', $string);
+        $string = str_replace('&', '-and-', $string);
+        $string = preg_replace('/[^A-Za-z0-9]+/', '-', $string);
+        $string = preg_replace('/-+/', '-', $string);
+        return $string;
     }
 
     public function updateURLSegment(&$t, $title) {

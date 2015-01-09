@@ -4,7 +4,7 @@
             <div class="small-6 medium-7">
                 <h1>
                     <a href="/">
-                        <img src="$themedir/images/logo/logo-transparent.png" />
+                        <img src="$SiteConfig.LogoImage.getUrl()" />
                     </a>
                 </h1>
             </div>

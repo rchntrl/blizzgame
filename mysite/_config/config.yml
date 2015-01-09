@@ -12,3 +12,6 @@ SSViewer:
 SiteTree:
   extensions:
     - BlizzgamePageExtension
+SiteConfig:
+  extensions:
+    ['BlizzgameConfigExtension']
