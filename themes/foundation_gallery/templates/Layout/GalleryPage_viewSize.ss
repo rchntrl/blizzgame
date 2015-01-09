@@ -10,5 +10,5 @@
             </li>
         <% end_loop %>
     </ul>
-    <% include Pagination GalleryImages=$GalleryImages %>
+    <% include Imagination %>
 </div>

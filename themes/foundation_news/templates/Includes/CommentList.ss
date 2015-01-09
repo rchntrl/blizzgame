@@ -1,5 +1,5 @@
 <h3><%t NewsHolderPage_show.COMMENTS "Comments" %></h3>
-<div id="comments" class="col-xs-12">
+<div id="comments" class="large-12">
 	<ul>
 	<% loop $getAllowedComments %>
 		<li class="comment_$EvenOdd $EvenOdd comment">

@@ -6,6 +6,7 @@
  * @author nurgazy
  *
  * @method BooksHolderPage HolderPage()
+ * @property String LastLinkSegment
  */
 class Book extends DataObject {
 
@@ -21,14 +22,14 @@ class Book extends DataObject {
         'Category' => "Enum('Book,Comics,Manga,Tale,Magazine')",
         'TextContent' => 'HtmlText',
         'TextDescription' => 'Text',
-        'LinkURL' => 'Varchar(100)',
+        'LastLinkSegment' => 'Varchar(100)',
         'Races' => 'Text',
         'Heroes' => 'Text',
         'Fractions' => 'Text',
         'Places' => 'Text',
         'Monsters' => 'Text',
         'Items' => 'Text',
-        'Hollidays' => 'Text',
+        'Events' => 'Text',
         'TranslatedBy' => 'Varchar(255)',
         'Author' => 'Varchar(255)',
         'DateNews' => 'Date',
@@ -92,4 +93,7 @@ class Book extends DataObject {
         return $fields;
     }
 
+    public function link() {
+        return $this->HolderPage()->Link() . $this->LastLinkSegment;
+    }
 }

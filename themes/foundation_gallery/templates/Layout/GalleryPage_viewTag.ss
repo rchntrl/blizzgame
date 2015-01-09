@@ -12,5 +12,5 @@
             </li>
         <% end_loop %>
     </ul>
-    <% include Pagination %>
+    <% include Imagination %>
 </div>

@@ -26,3 +26,23 @@ h1, h2, h3, h4, h5, h6 {
 .panel {
     border-color: #373C47;
 }
+
+.eight, .row .eight {
+    width: 66.66667%;
+}
+
+.four, .row .four {
+    width: 33.33333%;
+}
+
+.month {
+    font-family: "Proxima Nova Condensed", "proxima-nova-condensed", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    color: #333;
+    border-bottom: 1px #ccc dotted;
+    padding: 2px 0;
+    margin-bottom: 7px;
+    line-height: 1.5;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 14px;
+}
