@@ -6,7 +6,7 @@
             <% else %>
                 <li class="arrow unavailable"><a href="#">&laquo;</a></li>
             <% end_if %>
-            <% loop $PaginatedPages.Pages %>
+            <% loop $PaginatedPages.Pages(10) %>
                 <% if $CurrentBool %>
                     <li class="current"><a href="#">$PageNum</a></li>
                 <% else %>

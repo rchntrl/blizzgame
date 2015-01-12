@@ -6,6 +6,7 @@
 @textColor: inherit;
 @headerColor: inherit;
 @linkColor: #d9d9d9;
+@BlizzgameColor: #333d4f;
 
 .contentStyle (@color: @textColor, @bgColor: @contentBgColor) {
   color: @color;
@@ -16,45 +17,150 @@
   border: @color @pixel @style;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  color: @headerColor;
+}
+
+.f-topbar-fixed {
+  padding-top: 0!important;
+}
+
 #header-branding {
-  background: #333d4f url(@BgImage) no-repeat center center;
+  background: @BlizzgameColor url(@BgImage) no-repeat center center;
   background-size: cover;
   box-shadow: inset 0px 0px 15px #000;
   text-shadow: 1px 1px 1px black;
 }
 
-.top-bar-section ul li > a,
-.top-bar .top-bar-section ul,
-.top-bar.expanded .title-area,
-.contain-to-grid {
-  background-color: #333d4f;
+.blizzgame-top-bar,
+.left-off-canvas-menu,
+.blizgame-color {
+  background-color: @BlizzgameColor;
 }
-
-.top-bar-section ul li.active > a,
-.top-bar-section ul li:hover:not(.has-form) > a {
-  background-color: #2D3645;
-}
-
-.top-bar-section ul li.active > a {
-  color: #ff0000;
-}
-
-table {
-  .contentStyle();
-  .borderStyle();
-  tr td,
-  tr th {
-    color: @textColor;
+.blizzgame-top-bar {
+  &.expanded.fixed {
+    position: fixed;
   }
-  tr.even,
-  tr.alt,
-  tr:nth-of-type(even) {
-    background-color: lighten(@contentBgColor, 3);
+  &.expanded .title-area,
+  .top-bar-section ul,
+  .top-bar-section ul li > a,
+  .top-bar-section ul li {
+    background-color: @BlizzgameColor;
+  }
+
+  .top-bar-section {
+    ul li.active > a,
+    .top-bar-section ul li:hover:not(.has-form) > a {
+      background-color: @BlizzgameColor;
+    }
+    ul {
+      li,
+      &.dropdown li {
+        &:hover:not(.has-form) > a:not(.button) {
+          background: @BlizzgameColor;
+          color: #fff;
+        }
+        background: @BlizzgameColor;
+      }
+    }
+  }//.top-bar-section end
+  .has-dropdown > a:after {
+    border-color: rgba(0, 0, 0, 0.5) transparent transparent;
+    margin-top: -5px;
+  }
+}
+/** small displays */
+@media only screen {
+  .expanded {
+    .top-bar-section {
+      ul {
+        li {
+          position: relative;
+          & > a:after {
+            content: "";
+            display: block;
+            width: 0;
+            height: 0;
+            border: inset 5px;
+            border-color: transparent transparent transparent rgba(255, 255, 255, 0.4);
+            border-left-style: solid;
+            margin-right: 0.83333rem;
+            margin-top: -4.5px;
+            position: absolute;
+            top: 50%;
+            right: 0;
+          }
+        }
+      }
+    }
   }
 }
 
-h1, h2, h3, h4, h5, h6 {
-  color: @headerColor;
+/* medium displays */
+@media only screen and (min-width: 40.063em) {
+  .blizzgame-top-bar {
+    .top-bar-section {
+      >ul>.divider,
+      >ul>[role="separator"] {
+        height: 2.2125rem;
+      }
+      ul {
+        padding: 0 40px 0 0;
+        &.dropdown {
+          background: #fff;
+          border: 1px solid #ddd;
+          color: #888;
+          li {
+            border-bottom: 1px solid #ddd;
+            margin: 0;
+            padding: 5px 15px 5px 15px;
+            &:hover:not(.has-form) > a:not(.button) {
+              background: @BlizzgameColor;
+              color: #222;
+            }
+          }
+        }
+        li {
+          margin-left: 15px;
+          a {
+            color: #999;
+          }
+          &:hover:not(.has-form) > a {
+            color: #ddd;
+          }
+          a:not(.button),
+          &.active a:not(.button) {
+            background: none;
+            line-height: 3.68;
+            font-size: 12px;
+            padding: 0;
+            margin: 5px 0 0 0;
+            text-transform: uppercase;
+          }
+
+        }// li end
+      }  // ul end
+      li {
+        &:not(.has-form) a:not(.button):hover {
+          background-color: @BlizzgameColor;
+          border-bottom: 2px solid #FF0000;
+          color: #fff;
+        }
+        &.active {
+          & > a {
+            color: #ff0000;
+          }
+          a:not(.button) {
+            border-bottom: 2px solid #FF0000;
+            color: #fff;
+            &:hover {
+              background: none;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 .main,
@@ -63,10 +169,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .news {
-  .borderStyle(#ddd);
+  border-bottom: #ddd 1px solid;
   padding: 10px;
-}
-
-.gallery-title {
-  text-transform: capitalize;
+  margin: 10px;
 }

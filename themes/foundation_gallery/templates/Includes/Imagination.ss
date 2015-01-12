@@ -2,11 +2,12 @@
     <div class="pagination-centered">
         <ul class="pagination">
             <% if $GalleryImages.NotFirstPage %>
+                <li class="arrow"><a href="$GalleryImages.FirstLink">&laquo;<%t Pagination.FIRST "Сюда" %></a></li>
                 <li class="arrow"><a href="$GalleryImages.PrevLink">&laquo;</a></li>
             <% else %>
                 <li class="arrow unavailable"><a href="#">&laquo;</a></li>
             <% end_if %>
-            <% loop $GalleryImages.Pages %>
+            <% loop $GalleryImages.Pages(8) %>
                 <% if $CurrentBool %>
                     <li class="current"><a href="#">$PageNum</a></li>
                 <% else %>
