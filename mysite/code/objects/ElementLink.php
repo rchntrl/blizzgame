@@ -12,6 +12,14 @@
  */
 class ElementLink extends DataObject
 {
+    const PLACES = 1;
+    const EVENTS = 2;
+    const RACES = 3;
+    const FRACTIONS = 4;
+    const HEROES = 5;
+    const MONSTERS = 6;
+    const ITEMS = 7;
+
     private static $db = array (
 		'TitleEN' => 'Varchar(255)',
 		'TitleRU' => 'Varchar(255)',
@@ -64,5 +72,61 @@ class ElementLink extends DataObject
 
     public function getTitle() {
         return $this->getField('TitleRU') . ' (' . $this->getField('TitleEN') . ')';
+    }
+
+    /**
+     * @param string $name
+     * @param string $title
+     * @param int $filterByGroup
+     * @return ListboxField
+     */
+    public static function getMultipleField($name, $title, $filterByGroup = 1) {
+        $subsiteID = Subsite::currentSubsiteID();
+        $groupID = null;
+        $fractions = array(976, 1774, 0);
+        $races = array(1292, 0, 0);
+        $places = array(977, 1773, 0);
+        $heroes = array(975, 1771, 0);
+        $monsters = array(978, 1772, 0);
+        $items = array(979, 1943, 0);
+        $evens = array(980, 0, 0);
+        switch ($filterByGroup) {
+            case ElementLink::FRACTIONS:
+                $groupID = $fractions[$subsiteID-1];
+                break;
+            case ElementLink::HEROES:
+                $groupID = $heroes[$subsiteID-1];
+                break;
+            case ElementLink::PLACES:
+                $groupID = $places[$subsiteID-1];
+                break;
+            case ElementLink::EVENTS:
+                $groupID = $evens[$subsiteID-1];
+                break;
+            case ElementLink::MONSTERS:
+                $groupID = $monsters[$subsiteID-1];
+                break;
+            case ElementLink::RACES:
+                $groupID = $races[$subsiteID-1];
+                break;
+            case ElementLink::ITEMS:
+                $groupID = $items[$subsiteID-1];
+                break;
+        }
+        $tagsField = new ListboxField(
+            $name,
+            $title,
+            DataObject::get(
+                'ElementLink',
+                array(
+                    "\"ElementLink\".\"ElementLinkGroupID\" = " . $groupID,
+                    "\"ElementLink\".\"SubsiteID\" =" . $subsiteID
+                ),
+                'TitleEN')->map('ID', 'TitleEN')->toArray(),
+            '',     // value
+            8,      // size
+            true    // multiple
+        );
+        return $tagsField;
     }
 }

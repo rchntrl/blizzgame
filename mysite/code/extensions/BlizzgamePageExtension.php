@@ -29,4 +29,4 @@ class BlizzgamePageExtension extends DataExtension {
         $t = (function_exists('mb_strtolower')) ? mb_strtolower($title) : strtolower($title);
         $t = $this->transliterate($t);
     }
-} 
+}

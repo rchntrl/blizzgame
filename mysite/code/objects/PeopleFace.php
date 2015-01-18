@@ -48,7 +48,31 @@ class PeopleFace extends DataObject {
      * @param String(Writer|Artist|Composer|Developer) $category
      * @return \DataList
      */
-    static function getOnly($category) {
+    public static function getOnly($category) {
         return DataObject::get('PeopleFace', "\"PeopleFace\".\"" . $category . "\" = 1");
+    }
+
+    /**
+     * get Artist Field
+     * @return DropdownField
+     */
+    public static function getArtistField($name = 'AuthorID', $title = 'Author') {
+        $artistField = new DropdownField($name, $title, PeopleFace::getOnly('Artist')->map('ID', 'Title'));
+        $artistField->setEmptyString(_t('Gallery.SELECT_ARTIST', 'Выберите художника'));
+        return $artistField;
+    }
+
+    /**
+     * @param string $name
+     * @param string $title
+     * @param string $category
+     * @param string $emptyString
+     * @return DropdownField
+     */
+    public static function getMultipleField($name = 'Writers', $title = 'Writers', $category = 'Writer') {
+        $artistField = new ListboxField($name, $title,
+            PeopleFace::getOnly('Writer')->map('ID', 'Title')->toArray(),
+            '', 8, true);
+        return $artistField;
     }
 }

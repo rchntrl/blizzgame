@@ -8,6 +8,7 @@ cms/
 /silverstripe-newsmodule
 /foundationforms
 /tagfield
+/pagejax
 /silverstripe-social
 /composer.lock
 assets/*

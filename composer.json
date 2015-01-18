@@ -15,10 +15,12 @@
         "silverstripe/framework": ">=3.0.1,<=3.2",
         "silverstripe/cms": "~3.1",
         "silverstripe/subsites": "1.0.4",
-        "firesphere/silverstripe-newsmodule": "5.1",
         "silverstripe-australia/gridfieldextensions": "*",
+        "colymba/gridField-bulk-editing-tools" : "2.0.2",
+        "firesphere/silverstripe-newsmodule": "5.1",
 		"firesphere/social": "dev-master",
         "silverstripe/memberprofiles": "dev-master",
+        "silverstripe-australia/silverstripe-pagejax": "dev-master",
         "silverstripe/tagfield": "dev-master",
         "silverstripe/googlesitemaps": "1.2.2",
         "rywa/silverstripe-foundation-forms": "dev-master"

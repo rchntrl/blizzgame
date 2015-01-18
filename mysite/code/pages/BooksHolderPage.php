@@ -1,11 +1,33 @@
 <?php
 
+/**
+ * Class BooksHolderPage
+ * @method SS_List Books()
+ */
 class BooksHolderPage extends Page {
 
     static $has_many = array (
         'Books' => 'Book'
     );
 
+    public function getCMSFields() {
+
+        $fields = parent::getCMSFields();
+        /** @var GridFieldConfig $gridFieldConfig */
+        $gridFieldConfig = GridFieldConfig_RecordEditor::create();
+        $gridFieldConfig->addComponent(new GridFieldBulkManager());
+        $fields->removeFieldFromTab('Root.Main', 'Content');
+        // Customize GridField
+        $gridFieldConfig->removeComponentsByType('GridFieldPaginator'); // Remove default paginator
+        $gridFieldConfig->addComponent(new GridFieldPaginator(20)); // Add custom paginator
+        $gridFieldConfig->addComponent(new GridFieldFilterHeader('AuthorID'));
+        $gridFieldConfig->removeComponentsByType('GridFieldAddNewButton'); // We only use bulk upload button
+        // Creates sortable grid field
+        $gridField = new GridField("Books", _t("Gallery.LIBRARY_CMS_TITLE", "Books"), $this->Books(), $gridFieldConfig);
+        $fields->addFieldToTab('Root.Main', $gridField, 'Metadata');
+
+        return $fields;
+    }
 }
 
 class BooksHolderPage_Controller extends Page_Controller {

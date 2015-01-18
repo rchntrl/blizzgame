@@ -12,8 +12,8 @@ class BlizzgameAdmin extends ModelAdmin {
         'ElementLink',
         'ElementLinkGroup',
         'PeopleFace',
-        'Book',
     );
+
     private static $url_segment = 'blizzgame-objects';
 
     private static $menu_title = 'Blizzgame objects';
