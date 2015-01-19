@@ -27,7 +27,6 @@ class Book extends DataObject {
         'DateSaleEN' => 'Date',
         'PublisherRU' => 'Varchar(255)',
         'DateSaleRU' => 'Date',
-        //'Categoria' "Enum('Книга,Комикс,Манга,Рассказ,Журнал')",
         'Category' => "Enum('Book,Comics,Manga,Tale,Magazine')",
         'TextContent' => 'HtmlText',
         'TextDescription' => 'HtmlText',
@@ -78,8 +77,6 @@ class Book extends DataObject {
     );
 
     private static $field_labels = array(
-        'TittleEN' => 'Название на английском',
-        'TitleRU' => 'Название на русском',
         'HolderPage.SubsiteID' => 'Subsite',
         'HolderPage.Subsite.Title' => 'Subsite',
     );
@@ -153,7 +150,7 @@ class Book extends DataObject {
             ElementLink::getMultipleField('Heroes', 'Персонажи', ElementLink::HEROES),
             ElementLink::getMultipleField('Monsters', 'Бестиарий', ElementLink::MONSTERS),
             ElementLink::getMultipleField('Fractions', 'Фракции', ElementLink::FRACTIONS),
-            ElementLink::getMultipleField('Races', 'Races', ElementLink::RACES),
+            ElementLink::getMultipleField('Races', 'Расы', ElementLink::RACES),
             ElementLink::getMultipleField('Places', 'Места', ElementLink::PLACES),
             ElementLink::getMultipleField('Events', 'События и праздники', ElementLink::EVENTS),
             ElementLink::getMultipleField('Items', 'Предметы и артефакты', ElementLink::ITEMS)

@@ -24,18 +24,18 @@ class ElementLink extends DataObject
         'TitleEN' => 'Varchar(255)',
         'TitleRU' => 'Varchar(255)',
         'LinkURL' => 'Varchar(255)',
-        'LinkURL2' => 'Int', // link to Page
         'LastLinkSegment' => 'Varchar(255)'
     );
 
     private static $has_one = array (
         'ElementLinkGroup' => 'ElementLinkGroup',
+        'LinkToPage' => 'SiteTree',
         'Subsite' => 'Subsite',
         'Icon' => 'Image',
     );
 
     private static $searchable_fields = array(
-        'SubsiteID', 'ElementLinkGroupID'
+        'TitleEN', 'TitleRU', 'SubsiteID', 'ElementLinkGroupID'
     );
 
     private static $summary_fields = array (
@@ -50,24 +50,19 @@ class ElementLink extends DataObject
 
     public function getCMSFields() {
         $fields = parent::getCMSFields();
-        if(class_exists('Subsite')){
+        if (class_exists('Subsite')) {
             $fields->push(new HiddenField('SubsiteID','SubsiteID', Subsite::currentSubsiteID()));
         }
-        $fields->replaceField('LinkURL2',
-            new TreeDropdownField("LinkURL2", "Link Page", 'Page', 'ID', 'TreeTitle')
+        $fields->replaceField('LinkToPageID',
+            new TreeDropdownField("LinkToPageID", "Link To Page", 'Page', 'ID', 'TreeTitle')
         );
         $fields->dataFieldByName('LinkURL')->setReadonly(true);
-        $fields->dataFieldByName('LastLinkSegment')->setReadonly(true);
         return $fields;
     }
 
-    function  Thumbnail() {
+    function Thumbnail() {
         $Image = $this->Icon();
-        if ( $Image ) {
-            return $Image->CroppedImage(30,30);
-        } else {
-            return null;
-        }
+        return $Image ? $Image->CroppedImage(30, 30) : null;
     }
 
     public function getTitle() {
@@ -75,7 +70,7 @@ class ElementLink extends DataObject
     }
 
     /**
-     * // todo make tag input with ajax
+     * todo make tag input with ajax
      * @param string $name
      * @param string $title
      * @param int $filterByGroup

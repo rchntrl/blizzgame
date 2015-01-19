@@ -48,7 +48,7 @@ class BlizzgameConfigExtension extends DataExtension {
      * The tabs are pushed into arrays, because it works better than adding them one by one.
      * @param FieldList $fields of current FieldList of SiteConfig
      */
-    public function updateCMSFields(FieldList $fields){
+    public function updateCMSFields(FieldList $fields) {
         /** Only allow authors or higher! */
         $fields->addFieldToTab(
             'Root',

@@ -16,7 +16,7 @@
         "silverstripe/cms": "~3.1",
         "silverstripe/subsites": "1.0.4",
         "silverstripe-australia/gridfieldextensions": "*",
-        "colymba/gridField-bulk-editing-tools" : "2.0.2",
+        "colymba/gridField-bulk-editing-tools" : "2.1.1",
         "firesphere/silverstripe-newsmodule": "5.1",
 		"firesphere/social": "dev-master",
         "silverstripe/memberprofiles": "dev-master",

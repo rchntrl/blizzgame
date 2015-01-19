@@ -9,6 +9,9 @@ After:
 # Caution: Indentation through two spaces, not tabs
 SSViewer:
   theme: 'foundation'
+DataObject:
+  extensions:
+    - BlizzgameObjectExtension
 SiteTree:
   extensions:
     - BlizzgamePageExtension
