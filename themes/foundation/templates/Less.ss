@@ -1,3 +1,4 @@
+@BackgroundVerticalPosition: $SiteConfig.BackgroundVerticalPosition%;
 @BackgroundImage: "$SiteConfig.BackgroundImage.getUrl()";
 @LogoImage: "$SiteConfig.LogoImage.getUrl()";
 @DefaultElementImage: "$SiteConfig.DefaultElementImage.getUrl()";

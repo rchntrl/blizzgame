@@ -2,12 +2,17 @@
 
 /**
  * Class AttachedImageChapter
+ * @property String NumberSort
  * @method Image Image()
  * @method Chapter Chapter()
  */
 class AttachedImageChapter extends DataObject {
 
-    static $has_one = array (
+    static $db = array(
+        'NumberSort' => 'Int'
+    );
+
+    static $has_one = array(
         'Image' => 'Image',
         'Chapter' => 'Chapter'
     );
@@ -17,11 +22,16 @@ class AttachedImageChapter extends DataObject {
         'Thumbnail',
     );
 
+    static $default_sort = array(
+        'NumberSort DESC',
+        'Created DESC',
+    );
+
     public static $field_labels = array(
         'Image.Title' => 'Title',
     );
 
-    function needResizePhoto($size) {
+    function needResize($size) {
         return ($size < $this->Image()->getWidth()) ? true : false;
     }
 
@@ -39,6 +49,9 @@ class AttachedImageChapter extends DataObject {
 /**
  * Class AttachedImageChapter
  *
+ * @property String Title
+ * @property String Content HTML content
+ * @property String NumberSort
  * @method DataList AttachedImages()
  * @method Book Book()
  */
@@ -58,7 +71,10 @@ class Chapter extends DataObject
         'Book' => 'Book'
     );
 
-    private static $default_sort = 'NumberSort ASC';
+    static $default_sort = array(
+        'NumberSort DESC',
+        'Created DESC',
+    );
 
     static $summary_fields = array(
         'ID',
@@ -71,11 +87,7 @@ class Chapter extends DataObject
     );
 
     public function Link() {
-        return $this->Book()->lastLinkSegment . 'translate/' . $this->ID . '/';
-    }
-
-    public function LinkOrCurrent() {
-        return ($_GET['url'] == $this->Link()) ? 'current' : 'link';
+        return $this->Book()->LastLinkSegment . 'translate/' . $this->ID . '/';
     }
 
     public function getCMSFields() {
@@ -87,12 +99,12 @@ class Chapter extends DataObject
         $bulkUpload = new GridFieldBulkUpload();
         $bulkUpload->setUfSetup('setFolderName', 'Attached-Images');
         $gridFieldConfig->addComponent($bulkUpload);
-        $gridFieldConfig->removeComponentsByType('GridFieldPaginator'); // Remove default paginator
-        $gridFieldConfig->addComponent(new GridFieldPaginator(20)); // Add custom paginator
-        $gridFieldConfig->removeComponentsByType('GridFieldAddNewButton'); // We only use bulk upload button
+        $gridFieldConfig->removeComponentsByType('GridFieldPaginator');
+        $gridFieldConfig->addComponent(new GridFieldPaginator(20));
+        $gridFieldConfig->removeComponentsByType('GridFieldAddNewButton');
         $gridField = new GridField(
             'AttachedImages',
-            _t('Chapter.ATTACHED_IMAGES', 'Attached Images'),
+            _t('Chapter.ATTACHED_IMAGES', 'Прикрепленные картинки'),
             $this->AttachedImages(),
             $gridFieldConfig
         );

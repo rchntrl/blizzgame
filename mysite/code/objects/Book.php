@@ -3,8 +3,8 @@
 /**
  * Class Book
  *
- * @author nurgazy
- *
+ * @property string TitleEN
+ * @property string TitleRU
  * @method BooksHolderPage HolderPage()
  * @property String LastLinkSegment
  * @property String Category
@@ -113,11 +113,11 @@ class Book extends DataObject {
         return Tab::create(
             'MainFields',
             _t('Book.MAIN_TAB', 'Основное'),
-            PeopleFace::getMultipleField('Authors', 'Authors', PeopleFace::WRITER),
+            PeopleFace::getMultipleField('Authors', _t('Book.AUTHORS', 'Авторы'), PeopleFace::WRITER),
             new TextField('Author', 'Автор (если нет в базе)'),
-            PeopleFace::getMultipleField('PaintsCover', 'Художники обложки', PeopleFace::ARTIST),
-            PeopleFace::getMultipleField('PaintsPage', 'Художники страниц', PeopleFace::ARTIST),
-            new UploadField('Cover')
+            PeopleFace::getMultipleField('PaintsCover', _t('Book.PAINTS_COVER', 'Художники обложки'), PeopleFace::ARTIST),
+            PeopleFace::getMultipleField('PaintsPage', _t('Book.PAINTS_PAGE', 'Художники страниц'), PeopleFace::ARTIST),
+            new UploadField('Cover', _t('Book.COVER', 'Обложка'))
         );
     }
 

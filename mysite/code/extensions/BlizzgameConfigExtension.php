@@ -12,6 +12,7 @@
 class BlizzgameConfigExtension extends DataExtension {
 
     private static $db = array(
+        'BackgroundVerticalPosition' => 'Int',
     );
 
     private static $has_one = array(
@@ -21,6 +22,7 @@ class BlizzgameConfigExtension extends DataExtension {
     );
 
     private static $defaults = array(
+        'BackgroundVerticalPosition' => 50
     );
 
     /** @var array $config_tabs the tabs available for the user to config. */
@@ -89,6 +91,7 @@ class BlizzgameConfigExtension extends DataExtension {
             'Theme',
             _t('BlizzgameConfigExtension.THEMESETTINGS', 'Theme Settings'),
             $logoImage->setFolderName(self::$uploads_folder),
+            new NumericField('BackgroundVerticalPosition', 'BackgroundVerticalPosition'),
             $backgroundImage->setFolderName(self::$uploads_folder),
             $defaultElementImage->setFolderName(self::$uploads_folder)
         );
@@ -105,7 +108,7 @@ class BlizzgameConfigExtension extends DataExtension {
     /**
      * {@inheritdoc}
      */
-    public function populateDefaults(){
-
+    public function populateDefaults() {
+        $this->owner->BackgroundVerticalPosition = 50;
     }
 }

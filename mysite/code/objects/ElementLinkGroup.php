@@ -3,7 +3,6 @@
 class ElementLinkGroup extends  DataObject {
     private static $db = array (
         'Title' => 'Varchar(255)',
-
     );
 
     private static $has_one = array (
@@ -11,7 +10,7 @@ class ElementLinkGroup extends  DataObject {
     );
 
     private static $has_many = array(
-        'ElementLinks'	  => 'ElementLink'
+        'ElementLinks'  => 'ElementLink'
     );
 
     private static $searchable_fields = array(
@@ -19,7 +18,7 @@ class ElementLinkGroup extends  DataObject {
     );
 
     private static $summary_fields = array (
-        'ID', 'Title', 'Subsite.Title'
+        'ID', 'Title'
     );
 
     private static $field_labels = array(

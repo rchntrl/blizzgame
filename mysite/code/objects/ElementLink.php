@@ -12,13 +12,13 @@
  */
 class ElementLink extends DataObject
 {
-    const PLACES = 1;
-    const EVENTS = 2;
-    const RACES = 3;
+    const PLACES    = 1;
+    const EVENTS    = 2;
+    const RACES     = 3;
     const FRACTIONS = 4;
-    const HEROES = 5;
-    const MONSTERS = 6;
-    const ITEMS = 7;
+    const HEROES    = 5;
+    const MONSTERS  = 6;
+    const ITEMS     = 7;
 
     private static $db = array (
         'TitleEN' => 'Varchar(255)',
@@ -35,7 +35,7 @@ class ElementLink extends DataObject
     );
 
     private static $searchable_fields = array(
-        'TitleEN', 'TitleRU', 'SubsiteID', 'ElementLinkGroupID'
+        'TitleEN', 'TitleRU', 'ElementLinkGroupID'
     );
 
     private static $summary_fields = array (
@@ -113,6 +113,7 @@ class ElementLink extends DataObject
         $filter = array("\"ElementLink\".\"SubsiteID\" =" . $subsiteID);
         if ($groupID) {
             $filter[] = "\"ElementLink\".\"ElementLinkGroupID\" = " . $groupID;
+            $title = _t('ElementLink.GROUP_' . $groupID, $title);
         }
         $tagsField = new ListboxField(
             $name,

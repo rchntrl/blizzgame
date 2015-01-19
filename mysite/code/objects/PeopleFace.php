@@ -11,9 +11,9 @@
  */
 class PeopleFace extends DataObject {
 
-    const WRITER = 'Writer';
-    const ARTIST = 'Artist';
-    const COMPOSER = 'Composer';
+    const WRITER    = 'Writer';
+    const ARTIST    = 'Artist';
+    const COMPOSER  = 'Composer';
     const DEVELOPER = 'Developer';
 
     public static $db = array (
@@ -63,7 +63,11 @@ class PeopleFace extends DataObject {
      * @return DropdownField
      */
     public static function getArtistField($name = 'AuthorID', $title = 'Author') {
-        $artistField = new DropdownField($name, $title, PeopleFace::getOnly(PeopleFace::ARTIST)->map('ID', 'Title'));
+        $artistField = new DropdownField(
+            $name,
+            _t('PeopleFace.ARTIST', $title),
+            PeopleFace::getOnly(PeopleFace::ARTIST)->map('ID', 'Title')
+        );
         $artistField->setEmptyString(_t('Gallery.SELECT_ARTIST', 'Выберите художника'));
         return $artistField;
     }
@@ -75,7 +79,11 @@ class PeopleFace extends DataObject {
      * @return DropdownField
      */
     public static function getWriterField($name = 'AuthorID', $title = 'Author') {
-        $artistField = new DropdownField($name, $title, PeopleFace::getOnly(PeopleFace::WRITER)->map('ID', 'Title'));
+        $artistField = new DropdownField(
+            $name,
+            _t('PeopleFace.WRITER', $title),
+            PeopleFace::getOnly(PeopleFace::WRITER)->map('ID', 'Title')
+        );
         $artistField->setEmptyString(_t('Gallery.SELECT_WRITER', 'Выберите писателя'));
         return $artistField;
     }
