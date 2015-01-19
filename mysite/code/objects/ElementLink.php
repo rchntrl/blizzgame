@@ -21,18 +21,18 @@ class ElementLink extends DataObject
     const ITEMS = 7;
 
     private static $db = array (
-		'TitleEN' => 'Varchar(255)',
-		'TitleRU' => 'Varchar(255)',
-		'LinkURL' => 'Varchar(255)',
-		'LinkURL2' => 'Int', // link to Page
-		'LastLinkSegment' => 'Varchar(255)'
-	);
+        'TitleEN' => 'Varchar(255)',
+        'TitleRU' => 'Varchar(255)',
+        'LinkURL' => 'Varchar(255)',
+        'LinkURL2' => 'Int', // link to Page
+        'LastLinkSegment' => 'Varchar(255)'
+    );
 
     private static $has_one = array (
         'ElementLinkGroup' => 'ElementLinkGroup',
         'Subsite' => 'Subsite',
-		'Icon' => 'Image',
-	);
+        'Icon' => 'Image',
+    );
 
     private static $searchable_fields = array(
         'SubsiteID', 'ElementLinkGroupID'
@@ -60,27 +60,28 @@ class ElementLink extends DataObject
         $fields->dataFieldByName('LastLinkSegment')->setReadonly(true);
         return $fields;
     }
-	
-	function  Thumbnail() {
-		$Image = $this->Icon();
-		if ( $Image ) {
-			return $Image->CroppedImage(30,30);
-		} else {
-			return null;
-		}
-	}
+
+    function  Thumbnail() {
+        $Image = $this->Icon();
+        if ( $Image ) {
+            return $Image->CroppedImage(30,30);
+        } else {
+            return null;
+        }
+    }
 
     public function getTitle() {
         return $this->getField('TitleRU') . ' (' . $this->getField('TitleEN') . ')';
     }
 
     /**
+     * // todo make tag input with ajax
      * @param string $name
      * @param string $title
      * @param int $filterByGroup
      * @return ListboxField
      */
-    public static function getMultipleField($name, $title, $filterByGroup = 1) {
+    public static function getMultipleField($name, $title, $filterByGroup = null) {
         $subsiteID = Subsite::currentSubsiteID();
         $groupID = null;
         $fractions = array(976, 1774, 0);
