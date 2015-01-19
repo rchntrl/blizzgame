@@ -113,18 +113,13 @@ class Book extends DataObject {
     }
 
     protected function getMainTab() {
-        //var_dump($this->Category);
         return Tab::create(
             'MainFields',
             _t('Book.MAIN_TAB', 'Основное'),
-            //new TextField('TitleEN'),
-           // new TextField('TitleRU'),
-            //new TextField('DateNews'),
-            //new DropdownField('Category', 'Категория'),
-            PeopleFace::getMultipleField('Authors', 'Authors', 'Writers'),
+            PeopleFace::getMultipleField('Authors', 'Authors', PeopleFace::WRITER),
             new TextField('Author', 'Автор (если нет в базе)'),
-            PeopleFace::getMultipleField('PaintsCover', 'Художники обложки', 'Artist'),
-            PeopleFace::getMultipleField('PaintsPage', 'Художники страниц', 'Artist'),
+            PeopleFace::getMultipleField('PaintsCover', 'Художники обложки', PeopleFace::ARTIST),
+            PeopleFace::getMultipleField('PaintsPage', 'Художники страниц', PeopleFace::ARTIST),
             new UploadField('Cover')
         );
     }
