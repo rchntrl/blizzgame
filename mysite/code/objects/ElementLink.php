@@ -113,16 +113,15 @@ class ElementLink extends DataObject
                 $groupID = $items[$subsiteID-1];
                 break;
         }
+
+        $filter = array("\"ElementLink\".\"SubsiteID\" =" . $subsiteID);
+        if ($groupID) {
+            $filter[] = "\"ElementLink\".\"ElementLinkGroupID\" = " . $groupID;
+        }
         $tagsField = new ListboxField(
             $name,
             $title,
-            DataObject::get(
-                'ElementLink',
-                array(
-                    "\"ElementLink\".\"ElementLinkGroupID\" = " . $groupID,
-                    "\"ElementLink\".\"SubsiteID\" =" . $subsiteID
-                ),
-                'TitleEN')->map('ID', 'TitleEN')->toArray(),
+            DataObject::get('ElementLink', $filter, 'TitleEN')->map('ID', 'TitleEN')->toArray(),
             '',     // value
             8,      // size
             true    // multiple
