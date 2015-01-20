@@ -14,7 +14,7 @@ class Page extends SiteTree {
 
     function Icon() {
         /** @var ElementLink $tag */
-        $tag = DataObject::get_one('ElementLink', 'ElementLink.LinkURL2 = ' . Convert::raw2sql($this->ID));
+        $tag = DataObject::get_one('ElementLink', 'ElementLink.LinkToPageID = ' . Convert::raw2sql($this->ID));
         return $tag ? $tag->Icon() : false;
     }
 }

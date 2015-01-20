@@ -20,9 +20,10 @@
 </dl>
 <% end_if %>
 <ul class="button-group">
-    <li> <button href="#" data-dropdown="filter-by-author" aria-controls="filter-by-author" aria-expanded="false" class="small secondary radius button dropdown">
-        <%t Gallery.FILTER_AUTHOR_TITLE 'Фильтр по художнику' %>
-    </button>
+    <li>
+        <button href="#" data-dropdown="filter-by-author" aria-controls="filter-by-author" aria-expanded="false" class="small secondary radius button dropdown">
+            <%t Gallery.FILTER_AUTHOR_TITLE 'Фильтр по художнику' %>
+        </button>
         <br>
         <ul id="filter-by-author" data-dropdown-content class="small f-dropdown" aria-hidden="true" tabindex="-1">
             <% loop filterByAuthor %>
@@ -37,7 +38,7 @@
         <br>
         <ul id="filter-by-tag" data-dropdown-content class="small f-dropdown" aria-hidden="true" tabindex="-1">
             <% loop FilterByTags %>
-                <li><a href="$Top.getAddTagUrl($LastLinkSegment)"><span>$TitleEN</span></a></li>
+                <li><a href="$Top.getAddTagUrl($LastLinkSegment)"><span>$Title</span></a></li>
             <% end_loop %>
         </ul>
     </li>
