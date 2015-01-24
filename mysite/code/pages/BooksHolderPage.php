@@ -10,6 +10,12 @@ class BooksHolderPage extends Page {
         'Books' => 'Book'
     );
 
+    //Permissions
+    function canCreate($Member = null) {return (permission::check('CREATE_EDIT_BOOK')) ? true : false;}
+    function canEdit($Member = null) {return (permission::check('CREATE_EDIT_BOOK')) ? true : false;}
+    function canDelete($Member = null) {return (permission::check('DELETE_BOOK')) ? true : false;}
+    function canView($Member = null) {return (permission::check('VIEW_BOOK')) ? true : false;}
+
     public function getCMSFields() {
 
         $fields = parent::getCMSFields();
