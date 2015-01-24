@@ -27,10 +27,10 @@ class ElementLinkGroup extends  DataObject {
     );
 
     //Permissions
-    function canCreate($Member = null) {return (permission::check('CREATE_EDIT_TAGS_GROUP')) ? true : false;}
-    function canEdit($Member = null) {return (permission::check('CREATE_EDIT_TAGS_GROUP')) ? true : false;}
-    function canDelete($Member = null) {return (permission::check('DELETE_TAGS_GROUP')) ? true : false;}
-    function canView($Member = null) {return (permission::check('VIEW_TAGS_GROUP')) ? true : false;}
+    function canCreate($Member = null) {return (permission::check('CREATE_EDIT_TAG')) ? true : false;}
+    function canEdit($Member = null) {return (permission::check('CREATE_EDIT_TAG')) ? true : false;}
+    function canDelete($Member = null) {return (permission::check('DELETE_TAG')) ? true : false;}
+    function canView($Member = null) {return (permission::check('VIEW_TAG')) ? true : false;}
 
     public function getCMSFields() {
         $fields = parent::getCMSFields();

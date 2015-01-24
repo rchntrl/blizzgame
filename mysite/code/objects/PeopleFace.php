@@ -48,11 +48,10 @@ class PeopleFace extends DataObject {
         return $this->getField('TitleEN') . ($this->getField('Nick') ? ' (' . $this->getField('Nick') . ')' : '');
     }
 
-    //Permissions
-    function canCreate($Member = null) {return (permission::check('CREATE_EDIT_PEOPLE')) ? true : false;}
-    function canEdit($Member = null) {return (permission::check('CREATE_EDIT_PEOPLE')) ? true : false;}
-    function canDelete($Member = null) {return (permission::check('DELETE_PEOPLE')) ? true : false;}
-    function canView($Member = null) {return (permission::check('VIEW_PEOPLE')) ? true : false;}
+    function canCreate($Member = null) {return (permission::check('CREATE_EDIT_TAG')) ? true : false;}
+    function canEdit($Member = null) {return (permission::check('CREATE_EDIT_TAG')) ? true : false;}
+    function canDelete($Member = null) {return (permission::check('DELETE_TAG')) ? true : false;}
+    function canView($Member = null) {return (permission::check('VIEW_TAG')) ? true : false;}
 
     /**
      * @param String(Writer|Artist|Composer|Developer) $category

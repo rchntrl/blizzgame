@@ -48,7 +48,14 @@ class ElementLink extends DataObject
         'ElementLinkGroupID' => 'Group'
     );
 
-    //Permissions
+    public function providePermissions() {
+        return array(
+            "CREATE_EDIT_TAG" => "View/Edit Tags (Authors, Element Links)",
+            "DELETE_TAG" => "Delete Tags (Authors, Element Links)",
+            "VIEW_TAG" => "View Tags (Authors, Element Links)",
+        );
+    }
+
     function canCreate($Member = null) {return (permission::check('CREATE_EDIT_TAG')) ? true : false;}
     function canEdit($Member = null) {return (permission::check('CREATE_EDIT_TAG')) ? true : false;}
     function canDelete($Member = null) {return (permission::check('DELETE_TAG')) ? true : false;}

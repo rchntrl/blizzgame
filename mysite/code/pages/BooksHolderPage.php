@@ -10,6 +10,14 @@ class BooksHolderPage extends Page {
         'Books' => 'Book'
     );
 
+    public function providePermissions() {
+        return array(
+            "CREATE_EDIT_BOOK" => "View/Edit Library",
+            "DELETE_BOOK" => "Delete Library",
+            "VIEW_BOOK" => "View Library",
+        );
+    }
+
     //Permissions
     function canCreate($Member = null) {return (permission::check('CREATE_EDIT_BOOK')) ? true : false;}
     function canEdit($Member = null) {return (permission::check('CREATE_EDIT_BOOK')) ? true : false;}

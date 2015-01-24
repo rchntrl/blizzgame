@@ -102,7 +102,7 @@ class Book extends DataObject {
         ));
         $cmsFields->removeByName(array(
             'PublisherEN','PublisherRU', 'DateSaleEN', 'DateSaleRU',
-            'CountPage', 'TextContent', 'TextDescription', 'LastLinkSegment',
+            'CountPage', 'TextContent', 'TextDescription',
             'TranslatedBy', 'Author', 'Authors', 'PaintsCover', 'PaintsPage',
             'Cover', 'DateSaleRU', 'HolderPageID'
         ), true);
