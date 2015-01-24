@@ -13,6 +13,22 @@ class BlizzgameObjectExtension extends DataExtension {
             $fields->dataFieldByName('TitleEN')->setTitle(_t('BlizzgameObject.TitleEN', 'Название (анг)'));
             $fields->dataFieldByName('TitleRU')->setTitle(_t('BlizzgameObject.TitleRU', 'Название (рус)'));
         }
+        if ($this->owner->hasField('LastLinkSegment')) {
+            $linkField = new SiteTreeURLSegmentField('LastLinkSegment', 'URL Link');
+            $urlPrefix = '/';
+            if (method_exists(get_class($this->owner), 'getAbsoluteLink')) {
+                $urlPrefix = $this->owner->getAbsoluteLink();
+            }
+            $linkField->setURLPrefix($urlPrefix);
+            $fields->replaceField('LastLinkSegment', $linkField);
+        }
+    }
+
+    public function updateFieldLabels(&$labels) {
+        if ($this->owner->hasField('TitleEN')) {
+            $labels['TitleEN'] = _t('BlizzgameObject.TitleEN', 'Название (анг)');
+            $labels['TitleRU'] = _t('BlizzgameObject.TitleRU', 'Название (рус)');
+        }
     }
 
     public function onBeforeWrite() {

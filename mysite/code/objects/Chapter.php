@@ -59,7 +59,7 @@ class Chapter extends DataObject
 {
     static $db = array (
         'Title' => 'Varchar(255)',
-        'Content' => 'HtmlText',
+        'Content' => 'HTMLText',
         'NumberSort' => 'Int'
     );
 
@@ -89,6 +89,12 @@ class Chapter extends DataObject
     public function Link() {
         return $this->Book()->LastLinkSegment . 'translate/' . $this->ID . '/';
     }
+
+    //Permissions
+    function canCreate($Member = null) {return (permission::check('CREATE_EDIT_BOOK')) ? true : false;}
+    function canEdit($Member = null) {return (permission::check('CREATE_EDIT_BOOK')) ? true : false;}
+    function canDelete($Member = null) {return (permission::check('DELETE_BOOK')) ? true : false;}
+    function canView($Member = null) {return (permission::check('VIEW_BOOK')) ? true : false;}
 
     public function getCMSFields() {
         $fields = parent::getCMSFields();

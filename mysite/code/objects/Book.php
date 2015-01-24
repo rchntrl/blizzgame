@@ -67,13 +67,15 @@ class Book extends DataObject {
     );
 
     static $summary_fields = array(
-        'ID', 'Title', 'HolderPage.Subsite.Title'
+        'ID', 'TitleEN', 'TitleRU', 'Author'
     );
 
     static $searchable_fields = array(
         'HolderPage.SubsiteID',
         'HolderPageID',
         'Category',
+        'TitleEN',
+        'TitleRU',
     );
 
     private static $field_labels = array(
@@ -84,6 +86,12 @@ class Book extends DataObject {
     public function getTitle() {
         return $this->getField('TitleRU') . ' (' . $this->getField('TitleEN') . ')';
     }
+
+    //Permissions
+    function canCreate($Member = null) {return (permission::check('CREATE_EDIT_BOOK')) ? true : false;}
+    function canEdit($Member = null) {return (permission::check('CREATE_EDIT_BOOK')) ? true : false;}
+    function canDelete($Member = null) {return (permission::check('DELETE_BOOK')) ? true : false;}
+    function canView($Member = null) {return (permission::check('VIEW_BOOK')) ? true : false;}
 
     public function getCMSFields() {
         $cmsFields = parent::getCMSFields();

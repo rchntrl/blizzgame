@@ -16,7 +16,7 @@ class BlizzgameAdmin extends ModelAdmin {
 
     private static $url_segment = 'blizzgame-objects';
 
-    private static $menu_title = 'Blizzgame objects';
+    private static $menu_title = 'Blizzgame Data';
 
     /**
      * List only newsitems from current subsite.
@@ -28,7 +28,7 @@ class BlizzgameAdmin extends ModelAdmin {
         $list = parent::getList();
         $classes = array(
             'ElementLink',
-            'ElementLinkGroup'
+            'ElementLinkGroup',
         );
 
         if(in_array($this->modelClass, $classes) && class_exists('Subsite')) {
