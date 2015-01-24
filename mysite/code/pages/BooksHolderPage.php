@@ -4,7 +4,7 @@
  * Class BooksHolderPage
  * @method SS_List Books()
  */
-class BooksHolderPage extends Page {
+class BooksHolderPage extends Page implements PermissionProvider {
 
     static $has_many = array (
         'Books' => 'Book'

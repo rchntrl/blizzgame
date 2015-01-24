@@ -10,8 +10,7 @@
  * @method Subsite Subsite()
  * @method ElementLinkGroup ElementLinkGroup()
  */
-class ElementLink extends DataObject
-{
+class ElementLink extends DataObject implements PermissionProvider {
     const PLACES    = 1;
     const EVENTS    = 2;
     const RACES     = 3;
