@@ -6,9 +6,11 @@ Base project folder for a Blizzgame website ([http://blizzgame.ru](http://blizzg
 
 * [`Silverstripe 3.1.* framework`](https://github.com/silverstripe/Sapphire)
 * [`Silverstripe 3.1.* CMS`](https://github.com/silverstripe/silverstripe-cms)
+* [`Trait Loader`](https://git.simon.geek.nz/simon_w/trait-loader)
 * [`Subsites Module 1.0.4`](https://github.com/silverstripe/silverstripe-subsites)
 * [`Silverstripe 3 Newsmodule 5.1 `](https://github.com/Firesphere/silverstripe-newsmodule/)
-* [`Google Sitemaps Module `](https://github.com/silverstripe-labs/silverstripe-googlesitemaps)
+* [`SilverStripe Member Profile Pages Module`](https://github.com/silverstripe-australia/silverstripe-memberprofiles)
+* [`Google Sitemaps Module`](https://github.com/silverstripe-labs/silverstripe-googlesitemaps)
 
 
 ## Installation ##
@@ -24,7 +26,7 @@ If you would like to make changes to the Blizzgame codebase,
 
 ## Actual license
 
-This module is published under BSD 2-clause license, although these are not in the actual classes, the license does apply:
+This project is published under BSD 2-clause license, although these are not in the actual classes, the license does apply:
 
 http://www.opensource.org/licenses/BSD-2-Clause
 

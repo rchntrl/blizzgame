@@ -15,9 +15,11 @@
  * @property String Heroes
  * @property String Monsters
  * @property String Items
+ * @property String TextDescription
+ * @property String TextContent
  */
-
 class Book extends DataObject {
+    use LastLinkSegmentProvider;
 
     public static $db = array (
         'TitleEN' => 'Varchar(255)',
@@ -39,8 +41,7 @@ class Book extends DataObject {
         'Items' => 'Text',
         'Events' => 'Text',
         'TranslatedBy' => 'Varchar(255)',
-        'Author' => 'Varchar(255)',
-        'DateNews' => 'Date',
+        'Author' => 'Varchar(255)'
     );
 
     public static $indexes = array(
@@ -118,6 +119,8 @@ class Book extends DataObject {
     }
 
     protected function getMainTab() {
+        $uploadField = new UploadField('Cover', _t('Book.COVER', 'Обложка'));
+        $uploadField->setFolderName('BookCovers/' . Subsite::currentSubsite()->getField('Title'));
         return Tab::create(
             'MainFields',
             _t('Book.MAIN_TAB', 'Основное'),
@@ -125,7 +128,7 @@ class Book extends DataObject {
             new TextField('Author', 'Автор (если нет в базе)'),
             PeopleFace::getMultipleField('PaintsCover', _t('Book.PAINTS_COVER', 'Художники обложки'), PeopleFace::ARTIST),
             PeopleFace::getMultipleField('PaintsPage', _t('Book.PAINTS_PAGE', 'Художники страниц'), PeopleFace::ARTIST),
-            new UploadField('Cover', _t('Book.COVER', 'Обложка'))
+            $uploadField
         );
     }
 
@@ -154,7 +157,7 @@ class Book extends DataObject {
     protected function getElementLinksTab() {
         return Tab::create(
             'Tags',
-            _t('Book.TAGSTAB', 'Tags'),
+            _t('Book.TAGSTAB', 'Тэги'),
             ElementLink::getMultipleField('Heroes', 'Персонажи', ElementLink::HEROES),
             ElementLink::getMultipleField('Monsters', 'Бестиарий', ElementLink::MONSTERS),
             ElementLink::getMultipleField('Fractions', 'Фракции', ElementLink::FRACTIONS),
@@ -167,5 +170,9 @@ class Book extends DataObject {
 
     public function link() {
         return $this->HolderPage()->Link() . $this->LastLinkSegment;
+    }
+
+    public function getURLPrefix() {
+        return $this->HolderPage()->getAbsoluteLiveLink(false);
     }
 }

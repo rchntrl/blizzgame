@@ -8,9 +8,12 @@
  * @property string LastLinkSegment
  * @method Image Icon()
  * @method Subsite Subsite()
+ * @method SiteTree LinkToPage()
  * @method ElementLinkGroup ElementLinkGroup()
  */
 class ElementLink extends DataObject implements PermissionProvider {
+    use LastLinkSegmentProvider;
+
     const PLACES    = 1;
     const EVENTS    = 2;
     const RACES     = 3;
@@ -31,6 +34,13 @@ class ElementLink extends DataObject implements PermissionProvider {
         'LinkToPage' => 'SiteTree',
         'Subsite' => 'Subsite',
         'Icon' => 'Image',
+    );
+
+    public static $indexes = array(
+        'ID_UniqueLastLinkSegment' => array(
+            'type' => 'unique',
+            'value' => 'LastLinkSegment'
+        )
     );
 
     private static $searchable_fields = array(
@@ -65,6 +75,7 @@ class ElementLink extends DataObject implements PermissionProvider {
         if (class_exists('Subsite')) {
             $fields->push(new HiddenField('SubsiteID','SubsiteID', Subsite::currentSubsiteID()));
         }
+        $fields->dataFieldByName('Icon')->setFolderName('ElementLinks/' . Subsite::currentSubsite()->getField('Title'));
         $fields->replaceField('LinkToPageID',
             new TreeDropdownField("LinkToPageID", "Link To Page", 'Page', 'ID', 'TreeTitle')
         );
@@ -79,6 +90,10 @@ class ElementLink extends DataObject implements PermissionProvider {
 
     public function getTitle() {
         return $this->getField('TitleRU') . ' (' . $this->getField('TitleEN') . ')';
+    }
+
+    public function getURLPrefix() {
+        return '/';
     }
 
     /**

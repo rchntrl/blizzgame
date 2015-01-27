@@ -48,7 +48,7 @@
                 </aside>
                 <!-- CONTENT SECTION -->
                 <div class="row content-section">
-                    <div class="main-content">
+                    <div class="main-content pagejax-container">
                         $Layout
                     </div>
                     <a class="exit-off-canvas"></a>

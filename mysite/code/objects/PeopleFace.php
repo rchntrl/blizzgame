@@ -10,6 +10,7 @@
  * @property string LastLinkSegment
  */
 class PeopleFace extends DataObject {
+    use LastLinkSegmentProvider;
 
     const WRITER    = 'Writer';
     const ARTIST    = 'Artist';

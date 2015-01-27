@@ -1,6 +1,7 @@
 <?php
 
 class ElementLinkGroup extends  DataObject {
+
     private static $db = array (
         'Title' => 'Varchar(255)',
     );
@@ -38,5 +39,17 @@ class ElementLinkGroup extends  DataObject {
             $fields->push(new HiddenField('SubsiteID','SubsiteID', Subsite::currentSubsiteID()));
         }
         return $fields;
+    }
+
+    public static function getDropdownField($name, $title) {
+        $subsiteID = Subsite::currentSubsiteID();
+        return new ListboxField(
+            $name,
+            $title,
+            ElementLinkGroup::get('ElementLinkGroup', "\"ElementLinkGroup\".\"SubsiteID\" = '" . $subsiteID ."'")->map('ID', 'Title')->toArray(),
+            '',     // value
+            8,      // size
+            true    // multiple
+        );
     }
 } 

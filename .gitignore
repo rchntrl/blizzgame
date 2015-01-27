@@ -9,6 +9,7 @@ cms/
 /foundationforms
 /tagfield
 /pagejax
+/trait-loader
 /silverstripe-social
 /composer.lock
 assets/*

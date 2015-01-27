@@ -13,6 +13,14 @@ class BlizzgameConfigExtension extends DataExtension {
 
     private static $db = array(
         'BackgroundVerticalPosition' => 'Int',
+        'Races' => 'Varchar(255)',
+        'Fractions' => 'Varchar(255)',
+        'Classes' => 'Varchar(255)',
+        'Characters' => 'Varchar(255)',
+        'Professions' => 'Varchar(255)',
+        'Talents' => 'Varchar(255)',
+        'Items' => 'Varchar(255)',
+        'Bestiary' => 'Varchar(255)',
     );
 
     private static $has_one = array(
@@ -32,21 +40,19 @@ class BlizzgameConfigExtension extends DataExtension {
 
     /** @var array $admin_tabs The Admin-specific tabs. */
     private static $admin_tabs = array(
-        'ThemesTab'
+        'ThemesTab',
+        'TagsGroupTab',
     );
 
     /**
      * A foldername relative to /assets,
-     * where all uploaded files are stored by default.
-     * Can be overwritten in db using NewsRootFolder
-     *
      * @config
      * @var string
      */
     private static $uploads_folder = "Themes";
 
     /**
-     * Update the SiteConfig with the news-settings.
+     * Update the SiteConfig with the blizzgame settings.
      * The tabs are pushed into arrays, because it works better than adding them one by one.
      * @param FieldList $fields of current FieldList of SiteConfig
      */
@@ -105,6 +111,20 @@ class BlizzgameConfigExtension extends DataExtension {
         );
     }
 
+    protected function TagsGroupTab() {
+        return Tab::create(
+            'Help',
+            _t('BlizzgameConfigExtension.TAGSGROUP', 'Tags Group'),
+            ElementLinkGroup::getDropdownField('Races', 'Races Group'),
+            ElementLinkGroup::getDropdownField('Fractions', 'Fractions Group'),
+            ElementLinkGroup::getDropdownField('Classes', 'Classes Group'),
+            ElementLinkGroup::getDropdownField('Characters', 'Characters Group'),
+            ElementLinkGroup::getDropdownField('Professions', 'Professions'),
+            ElementLinkGroup::getDropdownField('Talents', 'Talents Group'),
+            ElementLinkGroup::getDropdownField('Items', 'Items Group'),
+            ElementLinkGroup::getDropdownField('Bestiary', 'Bestiary')
+        );
+    }
     /**
      * {@inheritdoc}
      */

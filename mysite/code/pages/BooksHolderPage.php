@@ -40,11 +40,14 @@ class BooksHolderPage extends Page implements PermissionProvider {
 
 class BooksHolderPage_Controller extends Page_Controller {
 
+    private static $allowed_actions = array(
+        'viewBook',
+        'viewChapter',
+    );
+
     static $url_handlers = array(
-        'author/$ID!' => 'viewAuthor',
-        'size/$ID!' => 'viewSize',
-        'tag/$ID!' => 'viewTag',
-        '$ID!' => 'view',
+        'translate/$ID!' => 'viewChapter',
+        '$ID!' => 'viewBook',
     );
 
     /**
@@ -69,6 +72,28 @@ class BooksHolderPage_Controller extends Page_Controller {
         return $qb;
     }
 
+    public function viewBook() {
+        /** @var Book $book */
+        $book = null;
+        if($this->urlParams['ID']) {
+            $id = $this->urlParams['ID'];
+            $book = Book::get_by_url($id);
+            if (!$book->ID || $book->HolderPage() != $this->ID) {
+                $this->httpError(404);
+            }
+        } else {
+            $this->httpError(404);
+        }
+
+        return array(
+            'Title' => $book->getTitle(),
+            'MenuTitle' => $book->getTitle(),
+            'BackURL' => $this->request->getHeader('Referer'),
+            'Content' => $book->TextDescription,
+            'Book' => $book,
+        );
+    }
+
     /**
      * @param int $itemsPerPage
      * @param SQLQuery|null $query
@@ -87,7 +112,7 @@ class BooksHolderPage_Controller extends Page_Controller {
         foreach($records as $rowArray) {
             $books->push(new Book($rowArray));
         }
-        //exit($books->count());
+
         $pages = new PaginatedList($books, $this->request);
         $pages
             ->setLimitItems(false)

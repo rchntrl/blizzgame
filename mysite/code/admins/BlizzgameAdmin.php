@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nurgazy
- * Date: 18.09.14
- * Time: 21:52
- */
 
 class BlizzgameAdmin extends ModelAdmin {
 
@@ -36,5 +30,9 @@ class BlizzgameAdmin extends ModelAdmin {
         }
 
         return $list;
-    }/**/
-} 
+    }
+
+    public function subsiteCMSShowInMenu() {
+        return true;
+    }
+}
