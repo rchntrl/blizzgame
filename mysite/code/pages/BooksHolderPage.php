@@ -89,7 +89,7 @@ class BooksHolderPage_Controller extends Page_Controller {
             'Title' => $book->getTitle(),
             'MenuTitle' => $book->getTitle(),
             'BackURL' => $this->request->getHeader('Referer'),
-            'Content' => $book->TextDescription,
+            'Content' => $book->TextContent,
             'Book' => $book,
         );
     }
