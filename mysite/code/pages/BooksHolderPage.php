@@ -78,7 +78,7 @@ class BooksHolderPage_Controller extends Page_Controller {
         if($this->urlParams['ID']) {
             $id = $this->urlParams['ID'];
             $book = Book::get_by_url($id);
-            if (!$book->ID || $book->HolderPage() != $this->ID) {
+            if (!$book->ID || $book->HolderPage()->ID != $this->ID) {
                 $this->httpError(404);
             }
         } else {
