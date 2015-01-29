@@ -44,7 +44,7 @@
                     <a class="exit-off-canvas"></a>
                 </div>
                 <footer id="footerDiv" class="footer" role="contentinfo">
-                    <p>&copy; $Now.Year $SiteConfig.Title</p>
+                    <p>&copy; $Now.Year BlizzGame</p>
                     <h6>&radic; Интересно</h6>
                     <h6>&radic; Сайты</h6>
                     <h6>&radic; О сайте</h6>

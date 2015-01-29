@@ -29,8 +29,9 @@ class Page_Controller extends ContentController {
     }
 
     public function ajaxTitle() {
-        return $this->MenuTitle();
+        return iconv( 'utf', 'cp1251', $this->MenuTitle());
     }
+
     public function init() {
         parent::init();
         Requirements::javascript($this->ThemeDir() .  'bower_components/jquery/dist/jquery.min.js');
