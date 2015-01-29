@@ -1,6 +1,6 @@
 <div id="newsitems" class="row">
 	<% loop NewsArchive(3) %> <%-- Check code/extensions/NewsExtension.php for configuration --%>
-	<div class="large-4 $FirstLast">
+	<div class="large-12 $FirstLast">
 		<% if Impression %>
 			<a href="$Link" class="impressionLink">
 				<% with Impression %>$SetSize(50,50)<% end_with %>

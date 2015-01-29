@@ -72,8 +72,8 @@ class Chapter extends DataObject
     );
 
     static $default_sort = array(
-        'NumberSort DESC',
-        'Created DESC',
+        'NumberSort ASC',
+        'Created ASC',
     );
 
     static $summary_fields = array(
@@ -87,7 +87,29 @@ class Chapter extends DataObject
     );
 
     public function Link() {
-        return $this->Book()->LastLinkSegment . 'translate/' . $this->ID . '/';
+        return $this->Book()->LinkToChapters() . $this->ID . '/';
+    }
+
+    public function HolderPage() {
+        return $this->Book()->HolderPage();
+    }
+
+    public function getParent() {
+        return $this->Book();
+    }
+
+    public function Next() {
+        $Chapter = DataObject::get_one('Chapter',
+            "\"Chapter\".\"BookID\" = " . $this->getField('BookID') . " AND \"Chapter\".\"NumberSort\" = " . ($this->getField('NumberSort') + 1)
+        );
+        return $Chapter;
+    }
+
+    public function Previous() {
+        $Chapter = DataObject::get_one('Chapter',
+            "\"Chapter\".\"BookID\" = " . $this->getField('BookID') . " AND \"Chapter\".\"NumberSort\" = " . ($this->getField('NumberSort') - 1)
+        );
+        return $Chapter ;
     }
 
     //Permissions
@@ -105,6 +127,8 @@ class Chapter extends DataObject
         $bulkUpload = new GridFieldBulkUpload();
         $bulkUpload->setUfSetup('setFolderName', 'Attached-Images');
         $gridFieldConfig->addComponent($bulkUpload);
+        /** @var GridFieldConfig $gridFieldConfig */
+        $gridFieldConfig->addComponent(new GridFieldOrderableRows('NumberSort'));
         $gridFieldConfig->removeComponentsByType('GridFieldPaginator');
         $gridFieldConfig->addComponent(new GridFieldPaginator(20));
         $gridFieldConfig->removeComponentsByType('GridFieldAddNewButton');
@@ -116,5 +140,10 @@ class Chapter extends DataObject
         );
         $fields->addFieldToTab('Root.AttachedImages', $gridField);
         return $fields;
+    }
+
+    public function onBeforeWrite() {
+        parent::onBeforeWrite();
+        $this->Link();
     }
 }

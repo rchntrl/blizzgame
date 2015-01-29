@@ -3,7 +3,7 @@
 trait LastLinkSegmentProvider {
     /**
      * @param $url
-     * @return LastLinkSegmentProvider
+     * @return static
      */
     public static function get_by_url($url) {
         $callerClass = get_class();
@@ -15,5 +15,9 @@ trait LastLinkSegmentProvider {
      */
     public function getURLPrefix() {
         return '/';
+    }
+
+    public function getPageHolder() {
+
     }
 }

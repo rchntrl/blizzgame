@@ -4,6 +4,7 @@
         <% loop PaginatedPages %>
             <li>
                 <a href="$Top.Link()$LastLinkSegment" role="button">
+                    <img src="$Cover.SetRatioSize(240, 390).getUrl()" />
                     $Title
                 </a>
             </li>

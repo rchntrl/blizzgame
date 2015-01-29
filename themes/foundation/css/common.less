@@ -9,6 +9,8 @@
 @headerColor: inherit;
 @linkColor: #d9d9d9;
 @BlizzgameColor: #333d4f;
+@BlizzgameDark: #162331;
+@ImageDir: "@{ThemeDir}/images/";
 
 .contentStyle (@color: @textColor, @bgColor: @contentBgColor) {
   color: @color;
@@ -18,147 +20,119 @@
 .borderStyle (@color: @borderColor, @pixel: 1px, @style: solid) {
   border: @color @pixel @style;
 }
+.bgStyle() {
+  background: @BlizzgameDark url(@BgImage) no-repeat 50% 50%;
+  background-size: cover;
+  box-shadow: inset 0px 0px 15px #000;
+}
+
+body {
+  .bgStyle();
+}
+
+.footer {
+  background: @BlizzgameDark;
+  box-shadow: inset 0px 0px 15px #000;
+}
 
 h1, h2, h3, h4, h5, h6 {
   color: @headerColor;
 }
 
+.footer,
+.blizzgame-top-bar,
+.header-branding {
+  max-width: 1080px;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.content-section {
+  border: 1px solid #ddd;
+  max-width: 67.5rem;
+  background: #fff;
+}
+
 .f-topbar-fixed {
   padding-top: 0!important;
 }
-
-#header-branding {
-  background: @BlizzgameColor url(@BgImage) no-repeat 50% @BgVerticalPosition;
-  background-size: cover;
-  box-shadow: inset 0px 0px 15px #000;
-  text-shadow: 1px 1px 1px black;
-}
-
-.blizzgame-top-bar,
-.left-off-canvas-menu,
-.blizgame-color {
-  background-color: @BlizzgameColor;
-}
-.blizzgame-top-bar {
-  &.expanded.fixed {
-    position: fixed;
-  }
-  &.expanded .title-area,
-  .top-bar-section ul,
-  .top-bar-section ul li > a,
-  .top-bar-section ul li {
-    background-color: @BlizzgameColor;
-  }
-
-  .top-bar-section {
-    ul li.active > a,
-    .top-bar-section ul li:hover:not(.has-form) > a {
-      background-color: @BlizzgameColor;
+.top-bar-section ul li {
+  &.game-icon {
+    > a {
+      text-transform: uppercase;
+      &:before {
+        content: '-';
+        width: 36px;
+        height: 32px;
+        vertical-align: middle;
+        background-repeat: no-repeat;
+        color: transparent;
+        display: inline-block;
+      }
+      &.Warcraft:before {
+        background-image: url("@{ImageDir}games/wow.png");
+      }
+      &.Starcraft:before {
+        background-image: url("@{ImageDir}games/s2.png");
+      }
+      &.Diablo:before {
+        background-image: url("@{ImageDir}games/d3.png");
+      }
+      span {
+        display: inline;
+        text-transform: uppercase;
+      }
     }
-    ul {
-      li,
-      &.dropdown li {
-        &:hover:not(.has-form) > a:not(.button) {
-          background: @BlizzgameColor;
-          color: #fff;
-        }
+  }
+}
+
+.blizgame-color,
+.top-bar {
+  background: @BlizzgameColor;
+  height: 3rem;
+}
+.top-bar-section ul {
+  background: @BlizzgameColor;
+  li {
+    background: @BlizzgameColor;
+    &:not(.has-form) a:not(.button) {
+      background: @BlizzgameColor;
+      color: #999;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+    &.active:not(.has-form) {
+      a:not(.button):hover,
+      a:not(.button) {
         background: @BlizzgameColor;
+        border-bottom: 2px solid #FF0000;
       }
     }
-  }//.top-bar-section end
-  .has-dropdown > a:after {
-    border-color: rgba(0, 0, 0, 0.5) transparent transparent;
-    margin-top: -5px;
-  }
-}
-/** small displays */
-@media only screen {
-  .expanded {
-    .top-bar-section {
-      ul {
-        li {
-          position: relative;
-          & > a:after {
-            content: "";
-            display: block;
-            width: 0;
-            height: 0;
-            border: inset 5px;
-            border-color: transparent transparent transparent rgba(255, 255, 255, 0.4);
-            border-left-style: solid;
-            margin-right: 0.83333rem;
-            margin-top: -4.5px;
-            position: absolute;
-            top: 50%;
-            right: 0;
-          }
-        }
-      }
+    &:not(.has-form) a:not(.button):hover {
+      background: @BlizzgameColor;
+      color: #fff;
+      border-bottom: 2px solid #FF0000;
     }
   }
 }
 
-/* medium displays */
-@media only screen and (min-width: 40.063em) {
-  .blizzgame-top-bar {
-    .top-bar-section {
-      >ul>.divider,
-      >ul>[role="separator"] {
-        height: 2.2125rem;
-      }
-      ul {
-        padding: 0 40px 0 0;
-        &.dropdown {
-          background: #fff;
-          border: 1px solid #ddd;
-          color: #888;
-          li {
-            border-bottom: 1px solid #ddd;
-            margin: 0;
-            padding: 5px 15px 5px 15px;
-            &:hover:not(.has-form) > a:not(.button) {
-              background: @BlizzgameColor;
-              color: #222;
-            }
-          }
-        }
-        li {
-          margin-left: 15px;
-          a {
-            color: #999;
-          }
-          &:hover:not(.has-form) > a {
-            color: #ddd;
-          }
-          a:not(.button),
-          &.active a:not(.button) {
-            background: none;
-            line-height: 3.68;
-            font-size: 12px;
-            text-transform: uppercase;
-          }
-
-        }// li end
-      }  // ul end
-      li {
-        &:not(.has-form) a:not(.button):hover {
-          background-color: @BlizzgameColor;
-          border-bottom: 2px solid #FF0000;
-          color: #fff;
-        }
-        &.active {
-          & > a {
-            color: #ff0000;
-          }
-          a:not(.button) {
-            border-bottom: 2px solid #FF0000;
-            color: #fff;
-            &:hover {
-              background: none;
-            }
-          }
-        }
-      }
+ul.children-page-list {
+  list-style: none;
+  li.children-page {
+    padding: 20px;
+    font-size: 0.93em;
+    border-bottom: 1px solid #ddd;
+    h6 {
+      margin: 0;
+    }
+    .element-link-image {
+      padding: 1px;
+      background: @BlizzgameColor;
+      display: inline;
+      float: left;
+      border-radius: 4px;
+      margin-right: 15px;
     }
   }
 }
@@ -178,4 +152,22 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: #ddd 1px solid;
   padding: 10px;
   margin: 10px;
+}
+
+.blizzquote {
+  //""
+  background: #111a22 url("@{ImageDir}bg/blizzquote.jpg") top right no-repeat;
+  border: 1px solid #000;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  box-shadow: inset 0 0 6px #000;
+  -moz-box-shadow: inset 0 0 6px #000;
+  -webkit-box-shadow: inset 0 0 6px #000;
+  margin: 0 5px;
+  color: #00B4FF;
+  text-shadow: 1px 1px 0px #0b0f13;
+  padding: 20px;
+  -webkit-border-bottom-left-radius: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+  -moz-border-radius: 0 0 10px 10px;
 }

@@ -11,10 +11,6 @@ HEADER SECTION
     height: 200px;
 }
 
-.f-topbar-fixed #header-branding {
-    display: none;
-}
-
 .header-section {
   -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.4);
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.4);
@@ -36,19 +32,31 @@ HEADER SECTION
   min-width: 100%;
 }
 
-.content-section .main-content {
-  margin-top: 35px;
-}
-
 .gallery-title {
     text-transform: capitalize;
 }
+
+#footerDiv{color:#797979;font-size:1em;background-color:#162331;height:300px;padding:10px;line-height: 15px;}
+#footerDiv hr{height:1px;clear:both;border:0;color: #898D97;background-color: #898D97;}
+#footerDiv h6{font-weight:normal;width: 220px;float: left;font-size:1.02em;margin-bottom:5px;color:#fff}
+#footerDiv ul{width: 220px;float: left;}
+#footerDiv ul {
+    margin: 5px 0px 5px 0px;
+    padding-bottom: 5px;
+    overflow:hidden;
+}
+#footerDiv ul li{
+    margin: 2px 10px 2px 0px;
+    list-style-type: none;
+    font-size:0.85em;
+}
+#footerDiv a{color:#797979;text-decoration:none;font-size:0.85em;}
+#footerDiv a:hover{color:#ff0000}
 
 /* NEWS SECTION */
 .month {
     font-family: "Proxima Nova Condensed", "proxima-nova-condensed", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif;
     color: #333;
-    border-bottom: 1px #ccc dotted;
     padding: 2px 0;
     margin-bottom: 7px;
     line-height: 1.5;
@@ -56,4 +64,24 @@ HEADER SECTION
     font-weight: bold;
     font-size: 14px;
     list-style-type: none;
+}
+
+.icon-frame {
+    display: inline-block;
+    overflow: hidden;
+    padding: 1px;
+    background-color: #000;
+    background-position: 1px 1px;
+    background-repeat: no-repeat;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #434445;
+    border-bottom-color: #2f3032;
+    border-top-color: #b1b2b4;
+}
+
+.frame-56 {
+    height: 56px;
+    width: 56px;
 }

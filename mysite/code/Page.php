@@ -25,9 +25,12 @@ class Page_Controller extends ContentController {
     );
 
     public function subSiteListMenu() {
-        return DataObject::get('Subsite');
+        return DataObject::get('Subsite', "", "ID ASC");
     }
 
+    public function ajaxTitle() {
+        return $this->MenuTitle();
+    }
     public function init() {
         parent::init();
         Requirements::javascript($this->ThemeDir() .  'bower_components/jquery/dist/jquery.min.js');

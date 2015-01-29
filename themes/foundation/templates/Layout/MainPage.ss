@@ -2,5 +2,13 @@
     <article>
         <h1>$Title</h1>
         $Content
+        <% if $allNews %>
+        <% loop $allNews %>
+            <div class="news $FirstLast">
+                <% include SingleSummaryItem %>
+            </div>
+        <% end_loop %>
+        <% end_if %>
     </article>
 </div>
+

@@ -1,4 +1,4 @@
-<section class="row">
+<section class="news-section">
     <% cached 'NewsHolderPage', List(News).max(LastEdited), List(News).count() %>
 
         <div class="large-10 medium-9 columns">

@@ -5,8 +5,9 @@
  * @method SS_List Books()
  */
 class BooksHolderPage extends Page implements PermissionProvider {
+    //use BreadCrumbsProvider;
 
-    static $has_many = array (
+    static $has_many = array(
         'Books' => 'Book'
     );
 
@@ -46,7 +47,7 @@ class BooksHolderPage_Controller extends Page_Controller {
     );
 
     static $url_handlers = array(
-        'translate/$ID!' => 'viewChapter',
+        '$ID!/translate/$Number' => 'viewChapter',
         '$ID!' => 'viewBook',
     );
 
@@ -85,13 +86,26 @@ class BooksHolderPage_Controller extends Page_Controller {
             $this->httpError(404);
         }
 
-        return array(
-            'Title' => $book->getTitle(),
-            'MenuTitle' => $book->getTitle(),
-            'BackURL' => $this->request->getHeader('Referer'),
-            'Content' => $book->TextContent,
-            'Book' => $book,
-        );
+        $ssv = new SSViewer('Page');
+        $ssv->setTemplateFile('Layout', 'BooksHolderPage_viewBook');
+        return $this->customise($book)->renderWith($ssv);
+    }
+
+    public function viewChapter() {
+        /** @var Chapter $chapter */
+        $chapter = null;
+        $id = $this->urlParams['ID'];
+        $book = Book::get_by_url($id);
+        $ssv = new SSViewer('Page');
+        if ($this->urlParams['Number']) {
+            $chapterNum = $this->urlParams['Number'];
+            $chapter = Chapter::get_by_id("Chapter", $chapterNum);
+        } else {
+            $ssv->setTemplateFile('Layout', 'Chapters');
+            return $this->customise($book)->renderWith($ssv);
+        }
+        $ssv->setTemplateFile('Layout', 'Chapter');
+        return $this->customise($chapter)->renderWith($ssv);
     }
 
     /**

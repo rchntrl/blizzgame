@@ -1,18 +1,23 @@
-<nav class="top-bar blizzgame-top-bar" data-topbar role="navigation">
-    <ul class="title-area">
-        <li class="name"><h1></h1></li>
-        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-    </ul>
-    <section class="top-bar-section">
-        <ul class="right">
-            <% loop subSiteListMenu() %>
-                <li <% if currentSubsiteID == $ID %>class="active"<% end_if %>>
-                    <a href="http://$PrimaryDomain" title="Go to the $Title.ATT">$Title</a>
-                </li>
-            <% end_loop %>
+
+    <nav class="top-bar blizzgame-top-bar" data-topbar role="navigation">
+        <ul class="title-area">
+            <li class="name"><h1></h1></li>
+            <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
         </ul>
-    </section>
-</nav>
+        <section class="top-bar-section">
+            <ul class="right">
+                <% loop subSiteListMenu() %>
+                    <li class="game-icon <% if currentSubsiteID == $ID %> active<% end_if %>">
+                        <a class="$title" href="http://$PrimaryDomain" title="Go to the $Title.ATT">
+                            <span class="">$Title</span>
+                        </a>
+                    </li>
+                <% end_loop %>
+            </ul>
+        </section>
+    </nav>
+
+
 <div id="header-branding">
     <div class="container">
         <div class="row">
@@ -26,7 +31,7 @@
         </div>
     </div>
 </div>
-<div class="contain-to-grid blizgame-color sticky">
+
     <nav class="top-bar blizzgame-top-bar" data-topbar role="navigation">
         <ul class="title-area">
             <li class="name">
@@ -35,7 +40,7 @@
             <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
         </ul>
         <section class="top-bar-section">
-            <ul class="right">
+            <ul class="left">
                 <% loop Menu(1) %>
                     <li class="<% if $LinkingMode == "current" || $LinkingMode == "section" %>active<% end_if %>">
                         <a href="$Link" title="Go to the $Title.ATT">$MenuTitle</a>
@@ -45,4 +50,3 @@
             </ul>
         </section>
     </nav>
-</div>

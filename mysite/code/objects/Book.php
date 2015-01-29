@@ -6,6 +6,7 @@
  * @property string TitleEN
  * @property string TitleRU
  * @method BooksHolderPage HolderPage()
+ * @method \DataList Chapters()
  * @property String LastLinkSegment
  * @property String Category
  * @property String Places
@@ -115,6 +116,11 @@ class Book extends DataObject {
         );
         $cmsFields->addFieldsToTab('Root.Main', $tabSet);
         $cmsFields->addFieldsToTab('Root', $this->getElementLinksTab(), 'Chapters');
+        /** @var GridFieldConfig $gridFieldConfig */
+        $gridFieldConfig = $cmsFields->dataFieldByName('Chapters')->getConfig();
+        $gridFieldConfig->addComponent(new GridFieldOrderableRows('NumberSort'));
+        $cmsFields->dataFieldByName('Chapters')->setConfig($gridFieldConfig);
+
         return $cmsFields;
     }
 
@@ -170,6 +176,10 @@ class Book extends DataObject {
 
     public function link() {
         return $this->HolderPage()->Link() . $this->LastLinkSegment;
+    }
+
+    public function LinkToChapters()  {
+        return $this->link() . '/translate/';
     }
 
     public function getURLPrefix() {
