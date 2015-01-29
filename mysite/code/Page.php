@@ -29,7 +29,7 @@ class Page_Controller extends ContentController {
     }
 
     public function ajaxTitle() {
-        return iconv( 'utf', 'cp1251', $this->MenuTitle());
+        return $this->MenuTitle();
     }
 
     public function init() {

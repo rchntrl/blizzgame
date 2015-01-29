@@ -23,9 +23,9 @@
                     <div class="element-link-image">
                         <a href="{$Link}" title="$TitleRU.ATT ($TitleEN.ATT)">
                             <% if Icon %>
-                                <img class="icon-frame frame-56" alt="$TitleRU.ATT ($TitleEN.ATT)" src="$Url" />
+                                <img class="icon-frame frame-56" alt="$TitleRU.ATT ($TitleEN.ATT)" src="$Icon.setSize(56, 56).getUrl()" />
                             <% else %>
-                                <img class="icon-frame frame-56" alt="" src="$Top.SiteConfig.DefaultElementImage.getUrl()" />
+                                <img class="icon-frame frame-56" alt="" src="$Top.SiteConfig.DefaultElementImage().setSize(56,56).getUrl()" />
                             <% end_if %>
                         </a>
                     </div>

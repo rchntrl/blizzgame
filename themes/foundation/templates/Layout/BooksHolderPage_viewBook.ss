@@ -1,4 +1,4 @@
-<div class="small-9 medium-8 large-9 columns">
+<div class="small-12 medium-9 large-10 columns">
     <h2>$Title</h2>
     <div class="small-5 columns">
         $Cover
@@ -26,7 +26,7 @@
         $Form
     </article>
 </div>
-<div class="small-3 medium-4 large-3 columns">
+<div class="small-12 medium-3 large-2 columns">
     <ul class="side-nav"  role="navigation" title="Книги">
         <li class="heading">Книги</li>
         <% loop $HolderPage.Books() %>

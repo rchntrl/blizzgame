@@ -32,8 +32,8 @@ HEADER SECTION
   min-width: 100%;
 }
 
-.gallery-title {
-    text-transform: capitalize;
+.news-section {
+    margin: 20px;
 }
 
 #footerDiv{color:#797979;font-size:1em;background-color:#162331;height:300px;padding:10px;line-height: 15px;}

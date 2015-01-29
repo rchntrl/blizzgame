@@ -1,11 +1,11 @@
-<div class="container">
+<div class="news-section">
 	<div class="row large-10">
 		<div class="large-12">
 			<h1><%t NewsHolderPage.ITEMS_BY_AUTHOR "All items by " %>$CurrentAuthor.OriginalName.XML</h1>
 		</div>
 	<% if $allNews %>
 		<% loop $allNews %>
-		<div class="large-4 $FirstLast">
+		<div class="news $FirstLast">
 			<% include SingleSummaryItem %>
 		</div>
 		<% end_loop %>

@@ -1,4 +1,4 @@
-<div class="small-12 medium-7 large-8 columns">
+<div class="small-12 medium-9 large-10 columns">
     <article>
         <h1>$Title</h1>
         $Content
@@ -15,7 +15,7 @@
         <% end_if %>
     </ul>
 </div>
-<div class="medium-5 large-4 columns">
+<div class="medium-3 large-2 columns">
     <ul class="side-nav">
         <% loop Book.Chapters %>
             <li <% if $ID = $Top.ID %>class="active"<% end_if %>><a href="$link">$Title</a></li>

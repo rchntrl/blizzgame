@@ -1,4 +1,4 @@
-<div class="container">
+<div class="news-section">
 	<% with Tag %>
 	<div id="tag" class="row">
 		<div class="large-12">
@@ -29,7 +29,7 @@
 	<div class="row">
 		<div id="related_news" class="large-12">
 		<% loop activeNews %>
-			<div class="large-4 $FirstLast">
+			<div class="news $FirstLast">
 				<% include SingleSummaryItem %>
 			</div>
 		<% end_loop %>
