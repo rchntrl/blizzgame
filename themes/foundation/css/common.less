@@ -22,7 +22,9 @@
 }
 .bgStyle() {
   background: @BlizzgameDark url(@BgImage) no-repeat 50% 50%;
+  -webkit-background-size: auto;
   background-size: cover;
+  background-attachment: fixed;
 }
 
 body {
@@ -122,7 +124,7 @@ h1, h2, h3, h4, h5, h6 {
 ul.children-page-list {
   list-style: none;
   li.children-page {
-    padding: 20px;
+    padding: 20px 0;
     font-size: 0.93em;
     border-bottom: 1px solid #ddd;
     h6 {

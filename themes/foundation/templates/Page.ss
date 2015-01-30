@@ -73,6 +73,7 @@
         </div>
 <%--See [Requirements](http://doc.silverstripe.org/framework/en/reference/requirements) for loading from controller--%>
 
+<script src="$ThemeDir/javascript/modernizr.js"></script>
 <script src="$ThemeDir/javascript/foundation.min.js"></script>
 <script src="$ThemeDir/javascript/foundation/foundation.topbar.js"></script>
 
