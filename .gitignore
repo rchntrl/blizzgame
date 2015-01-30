@@ -27,3 +27,4 @@ vendor/
 /.htaccess
 mysite/_config.php
 mysite/_config/facebookconnect.yml
+facebookconnect

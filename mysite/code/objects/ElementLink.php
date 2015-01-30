@@ -38,7 +38,7 @@ class ElementLink extends DataObject implements PermissionProvider {
 
     public static $indexes = array(
         'ID_UniqueLastLinkSegment' => array(
-            'type' => 'unique',
+            'type' => 'Normal',
             'value' => 'LastLinkSegment'
         )
     );

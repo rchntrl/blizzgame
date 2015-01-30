@@ -1,4 +1,4 @@
-<ul class="clearing-thumbs small-block-grid-4">
+<ul class="clearing-thumbs small-block-grid-4" data-clearing>
 	<% loop SlideshowImages %>
         <li>
             <a title="$Description" rel="lightbox.$Up.Title" href="$Image.Link" class="th" role="button" aria-label="Thumbnail">

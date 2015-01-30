@@ -21,6 +21,7 @@
         "firesphere/silverstripe-newsmodule": "5.1",
         "firesphere/social": "dev-master",
         "wilr/silverstripe-facebookconnect": "dev-master",
+        "facebook/php-sdk-v4": "4.0.15",
         "silverstripe-australia/memberprofiles": "dev-master",
         "silverstripe-australia/silverstripe-pagejax": "dev-master",
         "silverstripe/tagfield": "dev-master",
