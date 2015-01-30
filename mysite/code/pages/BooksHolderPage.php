@@ -23,14 +23,12 @@ class BooksHolderPage extends Page implements PermissionProvider {
     function canCreate($Member = null) {return (permission::check('CREATE_EDIT_BOOK')) ? true : false;}
     function canEdit($Member = null) {return (permission::check('CREATE_EDIT_BOOK')) ? true : false;}
     function canDelete($Member = null) {return (permission::check('DELETE_BOOK')) ? true : false;}
-    function canView($Member = null) {return (permission::check('VIEW_BOOK')) ? true : false;}
 
     public function getCMSFields() {
 
         $fields = parent::getCMSFields();
         /** @var GridFieldConfig $gridFieldConfig */
         $gridFieldConfig = GridFieldConfig_RecordEditor::create();
-        $fields->removeFieldFromTab('Root.Main', 'Content');
         $gridFieldConfig->getComponentByType('GridFieldPaginator')->setItemsPerPage(10);
         $gridField = new GridField("Books", _t("Library.BOOKS_CMS_TITLE", "Books"), $this->Books(), $gridFieldConfig);
         $fields->addFieldToTab('Root.Main', $gridField, 'MenuTitle');

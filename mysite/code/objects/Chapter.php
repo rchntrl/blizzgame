@@ -99,17 +99,15 @@ class Chapter extends DataObject
     }
 
     public function Next() {
-        $Chapter = DataObject::get_one('Chapter',
+        return DataObject::get_one('Chapter',
             "\"Chapter\".\"BookID\" = " . $this->getField('BookID') . " AND \"Chapter\".\"NumberSort\" = " . ($this->getField('NumberSort') + 1)
         );
-        return $Chapter;
     }
 
     public function Previous() {
-        $Chapter = DataObject::get_one('Chapter',
+        return DataObject::get_one('Chapter',
             "\"Chapter\".\"BookID\" = " . $this->getField('BookID') . " AND \"Chapter\".\"NumberSort\" = " . ($this->getField('NumberSort') - 1)
         );
-        return $Chapter ;
     }
 
     //Permissions
@@ -120,25 +118,19 @@ class Chapter extends DataObject
 
     public function getCMSFields() {
         $fields = parent::getCMSFields();
-        $fields->removeFieldFromTab('Root.Main', array('BookID', 'AttachedImages'));
-        /** @var GridFieldConfig $gridFieldConfig */
-        $gridFieldConfig = GridFieldConfig_RecordEditor::create();
-        $gridFieldConfig->addComponent(new GridFieldBulkManager());
-        $bulkUpload = new GridFieldBulkUpload();
-        $bulkUpload->setUfSetup('setFolderName', 'Attached-Images');
-        $gridFieldConfig->addComponent($bulkUpload);
-        /** @var GridFieldConfig $gridFieldConfig */
-        $gridFieldConfig->addComponent(new GridFieldOrderableRows('NumberSort'));
-        $gridFieldConfig->removeComponentsByType('GridFieldPaginator');
-        $gridFieldConfig->addComponent(new GridFieldPaginator(20));
-        $gridFieldConfig->removeComponentsByType('GridFieldAddNewButton');
-        $gridField = new GridField(
-            'AttachedImages',
-            _t('Chapter.ATTACHED_IMAGES', 'Прикрепленные картинки'),
-            $this->AttachedImages(),
-            $gridFieldConfig
-        );
-        $fields->addFieldToTab('Root.AttachedImages', $gridField);
+        $fields->removeFieldFromTab('Root.Main', array('BookID'));
+        if ($fields->dataFieldByName('AttachedImages')) {
+            /** @var GridFieldConfig $gridFieldConfig */
+            $gridFieldConfig = $fields->dataFieldByName('AttachedImages')->getConfig();
+            $gridFieldConfig->addComponent(new GridFieldBulkManager());
+            $bulkUpload = new GridFieldBulkUpload();
+            $bulkUpload->setUfSetup('setFolderName', 'Attached-Images/' . SiteConfig::current_site_config()->Title);
+            $gridFieldConfig->addComponent($bulkUpload);
+            /** @var GridFieldConfig $gridFieldConfig */
+            $gridFieldConfig->addComponent(new GridFieldOrderableRows('NumberSort'));
+            $gridFieldConfig->removeComponentsByType('GridFieldAddNewButton');
+            $fields->dataFieldByName('AttachedImages')->setConfig($gridFieldConfig);
+        }
         return $fields;
     }
 

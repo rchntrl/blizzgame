@@ -15,9 +15,10 @@
     <% if $Image %>
         <meta property="og:image" content="<% with $Image.SetSize(500,500) %>$AbsoluteURL.ATT<% end_with %>" />
     <% end_if %>
-    <link rel="icon" type="image/png" href="$ThemeDir/favicon.ico" />
+    <link rel="icon" type="image/png" href="$ThemeDir/favicon.png" />
     <%--See [Requirements](http://doc.silverstripe.org/framework/en/reference/requirements) for loading from controller--%>
     <link rel="stylesheet" href="$ThemeDir/css/foundation.min.css" />
+    <link rel="stylesheet" href="$ThemeDir/icons/foundation-icons.css" />
 
     <link rel="stylesheet" href="$ThemeDir/css/style.css" />
     <link rel="stylesheet/less" href="style/variables"/>

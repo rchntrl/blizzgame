@@ -1,6 +1,5 @@
 <% cached current_item.URLSegment %>
-<div class="container">
-	<div id="newsitem" class="row">
+<div id="newsitem" class="container">
 	<% with $current_item %>
 		<div class="large-12">
 		<% if $Impression %>
@@ -28,12 +27,13 @@
 		<% end_if %>
 		</div>
 		<% if $Tags.Count > 0 %>
-			<div class="large-12">
+			<ul class="inline-list">
 				<% loop Tags %>
-					<a href="$Link">$Title</a><% if Last %><% else %>&nbsp;|&nbsp;<% end_if %>
+					<li><a href="$Link">$Title</a></li>
 				<% end_loop %>
-			</div>
+			</ul>
 		<% end_if %>
+		<% include NewsSlideshowAll %>
 		<!--Example sharing buttons!-->
 		<div class="large-12 newsitem-socialbuttons">
 			<br />
@@ -54,7 +54,6 @@
 		<% end_if %>
 		</div>
 	<% end_with %>
-	</div>
 </div>
 <% end_cached %>
 <%-- If you want newsitems below this, include NewsItems.ss --%>

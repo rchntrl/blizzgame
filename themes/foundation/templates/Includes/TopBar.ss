@@ -6,9 +6,14 @@
         </ul>
         <section class="top-bar-section">
             <ul class="right">
+                <li class="game-icon <% if 0 == $ID %> active<% end_if %>">
+                    <a class="Blizzgame" href="http://www.blizzgame.ru" title="Главная">
+                        <span class="">Главный сайт</span>
+                    </a>
+                </li>
                 <% loop subSiteListMenu() %>
                     <li class="game-icon <% if currentSubsiteID == $ID %> active<% end_if %>">
-                        <a class="$title" href="http://$PrimaryDomain" title="Go to the $Title.ATT">
+                        <a class="$title" href="http://$PrimaryDomain" title="$Title.ATT">
                             <span class="">$Title</span>
                         </a>
                     </li>

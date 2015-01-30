@@ -13,7 +13,7 @@
     <% loop $Top.getAppliedTags() %>
         <dd>
             <a href="$Top.getClearTagUrl($LastLinkSegment)" title="$TitleEN">
-                <span class="label radius">$TitleRU</span>
+                <span class="label radius">$TitleRU <i class="fi-x"></i></span>
             </a>
         </dd>
     <% end_loop %>

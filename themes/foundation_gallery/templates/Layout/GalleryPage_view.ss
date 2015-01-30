@@ -1,33 +1,38 @@
-<link rel="stylesheet" type="text/less" href="$ThemeDir/css/gallery.css" />
+<link rel="stylesheet" type="text/less" href="$ThemeDir/css/gallery.css" xmlns="http://www.w3.org/1999/html"/>
 <div class="large-12 columns">
-    <div class="large-centered columns">
-        <img class="gallery-image small-centered columns" src="$Image.setRatioSize(1024, 3000).getUrl()" />
+    <div class="art-container">
+        <ul class="art-navigation-control button-group stack-for-small">
+            <li><a class="small button secondary previous<% if $Previous %>" title="$Previous.Title" href="{$Link}$Previous.LastLinkSegment"<% else %> disabled"<% end_if %> ><i class="fi-play"></i></a></li>
+            <li><a class="small button secondary all" title="Вернуться к списку" href="$BackURL"><i class="fi-thumbnails"></i></a></li>
+            <li><a class="small button secondary next<% if $Next %>" title="$Next.Title" href="{$Link}$Next.LastLinkSegment"<% else %> disabled"<% end_if %> ><i class="fi-play"></i></a></li>
+        </ul>
+        <img class="gallery-art small-centered columns" src="$Image.setRatioSize(1024, 3000).getUrl()" />
     </div>
     <div class="art-info">
-        <div class="artist">
-            <%t Gallery.AUTHOR 'Автор: {Name}' Name=$Author.Title %>
-        </div>
+        <% if $Author %>
+            <div class="artist">
+                <%t Gallery.AUTHOR 'Автор: {Name}' Name=$Author.Title %>
+            </div>
+        <% end_if %>
     </div>
-    <div class="row">
-        <ul class="children-page-list">
-            <% loop Tags %>
-                <li class="large-12 columns children-page">
-                    <div class="element-link-image">
-                        <a href="{$Link}" title="$TitleRU.ATT ($TitleEN.ATT)">
-                            <% if Icon %>
-                                <img class="icon-frame frame-56" alt="$TitleRU.ATT ($TitleEN.ATT)" src="$Url" />
-                            <% else %>
-                                <img class="icon-frame frame-56" alt="" src="$Top.SiteConfig.DefaultElementImage.getUrl()" />
-                            <% end_if %>
-                        </a>
-                    </div>
-                    <h6><a href="{$Link}" title="{$Title.ATT}">$Title</a></h6>
-                    <p>$LinkToPage.Content.NoHTML.LimitWordCountXML(20)</p>
-                </li>
+    <ul class="children-page-list">
+        <% loop Tags %>
+            <li class="large-12 columns children-page">
+                <div class="element-link-image">
+                    <a href="$LinkToPage.Link" title="$TitleRU.ATT ($TitleEN.ATT)">
+                        <% if Icon %>
+                            <img class="icon-frame frame-56" alt="$TitleRU.ATT ($TitleEN.ATT)" src="$Url" />
+                        <% else %>
+                            <img class="icon-frame frame-56" alt="" src="$Top.SiteConfig.DefaultElementImage.getUrl()" />
+                        <% end_if %>
+                    </a>
+                </div>
+                <h6><a href="$LinkToPage.Link" title="{$Title.ATT}">$Title</a></h6>
+                <p>$LinkToPage.Content.NoHTML.LimitWordCountXML(20)</p>
+            </li>
 
-            <% end_loop %>
-        </ul>
-    </div>
+        <% end_loop %>
+    </ul>
 </div>
 
 <% require javascript(themes/foundation/bower_components/jquery/dist/jquery.min.js) %>

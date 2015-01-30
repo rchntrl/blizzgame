@@ -116,11 +116,12 @@ class Book extends DataObject {
         );
         $cmsFields->addFieldsToTab('Root.Main', $tabSet);
         $cmsFields->addFieldsToTab('Root', $this->getElementLinksTab(), 'Chapters');
-        /** @var GridFieldConfig $gridFieldConfig */
-        $gridFieldConfig = $cmsFields->dataFieldByName('Chapters')->getConfig();
-        $gridFieldConfig->addComponent(new GridFieldOrderableRows('NumberSort'));
-        $cmsFields->dataFieldByName('Chapters')->setConfig($gridFieldConfig);
-
+        if ($cmsFields->dataFieldByName('Chapters')) {
+            /** @var GridFieldConfig $gridFieldConfig */
+            $gridFieldConfig = $cmsFields->dataFieldByName('Chapters')->getConfig();
+            $gridFieldConfig->addComponent(new GridFieldOrderableRows('NumberSort'));
+            $cmsFields->dataFieldByName('Chapters')->setConfig($gridFieldConfig);
+        }
         return $cmsFields;
     }
 

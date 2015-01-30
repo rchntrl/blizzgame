@@ -8,7 +8,7 @@ HEADER SECTION
 }
 
 #header-branding {
-    height: 200px;
+    height: 100px;
 }
 
 .header-section {
@@ -32,11 +32,16 @@ HEADER SECTION
   min-width: 100%;
 }
 
+.main-content {
+    padding: 20px;
+    float: left;
+}
+
 .news-section {
     margin: 20px;
 }
 
-#footerDiv{color:#797979;font-size:1em;background-color:#162331;height:300px;padding:10px;line-height: 15px;}
+#footerDiv{color:#797979;font-size:1em;background-color:#162331;height:300px;padding:30px;line-height: 15px;}
 #footerDiv hr{height:1px;clear:both;border:0;color: #898D97;background-color: #898D97;}
 #footerDiv h6{font-weight:normal;width: 220px;float: left;font-size:1.02em;margin-bottom:5px;color:#fff}
 #footerDiv ul{width: 220px;float: left;}
