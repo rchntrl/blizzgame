@@ -54,7 +54,7 @@ class Book extends DataObject {
 
     public static $has_one = array(
         'Cover' => 'Image',
-        //'Preview' => 'Image',
+        'Preview' => 'Image',
         'HolderPage' => 'BooksHolderPage'
     );
 
@@ -67,6 +67,8 @@ class Book extends DataObject {
         'PaintsPage' => 'PeopleFace',
         'PaintsCover' => 'PeopleFace',
     );
+
+    static $default_sort = 'DateSaleEN DESC';
 
     static $summary_fields = array(
         'ID', 'TitleEN', 'TitleRU', 'Author'
@@ -126,8 +128,11 @@ class Book extends DataObject {
     }
 
     protected function getMainTab() {
-        $uploadField = new UploadField('Cover', _t('Book.COVER', 'Обложка'));
-        $uploadField->setFolderName('BookCovers/' . Subsite::currentSubsite()->getField('Title'));
+        $coverField = new UploadField('Cover', _t('Book.COVER', 'Обложка'));
+        $previewField = new UploadField('Preview', _t('Book.PREVIEW', 'Обложка 2'));
+        $folderName = 'BookCovers/' . Subsite::currentSubsite()->getField('Title');
+        $coverField->setFolderName($folderName);
+        $previewField->setFolderName($folderName);
         return Tab::create(
             'MainFields',
             _t('Book.MAIN_TAB', 'Основное'),
@@ -135,7 +140,8 @@ class Book extends DataObject {
             new TextField('Author', 'Автор (если нет в базе)'),
             PeopleFace::getMultipleField('PaintsCover', _t('Book.PAINTS_COVER', 'Художники обложки'), PeopleFace::ARTIST),
             PeopleFace::getMultipleField('PaintsPage', _t('Book.PAINTS_PAGE', 'Художники страниц'), PeopleFace::ARTIST),
-            $uploadField
+            $coverField,
+            $previewField
         );
     }
 

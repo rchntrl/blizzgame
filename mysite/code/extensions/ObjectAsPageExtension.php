@@ -1,9 +1,11 @@
 <?php
 
-/**
- * Class BreadCrumbsProvider
- */
-trait BreadCrumbsProvider {
+class ObjectAsPageExtension extends DataExtension {
+
+    public function MenuTitle() {
+        return $this->owner->getTitle();
+    }
+
     /**
      * @param int $maxDepth
      * @param bool $unlinked
@@ -12,26 +14,29 @@ trait BreadCrumbsProvider {
      * @return HTMLText
      */
     public function Breadcrumbs($maxDepth = 20, $unlinked = false, $stopAtPageType = false, $showHidden = false) {
-        $page = $this;
         $pages = array();
-        if ($this->urlParams["Action"]) {
-            $f = $this->getAction();
-            $pages[] = $this->$f();
+        /** @var DataObject|null $object */
+        $object = $this->owner;
+        while($object instanceof DataObject) {
+            $pages[] = $object;
+            $object = method_exists(get_class($object), 'getParent') ? $object->getParent() : null;
         }
+        /** @var Page_Controller $page */
+        $page = $this->owner->HolderPage();
+        $originalPage = $page;
         while(
             $page
             && (!$maxDepth || count($pages) < $maxDepth)
             && (!$stopAtPageType || $page->ClassName != $stopAtPageType)
         ) {
-            if($showHidden || $page->ShowInMenus || ($page->ID == $this->ID)) {
+            if($showHidden || $page->ShowInMenus || ($page->ID == $originalPage->ID)) {
                 $pages[] = $page;
             }
-
             $page = $page->Parent;
         }
         $template = new SSViewer('BreadcrumbsTemplate');
 
-        return $template->process($this->customise(new ArrayData(array(
+        return $template->process($originalPage->customise(new ArrayData(array(
             'Pages' => new ArrayList(array_reverse($pages))
         ))));
     }

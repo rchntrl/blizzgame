@@ -15,6 +15,15 @@ NewsAdmin:
 DataObject:
   extensions:
     - BlizzgameObjectExtension
+GalleryImage:
+  extensions:
+    - ObjectAsPageExtension
+Book:
+  extensions:
+    - ObjectAsPageExtension
+Chapter:
+  extensions:
+    - ObjectAsPageExtension
 SiteTree:
   extensions:
     - BlizzgamePageExtension

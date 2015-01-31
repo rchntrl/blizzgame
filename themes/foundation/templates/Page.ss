@@ -4,7 +4,7 @@
     <% base_tag %>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><% if $MetaTitle %>$MetaTitle<% else %>$Title<% end_if %> - $SiteConfig.Title</title>
+    <title><% if $MetaTitle %>$MetaTitle<% else %>$Title<% end_if %> - BlizzGame</title>
     <meta name="description" content="$MetaDescription.ATT" />
     <%--http://ogp.me/--%>
     <meta property="og:site_name" content="$SiteConfig.Title.ATT" />

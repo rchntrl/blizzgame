@@ -33,7 +33,7 @@ HEADER SECTION
 }
 
 .main-content {
-    padding: 20px;
+    padding: 0 20px;
     float: left;
 }
 

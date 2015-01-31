@@ -56,7 +56,7 @@ class BooksHolderPage_Controller extends Page_Controller {
         $qb = new SQLQuery();
         $qb
             ->setFrom('Book')
-            ->setOrderBy(array('Book.Created DESC'))
+            ->setOrderBy(array('Book.DateSaleEN DESC'))
             ->setWhere('Book.HolderPageID = ' . $this->ID) // Books must belong to this page
         ;
         return $qb;
