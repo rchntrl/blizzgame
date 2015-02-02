@@ -1,11 +1,25 @@
 <?php
 
+/**
+ * Class PeopleFacePage
+ *
+ * @method SS_List PeopleFaces
+ */
 class PeopleFacePage extends Page
 {
     static $has_many = array (
         'PeopleFaces' => 'PeopleFace'
     );
 
+    public function getCMSFields() {
+        $fields = parent::getCMSFields();
+        /** @var GridFieldConfig $gridFieldConfig */
+        $gridFieldConfig = GridFieldConfig_RecordEditor::create();
+        $gridField = new GridField("PeopleFaces", _t("PeopleFace.MULTIPLE_CMS_TITLE", "Chronicle Items"), $this->PeopleFaces(), $gridFieldConfig);
+        $fields->addFieldToTab('Root.Main', $gridField, 'MenuTitle');
+
+        return $fields;
+    }
 }
 
 class PeopleFacePage_Controller extends Page_Controller {

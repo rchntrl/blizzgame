@@ -6,7 +6,10 @@
  * @property string TitleEN
  * @property string TitleRU
  * @method BooksHolderPage HolderPage()
- * @method \DataList Chapters()
+ * @method DataList Chapters()
+ * @method DataList Authors()
+ * @method DataList PaintsPage()
+ * @method DataList PaintsCover()
  * @property String LastLinkSegment
  * @property String Category
  * @property String Places
@@ -144,8 +147,8 @@ class Book extends DataObject {
         return Tab::create(
             'MainFields',
             _t('Book.MAIN_TAB', 'Основное'),
-            PeopleFace::getMultipleField('Authors', _t('Book.AUTHORS', 'Авторы'), PeopleFace::WRITER),
-            new TextField('Author', 'Автор (если нет в базе)'),
+            PeopleFace::getMultipleField('Authors', _t('Book.AUTHORS', 'Авторы (книга отобразится на странице автора)'), PeopleFace::WRITER),
+            new TextField('Author', 'Авторы (если нет в базе. Текст отобразится на странице книги)'),
             PeopleFace::getMultipleField('PaintsCover', _t('Book.PAINTS_COVER', 'Художники обложки'), PeopleFace::ARTIST),
             PeopleFace::getMultipleField('PaintsPage', _t('Book.PAINTS_PAGE', 'Художники страниц'), PeopleFace::ARTIST),
             $coverField,
@@ -195,9 +198,5 @@ class Book extends DataObject {
 
     public function LinkToChapters()  {
         return $this->link() . '/translate/';
-    }
-
-    public function getURLPrefix() {
-        return $this->HolderPage()->getAbsoluteLiveLink(false);
     }
 }

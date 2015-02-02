@@ -27,6 +27,9 @@ Chapter:
 PeopleFace:
   extensions:
     - ObjectAsPageExtension
+ChronicleItem:
+  extensions:
+    - ObjectAsPageExtension
 SiteTree:
   extensions:
     - BlizzgamePageExtension

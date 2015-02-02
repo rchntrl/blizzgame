@@ -3,6 +3,9 @@
 /**
  * Class Page
  *
+ * Subsite Extension method:
+ * @method string alternateAbsoluteLink
+ * @method string alternatePreviewLink
  */
 class Page extends SiteTree {
 

@@ -16,8 +16,9 @@ class BlizzgameObjectExtension extends DataExtension {
         if ($this->owner->hasField('LastLinkSegment')) {
             $linkField = new SiteTreeURLSegmentField('LastLinkSegment', 'URL Link');
             $urlPrefix = '/';
-            if (method_exists(get_class($this->owner), 'getURLPrefix')) {
+            try {
                 $urlPrefix = $this->owner->getURLPrefix();
+            } catch(\Exception $ex) {
             }
             $linkField->setURLPrefix($urlPrefix);
             $fields->replaceField('LastLinkSegment', $linkField);

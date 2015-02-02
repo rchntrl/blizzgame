@@ -22,6 +22,7 @@ class PeopleFace extends DataObject implements ObjectAsPageProvider {
         'TitleEN' => 'Varchar(255)',
         'TitleRU' => 'Varchar(255)',
         'Nick' => 'Varchar(255)',
+        'LastLinkSegment' => 'Varchar(255)',
         //'Categoria' => "Varchar(20)", //Enum('Автор,Художник,Композитор,Писатель,Разработчик')
         'Writer' => 'Boolean',
         'Artist' => 'Boolean',
@@ -29,7 +30,6 @@ class PeopleFace extends DataObject implements ObjectAsPageProvider {
         'Developer' => 'Boolean',
         'Content' => 'HTMLText',
         'WebLink' => 'Varchar(255)',
-        'LastLinkSegment' => 'Varchar(255)',
     );
 
     public static $has_one = array (
@@ -42,7 +42,7 @@ class PeopleFace extends DataObject implements ObjectAsPageProvider {
     );
 
     static $belongs_many_many = array(
-        'Book' => 'Authors'
+        'Books' => 'Book'
     );
 
     public static $summary_fields = array (
@@ -53,6 +53,10 @@ class PeopleFace extends DataObject implements ObjectAsPageProvider {
 
     public function getTitle() {
         return $this->getField('TitleEN') . ($this->getField('Nick') ? ' (' . $this->getField('Nick') . ')' : '');
+    }
+
+    public function MenuTitle() {
+        return $this->TitleEN;
     }
 
     /**
@@ -74,6 +78,15 @@ class PeopleFace extends DataObject implements ObjectAsPageProvider {
     function canCreate($Member = null) {return (permission::check('CREATE_EDIT_TAG')) ? true : false;}
     function canEdit($Member = null) {return (permission::check('CREATE_EDIT_TAG')) ? true : false;}
     function canDelete($Member = null) {return (permission::check('DELETE_TAG')) ? true : false;}
+
+    public function getCMSFields() {
+        $fields = parent::getCMSFields();
+        $fields->removeByName(array(
+            'PeopleFacePageID'
+        ));
+
+        return $fields;
+    }
 
     /**
      * @param String(Writer|Artist|Composer|Developer) $category

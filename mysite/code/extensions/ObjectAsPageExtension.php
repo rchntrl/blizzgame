@@ -14,17 +14,20 @@ class ObjectAsPageExtension extends DataExtension {
     }
 
     public function AbsoluteLink() {
-        return $this->owner->HolderPage()->AbsoluteLink() . $this->owner->LastLinkSegment;
+        return $this->owner->HolderPage()->alternateAbsoluteLink() . $this->owner->LastLinkSegment;
+    }
+
+    public function alternateAbsoluteLink() {
+        return $this->owner->HolderPage()->alternateAbsoluteLink() . $this->owner->LastLinkSegment;
     }
 
     /**
      * @return String
      */
     public function getURLPrefix() {
-        if (method_exists(get_class($this->owner), 'HolderPage')) {
-            return $this->owner->HolderPage()->Link();
-        }
-        return '/';
+        return $this->AbsoluteLink();
+
+        //return '/';
     }
 
     /**

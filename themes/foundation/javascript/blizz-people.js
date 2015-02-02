@@ -1,8 +1,8 @@
 $(document).ready(function() {
 
     if ($(".gallery-list li").length > 1) {
+        $("#arts-section").show();
         $(".load-more-art")
-            .show()
             .click(function() {
                 var that = $(this);
                 that.prop("disabled", true);
@@ -18,6 +18,7 @@ $(document).ready(function() {
                             $(".gallery-list").append($(data).html());
                             that.data("start", start + 12);
                             that.prop("disabled", false);
+
                             if ($(data).find("li").length < 12) {
                                 that.remove();
                             }
