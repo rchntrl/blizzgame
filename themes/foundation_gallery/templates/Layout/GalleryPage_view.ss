@@ -2,9 +2,9 @@
 <div class="large-12 columns">
     <div class="art-container">
         <ul class="art-navigation-control button-group stack-for-small">
-            <li><a class="small button secondary previous<% if $Previous %>" title="$Previous.Title" href="{$Link}$Previous.LastLinkSegment"<% else %> disabled"<% end_if %> ><i class="fi-play"></i></a></li>
+            <li><a class="small button secondary previous<% if $Previous %>" title="$Previous.Title" href="$Previous.Link"<% else %> disabled"<% end_if %> ><i class="fi-play"></i></a></li>
             <li><a class="small button secondary all" title="Вернуться к списку" href="$BackURL"><i class="fi-thumbnails"></i></a></li>
-            <li><a class="small button secondary next<% if $Next %>" title="$Next.Title" href="{$Link}$Next.LastLinkSegment"<% else %> disabled"<% end_if %> ><i class="fi-play"></i></a></li>
+            <li><a class="small button secondary next<% if $Next %>" title="$Next.Title" href="$Next.Link"<% else %> disabled"<% end_if %> ><i class="fi-play"></i></a></li>
         </ul>
         <img class="gallery-art small-centered columns" src="$Image.setRatioSize(1024, 3000).getUrl()" />
     </div>
