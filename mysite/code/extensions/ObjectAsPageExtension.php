@@ -25,9 +25,7 @@ class ObjectAsPageExtension extends DataExtension {
      * @return String
      */
     public function getURLPrefix() {
-        return $this->AbsoluteLink();
-
-        //return '/';
+        return $this->owner->HolderPage()->alternateAbsoluteLink();
     }
 
     /**

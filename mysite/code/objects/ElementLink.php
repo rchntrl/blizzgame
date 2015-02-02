@@ -35,13 +35,6 @@ class ElementLink extends DataObject implements PermissionProvider {
         'Icon' => 'Image',
     );
 
-    public static $indexes = array(
-        'ID_LastLinkSegment' => array(
-            'type' => 'Normal',
-            'value' => 'LastLinkSegment'
-        )
-    );
-
     private static $searchable_fields = array(
         'TitleEN', 'TitleRU', 'ElementLinkGroupID'
     );

@@ -35,7 +35,8 @@ class BlizzgameObjectExtension extends DataExtension {
     public function onBeforeWrite() {
         if ($this->owner->hasField('LastLinkSegment')) {
             if (empty($this->owner->LastLinkSegment)) {
-                $this->owner->LastLinkSegment = singleton('SiteTree')->generateURLSegment($this->owner->TitleEN);
+                $url = $this->owner->TitleEN ?: $this->owner->Title;
+                $this->owner->LastLinkSegment = singleton('SiteTree')->generateURLSegment($url);
             }
         }
     }

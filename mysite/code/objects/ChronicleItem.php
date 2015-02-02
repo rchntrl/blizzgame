@@ -26,7 +26,7 @@ class ChronicleItem extends DataObject {
         'HolderPage' => 'ChroniclePage'
     );
 
-    static $default_sort = 'NumberSort DESC';
+    static $default_sort = 'NumberSort ASC';
 
     public function getCMSFields() {
         $fields = parent::getCMSFields();
