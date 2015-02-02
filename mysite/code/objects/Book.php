@@ -108,7 +108,7 @@ class Book extends DataObject {
             'PublisherEN','PublisherRU', 'DateSaleEN', 'DateSaleRU',
             'CountPage', 'TextContent', 'TextDescription',
             'TranslatedBy', 'Author', 'Authors', 'PaintsCover', 'PaintsPage',
-            'Cover', 'DateSaleRU', 'HolderPageID'
+            'Cover', 'Preview', 'DateSaleRU', 'HolderPageID'
         ), true);
         $cmsFields->removeFieldsFromTab('Root', array('Authors', 'PaintsCover', 'PaintsPage'));
         $tabSet = new TabSet('BookTabSet',
