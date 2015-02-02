@@ -2,6 +2,13 @@
     <article>
         <h1>$Title</h1>
         $Content
+        <% if $AttachedImages %>
+            <ul>
+                <% loop $AttachedImages %>
+                    <li>$Image</li>
+                <% end_loop %>
+            </ul>
+        <% end_if %>
         $Form
     </article>
     <ul class="left side-nav">

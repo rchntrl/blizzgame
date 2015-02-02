@@ -20,7 +20,6 @@
  * @property String TextContent
  */
 class Book extends DataObject {
-    use LastLinkSegmentProvider;
 
     public static $db = array (
         'TitleEN' => 'Varchar(255)',
@@ -89,6 +88,15 @@ class Book extends DataObject {
 
     public function getTitle() {
         return $this->getField('TitleRU') . ' (' . $this->getField('TitleEN') . ')';
+    }
+
+    /**
+     * @param $url
+     * @return static
+     */
+    public static function get_by_url($url) {
+        $callerClass = get_class();
+        return DataObject::get_one($callerClass, "\"" . $callerClass . "\".\"LastLinkSegment\" = '" . $url ."'");
     }
 
     //Permissions
@@ -162,8 +170,8 @@ class Book extends DataObject {
         return Tab::create(
             'Description',
             _t('Book.DESCRIPTION_TAB', 'Описание'),
-            new HtmlEditorField('TextContent'),
-            new HtmlEditorField('TextDescription')
+            new HtmlEditorField('TextContent', 'Сюжет (Рецензия)'),
+            new HtmlEditorField('TextDescription', 'Описание')
         );
     }
 

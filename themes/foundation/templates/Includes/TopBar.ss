@@ -6,7 +6,7 @@
         </ul>
         <section class="top-bar-section">
             <ul class="right">
-                <li class="game-icon <% if 0 == $ID %> active<% end_if %>">
+                <li class="game-icon <% if 0 == $SubsiteID %> active<% end_if %>">
                     <a class="Blizzgame" href="http://www.blizzgame.ru" title="Главная">
                         <span class="">Главный сайт</span>
                     </a>

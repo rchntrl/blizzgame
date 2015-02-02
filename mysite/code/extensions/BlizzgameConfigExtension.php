@@ -7,7 +7,6 @@
  * @method Image BackgroundImage()
  * @method Image DefaultElementImage() The default element link image.
  * @method Image LogoImage() The default logo image.
- * @todo Work this out a bit better.
  */
 class BlizzgameConfigExtension extends DataExtension {
 
@@ -27,6 +26,7 @@ class BlizzgameConfigExtension extends DataExtension {
         'LogoImage' => 'Image',
         'BackgroundImage' => 'Image',
         'DefaultElementImage' => 'Image',
+        'DefaultBookCover' => 'Image',
     );
 
     private static $defaults = array(
@@ -89,17 +89,18 @@ class BlizzgameConfigExtension extends DataExtension {
      * All return a Tab.
      */
     protected function ThemesTab() {
-       $logoImage = new UploadField('LogoImage', _t('BlizzgameConfigExtension.LOGOIMAGE', 'Logo image for frontend'));
-       $backgroundImage = new UploadField('BackgroundImage', _t('BlizzgameConfigExtension.BACKGROUNDIMAGE', 'Background image for frontend'));
-       $defaultElementImage =  new UploadField('DefaultElementImage', _t('BlizzgameConfigExtension.DEFAULTELEMENTIMAGE', 'Default element image for frontend'));
-        /** theme settings */
+       $logoImage = new UploadField('LogoImage', _t('BlizzgameConfigExtension.LOGOIMAGE', 'Лого сайта'));
+       $backgroundImage = new UploadField('BackgroundImage', _t('BlizzgameConfigExtension.BACKGROUNDIMAGE', 'Фоновое изображение сайта'));
+       $defaultElementImage =  new UploadField('DefaultElementImage', _t('BlizzgameConfigExtension.DEFAULTELEMENTIMAGE', 'Иконка тега по умолчанию'));
+       $defaultBookCover =  new UploadField('DefaultBookCover', _t('BlizzgameConfigExtension.DEFAULTBOOKCOVER', 'Обложка книги по умолчанию'));
         return Tab::create(
             'Theme',
             _t('BlizzgameConfigExtension.THEMESETTINGS', 'Theme Settings'),
             $logoImage->setFolderName(self::$uploads_folder),
-            new NumericField('BackgroundVerticalPosition', 'BackgroundVerticalPosition'),
+            //new NumericField('BackgroundVerticalPosition', 'BackgroundVerticalPosition'),
             $backgroundImage->setFolderName(self::$uploads_folder),
-            $defaultElementImage->setFolderName(self::$uploads_folder)
+            $defaultElementImage->setFolderName(self::$uploads_folder),
+            $defaultBookCover->setFolderName(self::$uploads_folder)
         );
     }
 
@@ -113,7 +114,7 @@ class BlizzgameConfigExtension extends DataExtension {
 
     protected function TagsGroupTab() {
         return Tab::create(
-            'Help',
+            'Tags',
             _t('BlizzgameConfigExtension.TAGSGROUP', 'Tags Group'),
             ElementLinkGroup::getDropdownField('Races', 'Races Group'),
             ElementLinkGroup::getDropdownField('Fractions', 'Fractions Group'),

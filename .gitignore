@@ -28,3 +28,5 @@ vendor/
 mysite/_config.php
 mysite/_config/facebookconnect.yml
 facebookconnect
+opauth
+mysite/code/oauth

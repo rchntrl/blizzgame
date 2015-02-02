@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class LastLinkSegmentProvider
+ */
 trait LastLinkSegmentProvider {
     /**
      * @param $url
@@ -14,10 +17,6 @@ trait LastLinkSegmentProvider {
      * @return String
      */
     public function getURLPrefix() {
-        return '/';
-    }
-
-    public function getPageHolder() {
-
+        return $this->HolderPage()->Link();
     }
 }

@@ -1,9 +1,30 @@
 <?php
 
+/**
+ * Class ObjectAsPageExtension
+ *
+ * Don't use for children objects of the object which already use this extension
+ */
 class ObjectAsPageExtension extends DataExtension {
+    /**
+     * @return string
+     */
+    public function Link() {
+        return $this->owner->HolderPage()->Link() . $this->owner->LastLinkSegment;
+    }
 
-    public function MenuTitle() {
-        return $this->owner->getTitle();
+    public function AbsoluteLink() {
+        return $this->owner->HolderPage()->AbsoluteLink() . $this->owner->LastLinkSegment;
+    }
+
+    /**
+     * @return String
+     */
+    public function getURLPrefix() {
+        if (method_exists(get_class($this->owner), 'HolderPage')) {
+            return $this->owner->HolderPage()->Link();
+        }
+        return '/';
     }
 
     /**

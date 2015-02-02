@@ -11,7 +11,7 @@
     <div class="art-info">
         <% if $Author %>
             <div class="artist">
-                <%t Gallery.AUTHOR 'Автор: {Name}' Name=$Author.Title %>
+               <a href="$Author.AbsoluteLink()"><%t Gallery.AUTHOR 'Автор: {Name}' Name=$Author.Title %></a>
             </div>
         <% end_if %>
     </div>

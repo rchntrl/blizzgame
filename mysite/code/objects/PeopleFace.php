@@ -8,9 +8,10 @@
  * @property string Nick
  * @property string Writer
  * @property string LastLinkSegment
+ * @method PeopleFacePage PeopleFacePage()
+ * @method SS_List GalleryImages()
  */
-class PeopleFace extends DataObject {
-    use LastLinkSegmentProvider;
+class PeopleFace extends DataObject implements ObjectAsPageProvider {
 
     const WRITER    = 'Writer';
     const ARTIST    = 'Artist';
@@ -37,6 +38,11 @@ class PeopleFace extends DataObject {
     );
 
     public static $has_many = array (
+         'GalleryImages' => 'GalleryImage',
+    );
+
+    static $belongs_many_many = array(
+        'Book' => 'Authors'
     );
 
     public static $summary_fields = array (
@@ -49,10 +55,25 @@ class PeopleFace extends DataObject {
         return $this->getField('TitleEN') . ($this->getField('Nick') ? ' (' . $this->getField('Nick') . ')' : '');
     }
 
+    /**
+     * @return PeopleFacePage
+     */
+    public function HolderPage() {
+        return $this->PeopleFacePage();
+    }
+
+    /**
+     * @param $url
+     * @return static
+     */
+    public static function get_by_url($url) {
+        $callerClass = get_class();
+        return DataObject::get_one($callerClass, "\"" . $callerClass . "\".\"LastLinkSegment\" = '" . $url ."'");
+    }
+
     function canCreate($Member = null) {return (permission::check('CREATE_EDIT_TAG')) ? true : false;}
     function canEdit($Member = null) {return (permission::check('CREATE_EDIT_TAG')) ? true : false;}
     function canDelete($Member = null) {return (permission::check('DELETE_TAG')) ? true : false;}
-    function canView($Member = null) {return (permission::check('VIEW_TAG')) ? true : false;}
 
     /**
      * @param String(Writer|Artist|Composer|Developer) $category
@@ -101,7 +122,7 @@ class PeopleFace extends DataObject {
      * @return DropdownField
      */
     public static function getMultipleField($name = 'Writers', $title = 'Writers', $category = PeopleFace::WRITER) {
-        $artistField = new ListboxField(
+        return new ListboxField(
             $name,
             $title,
             PeopleFace::getOnly($category)->map('ID', 'Title')->toArray(),
@@ -109,6 +130,5 @@ class PeopleFace extends DataObject {
             8,
             true
         );
-        return $artistField;
     }
 }

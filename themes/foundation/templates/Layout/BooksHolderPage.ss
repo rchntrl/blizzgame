@@ -4,8 +4,12 @@
         <% loop PaginatedPages %>
             <li>
                 <a href="$Top.Link()$LastLinkSegment" role="button">
-                    <img src="$Cover.SetRatioSize(240, 390).getUrl()" />
-                    $Title
+                    <% if $Cover.CroppedImage(240, 390).getUrl() %>
+                        <img alt="$MenuTitle" src="$Cover.CroppedImage(240, 390).getUrl()" />
+                    <% else %>
+                        <img alt="$MenuTitle" src="$SiteConfig.DefaultBookCover.CroppedImage(240, 390).getUrl()" />
+                    <% end_if %>
+                    $MenuTitle
                 </a>
             </li>
         <% end_loop %>

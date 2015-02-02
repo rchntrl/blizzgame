@@ -1,20 +1,29 @@
 <% if URLSegment == 'encyclopedia' %>
-    <ul>
+    <div>
         <% loop Children %>
-            <li>
-                <a href="$Link">$Title</a>
+                <h3><a href="$Link">$Title</a></h3>
                 <% if Children %>
-                    <ul class="inline-list">
+                    <ul class="ency side-nav inline-list">
                         <% loop Children %>
-                            <li>
-                                <a href="$Link">$Title</a>
+                            <li class="large-3 small-4">
+                                <div class="element-link-image">
+                                    <a href="{$Link}" title="$Title.ATT">
+                                        <% if Icon %>
+                                            <img class="icon-frame frame-56" alt="$TitleRU.ATT ($TitleEN.ATT)" src="$Icon.setSize(56, 56).getUrl()" />
+                                        <% else %>
+                                            <img class="icon-frame frame-56" alt="" src="$Top.SiteConfig.DefaultElementImage().setSize(56, 56).getUrl()" />
+                                        <% end_if %>
+                                        <span class="element-link-title">$Title</span>
+                                    </a>
+                                </div>
+
                             </li>
                         <% end_loop %>
                     </ul>
                 <% end_if %>
-            </li>
+
         <% end_loop %>
-    </ul>
+    </div>
 <% else %>
     <div class="row">
         <ul class="children-page-list">

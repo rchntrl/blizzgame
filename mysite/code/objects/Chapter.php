@@ -55,8 +55,7 @@ class AttachedImageChapter extends DataObject {
  * @method DataList AttachedImages()
  * @method Book Book()
  */
-class Chapter extends DataObject
-{
+class Chapter extends DataObject implements ObjectAsPageProvider {
     static $db = array (
         'Title' => 'Varchar(255)',
         'Content' => 'HTMLText',

@@ -24,6 +24,9 @@ Book:
 Chapter:
   extensions:
     - ObjectAsPageExtension
+PeopleFace:
+  extensions:
+    - ObjectAsPageExtension
 SiteTree:
   extensions:
     - BlizzgamePageExtension

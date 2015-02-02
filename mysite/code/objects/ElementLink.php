@@ -12,7 +12,6 @@
  * @method ElementLinkGroup ElementLinkGroup()
  */
 class ElementLink extends DataObject implements PermissionProvider {
-    use LastLinkSegmentProvider;
 
     const PLACES    = 1;
     const EVENTS    = 2;
@@ -37,7 +36,7 @@ class ElementLink extends DataObject implements PermissionProvider {
     );
 
     public static $indexes = array(
-        'ID_UniqueLastLinkSegment' => array(
+        'ID_LastLinkSegment' => array(
             'type' => 'Normal',
             'value' => 'LastLinkSegment'
         )

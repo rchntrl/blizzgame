@@ -1,6 +1,7 @@
 
 @BgVerticalPosition: @BackgroundVerticalPosition;
 @BgImage: @BackgroundImage;
+@ElementLinkImage: @DefaultElementImage;
 
 @contentBgColor: #fff;
 @contentColor: inherit;
@@ -12,14 +13,11 @@
 @BlizzgameDark: #162331;
 @ImageDir: "@{ThemeDir}/images/";
 
-.contentStyle (@color: @textColor, @bgColor: @contentBgColor) {
-  color: @color;
-  background-color: @bgColor;
+.icon-frame[src=''] {
+  padding: 0;
+  background-image: url(@ElementLinkImage);
 }
 
-.borderStyle (@color: @borderColor, @pixel: 1px, @style: solid) {
-  border: @color @pixel @style;
-}
 .bgStyle() {
   background: @BlizzgameDark url(@BgImage) no-repeat 50% 50%;
   -webkit-background-size: auto;
@@ -144,6 +142,23 @@ ul.children-page-list {
   }
 }
 
+.ency li {
+  float: left;
+  border-bottom: 1px #ddd solid;
+}
+.element-link-image {
+  .element-link-title,
+  img {
+    display: inline-block;
+  }
+  .element-link-title {
+    width: 120px;
+    height: 70px;
+    vertical-align: middle;
+    padding-left: 10px;
+  }
+}
+
 .gallery-section {
   margin: 0 20px;
   .gallery-list {
@@ -185,11 +200,6 @@ ul.children-page-list {
   overflow-y: auto;
 }
 
-.main,
-.news-holder {
-  .contentStyle();
-}
-
 .news {
   border-bottom: #ddd 1px solid;
   padding: 10px;
@@ -197,7 +207,6 @@ ul.children-page-list {
 }
 
 .blizzquote {
-  //""
   background: #111a22 url("@{ImageDir}bg/blizzquote.jpg") top right no-repeat;
   border: 1px solid #000;
   border-bottom-right-radius: 10px;
