@@ -67,6 +67,7 @@ class AuthController extends Controller {
 
     public function profile() {
         $userInfo = null;
+        $tokenInfo = null;
         if (isset($_GET['code'])) {
             $params = array(
                 'client_id'     => $this->config['client_id'],
@@ -74,7 +75,6 @@ class AuthController extends Controller {
                 'client_secret' => $this->config['client_secret'],
                 'code'          => $_GET['code']
             );
-            $tokenInfo = null;
             parse_str(file_get_contents($this->getConfig('urlToken') . '?' . http_build_query($params)), $tokenInfo);
 
             if (count($tokenInfo) > 0 && isset($tokenInfo['access_token'])) {
@@ -84,7 +84,7 @@ class AuthController extends Controller {
         }
         $ssv = new SSViewer('Test');
         return $this->customise(array(
-            'UserInfo' => json_encode($userInfo),
+            'UserInfo' => json_encode($tokenInfo),
             'buttonLink' => 'ololosh'
         ))->renderWith($ssv);
     }
