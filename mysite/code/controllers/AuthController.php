@@ -21,7 +21,9 @@ class AuthController extends Controller {
     private static $default_config = array(
         'client_id' => '',
         'client_secret' => '',
-
+        'urlAuth' => 'https://eu.battle.net/oauth/authorize',
+        'urlToken' => 'https://eu.battle.net/oauth/token',
+        'redirect_uri' => 'http://www.blizzgame.ru/profile',
     );
 
     /**
@@ -48,26 +50,34 @@ class AuthController extends Controller {
     }
 
     public function test() {
-        $redirect_uri = 'http://localhost/blizzgame/profile'; // Redirect URIs
+        $redirect_uri = 'http://www.blizzgame.ru/profile'; // Redirect URIs
         $urlAuth = 'https://eu.battle.net/oauth/authorize';
-        $urlToken = 'https://eu.battle.net/oauth/token';
         $params = array(
             'client_id'     => $this->config['client_id'],
-            'redirect_uri'  => $redirect_uri,
+            'redirect_uri'  => $this->config['redirect_uri'],
             'response_type' => 'code',
+            'grant_type' => 'authorization_code',
             'scope'         => 'sc2.profile,wow.profile'
         );
         $userInfo = null;
+        $ssv = new SSViewer('Test');
+        return $this->customise(array(
+            'UserInfo' => json_encode($userInfo),
+            'buttonLink' => $this->config['urlAuth'] . '?' . urldecode(http_build_query($params))
+        ))->renderWith($ssv);
+    }
+
+    public function profile() {
+        $userInfo = null;
         if (isset($_GET['code'])) {
             $params = array(
-                'client_id'     => $this->client_id,
-                'redirect_uri'  => $redirect_uri,
+                'client_id'     => $this->config['client_id'],
+                'redirect_uri'  => $this->config['redirect_uri'],
                 'client_secret' => $this->config['client_secret'],
                 'code'          => $_GET['code']
             );
-
             $tokenInfo = null;
-            parse_str(file_get_contents($urlToken . '?' . http_build_query($params)), $tokenInfo);
+            parse_str(file_get_contents($this->config['urlToken'] . '?' . http_build_query($params)), $tokenInfo);
 
             if (count($tokenInfo) > 0 && isset($tokenInfo['access_token'])) {
                 $params = array('access_token' => $tokenInfo['access_token']);
@@ -76,17 +86,8 @@ class AuthController extends Controller {
         }
         $ssv = new SSViewer('Test');
         return $this->customise(array(
-            'UserInfo' => $userInfo,
-            'buttonLink' => $urlAuth . '?' . urldecode(http_build_query($params))
+            'UserInfo' => json_encode($userInfo),
+            'buttonLink' => 'ololosh'
         ))->renderWith($ssv);
-    }
-
-    public function getoauth2authuri() {
-
-
-    }
-
-    public function profile() {
-        return "не хихикай!";
     }
  }
