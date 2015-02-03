@@ -23,11 +23,9 @@ class AuthController extends Controller {
         'client_secret' => '',
         'urlAuth' => 'https://eu.battle.net/oauth/authorize',
         'urlToken' => 'https://eu.battle.net/oauth/token',
-        'redirect_uri' => 'http://www.blizzgame.ru/profile',
+        'redirect_uri' => 'http://www.blizzgame.ru/auth/profile/',
     );
-    private $redirect_uri = 'http://www.blizzgame.ru/profile'; // Redirect URIs
-    private $urlAuth = 'https://eu.battle.net/oauth/authorize';
-    private $urlToken = 'https://eu.battle.net/oauth/token';
+
     /**
      * @var array
      */

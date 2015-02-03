@@ -1,4 +1,4 @@
 Director:
   rules:
     'style//$Action/$ID/$OtherID': 'LessController'
-    'io-docs//$Action/$ID/$OtherID': 'AuthController'
+    'auth//$Action/$ID/$OtherID': 'AuthController'
