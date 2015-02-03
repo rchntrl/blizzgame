@@ -71,10 +71,10 @@ class AuthController extends Controller {
         $userInfo = null;
         $tokenInfo = null;
         $ssv = new SSViewer('Test');
-        if (isset($this->urlParams['error'])) {
+        if ($this->urlParams['error']) {
             var_dump($this->getURLParams()); exit();
         }
-        if (isset($this->urlParams['code'])) {
+        if ($this->urlParams['code']) {
             $params = array(
                 'client_id'     => $this->config['client_id'],
                 'redirect_uri'  => $this->config['redirect_uri'],
