@@ -47,7 +47,7 @@ class AuthController extends Controller {
     public function test() {
         $params = array(
             'client_id'     => $this->config['client_id'],
-            'redirect_uri'  => urldecode($this->config['redirect_uri']),
+            'redirect_uri'  => urlencode($this->config['redirect_uri']),
             'response_type' => 'code',
             'auth_flow'     => 'auth_code',
             'scope'         => 'wow.profile+sc2.profile'
@@ -70,12 +70,16 @@ class AuthController extends Controller {
     public function profile() {
         $userInfo = null;
         $tokenInfo = null;
-        if (isset($_GET['code'])) {
+        $ssv = new SSViewer('Test');
+        if (isset($this->urlParams['error'])) {
+            var_dump($this->getURLParams()); exit();
+        }
+        if (isset($this->urlParams['code'])) {
             $params = array(
                 'client_id'     => $this->config['client_id'],
                 'redirect_uri'  => $this->config['redirect_uri'],
                 'client_secret' => $this->config['client_secret'],
-                'code'          => $_GET['code'],
+                'code'          => $this->urlParams['code'],
             );
             parse_str(file_get_contents($this->getConfig('token_uri') . '?' . http_build_query($params)), $tokenInfo);
 
@@ -83,11 +87,12 @@ class AuthController extends Controller {
                 $params = array('access_token' => $tokenInfo['access_token']);
             }
             $userInfo = json_decode(file_get_contents('https://eu.api.battle.net/sc2/profile/user' . '?' . urldecode(http_build_query($params))), true);
+            return $this->customise(array(
+                'UserInfo' => json_encode($userInfo),
+                'TokenInfo' => json_encode($tokenInfo),
+                'buttonLink' => 'ololosh'
+            ))->renderWith($ssv);
         }
-        $ssv = new SSViewer('Test');
-        return $this->customise(array(
-            'UserInfo' => json_encode($tokenInfo),
-            'buttonLink' => 'ololosh'
-        ))->renderWith($ssv);
+        return $this->httpError('pfff');
     }
  }
