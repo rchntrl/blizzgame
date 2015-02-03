@@ -12,6 +12,9 @@ SSViewer:
 NewsAdmin:
   extensions:
     - SubsiteMenuExtension
+Member:
+  extensions:
+    - BnetMemberExtension
 DataObject:
   extensions:
     - BlizzgameObjectExtension

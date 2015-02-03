@@ -20,7 +20,6 @@
         "colymba/gridField-bulk-editing-tools" : "2.1.1",
         "firesphere/silverstripe-newsmodule": "5.1",
         "firesphere/social": "dev-master",
-        "betterbrief/silverstripe-opauth": "dev-master",
         "silverstripe-australia/memberprofiles": "dev-master",
         "silverstripe-australia/silverstripe-pagejax": "dev-master",
         "silverstripe/tagfield": "dev-master",
