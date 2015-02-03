@@ -31,7 +31,7 @@ class AuthController extends Controller {
     /**
      * @var array
      */
-    protected $config;
+    protected $config = array();
 
     public function init() {
         parent::init();
