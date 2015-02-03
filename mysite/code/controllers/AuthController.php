@@ -25,7 +25,9 @@ class AuthController extends Controller {
         'urlToken' => 'https://eu.battle.net/oauth/token',
         'redirect_uri' => 'http://www.blizzgame.ru/profile',
     );
-
+    private $redirect_uri = 'http://www.blizzgame.ru/profile'; // Redirect URIs
+    private $urlAuth = 'https://eu.battle.net/oauth/authorize';
+    private $urlToken = 'https://eu.battle.net/oauth/token';
     /**
      * @var array
      */
@@ -33,7 +35,7 @@ class AuthController extends Controller {
 
     public function init() {
         parent::init();
-        $this->config = $this->config()->default_config;
+        $this->config = $this->default_config;
     }
 
     public function setConfig($name, $val) {
@@ -50,8 +52,6 @@ class AuthController extends Controller {
     }
 
     public function test() {
-        $redirect_uri = 'http://www.blizzgame.ru/profile'; // Redirect URIs
-        $urlAuth = 'https://eu.battle.net/oauth/authorize';
         $params = array(
             'client_id'     => $this->config['client_id'],
             'redirect_uri'  => $this->config['redirect_uri'],
@@ -63,7 +63,7 @@ class AuthController extends Controller {
         $ssv = new SSViewer('Test');
         return $this->customise(array(
             'UserInfo' => json_encode($userInfo),
-            'buttonLink' => $this->config['urlAuth'] . '?' . urldecode(http_build_query($params))
+            'buttonLink' => $this->getConfig('urlAuth') . '?' . urldecode(http_build_query($params))
         ))->renderWith($ssv);
     }
 
@@ -77,7 +77,7 @@ class AuthController extends Controller {
                 'code'          => $_GET['code']
             );
             $tokenInfo = null;
-            parse_str(file_get_contents($this->config['urlToken'] . '?' . http_build_query($params)), $tokenInfo);
+            parse_str(file_get_contents($this->getConfig('urlToken') . '?' . http_build_query($params)), $tokenInfo);
 
             if (count($tokenInfo) > 0 && isset($tokenInfo['access_token'])) {
                 $params = array('access_token' => $tokenInfo['access_token']);
