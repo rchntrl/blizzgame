@@ -35,7 +35,6 @@ class AuthController extends Controller {
 
     public function init() {
         parent::init();
-        $this->config = array_merge(self::$default_config, $this->config);
     }
 
     public function setConfig($name, $val) {
