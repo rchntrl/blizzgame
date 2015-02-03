@@ -49,9 +49,16 @@ class AuthController extends Controller {
             'client_id'     => $this->config['client_id'],
             'redirect_uri'  => $this->config['redirect_uri'],
             'response_type' => 'code',
-            'auth_flow'     => 'auth_code',
+            //'auth_flow'     => 'auth_code',
             'scope'         => 'wow.profile+sc2.profile'
         );
+        /*
+         * https://eu.battle.net/oauth/authorize?
+         * client_id=y23hvpnwpegfkgdxm54ab7m42uwd9sar
+         * redirect_uri=https%3A%2F%2Fdev.battle.net%2Fio-docs%2Foauth2callback
+         * response_type=code
+         * scope=wow.profile+sc2.profile"
+        */
         $userInfo = null;
         $ssv = new SSViewer('Test');
         return $this->customise(array(
