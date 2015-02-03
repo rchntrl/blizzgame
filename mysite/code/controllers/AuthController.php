@@ -54,8 +54,8 @@ class AuthController extends Controller {
             'client_id'     => $this->config['client_id'],
             'redirect_uri'  => $this->config['redirect_uri'],
             'response_type' => 'code',
-            'grant_type' => 'authorization_code',
-            'scope'         => 'sc2.profile,wow.profile'
+            'auth_flow'		=> 'auth_code',
+            'scope'         => 'wow.profile+sc2.profile'
         );
         $userInfo = null;
         $ssv = new SSViewer('Test');
@@ -71,10 +71,9 @@ class AuthController extends Controller {
         if (isset($_GET['code'])) {
             $params = array(
                 'client_id'     => $this->config['client_id'],
-                //'redirect_uri'  => $this->config['redirect_uri'],
+                'redirect_uri'  => $this->config['redirect_uri'],
                 'client_secret' => $this->config['client_secret'],
                 'code'          => $_GET['code'],
-                'scope'         => 'sc2.profile,wow.profile'
             );
             parse_str(file_get_contents($this->getConfig('token_uri') . '?' . http_build_query($params)), $tokenInfo);
 
