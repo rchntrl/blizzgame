@@ -47,11 +47,12 @@ class AuthController extends Controller {
     public function test() {
         $params = array(
             'client_id'     => $this->config['client_id'],
-            'redirect_uri'  => urlencode($this->config['redirect_uri']),
+            'redirect_uri'  => $this->config['redirect_uri'],
             'response_type' => 'code',
             'auth_flow'     => 'auth_code',
             'scope'         => 'wow.profile+sc2.profile'
         );
+
         /*
          * https://eu.battle.net/oauth/authorize?
          * client_id=y23hvpnwpegfkgdxm54ab7m42uwd9sar
