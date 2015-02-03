@@ -71,9 +71,10 @@ class AuthController extends Controller {
         if (isset($_GET['code'])) {
             $params = array(
                 'client_id'     => $this->config['client_id'],
-                'redirect_uri'  => $this->config['redirect_uri'],
+                //'redirect_uri'  => $this->config['redirect_uri'],
                 'client_secret' => $this->config['client_secret'],
-                'code'          => $_GET['code']
+                'code'          => $_GET['code'],
+                //'scope'         => 'sc2.profile,wow.profile'
             );
             parse_str(file_get_contents($this->getConfig('urlToken') . '?' . http_build_query($params)), $tokenInfo);
 
