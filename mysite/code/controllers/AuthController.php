@@ -3,11 +3,6 @@
 
 /**
  * AuthController
- * Wraps around Opauth for handling callbacks.
- * The SS equivalent of "index.php" and "callback.php" in the Opauth package.
- * @author Will Morgan <@willmorgan>
- * @author Dan Hensby <@dhensby>
- * @copyright Copyright (c) 2013, Better Brief LLP
  */
 class AuthController extends Controller {
 
@@ -54,14 +49,14 @@ class AuthController extends Controller {
             'client_id'     => $this->config['client_id'],
             'redirect_uri'  => $this->config['redirect_uri'],
             'response_type' => 'code',
-            'auth_flow'		=> 'auth_code',
+            'auth_flow'     => 'auth_code',
             'scope'         => 'wow.profile+sc2.profile'
         );
         $userInfo = null;
         $ssv = new SSViewer('Test');
         return $this->customise(array(
             'UserInfo' => json_encode($userInfo),
-            'buttonLink' => $this->getConfig('authorize_uri ') . '?' . urldecode(http_build_query($params))
+            'buttonLink' => $this->getConfig('authorize_uri') . '?' . urldecode(http_build_query($params))
         ))->renderWith($ssv);
     }
 
