@@ -35,6 +35,7 @@ HEADER SECTION
 .main-content {
     padding: 0 20px;
     float: left;
+    width: 100%;
 }
 
 .news-section {

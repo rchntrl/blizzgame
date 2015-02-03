@@ -37,6 +37,10 @@ class Page extends SiteTree {
  * Class Page_Controller
  *
  * @method string MenuTitle
+ * @method static getFacebookLoginLink
+ * @method  string getFacebookAppId
+ * @method  mixed getFacebookSession
+ * @method  getFacebookCallbackLink
  */
 class Page_Controller extends ContentController {
 

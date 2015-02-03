@@ -1,5 +1,5 @@
 
-    <nav class="top-bar blizzgame-top-bar" data-topbar role="navigation">
+    <nav class="top-bar blizzgame-top-bar upper-top" data-topbar role="navigation">
         <ul class="title-area">
             <li class="name"><h1></h1></li>
             <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
@@ -18,8 +18,29 @@
                         </a>
                     </li>
                 <% end_loop %>
+                <% if CurrentMember %>
+                    <li class="has-dropdown">
+                        <% with CurrentMember %>
+                            <a href="#">
+                                <span>$Name</span> <img class="gravatar" src="$Avatar(square)" />
+                            </a>
+                            <ul class="dropdown">
+                                <li>
+                                    <a href="$BaseHref/Security/logout">
+                                        Выйти
+                                    </a>
+                                </li>
+                            </ul>
+                        <% end_with %>
+                    </li>
+                <% else %>
+                    <li class="user-credential">
+                        <a href="$FacebookLoginLink">Login via Facebook</a>
+                    </li>
+                <% end_if %>
             </ul>
         </section>
+
     </nav>
 
 

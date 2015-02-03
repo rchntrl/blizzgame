@@ -12,6 +12,9 @@ SSViewer:
 NewsAdmin:
   extensions:
     - SubsiteMenuExtension
+Member:
+  extensions:
+    - BlizzgameMemberExtension
 DataObject:
   extensions:
     - BlizzgameObjectExtension
@@ -35,4 +38,4 @@ SiteTree:
     - BlizzgamePageExtension
 SiteConfig:
   extensions:
-    ['BlizzgameConfigExtension']
+    - BlizzgameConfigExtension
