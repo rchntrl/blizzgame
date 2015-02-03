@@ -93,6 +93,6 @@ class AuthController extends Controller {
                 'buttonLink' => 'ololosh'
             ))->renderWith($ssv);
         }
-        return $this->httpError('pfff');
+        return $this->httpError(404);
     }
  }
