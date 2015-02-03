@@ -35,7 +35,7 @@ class AuthController extends Controller {
 
     public function init() {
         parent::init();
-        $this->config = $this->default_config;
+        $this->config = self::$default_config;
     }
 
     public function setConfig($name, $val) {
