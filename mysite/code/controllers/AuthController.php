@@ -72,7 +72,7 @@ class AuthController extends Controller {
         $tokenInfo = null;
         $ssv = new SSViewer('Test');
         if ($this->urlParams['error']) {
-            var_dump($this->getURLParams()); exit();
+            var_dump($this->request->allParams()); exit();
         }
         if ($this->urlParams['code']) {
             $params = array(
