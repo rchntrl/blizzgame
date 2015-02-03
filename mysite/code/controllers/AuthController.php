@@ -21,8 +21,8 @@ class AuthController extends Controller {
     private static $default_config = array(
         'client_id' => '',
         'client_secret' => '',
-        'urlAuth' => 'https://eu.battle.net/oauth/authorize',
-        'urlToken' => 'https://eu.battle.net/oauth/token',
+        'authorize_uri ' => 'https://eu.battle.net/oauth/authorize',
+        'token_uri' => 'https://eu.battle.net/oauth/token',
         'redirect_uri' => 'http://www.blizzgame.ru/auth/profile/',
     );
 
@@ -61,7 +61,7 @@ class AuthController extends Controller {
         $ssv = new SSViewer('Test');
         return $this->customise(array(
             'UserInfo' => json_encode($userInfo),
-            'buttonLink' => $this->getConfig('urlAuth') . '?' . urldecode(http_build_query($params))
+            'buttonLink' => $this->getConfig('authorize_uri ') . '?' . urldecode(http_build_query($params))
         ))->renderWith($ssv);
     }
 
@@ -74,9 +74,9 @@ class AuthController extends Controller {
                 //'redirect_uri'  => $this->config['redirect_uri'],
                 'client_secret' => $this->config['client_secret'],
                 'code'          => $_GET['code'],
-                //'scope'         => 'sc2.profile,wow.profile'
+                'scope'         => 'sc2.profile,wow.profile'
             );
-            parse_str(file_get_contents($this->getConfig('urlToken') . '?' . http_build_query($params)), $tokenInfo);
+            parse_str(file_get_contents($this->getConfig('token_uri') . '?' . http_build_query($params)), $tokenInfo);
 
             if (count($tokenInfo) > 0 && isset($tokenInfo['access_token'])) {
                 $params = array('access_token' => $tokenInfo['access_token']);
