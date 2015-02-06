@@ -22,7 +22,7 @@
                     <li class="has-dropdown">
                         <% with CurrentMember %>
                             <a href="#">
-                                <span>$Name</span> <img class="gravatar" src="$Avatar(square)" />
+                                <span>$nickName</span>
                             </a>
                             <ul class="dropdown">
                                 <li>

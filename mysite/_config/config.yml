@@ -12,9 +12,6 @@ SSViewer:
 NewsAdmin:
   extensions:
     - SubsiteMenuExtension
-Member:
-  extensions:
-    - BlizzgameMemberExtension
 DataObject:
   extensions:
     - BlizzgameObjectExtension
@@ -31,6 +28,9 @@ PeopleFace:
   extensions:
     - ObjectAsPageExtension
 ChronicleItem:
+  extensions:
+    - ObjectAsPageExtension
+ForumThread:
   extensions:
     - ObjectAsPageExtension
 SiteTree:

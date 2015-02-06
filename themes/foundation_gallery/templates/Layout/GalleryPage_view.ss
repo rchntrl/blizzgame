@@ -21,7 +21,7 @@
                 <div class="element-link-image">
                     <a href="$LinkToPage.Link" title="$TitleRU.ATT ($TitleEN.ATT)">
                         <% if Icon %>
-                            <img class="icon-frame frame-56" alt="$TitleRU.ATT ($TitleEN.ATT)" src="$Url" />
+                            <img class="icon-frame frame-56" alt="$TitleRU.ATT ($TitleEN.ATT)" src="$Icon.getUrl()" />
                         <% else %>
                             <img class="icon-frame frame-56" alt="" src="$Top.SiteConfig.DefaultElementImage.getUrl()" />
                         <% end_if %>

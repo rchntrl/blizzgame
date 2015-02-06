@@ -1,3 +1,4 @@
+.idea
 framework/
 cms/
 /subsites
@@ -9,7 +10,10 @@ cms/
 /foundationforms
 /tagfield
 /pagejax
-/trait-loader
+vendor/
+facebookconnect
+silverstripe-vk-connect
+forum
 /silverstripe-social
 /composer.lock
 assets/*
@@ -19,14 +23,10 @@ silverstripe-cache
 .buildpath
 .project
 .settings
-.idea
 .DS_Store
-vendor/
 /install.php
 /web.config
 /.htaccess
 mysite/_config.php
 mysite/_config/facebookconnect.yml
-facebookconnect
-opauth
-mysite/code/oauth
+mysite/_config/vkconnect.yml
