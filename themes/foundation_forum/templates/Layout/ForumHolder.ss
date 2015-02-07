@@ -3,7 +3,7 @@
 <table class="forum-topics">
 
     <% if GlobalAnnouncements %>
-        <tr class="">
+        <tr>
             <td colspan="4"><% _t('ForumHolder_ss.ANNOUNCEMENTS', 'Announcements') %></td>
         </tr>
         <% loop GlobalAnnouncements %>
@@ -13,7 +13,7 @@
 
     <% if ShowInCategories %>
         <% loop Forums %>
-            <tr class="">
+            <tr>
                 <th>$Title</th>
                 <th><% _t('ForumHolder_ss.THREADS','Threads') %></th>
                 <th><% _t('ForumHolder_ss.POSTS','Posts') %></th>
@@ -24,7 +24,7 @@
             <% end_loop %>
         <% end_loop %>
     <% else %>
-        <tr class="">
+        <tr>
             <td><% _t('ForumHolder_ss.FORUM','Forum') %></td>
             <td><% _t('ForumHolder_ss.THREADS','Threads') %></td>
             <td><% _t('ForumHolder_ss.POSTS','Posts') %></td>

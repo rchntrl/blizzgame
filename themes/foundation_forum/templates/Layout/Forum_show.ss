@@ -51,7 +51,7 @@
             <span><strong>$ForumThread.NumViews <% _t('Forum_show_ss.VIEWS','Views') %></strong></span>
         </td>
     </tr>
-    <tr class="category">
+    <tr>
         <td class="page-numbers">
             <% if Posts.MoreThanOnePage %>
                 <% if Posts.NotFirstPage %>

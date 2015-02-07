@@ -1,5 +1,5 @@
 <% if URLSegment == 'encyclopedia' %>
-    <div class="row">
+    <div>
         <% loop Children %>
             <h3><a href="$Link">$Title</a></h3>
             <% if Children %>
