@@ -5,7 +5,6 @@
  * @method SS_List Books()
  */
 class BooksHolderPage extends Page implements PermissionProvider {
-    //use BreadCrumbsProvider;
 
     static $has_many = array(
         'Books' => 'Book'

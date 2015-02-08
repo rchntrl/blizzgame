@@ -30,6 +30,9 @@ PeopleFace:
 ChronicleItem:
   extensions:
     - ObjectAsPageExtension
+Media:
+  extensions:
+    - ObjectAsPageExtension
 ForumThread:
   extensions:
     - ObjectAsPageExtension
