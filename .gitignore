@@ -11,6 +11,7 @@ cms/
 /tagfield
 /pagejax
 vendor/
+vkconnect
 facebookconnect
 silverstripe-vk-connect
 forum

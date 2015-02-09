@@ -25,6 +25,7 @@
         "silverstripe/forum": "0.7.*@dev",
         "firesphere/social": "dev-master",
         "wilr/silverstripe-facebookconnect": "dev-master",
+        "rchntrl/silverstripe-vk-connect": "dev-master",
         "silverstripe-australia/memberprofiles": "dev-master",
         "silverstripe-australia/silverstripe-pagejax": "dev-master",
         "silverstripe/tagfield": "dev-master",

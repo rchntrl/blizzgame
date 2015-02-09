@@ -18,25 +18,26 @@
                         </a>
                     </li>
                 <% end_loop %>
+            <li class="has-dropdown">
                 <% if CurrentMember %>
-                    <li class="has-dropdown">
-                        <% with CurrentMember %>
-                            <a href="#">
-                                <span>$nickName</span>
-                            </a>
-                            <ul class="dropdown">
-                                <li>
-                                    <a href="$BaseHref/Security/logout">
-                                        Выйти
-                                    </a>
-                                </li>
-                            </ul>
-                        <% end_with %>
-                    </li>
+                    <% with CurrentMember %>
+                        <a href="#">
+                            <span>$nickName</span>
+                        </a>
+                        <ul class="dropdown">
+                            <li>
+                                <a href="$BaseHref/Security/logout">
+                                    Выйти
+                                </a>
+                            </li>
+                        </ul>
+                    <% end_with %>
                 <% else %>
-                    <li class="user-credential">
-                        <a href="$FacebookLoginLink">Login via Facebook</a>
-                    </li>
+                    <a href="#"><span>Войти</span></a>
+                    <ul class="dropdown">
+                        <li><a href="$FacebookLoginLink">Login via Facebook</a></li>
+                        <li><a href="$VkLoginLink">Login via Vk</a></li>
+                    </ul>
                 <% end_if %>
             </ul>
         </section>
