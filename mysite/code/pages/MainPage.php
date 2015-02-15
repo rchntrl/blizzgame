@@ -38,6 +38,6 @@ class MainPage_Controller extends HomePage_Controller {
     }
 
     public function LastArts() {
-        return DataObject::get('GalleryImage', '', 'Created ASC', '', 4);
+        return DataObject::get('GalleryImage', '', 'Created DESC', '');
     }
 }
