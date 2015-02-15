@@ -12,7 +12,7 @@
 <% else_if $Type == download && Top.SiteConfig.ReturnExternal %>
     <h4><a href='$Download.Link' title='Downloadable file'>$Title (<%t NewsHolderPage.DOWNLOADABLE "Download" %>)</a></h4>
 <% else %>
-    <h4><a href="$Link">$Title</a></h4>
+    <h4><a class="blank" href="$Link">$Title</a></h4>
 <% end_if %>
 <h4><%t NewsHolderPage.DATEPUBLISH "{date} " date=$Published %></h4>
 <% if $Synopsis %>

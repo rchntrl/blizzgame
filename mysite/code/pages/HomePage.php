@@ -29,7 +29,11 @@ class HomePage_Controller  extends ContentController {
     }
 
     public function allNews() {
-        $allEntries = News::get()->limit(10);
+        $allEntries = News::get()->limit(7);
         return $allEntries;
+    }
+
+    public function LastArts() {
+        return DataObject::get('GalleryImage', '', 'Created DESC', '');
     }
 }

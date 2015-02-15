@@ -9,6 +9,7 @@
 }
 
 .hero-thumbnail {
+  float: right;
   list-style-type: none;
   padding: 2px;
   background: #0097ad;

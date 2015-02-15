@@ -38,6 +38,12 @@ HEADER SECTION
     width: 100%;
 }
 
+.crop-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .news-section {
     margin: 20px;
 }
