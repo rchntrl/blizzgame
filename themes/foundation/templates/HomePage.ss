@@ -31,23 +31,22 @@
     <script src="framework/thirdparty/jquery/jquery.min.js"></script>
 </head>
 <body class="$ClassName.ATT">
-        <header class="header">
-            <% include TopBar %>
-        </header>
-        <div class=" off-canvas-wrap" role="banner" data-offcanvas>
-            <div class="inner-wrap">
-                <!-- CONTENT SECTION -->
-                <div class="row content-section">
-                    <% include Breadcrumbs %>
-                    <div class="main-content pagejax-container">
-                        $Layout
-                    </div>
-                    <a class="exit-off-canvas"></a>
-                </div>
-                <% include Footer %>
+<header class="header">
+    <% include TopBar %>
+</header>
+<div class=" off-canvas-wrap" role="banner" data-offcanvas>
+    <div class="inner-wrap">
+        <!-- CONTENT SECTION -->
+        <div class="row content-section">
+            <div class="main-content pagejax-container">
+                $Layout
             </div>
+            <a class="exit-off-canvas"></a>
         </div>
-<%--See [Requirements](http://doc.silverstripe.org/framework/en/reference/requirements) for loading from controller--%>
+        <% include Footer %>
+    </div>
+</div>
+    <%--See [Requirements](http://doc.silverstripe.org/framework/en/reference/requirements) for loading from controller--%>
 
 <script src="$ThemeDir/javascript/modernizr.js"></script>
 <script src="$ThemeDir/javascript/foundation.min.js"></script>

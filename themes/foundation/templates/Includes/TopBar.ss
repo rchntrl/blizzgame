@@ -59,7 +59,7 @@
     </div>
 </div>
 
-    <nav class="top-bar blizzgame-top-bar" data-topbar role="navigation">
+    <nav class="top-bar blizzgame-top-bar lower-top" data-topbar role="navigation">
         <ul class="title-area">
             <li class="name">
             </li>

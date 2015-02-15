@@ -1,0 +1,185 @@
+.hero-select-area {
+  position: relative;
+}
+
+.hero-widget__thumbnail-list {
+  width: auto;
+  overflow: visible;
+  margin: 0;
+}
+
+.hero-thumbnail {
+  list-style-type: none;
+  padding: 2px;
+  background: #0097ad;
+  background: linear-gradient(#0097ad, #5a54e5);
+  display: inline-block;
+  margin: 0.35rem;
+  position: relative;
+}
+
+.hero-thumbnail.is-active {
+  background: #00d8ff;
+  box-shadow: 0 0 1em 2px #009cff;
+}
+.hero-thumbnail.is-active:before,
+.hero-thumbnail.is-active:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #00d8ff;
+  background: linear-gradient(to right, #00d8ff, #ffffff, #00d8ff);
+}
+.hero-thumbnail.is-active:before {
+  top: -4px;
+}
+.hero-thumbnail.is-active:after {
+  top: auto;
+  bottom: -4px;
+}
+
+.hero-thumbnail.unreleased {
+  background: #261e4a;
+}
+.hero-thumbnail.unreleased:before,
+.hero-thumbnail.unreleased:after {
+  opacity: .25;
+}
+.hero-thumbnail.unreleased .hero-thumbnail__link:before {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: .5;
+}
+.hero-thumbnail__backing {
+  background-color: #000000;
+  top: 2px;
+  bottom: 2px;
+  left: 2px;
+  right: 2px;
+}
+.hero-thumbnail__link.abathur {
+  background-position: 0 0px;
+}
+.hero-thumbnail__link.arthas {
+  background-position: 0 -72px;
+}
+.hero-thumbnail__link.diablo {
+  background-position: 0 -144px;
+}
+.hero-thumbnail__link.etc {
+  background-position: 0 -216px;
+}
+.hero-thumbnail__link.falstad {
+  background-position: 0 -288px;
+}
+.hero-thumbnail__link.gazlowe {
+  background-position: 0 -360px;
+}
+.hero-thumbnail__link.illidan {
+  background-position: 0 -432px;
+}
+.hero-thumbnail__link.kerrigan {
+  background-position: 0 -504px;
+}
+.hero-thumbnail__link.malfurion {
+  background-position: 0 -576px;
+}
+.hero-thumbnail__link.muradin {
+  background-position: 0 -648px;
+}
+.hero-thumbnail__link.naziba {
+  background-position: 0 -720px;
+}
+.hero-thumbnail__link.nova {
+  background-position: 0 -792px;
+}
+.hero-thumbnail__link.raynor {
+  background-position: 0 -864px;
+}
+.hero-thumbnail__link.sghammer {
+  background-position: 0 -936px;
+}
+.hero-thumbnail__link.sonya {
+  background-position: 0 -1008px;
+}
+.hero-thumbnail__link.stitches {
+  background-position: 0 -1080px;
+}
+.hero-thumbnail__link.tassadar {
+  background-position: 0 -1152px;
+}
+.hero-thumbnail__link.tychus {
+  background-position: 0 -1224px;
+}
+.hero-thumbnail__link.tyrael {
+  background-position: 0 -1296px;
+}
+.hero-thumbnail__link.tyrande {
+  background-position: 0 -1368px;
+}
+.hero-thumbnail__link.uther {
+  background-position: 0 -1440px;
+}
+.hero-thumbnail__link.valla {
+  background-position: 0 -1512px;
+}
+.hero-thumbnail__link.zeratul {
+  background-position: 0 -1584px;
+}
+.hero-thumbnail__link.brightwing {
+  background-position: 0 -1656px;
+}
+.hero-thumbnail__link.lili {
+  background-position: 0 -1728px;
+}
+.hero-thumbnail__link.murky {
+  background-position: 0 -1800px;
+}
+.hero-thumbnail__link.zagara {
+  background-position: 0 -1872px;
+}
+.hero-thumbnail__link.rehgar {
+  background-position: 0 -1944px;
+}
+.hero-thumbnail__link.anubarak {
+  background-position: 0 -2016px;
+}
+.hero-thumbnail__link.azmodan {
+  background-position: 0 -2088px;
+}
+.hero-thumbnail__link.chen {
+  background-position: 0 -2160px;
+}
+.hero-thumbnail__link.jaina {
+  background-position: 0 -2232px;
+}
+.hero-thumbnail__link.thrall {
+  background-position: 0 -2304px;
+}
+.hero-thumbnail__link.the-lost-vikings {
+  background-position: 0 -2376px;
+}
+.hero-thumbnail__link {
+  width: 64px;
+  height: 72px;
+  background: #0d0119 url("../images/heroes/thumbnails-64.jpg");
+  display: block;
+  position: relative;
+  z-index: 2;
+  transition: opacity .5s;
+}
+.unreleased .hero-thumbnail__link {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=50);
+  opacity: .5;
+}
+.hero-thumbnail__link:hover {
+  opacity: .5;
+  filter: alpha(opacity=50);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+}

@@ -1,0 +1,8 @@
+ru:
+  StormHero:
+    SINGULARNAME: Герой Шторма
+    PLURALNAME: Герои Шторма
+  MainPage:
+    DESCRIPTION: 'Создавать только в главном сайте'
+  PeopleFacePage:
+    DESCRIPTION: 'Список людей Blizzard и просто художников. Создавать только в главном сайте'

@@ -3,6 +3,7 @@
 class BlizzgameAdmin extends ModelAdmin {
 
     private static $managed_models = array(
+        'StormHero',
         'ElementLink',
         'ElementLinkGroup',
         'PeopleFace',
@@ -13,12 +14,11 @@ class BlizzgameAdmin extends ModelAdmin {
     private static $menu_title = 'Blizzgame Data';
 
     /**
-     * List only newsitems from current subsite.
-     * @author Marcio Barrientos
+     * List only items from current subsite.
      * @return ArrayList $list
      */
-
     public function getList() {
+        /** @var DataList $list */
         $list = parent::getList();
         $classes = array(
             'ElementLink',
@@ -30,6 +30,25 @@ class BlizzgameAdmin extends ModelAdmin {
         }
 
         return $list;
+    }
+
+    /**
+     * Manage tabs
+     *
+     * @return array
+     */
+    public function getManagedModels() {
+        $models = parent::getManagedModels();
+        if (Subsite::currentSubsiteID() == 0) {
+            $classes = array(
+                'ElementLink',
+                'ElementLinkGroup',
+            );
+            foreach($classes as $key) {
+                unset($models[$key]);
+            }
+        }
+        return $models;
     }
 
     public function subsiteCMSShowInMenu() {
