@@ -195,8 +195,4 @@ class Book extends DataObject {
     public function link() {
         return $this->HolderPage()->Link() . $this->LastLinkSegment;
     }
-
-    public function LinkToChapters()  {
-        return $this->link() . '/translate/';
-    }
 }

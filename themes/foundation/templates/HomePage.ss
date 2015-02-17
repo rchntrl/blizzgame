@@ -19,8 +19,7 @@
     <%--See [Requirements](http://doc.silverstripe.org/framework/en/reference/requirements) for loading from controller--%>
     <link rel="stylesheet" href="$ThemeDir/css/foundation.min.css" />
     <link rel="stylesheet" href="$ThemeDir/icons/foundation-icons.css" />
-
-    <link rel="stylesheet" href="$ThemeDir/css/style.css" />
+    <link rel="stylesheet" href="$ThemeDir/css/common.css" />
     <link rel="stylesheet/less" href="style/variables"/>
     <script>
         less = {

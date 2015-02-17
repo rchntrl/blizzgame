@@ -16,7 +16,8 @@
 }
 
 .bgStyle() {
-  background: @BlizzgameDark url(@BgImage) no-repeat 50% 50%;
+  background: @BlizzgameDark no-repeat 50% 50%;
+  background-image: url(@BgImage);
   -webkit-background-size: auto;
   background-size: cover;
   background-attachment: fixed;
@@ -104,6 +105,13 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+.top-bar,
+.top-bar.expanded {
+  .title-area {
+    background-color: @BlizzgameColor;
+  }
+}
+
 .blizgame-color,
 .lower-top {
   background: @BlizzgameColor;
@@ -186,12 +194,16 @@ ul.children-page-list {
 
 .gallery-section {
   margin: 0 20px;
-  .gallery-list {
-    .art-thumbnail.empty {
-      background-image: url(http://wow.blizzgame.ru/assets/Warcraft-Gallery/_resampled/CroppedImage200200-Dark-Lady-Sylvanas-Windrunner-by-Arnold-Tsang.jpg);
-      background-position: 50%;
-      background-size: contain;
-    }
+}
+.gallery-list {
+  .art-thumbnail.empty {
+    background-image: url(http://wow.blizzgame.ru/assets/Warcraft-Gallery/_resampled/CroppedImage200200-Dark-Lady-Sylvanas-Windrunner-by-Arnold-Tsang.jpg);
+    background-position: 50%;
+    background-size: contain;
+  }
+  p {
+    margin-bottom: 0;
+    text-align: center;
   }
 }
 .art-info {

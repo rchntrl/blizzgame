@@ -86,7 +86,7 @@ class Chapter extends DataObject implements ObjectAsPageProvider {
     );
 
     public function Link() {
-        return $this->Book()->LinkToChapters() . $this->ID . '/';
+        return $this->Book()->Link() . '/translate/' . $this->ID . '/';
     }
 
     public function HolderPage() {

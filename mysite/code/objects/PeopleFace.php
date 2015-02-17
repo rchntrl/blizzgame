@@ -49,7 +49,11 @@ class PeopleFace extends DataObject implements ObjectAsPageProvider {
         'ID', 'TitleEN', 'TitleRU', 'Nick'
     );
 
-   	static $default_sort = 'TitleEN ASC';
+    static $singular_name = 'Blizz People';
+
+    static $plural_name = 'Blizz Person';
+
+    static $default_sort = 'TitleEN ASC';
 
     public function getTitle() {
         return $this->getField('TitleEN') . ($this->getField('Nick') ? ' (' . $this->getField('Nick') . ')' : '');

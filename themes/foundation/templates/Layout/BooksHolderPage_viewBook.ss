@@ -39,7 +39,7 @@
             $TextDescript.RAW
         <% end_if %>
         <% if $Chapters.Count() %>
-            <a class="button" href="{$LinkToChapters}" ><%t Book.READ_BOOK_BUTTON 'Читать {Title}' Title=$MenuTitle %></a>
+            <a class="button" href="$Chapters.first().Link()" ><%t Book.READ_BOOK_BUTTON 'Читать {Title}' Title=$MenuTitle %></a>
         <% end_if %>
         $Form
     </article>

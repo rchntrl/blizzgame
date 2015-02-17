@@ -1,0 +1,118 @@
+.gsc-control-cse {
+    font-family: Verdana, sans-serif;
+    border-color: #898D97;
+    background-color: #2E3745;
+}
+.gsc-control-cse div,
+.gsc-control-cse table {margin:0 !important;}
+input.gsc-input {
+    border-color: #898D97;
+    color:#000;/*ADD*/
+}
+input.gsc-search-button {
+    border-color: #898D97;
+    background-color: #ffffff;
+    color:#000;/*ADD*/
+}
+.gsc-tabHeader.gsc-tabhInactive {
+    border-color: #898D97;
+    background-color: #2E3745;
+}
+.gsc-tabHeader.gsc-tabhActive {
+    border-color: #ffffff;
+    background-color: #ff0000;
+}
+.gsc-tabsArea {
+    border-color: #ffffff;
+}
+.gsc-webResult.gsc-result {
+    border-color: #000000;
+    background-color: #29313D;
+    margin:5px 0 !important;
+    padding:5px 10px !important;
+}
+
+.gsc-webResult.gsc-result:hover {
+    border-color: #000000;
+    background-color: #29313D;
+}
+
+.gs-webResult.gs-result a.gs-title:link,
+.gs-webResult.gs-result a.gs-title:link b {
+    color: #84bffb;
+}
+.gs-webResult.gs-result a.gs-title:visited,
+.gs-webResult.gs-result a.gs-title:visited b {
+    color: #84bffb;
+}
+.gs-webResult.gs-result a.gs-title:hover,
+.gs-webResult.gs-result a.gs-title:hover b {
+    color: #ff0000;
+}
+.gs-webResult.gs-result a.gs-title:active,
+.gs-webResult.gs-result a.gs-title:active b {
+    color: #777777;
+}
+.gsc-cursor-page {
+    color: #84bffb;
+}
+a.gsc-trailing-more-results:link {
+    color: #84bffb;
+}
+.gs-webResult.gs-result .gs-snippet {
+    color: #ffffff;
+}
+.gs-webResult.gs-result .gs-visibleUrl {
+    color: #ffffff;
+}
+.gs-webResult.gs-result .gs-visibleUrl-short {
+    color: #ffffff;
+}
+.gsc-cursor-box {
+    /*border-color: #000000;*/
+}
+.gsc-results .gsc-cursor-page {
+    font-size:13px;
+    border:solid 1px #898d97;
+    margin-right:4px !important;
+    padding:3px 3px;
+    color:#557AA0 !important;
+    text-decoration:none !important;
+}
+
+.gsc-results .gsc-cursor-page:hover{
+    border:solid 1px #ff0000;
+}
+
+.gsc-results .gsc-cursor-page.gsc-cursor-current-page {
+    background:#898d97 !important;
+    border:1px solid #898d97;
+    color:#FFFFFF !important;
+    font-weight:bold;
+    padding:3px 3px;
+
+}
+.gs-promotion.gs-result {
+    border-color: #CCCCCC;
+    background-color: #E6E6E6;
+}
+.gs-promotion.gs-result a.gs-title:link {
+    color: #0000CC;
+}
+.gs-promotion.gs-result a.gs-title:visited {
+    color: #0000CC;
+}
+.gs-promotion.gs-result a.gs-title:hover {
+    color: #444444;
+}
+.gs-promotion.gs-result a.gs-title:active {
+    color: #00CC00;
+}
+.gs-promotion.gs-result .gs-snippet {
+    color: #333333;
+}
+.gs-promotion.gs-result .gs-visibleUrl,
+.gs-promotion.gs-result .gs-visibleUrl-short {
+    color: #00CC00;
+}
+.gs-no-results-result{background-color:none !important;border:0px !important;}
