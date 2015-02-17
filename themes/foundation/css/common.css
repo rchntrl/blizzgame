@@ -1,6 +1,4 @@
-/*
-HEADER SECTION
-*/
+/*HEADER SECTION*/
 
 .top-bar,
 #header-branding img {
@@ -8,7 +6,7 @@ HEADER SECTION
 }
 
 #header-branding {
-    height: 100px;
+    height: 120px;
 }
 
 .header-section {
@@ -32,9 +30,7 @@ HEADER SECTION
     min-width: 100%;
 }
 
-/*
-CONTENT
-*/
+/* CONTENT */
 
 .main-content {
     padding: 0 20px;
@@ -42,14 +38,33 @@ CONTENT
     width: 100%;
 }
 
+.home-page-content {
+    padding: 20px;
+}
+
+/** BOOK */
+.book-info {
+    padding-top: 20px;
+}
+
+.book-info dl dd {
+    padding-bottom: 7px;
+    border-bottom: 1px solid #ddd;
+}
+
+.side-nav li.active {
+    border: 1px #9fe4fa solid;
+}
+
+.th p {
+    margin-bottom: 0;
+    text-align: center;
+}
+
 .crop-text {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-}
-
-.news-section {
-    margin: 20px;
 }
 
 /* clearing carousel */
@@ -68,6 +83,10 @@ CONTENT
 }
 
 /* NEWS SECTION */
+.news-section {
+    margin: 20px;
+}
+
 .month {
     font-family: "Proxima Nova Condensed", "proxima-nova-condensed", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif;
     color: #333;

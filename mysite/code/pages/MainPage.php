@@ -37,6 +37,10 @@ class MainPage_Controller extends HomePage_Controller {
         Requirements::css($this->ThemeDir() .  'css/hots.css');
     }
 
+    public function OrbitNews() {
+        return DataObject::get('GalleryImage', '', 'Created ASC', '')->limit(10);
+    }
+
     public function LastArts() {
         return DataObject::get('GalleryImage', '', 'Created DESC', '');
     }

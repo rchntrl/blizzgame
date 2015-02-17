@@ -1,34 +1,38 @@
 <div class="small-12 medium-9 large-10 columns">
-    <h2>$Title</h2>
-    <div class="small-5 columns">
-        <% if $Cover %>
-            $Cover.SetRatioSize(320, 500);
-        <% else %>
-            $SiteConfig.DefaultBookCover.SetRatioSize(320, 500)
-        <% end_if %>
-        <dl>
-            <dt>Автор(ы):</dt>
-            <dd>
-                <% if $Author %>
-                    $Author
+    <h2>$TitleRU</h2>
+    <article>
+        <div class="small-5 columns" style="padding-left: 0;">
+            <a class="th" href="$Cover.getUrl()">
+                <% if $Cover.SetRatioSize(320, 500) %>
+                    $Cover.SetRatioSize(320, 500)
                 <% else %>
-                    <% loop $Authors %>$Title<% if not $Last %>, <% end_if %><% end_loop %>
+                    $SiteConfig.DefaultBookCover.SetRatioSize(320, 500)
                 <% end_if %>
-            </dd>
-            <% if $TranslatedBy %>
-                <dt>Переводчик(и):</dt><dd>$TranslatedBy</dd>
-            <% end_if %>
-            <% if $PaintsCover %>
-                <dt>Обложка:</dt><dd><% loop $PaintsCover %>$Title<% if not $Last %>, <% end_if %><% end_loop %></dd>
-            <% end_if %>
-            <dt>Мировой издатель (Дата):</dt><dd>$PublisherEN ($DateSaleEN.format("d.m.Y"))</dd>
-            <% if $PublisherRU %>
-                <dt>Российский издатель (Дата):</dt><dd>$PublisherRU ($DateSaleRU.format("d.m.Y"))</dd>
-            <% end_if %>
-            <dt>Количество страниц:</dt><dd>$CountPage</dd>
-        </dl>
-    </div>
-    <article class="small-7 columns">
+            </a>
+            <div class="book-info">
+                <dl>
+                    <dt>Автор(ы):</dt>
+                    <dd>
+                        <% if $Author %>
+                            $Author
+                        <% else %>
+                            <% loop $Authors %><a href="$AbsoluteLink">$Title</a><% if not $Last %>, <% end_if %><% end_loop %>
+                        <% end_if %>
+                    </dd>
+                    <% if $TranslatedBy %>
+                        <dt>Переводчик(и):</dt><dd>$TranslatedBy</dd>
+                    <% end_if %>
+                    <% if $PaintsCover %>
+                        <dt>Обложка:</dt><dd><% loop $PaintsCover %><a href="$AbsoluteLink">$Title</a><% if not $Last %>, <% end_if %><% end_loop %></dd>
+                    <% end_if %>
+                    <dt>Мировой издатель (Дата):</dt><dd>$PublisherEN ($DateSaleEN.format("d.m.Y"))</dd>
+                    <% if $PublisherRU %>
+                        <dt>Российский издатель (Дата):</dt><dd>$PublisherRU ($DateSaleRU.format("d.m.Y"))</dd>
+                    <% end_if %>
+                    <dt>Количество страниц:</dt><dd>$CountPage</dd>
+                </dl>
+            </div>
+        </div>
         <% if TextContent %>
             <h3>Сюжет</h3>
             $TextContent.RAW

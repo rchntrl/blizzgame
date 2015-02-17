@@ -1,18 +1,18 @@
 <% require themedCSS('hots') %>
-<div class="small-12 medium-12 large-12 columns" xmlns="http://www.w3.org/1999/html">
+<div class="orbit-container">
+    <ul class="example-orbit" data-orbit>
+        <% loop $OrbitNews.Limit(7) %>
+            <li>
+                <a href="$AbsoluteLink"><img src="$Image.CroppedImage(1924, 530).getUrl()" alt="slide 1" /></a>
+                <div class="orbit-caption">
+                    $Title (скоро здесь вместо артов будут новости)
+                </div>
+            </li>
+        <% end_loop %>
+    </ul>
+</div>
+<div class="large-12 columns" xmlns="http://www.w3.org/1999/html">
     <section class="home-page-content">
-        <div class="orbit-container">
-            <ul class="example-orbit" data-orbit>
-                <% loop $LastArts.Limit(7) %>
-                    <li>
-                        <a href="$AbsoluteLink"><img src="$Image.CroppedImage(1024, 330).getUrl()" alt="slide 1" /></a>
-                        <div class="orbit-caption">
-                            $Title (скоро здесь вместо артов будут новости)
-                        </div>
-                    </li>
-                <% end_loop %>
-            </ul>
-        </div>
         <div class="row">
             <div class="text-center panel">
                 <h2>Heroes of the Storm</h2>
