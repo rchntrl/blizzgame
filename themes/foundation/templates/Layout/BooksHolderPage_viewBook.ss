@@ -1,6 +1,5 @@
 <div class="small-12 medium-9 large-10 columns">
     <h2>$TitleRU</h2>
-    $Previous.MenuTitle : $Next.MenuTitle
     <article>
         <div class="small-5 columns" style="padding-left: 0;">
             <a class="th" href="$Cover.getUrl()">
