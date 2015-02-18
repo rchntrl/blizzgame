@@ -9,9 +9,9 @@
                             <a class="element-link" href="{$Link}" title="$Title.ATT">
                                 <div class="element-link-image">
                                     <% if Icon %>
-                                        <img class="icon-frame frame-56" alt="$TitleRU.ATT ($TitleEN.ATT)" src="$Icon.setSize(56, 56).getUrl()" />
+                                        <img class="icon-frame frame-56" alt="$Title" src="$Icon.setSize(56, 56).getUrl()" />
                                     <% else %>
-                                        <img class="icon-frame frame-56" alt="" src="$Top.SiteConfig.DefaultElementImage().setSize(56, 56).getUrl()" />
+                                        <img class="icon-frame frame-56" src="$Top.SiteConfig.DefaultElementImage().setSize(56, 56).getUrl()" />
                                     <% end_if %>
                                 </div>
                                 <span class="element-link-title">$Title</span>
@@ -37,7 +37,7 @@
                         </a>
                     </div>
                         <h6><a href="{$Link}" title="{$Title.ATT}">$Title</a></h6>
-                        <p>$Content.NoHTML.LimitWordCountXML(20)</p>
+                        <p class="crop-text">$Content.NoHTML.LimitWordCountXML(20)</p>
                 </li>
             <% end_loop %>
         </ul>

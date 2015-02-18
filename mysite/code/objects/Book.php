@@ -10,6 +10,7 @@
  * @method DataList Authors()
  * @method DataList PaintsPage()
  * @method DataList PaintsCover()
+ * @property Date DateSaleEN
  * @property String LastLinkSegment
  * @property String Category
  * @property String Places
@@ -194,5 +195,53 @@ class Book extends DataObject {
 
     public function link() {
         return $this->HolderPage()->Link() . $this->LastLinkSegment;
+    }
+
+    /**
+     * @return GalleryPage
+     */
+    public function Previous() {
+        $Book = DataObject::get_one('Book',
+            "\"Book\".\"HolderPageID\" = " . $this->getField('HolderPageID') . " AND \"Book\".\"DateSaleEN\" > '" . $this->DateSaleEN . "'",
+            true,
+            "DateSaleEN ASC"
+        );
+        return $Book;
+    }
+
+    /**
+     * @return GalleryPage
+     */
+    public function Next() {
+        $Book = DataObject::get_one('Book',
+            "\"Book\".\"HolderPageID\" = " . $this->getField('HolderPageID') . " AND \"Book\".\"DateSaleEN\" < '" . $this->DateSaleEN . "'",
+            true,
+            "DateSaleEN DESC"
+        );
+        return $Book;
+    }
+
+    /**
+     * @param int $limit
+     * @return SS_List
+     */
+    public function Closest($limit  = 6) {
+        $prevList = DataObject::get('Book',
+            "\"Book\".\"HolderPageID\" = " . $this->getField('HolderPageID') . " AND \"Book\".\"DateSaleEN\" > '" . $this->DateSaleEN . "'",
+            "DateSaleEN ASC",
+            "",
+            $limit
+        );
+        $nextList = DataObject::get('Book',
+            "\"Book\".\"HolderPageID\" = " . $this->getField('HolderPageID') . " AND \"Book\".\"DateSaleEN\" < '" . $this->DateSaleEN . "'",
+            "DateSaleEN DESC",
+            "",
+            $limit
+        );
+        $list = new ArrayList();
+        $list->merge($prevList->toArray());
+        $list->add($this);
+        $list->merge($nextList->toArray());
+        return $list;
     }
 }

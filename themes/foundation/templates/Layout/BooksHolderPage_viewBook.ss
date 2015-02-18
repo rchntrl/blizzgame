@@ -1,5 +1,6 @@
 <div class="small-12 medium-9 large-10 columns">
     <h2>$TitleRU</h2>
+    $Previous.MenuTitle : $Next.MenuTitle
     <article>
         <div class="small-5 columns" style="padding-left: 0;">
             <a class="th" href="$Cover.getUrl()">
@@ -35,12 +36,12 @@
         </div>
         <% if TextContent %>
             <h3>Сюжет</h3>
-            $TextContent.RAW
+            $TextContent
         <% end_if %>
 
         <% if TextDescription %>
             <h3>Описание</h3>
-            $TextDescript.RAW
+            $TextDescription
         <% end_if %>
         <% if $Chapters.Count() %>
             <a class="button" href="$Chapters.first().Link()" ><%t Book.READ_BOOK_BUTTON 'Читать {Title}' Title=$MenuTitle %></a>
@@ -49,11 +50,11 @@
     </article>
 </div>
 <div class="small-12 medium-3 large-2 columns">
-    <ul class="side-nav" title="Книги">
+    <ul class="side-nav tab-style" title="Книги">
         <li class="heading">Книги</li>
-        <% loop $HolderPage.Books() %>
+        <% loop $Closest %>
             <li <%if $ID == $Top.ID %>class="active"<% end_if %>  role="menuitem">
-                <a href="$link">$MenuTitle</a>
+                <a href="$Link">$TitleRU</a>
             </li>
         <% end_loop %>
     </ul>

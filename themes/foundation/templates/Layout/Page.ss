@@ -1,8 +1,15 @@
-<div class="page-section small-12 medium-12 large-12 columns">
+<% require javascript('themes/foundation/javascript/page.js') %>
+<div class="page-section large-12 columns">
+    <h1>$Title</h1>
     <article>
-        <h1>$Title</h1>
-        $Content
-        $Form
+        <div id="content">
+            $Content
+            $Form
+        </div>
+        <% if Children %>
+            <div id="children-pages">
+                <% include ChildrenPages %>
+            </div>
+        <% end_if %>
     </article>
-    <% include ChildrenPages %>
 </div>
