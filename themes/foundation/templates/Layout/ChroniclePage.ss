@@ -21,7 +21,7 @@
 <% else %>
     <ul class="side-nav">
         <% loop $ChronicleItems %>
-            <li><a href="$$Link">$TitleRU</a></li>
+            <li><a href="$Link">$TitleRU</a></li>
         <% end_loop %>
     </ul>
 <% end_if %>
