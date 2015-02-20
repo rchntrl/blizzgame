@@ -51,6 +51,9 @@
     padding-bottom: 7px;
     border-bottom: 1px solid #ddd;
 }
+.side-nav li a:not(.button) {
+    padding: 1.2375rem 0.875rem;
+}
 
 .tab-style li {
     border-left: 1px #ddd solid;

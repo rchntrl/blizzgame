@@ -262,20 +262,35 @@ ul.children-page-list {
   -moz-border-radius: 0 0 10px 10px;
 }
 
+.ChronicleItem {
+  color: #fff;
+  .content-section {
+    background: @BlizzgameColor;
+  }
+  .tab-style {
+    li {
+      border-color: #576989;
+    }
+    li.active > a:first-child:not(.button) {
+      color: #1cc7ff;
+    }
+  }
+}
+
 .chronicle-section {
   .description {
-    color: rgb(0, 94, 33);
+    color: rgb(128, 128, 0);
   }
   .say {
-    color: rgb(142, 85, 9);
+    color: rgb(248, 251, 170);
   }
   .cry {
     color: rgb(250, 0, 0);
   }
   .wisper {
-    color: rgb(128, 126, 123);
+    color: rgb(235, 180, 212);
   }
   .action {
-    color: rgb(241, 117, 17);
+    color: rgb(241, 117, 47);
   }
 }
