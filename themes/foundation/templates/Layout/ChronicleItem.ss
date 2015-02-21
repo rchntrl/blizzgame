@@ -6,7 +6,7 @@
         </div>
         <div class="large-3 column">
             <ul class="side-nav tab-style">
-                <% loop $HolderPage.ChronicleItems %>
+                <% loop $Closest() %>
                     <li <%if $Top.ID == $ID %>class="active"<% end_if %>><a href="$Link">$MenuTitle</a></li>
                 <% end_loop %>
             </ul>

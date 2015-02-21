@@ -4,6 +4,7 @@
  * Class ChronicleItem
  *
  * @method ChroniclePage HolderPage
+ * @property Int NumberSort
  */
 class ChronicleItem extends DataObject {
 
@@ -42,7 +43,7 @@ class ChronicleItem extends DataObject {
     protected function getElementLinksTab() {
         return Tab::create(
             'Tags',
-            _t('Book.TAGSTAB', 'Тэги'),
+            _t('ChronicleItem.TAGSTAB', 'Тэги'),
             ElementLink::getMultipleField('Fractions', 'Фракции', ElementLink::FRACTIONS),
             ElementLink::getMultipleField('Races', 'Расы', ElementLink::RACES),
             ElementLink::getMultipleField('Heroes', 'Персонажи', ElementLink::HEROES),
@@ -59,5 +60,19 @@ class ChronicleItem extends DataObject {
     public static function get_by_url($url) {
         $callerClass = get_class();
         return DataObject::get_one($callerClass, "\"" . $callerClass . "\".\"LastLinkSegment\" = '" . $url ."'");
+    }
+
+    /**
+     * @param int $limit
+     * @return SS_List
+     */
+    public function Closest($limit  = 7) {
+        return DataObject::get('ChronicleItem',
+            "\"ChronicleItem\".\"HolderPageID\" = " . $this->getField('HolderPageID') .
+            " AND \"ChronicleItem\".\"NumberSort\" >= " . ($this->NumberSort - round($limit / 2)),
+            "NumberSort ASC",
+            "",
+            $limit
+        );
     }
 }

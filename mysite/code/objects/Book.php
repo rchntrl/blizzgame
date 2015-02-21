@@ -198,7 +198,7 @@ class Book extends DataObject {
     }
 
     /**
-     * @return GalleryPage
+     * @return Book
      */
     public function Previous() {
         $Book = DataObject::get_one('Book',
@@ -210,7 +210,7 @@ class Book extends DataObject {
     }
 
     /**
-     * @return GalleryPage
+     * @return Book
      */
     public function Next() {
         $Book = DataObject::get_one('Book',
@@ -225,23 +225,22 @@ class Book extends DataObject {
      * @param int $limit
      * @return SS_List
      */
-    public function Closest($limit  = 6) {
-        $prevList = DataObject::get('Book',
+    public function Closest($limit  = 9) {
+        /** @var Book $prevBook */
+        $prevBook =  DataObject::get('Book',
             "\"Book\".\"HolderPageID\" = " . $this->getField('HolderPageID') . " AND \"Book\".\"DateSaleEN\" > '" . $this->DateSaleEN . "'",
             "DateSaleEN ASC",
             "",
-            $limit
-        );
-        $nextList = DataObject::get('Book',
-            "\"Book\".\"HolderPageID\" = " . $this->getField('HolderPageID') . " AND \"Book\".\"DateSaleEN\" < '" . $this->DateSaleEN . "'",
+            round($limit / 2)
+        )->last();
+        if (!$prevBook) {
+            $prevBook = $this;
+        }
+        return DataObject::get('Book',
+            "\"Book\".\"HolderPageID\" = " . $prevBook->getField('HolderPageID') . " AND \"Book\".\"DateSaleEN\" < '" . $prevBook->DateSaleEN . "'",
             "DateSaleEN DESC",
             "",
             $limit
         );
-        $list = new ArrayList();
-        $list->merge($prevList->toArray());
-        $list->add($this);
-        $list->merge($nextList->toArray());
-        return $list;
     }
 }

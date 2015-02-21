@@ -1,7 +1,7 @@
 <div class="small-12 medium-9 large-10 columns">
     <h2>$TitleRU</h2>
     <article>
-        <div class="small-5 columns" style="padding-left: 0;">
+        <div class="large-5 small-12 columns" style="padding-left: 0; margin-right: 10px;">
             <a class="th" href="$Cover.getUrl()">
                 <% if $Cover.SetRatioSize(320, 500) %>
                     $Cover.SetRatioSize(320, 500)
@@ -43,14 +43,14 @@
             $TextDescription
         <% end_if %>
         <% if $Chapters.Count() %>
-            <a class="button" href="$Chapters.first().Link()" ><%t Book.READ_BOOK_BUTTON 'Читать {Title}' Title=$MenuTitle %></a>
+            <a class="button large-12 small-12" href="$Chapters.first().Link()" ><%t Book.READ_BOOK_BUTTON 'Читать {Title}' Title=$MenuTitle %></a>
         <% end_if %>
         $Form
     </article>
 </div>
 <div class="small-12 medium-3 large-2 columns">
     <ul class="side-nav tab-style" title="Книги">
-        <li class="heading">Книги</li>
+        <li class="heading">$HolderPage.Title</li>
         <% loop $Closest %>
             <li <%if $ID == $Top.ID %>class="active"<% end_if %>  role="menuitem">
                 <a href="$Link">$TitleRU</a>

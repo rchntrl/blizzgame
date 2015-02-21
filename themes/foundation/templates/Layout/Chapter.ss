@@ -23,7 +23,7 @@
     </ul>
 </div>
 <div class="medium-3 large-2 columns">
-    <ul class="side-nav">
+    <ul class="side-nav tab-style">
         <% loop Book.Chapters %>
             <li <% if $ID = $Top.ID %>class="active"<% end_if %>><a href="$link">$Title</a></li>
         <% end_loop%>
