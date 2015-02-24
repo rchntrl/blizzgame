@@ -6,11 +6,6 @@
  */
 class HomePage extends SiteTree {
 
-    private static $db = array(
-    );
-
-    private static $has_one = array(
-    );
 }
 
 /**
@@ -29,11 +24,19 @@ class HomePage_Controller  extends ContentController {
     }
 
     public function allNews() {
-        $allEntries = News::get()->limit(7);
+        $allEntries = NewsHolderPage::get()->first()->Newsitems()->limit(7);
         return $allEntries;
     }
 
+    public function OrbitNews() {
+        return DataObject::get('News', '"News"."ShowInCarousel" = 1 AND "News"."ImpressionID" <> 0', 'Created ASC', '')->limit(5);
+    }
+
     public function LastArts() {
-        return DataObject::get('GalleryImage', '', 'Created DESC', '');
+        /**
+         * @var GalleryPage $page
+         */
+        $page = GalleryPage::get()->first();
+        return $page->GalleryImages()->limit(8);
     }
 }

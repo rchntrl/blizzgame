@@ -239,9 +239,36 @@ ul.children-page-list {
   border-bottom: #ddd 1px solid;
   padding: 10px 0;
   margin: 10px 0;
+  position: relative;
+  display: block;
   &.last,
   &:last-child {
     border-bottom: none;
+  }
+  h4 {
+    font-size: 18px;
+  }
+  a {
+    display: inline;
+  }
+  .news-image {
+    float: left;
+    display: block;
+    height: 96px;
+    width: 190px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    box-shadow: @BlizzgameColor 0 0 10px;
+    border: 1px solid @BlizzgameColor;
+    background-color: #000;
+    border-radius: 2px;
+  }
+  .news-content {
+    padding: 0 0 0 15px;
+    overflow: hidden;
+    display: inline-block;
+    width: 70%;
   }
 }
 

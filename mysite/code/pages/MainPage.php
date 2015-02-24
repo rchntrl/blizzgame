@@ -38,7 +38,7 @@ class MainPage_Controller extends HomePage_Controller {
     }
 
     public function OrbitNews() {
-        return DataObject::get('GalleryImage', '', 'Created ASC', '')->limit(10);
+        return DataObject::get('News', '"News"."ShowInCarousel" = 1', 'Created ASC', '')->limit(5);
     }
 
     public function LastArts() {

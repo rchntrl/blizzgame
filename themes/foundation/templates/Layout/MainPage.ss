@@ -3,9 +3,9 @@
     <ul class="example-orbit" data-orbit>
         <% loop $OrbitNews.Limit(7) %>
             <li>
-                <a href="$AbsoluteLink"><img src="$Image.CroppedImage(1924, 530).getUrl()" alt="slide 1" /></a>
+                <a href="$alternateAbsoluteLink"><img src="$Impression.CroppedImage(1924, 530).getUrl()" alt="slide 1" /></a>
                 <div class="orbit-caption">
-                    $Title (скоро здесь вместо артов будут новости)
+                    $Title
                 </div>
             </li>
         <% end_loop %>
@@ -25,7 +25,7 @@
                             <% loop $HeroesRotation %>
                                 <li class="hero-thumbnail released">
                                     <div xmlns="http://www.w3.org/1999/xhtml" class="hero-thumbnail__backing">
-                                        <a xmlns="http://www.w3.org/1999/xhtml" href="#" class="hero-thumbnail__link $Class"></a>
+                                        <a xmlns="http://www.w3.org/1999/xhtml" href="javascript:;" class="hero-thumbnail__link $Class"></a>
                                     </div>
                                 </li>
                             <% end_loop %>
@@ -39,30 +39,32 @@
         </div>
         <div class="row">
             <hr>
-            <div class="large-12 columns">
-                <h3></h3>
+            <div class="large-8 columns">
+                <div class="text-center panel">
+                    <h3>Последние пополнения в галерее</h3>
+                    <ul class="gallery-list clearing-thumbs large-block-grid-4 small-block-grid-4">
+                        <% loop $LastArts.Limit(8) %>
+                            <li>
+                                <a class="th" role="button" aria-label="Thumbnail" href="$AbsoluteLink">
+                                    <img class="art-thumbnail" title="$Title" src="$Image.CroppedImage(230, 230).getUrl()" />
+                                    <p class="crop-text">$Title</p>
+                                </a>
+                            </li>
+                        <% end_loop %>
+                    </ul>
+                </div>
             </div>
-            <div class="text-center panel">
-                <h3>Последние пополнения в галерее</h3>
-                <ul class="gallery-list clearing-thumbs large-block-grid-4 small-block-grid-4">
-                    <% loop $LastArts.Limit(8) %>
-                        <li>
-                            <a class="th" role="button" aria-label="Thumbnail" href="$AbsoluteLink">
-                                <img class="art-thumbnail" title="$Title" src="$Image.CroppedImage(230, 230).getUrl()" />
-                                <p class="crop-text">$Title</p>
-                            </a>
-                        </li>
+
+            <% if $allNews %>
+                <div class="large-4 small-12 column">
+                    <% loop $allNews %>
+                        <div class="news $FirstLast">
+                            <h4><a href="$alternateAbsoluteLink">$Title</a></h4>
+                        </div>
                     <% end_loop %>
-                </ul>
-            </div>
+                </div>
+            <% end_if %>
         </div>
-        <% if $allNews %>
-        <% loop $allNews %>
-            <div class="news $FirstLast">
-                <% include SingleSummaryItem %>
-            </div>
-        <% end_loop %>
-        <% end_if %>
         <a href="{$BaseHref}news/" data-start="12" class="button large-12 small-12 secondary load-more-art">Архив новостей</a>
     </section>
 </div>
