@@ -1,10 +1,10 @@
 <% if $Impression %>
     <a href="$alternateAbsoluteLink" class="impressionLink">
-        <div class="news-image" style="background-image: url($Impression.SetSize(200,200).getURL())"></div>
+        <div class="news-image" style="background-image: url($Impression.CroppedImage(200,200).getURL())"></div>
     </a>
 <% else_if $Top.SiteConfig.DefaultImage %>
     <a href="$alternateAbsoluteLink" class="impressionLink">
-        <div class="news-image" style="background-image: url($Top.SiteConfig.DefaultImage.SetRatioSize(200,200).getURL())"></div>
+        <div class="news-image" style="background-image: url($Top.SiteConfig.DefaultImage.CroppedImage(200,200).getURL())"></div>
     </a>
 <% end_if %>
 <div class="news-content">
