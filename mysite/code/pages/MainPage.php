@@ -37,8 +37,15 @@ class MainPage_Controller extends HomePage_Controller {
         Requirements::css($this->ThemeDir() .  'css/hots.css');
     }
 
+    /**
+     * @return HomePageSettings
+     */
+    protected function getHomePageConfig() {
+        return DataObject::get_one('HomePageSettings', "\"HomePageSettings\".\"UseThisOne\" = 1 AND \"HomePageSettings\".\"UsedByID\" = " . $this->ID);
+    }
+
     public function OrbitNews() {
-        return DataObject::get('News', '"News"."ShowInCarousel" = 1', 'Created ASC', '')->limit(5);
+        return DataObject::get('News', '"News"."ShowInCarousel" = 1', 'Created ASC', '')->limit($this->getHomePageConfig()->OrbitLimit);
     }
 
     public function LastArts() {

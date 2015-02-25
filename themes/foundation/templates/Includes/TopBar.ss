@@ -26,9 +26,10 @@
                         </a>
                         <ul class="dropdown">
                             <li>
-                                <a href="$BaseHref/Security/logout">
-                                    Выйти
-                                </a>
+                                <a href="ForumMemberProfile/show/$ID">Профиль</a>
+                            </li>
+                            <li>
+                                <a href="$BaseHref/Security/logout">Выйти</a>
                             </li>
                         </ul>
                     <% end_with %>

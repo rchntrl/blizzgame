@@ -1,6 +1,6 @@
-<tr>
+<tr class="forumCategory">
     <td>
-        <a class="topic-title" href="$Link">$Title</a>
+        <h5><a class="topicTitle" href="$Link">$Title</a></h5>
         <% if Content || Moderators %>
             <div class="summary">
                 <p>$Content.LimitCharacters(80)</p>
@@ -12,10 +12,10 @@
             </div>
         <% end_if %>
     </td>
-    <td class="count">
+    <td class="count post-details">
         $NumTopics
     </td>
-    <td class="count">
+    <td class="count post-details">
         $NumPosts
     </td>
     <td class="">

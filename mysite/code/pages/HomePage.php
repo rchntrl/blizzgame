@@ -37,6 +37,6 @@ class HomePage_Controller  extends ContentController {
          * @var GalleryPage $page
          */
         $page = GalleryPage::get()->first();
-        return $page->GalleryImages()->limit(8);
+        return $page->GalleryImages()->limit(6);
     }
 }

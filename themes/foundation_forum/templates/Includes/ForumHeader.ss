@@ -1,6 +1,19 @@
-<div class="forum-header">
+<div class="row forum-header">
+    <div class="medium-8 column">
+        <h1 class="forum-heading"><a name='Header'>$HolderSubtitle</a></h1>
+        <p class="forum-abstract">$ForumHolder.HolderAbstract</p>
+        <% if Moderators %>
+            <p>
+                Moderators:
+                <% loop Moderators %>
+                    <a href="$Link">$Nickname</a>
+                    <% if not Last %>, <% end_if %>
+                <% end_loop %>
+            </p>
+        <% end_if %>
+    </div>
     <% loop ForumHolder %>
-        <div class="forum-header-forms">
+        <div class="medium-4 column">
 
             <form class="forum-jump" action="#">
                 <label for="forum-jump-select"><% _t('ForumHeader_ss.JUMPTO','Jump to:') %></label>
@@ -38,18 +51,4 @@
 
         </div><!-- forum-header-forms. -->
     <% end_loop %>
-
-    <h1 class="forum-heading"><a name='Header'>$HolderSubtitle</a></h1>
-    <p class="forum-abstract">$ForumHolder.HolderAbstract</p>
-
-    <% if Moderators %>
-        <p>
-            Moderators:
-            <% loop Moderators %>
-                <a href="$Link">$Nickname</a>
-                <% if not Last %>, <% end_if %>
-            <% end_loop %>
-        </p>
-    <% end_if %>
-
 </div><!-- forum-header. -->

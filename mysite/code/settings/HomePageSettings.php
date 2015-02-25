@@ -6,6 +6,7 @@
  * @property String Title
  * @property String UsedByID
  * @property Boolean UseThisOne
+ * @property Int OrbitLimit
  * @property String HeroesRotation
  * @property HTMLText HeroesSaleText
  */
@@ -16,6 +17,7 @@ class HomePageSettings extends DataObject {
         "UseThisOne" => "Boolean",
         'HeroesRotation' => 'Varchar(255)',
         'HeroesSaleText' => 'HTMLText',
+        'OrbitLimit' => 'Int',
     );
 
     static $has_one = array(

@@ -42,8 +42,8 @@
             <div class="large-8 columns">
                 <div class="text-center panel">
                     <h3>Последние пополнения в галерее</h3>
-                    <ul class="gallery-list clearing-thumbs large-block-grid-4 small-block-grid-4">
-                        <% loop $LastArts.Limit(8) %>
+                    <ul class="gallery-list clearing-thumbs large-block-grid-3 small-block-grid-4">
+                        <% loop $LastArts.Limit(6) %>
                             <li>
                                 <a class="th" role="button" aria-label="Thumbnail" href="$AbsoluteLink">
                                     <img class="art-thumbnail" title="$Title" src="$Image.CroppedImage(230, 230).getUrl()" />
@@ -57,11 +57,13 @@
 
             <% if $allNews %>
                 <div class="large-4 small-12 column">
-                    <% loop $allNews %>
-                        <div class="news $FirstLast">
-                            <h4><a href="$alternateAbsoluteLink">$Title</a></h4>
-                        </div>
-                    <% end_loop %>
+                    <ul class="side-nav">
+                        <% loop $allNews %>
+                            <li>
+                                <a href="$alternateAbsoluteLink">$Title</a>
+                            </li>
+                        <% end_loop %>
+                    </ul>
                 </div>
             <% end_if %>
         </div>
