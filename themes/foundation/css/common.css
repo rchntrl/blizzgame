@@ -39,7 +39,55 @@
 }
 
 .home-page-content {
-    padding: 20px;
+}
+
+#heroes-section {
+    background-color: #162331;
+    background-size: cover;
+}
+
+#heroes-section.panel p,
+.panel li,
+#heroes-section.panel dl {
+    color: #fff;
+}
+
+#heroes-section .page__title {
+    font-family: "Metronic", "Myriad Pro", Myriad, Arial, sans-serif;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
+    text-shadow: 0 0 1rem #009cff;
+    text-transform: uppercase;
+}
+
+.news-list {
+    background: #333d4f;
+    padding: 0;
+}
+
+.news-list li {
+    margin-bottom: 0;
+}
+.news-list li a {
+    transition: color 0.5s ease 0.1s, text-shadow 0.5s ease 0.1s;
+}
+.news-list li a:not(.button):hover,
+.news-list li a:not(.button):focus {
+    color: #fff;
+    background: #162331;
+    text-shadow: 0 0 1rem #009cff;
+    border-bottom: 1px solid #009cff;
+    margin-bottom: 0;
+}
+.news-list li a:not(.button) {
+    color: #fff;
+    background: #162331;
+    margin-bottom: 1px;
+}
+.news-list li a .publish-date {
+    color: #008CBA;
+    text-shadow: none;
 }
 
 /** BOOK */
@@ -75,6 +123,7 @@
 .th p {
     margin-bottom: 0;
     text-align: center;
+    background-color: #fff;
 }
 
 .crop-text {
@@ -168,7 +217,6 @@
 /* Forum */
 .media {
     position: relative;
-    height: 200px;
 }
 
 .forum-profile-block {
@@ -274,24 +322,16 @@ a.action-link {
 }
 
 /** FOOTER */
-#footerDiv {
+.footer {
     color: #797979;
     font-size: 1em;
     background-color: #162331;
-    height: 300px;
+    min-height: 300px;
     padding: 30px;
     line-height: 15px;
 }
 
-#footerDiv hr {
-    height: 1px;
-    clear: both;
-    border: 0;
-    color: #898D97;
-    background-color: #898D97;
-}
-
-#footerDiv h6 {
+.footer h6 {
     font-weight: normal;
     width: 220px;
     float: left;
@@ -300,29 +340,20 @@ a.action-link {
     color: #fff
 }
 
-#footerDiv ul {
-    width: 220px;
-    float: left;
+.footer .side-nav li.heading {
+    color: #fff;
+    font-weight: normal;
 }
-
-#footerDiv ul {
-    margin: 5px 0 5px 0;
-    padding-bottom: 5px;
-    overflow:hidden;
-}
-
-#footerDiv ul li{
-    margin: 2px 10px 2px 0;
-    list-style-type: none;
-    font-size:0.85em;
-}
-
-#footerDiv a {
+.footer .side-nav li a:not(.button) {
+    padding: 0;
     color: #797979;
     text-decoration: none;
     font-size: 0.85em;
 }
+.footer a {
 
-#footerDiv a:hover {
+}
+
+.footer .side-nav li a:not(.button):hover {
     color: #ff0000
 }

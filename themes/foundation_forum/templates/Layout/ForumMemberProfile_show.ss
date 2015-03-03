@@ -13,7 +13,7 @@
                         <h2 class="profile-name">
                             $Nickname
                             <% if $ID == $CurrentMember.ID%>
-                                <a class="small action-link" href="ForumMemberProfile/edit/$ID"><span class="fi-pencil"></span></a>
+                                <a class="small action-link" href="forummemberprofile/edit/$ID"><span class="fi-pencil"></span></a>
                             <% end_if %>
                         </h2>
                         <ul class="inline-list icon-set">

@@ -24,12 +24,38 @@ class HomePage_Controller  extends ContentController {
     }
 
     public function allNews() {
-        $allEntries = NewsHolderPage::get()->first()->Newsitems()->limit(7);
+        $filter = array(
+            'Live' => 1,
+        );
+        $exclude = array(
+            'PublishFrom:GreaterThan' => SS_Datetime::now()->Format('Y-m-d'),
+        );
+        /** @var DataList $allEntries */
+        $allEntries = NewsHolderPage::get_one("NewsHolderPage")->Newsitems()
+            ->limit(10)
+            ->filter($filter)
+            ->exclude($exclude)
+        ;
         return $allEntries;
     }
 
     public function OrbitNews() {
-        return DataObject::get('News', '"News"."ShowInCarousel" = 1 AND "News"."ImpressionID" <> 0', 'Created ASC', '')->limit(5);
+        //return DataObject::get('News', '"News"."NewsHolderPageID" = ' . $this->New .' AND "News"."ShowInCarousel" = 1 AND "News"."ImpressionID" <> 0', 'Created ASC', '')->limit(5);
+        $filter = array(
+            'Live' => 1,
+            'ShowInCarousel' => 1
+        );
+        $exclude = array(
+            'PublishFrom:GreaterThan' => SS_Datetime::now()->Format('Y-m-d'),
+            'ImpressionID' => 0
+        );
+        /** @var DataList $allEntries */
+        $allEntries = NewsHolderPage::get_one("NewsHolderPage")->Newsitems()
+            ->limit(10)
+            ->filter($filter)
+            ->exclude($exclude)
+        ;
+        return $allEntries;
     }
 
     public function LastArts() {

@@ -22,6 +22,7 @@ class HomePageSettings extends DataObject {
 
     static $has_one = array(
         'UsedBy' => 'HomePage',
+        'HeroesBackground' => 'Image',
     );
 
     static $summary_fields = array(
@@ -66,6 +67,7 @@ class HomePageSettings extends DataObject {
         $fields = parent::getCMSFields();
         $fields->removeByName(array(
             'HeroesRotation',
+            'HeroesBackground',
         ));
 
         if (Member::currentUser()->inGroup('administrators')) {
@@ -87,6 +89,21 @@ class HomePageSettings extends DataObject {
         return $fields;
     }
 
+    /**
+     * @param $name
+     * @param string $title
+     * @param string $folderName
+     * @return UploadField
+     */
+    protected function getUploadField($name, $title = '', $folderName = 'Themes') {
+        if (!$title) {
+            $title = $name;
+        }
+        $field = new UploadField($name, $title);
+        $field->setFolderName($folderName);
+        return $field;
+    }
+
     protected function HOTSTab() {
         return Tab::create(
             'HeroesOfTheStorm',
@@ -98,7 +115,8 @@ class HomePageSettings extends DataObject {
                 '',
                 8,
                 true
-            )
+            ),
+            $this->getUploadField('HeroesBackground', 'Background Image')
         );
     }
 

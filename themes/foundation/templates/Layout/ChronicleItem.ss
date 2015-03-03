@@ -13,5 +13,5 @@
         </div>
         $Form
     </article>
-
+    <% include CommentList %>
 </div>

@@ -29,3 +29,4 @@
         <% end_loop%>
     </ul>
 </div>
+<% include CommentList %>

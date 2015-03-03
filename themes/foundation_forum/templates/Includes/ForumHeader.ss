@@ -1,6 +1,6 @@
 <div class="row forum-header">
     <div class="medium-8 column">
-        <h1 class="forum-heading"><a name='Header'>$HolderSubtitle</a></h1>
+        <h1 class="forum-heading"><a name='Header'>$HolderSubtitle</a>/</h1>
         <p class="forum-abstract">$ForumHolder.HolderAbstract</p>
         <% if Moderators %>
             <p>
@@ -14,7 +14,6 @@
     </div>
     <% loop ForumHolder %>
         <div class="medium-4 column">
-
             <form class="forum-jump" action="#">
                 <label for="forum-jump-select"><% _t('ForumHeader_ss.JUMPTO','Jump to:') %></label>
                 <select id="forum-jump-select" onchange="if(this.value) location.href = this.value">

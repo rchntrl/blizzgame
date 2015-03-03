@@ -29,7 +29,11 @@ class Page extends SiteTree {
         } else {
             $url = preg_replace('/\/\/[^\/]+\//', '//' .  'www.blizzgame.ru' . '/', $url);
         }
-        return $url;
+        return preg_replace('/blizzgame\/|index.php\//', '', $url);
+    }
+
+    public function LatestMembers() {
+        return Member::get_one('Member', '', true, 'ID DESC');
     }
 }
 

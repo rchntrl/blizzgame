@@ -4,7 +4,7 @@
     </a>
 <% else_if $Top.SiteConfig.DefaultImage %>
     <a href="$alternateAbsoluteLink" class="impressionLink">
-        <div class="news-image" style="background-image: url($Top.SiteConfig.DefaultImage.CroppedImage(200,200).getURL())"></div>
+        <div class="news-image" style="background-image: url($Top.SiteConfig.DefaultImage.setRatioSize(200,200).getURL())"></div>
     </a>
 <% end_if %>
 <div class="news-content">
@@ -16,7 +16,7 @@
         <h4><a class="blank" href="$alternateAbsoluteLink">$Title</a></h4>
     <% end_if %>
     <% if $Synopsis %>
-        <p>$Synopsis</p>
+        <p>$Synopsis.Summary(20)</p>
     <% else %>
         <p>$Content.Summary(20)</p>
     <% end_if %>

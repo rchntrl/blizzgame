@@ -1,44 +1,5 @@
 <% include ForumHeader %>
-
-
-<table class="forum-topics">
-    <tr>
-        <td class="page-numbers">
-            <span><strong><% _t('Forum_show_ss.PAGE','Page:') %></strong></span>
-            <% loop Posts.Pages %>
-                <% if CurrentBool %>
-                    <span><strong>$PageNum</strong></span>
-                <% else %>
-                    <a href="$Link">$PageNum</a>
-                <% end_if %>
-                <% if not Last %>,<% end_if %>
-            <% end_loop %>
-        </td>
-        <td class="gotoButtonEnd" >
-            <a href="#Footer" title="<% _t('Forum_show_ss.CLICKGOTOEND','Click here to go the end of this post') %>"><% _t('Forum_show_ss.GOTOEND','Go to End') %></a>
-        </td>
-        <td class="replyButton">
-            <% if ForumThread.canCreate %>
-                <a href="$ReplyLink" title="<% _t('Forum_show_ss.CLICKREPLY','Click here to reply to this topic') %>"><% _t('Forum_show_ss.REPLY','Reply') %></a>
-            <% end_if %>
-            <% if CurrentMember %>
-                <% include ForumThreadSubscribe %>
-            <% end_if %>
-        </td>
-    </tr>
-    <tr class="author">
-        <td class="name">
-            <span><% _t('Forum_show_ss.AUTHOR','Author') %></span>
-        </td>
-        <td class="topic">
-            <span><strong><% _t('Forum_show_ss.TOPIC','Topic:') %></strong> $ForumThread.Title</span>
-        </td>
-        <td class="views">
-            <span><strong>$ForumThread.NumViews <% _t('Forum_show_ss.VIEWS','Views') %></strong></span>
-        </td>
-    </tr>
-</table>
-
+<h2 class="post-title">$ForumThread.Title</h2>
 <% loop Posts %>
     <% include SinglePost %>
 <% end_loop %>

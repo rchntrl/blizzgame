@@ -13,3 +13,4 @@
         <% end_if %>
     </article>
 </div>
+<% include CommentList %>

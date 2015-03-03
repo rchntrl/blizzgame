@@ -42,7 +42,6 @@
                     <div class="main-content pagejax-container">
                         $Layout
                     </div>
-                    <a class="exit-off-canvas"></a>
                 </div>
                 <% include Footer %>
             </div>

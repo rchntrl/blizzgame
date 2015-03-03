@@ -43,15 +43,9 @@
 			<br />
 		</div>
 		
-		<% if $AllowComments %>
-			<hr />
-			<% if $getAllowedComments %>
+
 				<% include CommentList %>
-			<% end_if %>
-				<div class="large-12">
-					$Top.CommentForm
-				</div>
-		<% end_if %>
+
 		</div>
 	<% end_with %>
 </div>

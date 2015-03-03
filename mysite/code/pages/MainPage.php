@@ -44,11 +44,15 @@ class MainPage_Controller extends HomePage_Controller {
         return DataObject::get_one('HomePageSettings', "\"HomePageSettings\".\"UseThisOne\" = 1 AND \"HomePageSettings\".\"UsedByID\" = " . $this->ID);
     }
 
+    public function allNews() {
+        return DataObject::get('News', '"News"."Live" = 1', 'Created DESC', '')->limit(7);
+    }
+
     public function OrbitNews() {
-        return DataObject::get('News', '"News"."ShowInCarousel" = 1', 'Created ASC', '')->limit($this->getHomePageConfig()->OrbitLimit);
+        return DataObject::get('News', '"News"."Live" = 1 AND "News"."ShowInCarousel" = 1', 'Created DESC', '')->limit($this->getHomePageConfig()->OrbitLimit);
     }
 
     public function LastArts() {
-        return DataObject::get('GalleryImage', '', 'Created DESC', '');
+        return DataObject::get('GalleryImage', '', 'Created DESC', '')->limit(6);
     }
 }

@@ -726,9 +726,11 @@ h2.page-title, h2.post-title {
     color: #78898d
 }
 
-.forum-post .user-content {
-    margin-left: 190px;
-    padding: 8px 0
+.media .left,
+.media .showcase
+.dropdown-showcase,
+.showcase .media .dropdown-showcase {
+    margin-right: 20px;
 }
 
 .forum-post .forum-rank {
@@ -743,7 +745,6 @@ h2.page-title, h2.post-title {
 }
 
 .forum-post .post-modifiers a {
-    color: #b22222;
     margin-right: .5em
 }
 
@@ -988,6 +989,10 @@ h2.page-title, h2.post-title {
 .forumStats {
     clear: both;
     display: block
+}
+
+.forum-topics {
+    width: 100%;
 }
 
 .forum-posts .jumpto-link.ion-chevron-up, .forum-threads .jumpto-link.ion-chevron-up {
@@ -1374,7 +1379,9 @@ input#search-text {
     transition: all ease-in-out .2s
 }
 
+.activity-feed .icon-ball:focus,
 .activity-feed .icon-ball:hover {
+    color: #fff;
     width: 34px;
     height: 34px;
     margin-left: -48px;

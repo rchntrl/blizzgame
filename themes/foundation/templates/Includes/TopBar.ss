@@ -26,17 +26,17 @@
                         </a>
                         <ul class="dropdown">
                             <li>
-                                <a href="ForumMemberProfile/show/$ID">Профиль</a>
+                                <a href="http://www.blizzgame.ru/forummemberprofile/show/$ID">Профиль</a>
                             </li>
                             <li>
-                                <a href="$BaseHref/Security/logout">Выйти</a>
+                                <a href="$BaseHref/security/logout">Выйти</a>
                             </li>
                         </ul>
                     <% end_with %>
                 <% else %>
                     <a href="#"><span>Войти</span></a>
                     <ul class="dropdown">
-                        <li><a href="$FacebookLoginLink">Login via Facebook</a></li>
+                        <!--<li><a href="$FacebookLoginLink">Login via Facebook</a></li>-->
                         <li><a href="$VkLoginLink">Login via Vk</a></li>
                     </ul>
                 <% end_if %>

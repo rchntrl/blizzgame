@@ -21,7 +21,9 @@
     <td class="">
         <% if LatestPost %>
             <% with LatestPost %>
-                $Title
+                <a class="topicTitle" href="$Link">
+                    <p class="crop-text">$Title</p>
+                </a>
                 <p class="post-date">$Created.Ago</p>
                 <% with Author %>
                     <p>by <% if Link %><a href="$Link"><% if Nickname %>$Nickname<% else %>Anon<% end_if %></a><% else %><span>Anon</span><% end_if %></p>

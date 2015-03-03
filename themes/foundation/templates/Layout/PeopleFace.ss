@@ -36,5 +36,6 @@
         </div>
         $Form
     </article>
+    <% include CommentList %>
 </div>
 <script src="$ThemeDir/javascript/blizz-people.js"></script>

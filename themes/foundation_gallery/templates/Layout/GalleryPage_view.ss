@@ -34,6 +34,6 @@
         <% end_loop %>
     </ul>
 </div>
-
+<% include CommentList %>
 <% require javascript(themes/foundation/bower_components/jquery/dist/jquery.min.js) %>
 <% require javascript(themes/foundation/javascript/gallery.js) %>

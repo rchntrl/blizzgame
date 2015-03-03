@@ -1,32 +1,14 @@
-<h3><%t NewsHolderPage_show.COMMENTS "Comments" %></h3>
-<div id="comments" class="large-12">
-	<ul>
-	<% loop $getAllowedComments %>
-		<li class="comment_$EvenOdd $EvenOdd comment">
-			<div class="commenter_name">
-				<% if $ShowGravatar %>
-					<figure>
-						<img src="$Gravatar" width="$Top.SiteConfig.GravatarSize" height="$Top.SiteConfig.GravatarSize" alt="$Name" />
-					</figure>
-				<% end_if %>
-				<address>
-					<strong>$Title</strong>
-					<%t NewsHolderPage_show.BYWHO "by " %>
-					<strong>
-						<% if URL %>
-							<a href="$URL" target="_blank">$Name</a>
-						<% else %>$Name<% end_if %>
-					</strong>
-				</address>&nbsp;
-				<time datetime="$Created">
-					<%t NewsHolderPage_show.ONDATE "on" %> $Created.Format(d-m-Y)
-				</time>
-			</div>
-			<section>
-				$Comment
-			</section>
-		</li>
-	<% end_loop %>
-	</ul>
-</div>
-<hr>
+<!-- KAMENT -->
+<div id="kament_comments"></div>
+<script type="text/javascript">
+    var kament_page_name = "{$ClassName}$ID";
+    var kament_page_url = "$alternateAbsoluteLink";
+    var kament_subdomain = 'blizzgame';
+    (function() {
+        var node = document.createElement('script'); node.type = 'text/javascript'; node.async = true;
+        node.src = 'http://' + kament_subdomain + '.svkament.ru/js/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(node);
+    })();
+</script>
+<noscript>Для отображения комментариев нужно включить Javascript</noscript>
+<!-- /KAMENT -->
