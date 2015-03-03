@@ -37,7 +37,7 @@
         <% end_with %>
         <div class="row">
             <div class="large-7 columns">
-                <div class="text-center panel" style="background-image: url($LastArts.first().Image.getUrl())">
+                <div class="text-center panel">
                     <h3>Последние пополнения в галерее</h3>
                     <ul class="gallery-list clearing-thumbs large-block-grid-3 small-block-grid-4">
                         <% loop $LastArts.Limit(6) %>
@@ -57,7 +57,7 @@
                     <ul class="side-nav news-list">
                         <% loop $allNews %>
                             <li>
-                                <a <% if $Impression %>style="background-image: url($Impression.CroppedImage(300, 90).getUrl())"<% end_if %> href="$alternateAbsoluteLink">
+                                <a href="$alternateAbsoluteLink">
                                     $Title
                                     <span class="publish-date right">$PublishFrom.format('d.m.Y')</span>
                                 </a>
