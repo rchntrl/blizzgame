@@ -37,14 +37,12 @@
 <header class="header">
     <% include TopBar %>
 </header>
-<div class=" off-canvas-wrap" role="banner" data-offcanvas>
-    <div class="inner-wrap">
-        <!-- CONTENT SECTION -->
-        <div class="row content-section">
-            $Layout
-        </div>
-        <% include Footer %>
+<div class="inner-wrap">
+    <!-- CONTENT SECTION -->
+    <div class="row content-section">
+        $Layout
     </div>
+    <% include Footer %>
 </div>
     <%--See [Requirements](http://doc.silverstripe.org/framework/en/reference/requirements) for loading from controller--%>
 

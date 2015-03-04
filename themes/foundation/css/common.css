@@ -17,6 +17,48 @@
     min-width: 100%;
 }
 
+.upper-top {
+    height: 3.1rem;
+    background-color: transparent;
+}
+
+.footer,
+.blizzgame-top-bar,
+.header-branding {
+    max-width: 67.5rem;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.top-bar-section ul li.game-icon > a {
+    text-transform: uppercase;
+}
+.top-bar-section ul li.game-icon > a:before {
+    content: '-';
+    width: 36px;
+    height: 32px;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    color: transparent;
+    display: inline-block;
+}
+.top-bar-section ul li.game-icon > a.Blizzgame:before {
+    background-image: url("../images/games/blizzgame.png");
+}
+.top-bar-section ul li.game-icon > a.Warcraft:before {
+    background-image: url("../images/games/wow.png");
+}
+.top-bar-section ul li.game-icon > a.Starcraft:before {
+    background-image: url("../images/games/s2.png");
+}
+.top-bar-section ul li.game-icon > a.Diablo:before {
+    background-image: url("../images/games/d3.png");
+}
+.top-bar-section ul li.game-icon > a span {
+    display: inline;
+    text-transform: uppercase;
+}
+
 .header-fill {
     background: #fff;
     height: 135px;
@@ -39,6 +81,8 @@
 }
 
 .home-page-content {
+    float: left;
+    padding: 20px;
 }
 
 #heroes-section {
@@ -184,7 +228,6 @@
     max-width: 100%;
 }
 
-
 @media only screen {
     #children-pages.column p {
         display: block;
@@ -201,6 +244,24 @@
         display: none;
     }
 }
+
+.blizzquote {
+    background: #111a22 url(../images/bg/blizzquote.jpg) top right no-repeat;
+    border: 1px solid #000;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    box-shadow: inset 0 0 6px #000;
+    -moz-box-shadow: inset 0 0 6px #000;
+    -webkit-box-shadow: inset 0 0 6px #000;
+    margin: 0 5px;
+    color: #00B4FF;
+    text-shadow: 1px 1px 0 #0b0f13;
+    padding: 20px;
+    -webkit-border-bottom-left-radius: 10px;
+    -webkit-border-bottom-right-radius: 10px;
+    -moz-border-radius: 0 0 10px 10px;
+}
+
 /** Icons for Children Pages */
 .icon-frame {
     display: inline-block;
@@ -230,114 +291,6 @@
     height: 32px;
     width: 32px;
 }
-
-/* Forum */
-.media {
-    position: relative;
-}
-
-.forum-profile-block {
-    margin-bottom: 10px;
-}
-.round-badge.badge-md {
-    padding: 18px;
-    width: 70px;
-    height: 70px;
-    margin-bottom: 12px;
-}
-.round-badge {
-    display: inline-block;
-    padding: 14px;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    line-height: 1.1em;
-    background-color: #2b303b;
-    -webkit-transition: all ease-in-out .2s;
-    -o-transition: all ease-in-out .2s;
-    transition: all ease-in-out .2s;
-}
-.round-badge .icon {
-    margin: 0;
-    color: #42c6f3;
-    opacity: 1;
-    display: block;
-    text-align: center;
-}
-.round-badge.badge-md .icon {
-    font-size: 34px;
-    width: 34px;
-}
-
-.img-circle-holder {
-    height: 52px;
-    width: 52px;
-    overflow: hidden;
-    border-radius: 50%;
-    margin: 1px;
-    background-color: #eee;
-    position: relative;
-}
-.img-circle-holder.img-xl {
-    height: 120px;
-    width: 120px;
-    margin-right: 20px;
-}
-.avatar {
-    height: 100%;
-    width: 100%;
-}
-.media,
-.media-body {
-    overflow: hidden;
-    zoom: 1;
-}
-.hr-green {
-    width: 80px;
-    margin-top: 40px;
-    margin-bottom: 44px;
-    margin-left: 0;
-}
-h2.profile-name {
-    margin-bottom: 0;
-    font-weight: 700;
-}
-a.action-link {
-    color: #78898d;
-    margin-left: 5px;
-    position: absolute;
-}
-.small {
-    font-size: 15px;
-}
-
-.icon-set .icon-ball {
-    margin: auto;
-}
-.icon-set {
-    margin: 0 auto auto;
-}
-.icon-ball {
-    display: inline-block;
-    border-radius: 100%;
-    background-color: #ea5541;
-    width: 28px;
-    height: 28px;
-    color: #fff;
-    line-height: 1.3;
-    text-align: center;
-    padding-top: 4px;
-    -webkit-transition: all ease-in-out .2s;
-    -o-transition: all ease-in-out .2s;
-    transition: all ease-in-out .2s;
-}
-.icon-set .icon-ball:hover {
-    color: #fff;
-    width: 32px;
-    height: 32px;
-    font-size: 20px;
-}
-
 
 .social-icon-80 {
     display: block;

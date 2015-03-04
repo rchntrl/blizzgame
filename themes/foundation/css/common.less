@@ -26,10 +26,6 @@ body {
   .bgStyle();
 }
 
-.blizzgame-panel {
-  background: @BlizzgameDark;
-  border: none;
-}
 .footer {
   background: @BlizzgameDark;
   box-shadow: inset 0 0 15px #000;
@@ -42,70 +38,6 @@ h1, h2, h3, h4, h5, h6 {
 .upper-top {
   height: 3.1rem;
   background-color: transparent;
-}
-
-.footer,
-.blizzgame-top-bar,
-.header-branding {
-  max-width: 67.5rem;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
-
-.top-bar-section ul li {
-  .user-credential {
-    > a:not(.button) {
-      padding: 0;
-      &:hover {
-        border-bottom: none;
-      }
-    }
-    > a.logout-link {
-      i:hover {
-        color: red;
-      }
-    }
-    img {
-      height: 2.8rem;
-    }
-    span {
-      color: #999;
-    }
-    i {
-      color: #999;
-    }
-  }
-  &.game-icon {
-    > a {
-      text-transform: uppercase;
-      &:before {
-        content: '-';
-        width: 36px;
-        height: 32px;
-        vertical-align: middle;
-        background-repeat: no-repeat;
-        color: transparent;
-        display: inline-block;
-      }
-      &.Blizzgame:before {
-        background-image: url("@{ImageDir}games/blizzgame.png");
-      }
-      &.Warcraft:before {
-        background-image: url("@{ImageDir}games/wow.png");
-      }
-      &.Starcraft:before {
-        background-image: url("@{ImageDir}games/s2.png");
-      }
-      &.Diablo:before {
-        background-image: url("@{ImageDir}games/d3.png");
-      }
-      span {
-        display: inline;
-        text-transform: uppercase;
-      }
-    }
-  }
 }
 
 .top-bar,
@@ -204,47 +136,6 @@ ul.children-page-list {
   }
 }
 
-.gallery-section {
-  margin: 0 20px;
-}
-.gallery-list {
-  .art-thumbnail.empty {
-    background-image: url(http://wow.blizzgame.ru/assets/Warcraft-Gallery/_resampled/CroppedImage200200-Dark-Lady-Sylvanas-Windrunner-by-Arnold-Tsang.jpg);
-    background-position: 50%;
-    background-size: contain;
-  }
-}
-.art-info {
-  padding: 20px;
-}
-.art-container {
-  padding: 10px;
-  position: relative;
-  .gallery-art {
-    min-width: 500px;
-    height: auto;
-  }
-  .art-navigation-control {
-    padding-left: 0.9375rem;
-    padding-right: 0.9375rem;
-    li span,
-    li a {
-      margin-bottom: 0;
-    }
-    .previous {
-      .fi-play:before {
-        transform: rotate(180deg);
-      }
-    }
-  }
-}
-
-#filter-by-tag,
-#filter-by-author {
-  height: 300px;
-  overflow-y: auto;
-}
-
 .news {
   border-bottom: #ddd 1px solid;
   padding: 10px 0;
@@ -280,23 +171,6 @@ ul.children-page-list {
     display: inline-block;
     width: 70%;
   }
-}
-
-.blizzquote {
-  background: #111a22 url("@{ImageDir}bg/blizzquote.jpg") top right no-repeat;
-  border: 1px solid #000;
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  box-shadow: inset 0 0 6px #000;
-  -moz-box-shadow: inset 0 0 6px #000;
-  -webkit-box-shadow: inset 0 0 6px #000;
-  margin: 0 5px;
-  color: #00B4FF;
-  text-shadow: 1px 1px 0 #0b0f13;
-  padding: 20px;
-  -webkit-border-bottom-left-radius: 10px;
-  -webkit-border-bottom-right-radius: 10px;
-  -moz-border-radius: 0 0 10px 10px;
 }
 
 .ChronicleItem {

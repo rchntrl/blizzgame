@@ -1,4 +1,3 @@
-<link rel="stylesheet" type="text/less" href="$ThemeDir/css/gallery.css" xmlns="http://www.w3.org/1999/html"/>
 <div class="large-12 columns">
     <div class="art-container">
         <ul class="art-navigation-control button-group stack-for-small">

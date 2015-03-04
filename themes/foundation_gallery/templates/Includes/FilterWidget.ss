@@ -24,6 +24,11 @@
         <button href="#" data-dropdown="filter-by-author" aria-controls="filter-by-author" aria-expanded="false" class="small secondary radius button dropdown">
             <%t Gallery.FILTER_AUTHOR_TITLE 'Фильтр по художнику' %>
         </button>
+        <% if $FilteredByAuthor %>
+            <% with $FilteredByAuthor %>
+                <a href="$Top.clearAuthorUrl()" class="small radius button"><span>$TitleEN</span> <i class="fi-x"></i></a>
+            <% end_with %>
+        <% end_if %>
         <br>
         <ul id="filter-by-author" data-dropdown-content class="small f-dropdown" aria-hidden="true" tabindex="-1">
             <% loop filterByAuthor %>
@@ -31,6 +36,7 @@
             <% end_loop %>
         </ul>
     </li>
+
     <li>
         <button href="#" data-dropdown="filter-by-tag" aria-controls="filter-by-tag" aria-expanded="false" class="small secondary radius button dropdown">
             <%t Gallery.FILTER_TAG_TITLE 'Фильтр по тегам' %>

@@ -1,24 +1,37 @@
-
 .gallery-title {
     text-transform: capitalize;
 }
-
-h2 {
-    margin-top: 40px;
-    font-weight: 200;
-    color: #333;
+.gallery-section {
+    margin: 0 20px;
 }
-
-.centered-text {
-    text-align: center;
+.gallery-list .art-thumbnail.empty {
+    background-position: 50%;
+    background-size: contain;
 }
-
-.quote-marks {
-    font-size: 100px;
-    color: #777;
+.art-info {
+    padding: 20px;
 }
-
-.move-right {
+.art-container {
+    padding: 10px;
     position: relative;
-    text-align: right;
+}
+.art-container .gallery-art {
+    min-width: 500px;
+    height: auto;
+}
+.art-container .art-navigation-control {
+    padding-left: 0.9375rem;
+    padding-right: 0.9375rem;
+}
+.art-container .art-navigation-control li span,
+.art-container .art-navigation-control li a {
+    margin-bottom: 0;
+}
+.art-container .art-navigation-control .previous .fi-play:before {
+    transform: rotate(180deg);
+}
+#filter-by-tag,
+#filter-by-author {
+    height: 300px;
+    overflow-y: auto;
 }
