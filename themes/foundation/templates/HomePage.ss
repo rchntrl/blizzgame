@@ -28,6 +28,10 @@
     </script>
     <script src="$ThemeDir/javascript/less-1.7.0.min.js"></script>
     <script src="framework/thirdparty/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="http://svkament.ru/js/SVEmbed.js"></script>
+    <script type="text/javascript">
+        SV.init({subdomain: 'blizzgame'})
+    </script>
 </head>
 <body class="$ClassName.ATT">
 <header class="header">
