@@ -23,13 +23,7 @@
         <a href="{$BaseHref}news/" data-start="12" class="button large-12 small-12 secondary load-more-art">Архив новостей</a>
     </div>
     <div class="hide-for-small medium-4 large-3 columns">
-        <h5>Последние комментарии</h5>
-        <!-- SVLastComments -->
-        <div id="sv_lastcomments"></div>
-        <script type="text/javascript">
-            SV.Widgets.lastComments("sv_lastcomments", {limit: 10,textColor: '#666666',linkColor: '#0099ff'});
-        </script>
-        <!-- /SVLastComments -->
+       <% include LastComments %>
     </div>
 </section>
 
