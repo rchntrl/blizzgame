@@ -35,6 +35,8 @@ class ElementLink extends DataObject implements PermissionProvider {
         'Icon' => 'Image',
     );
 
+    static $default_sort = 'TitleRU DESC';
+
     private static $searchable_fields = array(
         'TitleEN', 'TitleRU', 'ElementLinkGroupID'
     );
