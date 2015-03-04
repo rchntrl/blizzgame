@@ -237,7 +237,7 @@ class Book extends DataObject {
             $prevBook = $this;
         }
         return DataObject::get('Book',
-            "\"Book\".\"HolderPageID\" = " . $prevBook->getField('HolderPageID') . " AND \"Book\".\"DateSaleEN\" < '" . $prevBook->DateSaleEN . "'",
+            "\"Book\".\"HolderPageID\" = " . $prevBook->getField('HolderPageID') . " AND \"Book\".\"DateSaleEN\" <= '" . $prevBook->DateSaleEN . "'",
             "DateSaleEN DESC",
             "",
             $limit

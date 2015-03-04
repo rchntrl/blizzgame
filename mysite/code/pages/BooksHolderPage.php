@@ -61,15 +61,6 @@ class BooksHolderPage_Controller extends Page_Controller {
         return $qb;
     }
 
-    /**
-     * @param SQLQuery $qb
-     * @return SQLQuery
-     */
-    public function applyFiltersFromRequest(SQLQuery $qb) {
-
-        return $qb;
-    }
-
     public function viewBook() {
         /** @var Book $book */
         $book = null;
@@ -83,9 +74,7 @@ class BooksHolderPage_Controller extends Page_Controller {
             $this->httpError(404);
         }
 
-        $ssv = new SSViewer('Page');
-        $ssv->setTemplateFile('Layout', 'BooksHolderPage_viewBook');
-        return $this->customise($book)->renderWith($ssv);
+        return $this->renderDataObject($book, 'Page', 'BooksHolderPage_viewBook');
     }
 
     public function viewChapter() {
@@ -93,16 +82,14 @@ class BooksHolderPage_Controller extends Page_Controller {
         $chapter = null;
         $id = $this->urlParams['ID'];
         $book = Book::get_by_url($id);
-        $ssv = new SSViewer('Page');
         if ($this->urlParams['Number']) {
             $chapterNum = $this->urlParams['Number'];
             $chapter = Chapter::get_by_id("Chapter", $chapterNum);
         } else {
-            $ssv->setTemplateFile('Layout', 'Chapters');
-            return $this->customise($book)->renderWith($ssv);
+            return $this->renderDataObject($book, 'Page', 'Chapters');
         }
-        $ssv->setTemplateFile('Layout', 'Chapter');
-        return $this->customise($chapter)->renderWith($ssv);
+
+        return $this->renderDataObject($chapter, 'Page', 'Chapter');
     }
 
     /**
@@ -115,7 +102,6 @@ class BooksHolderPage_Controller extends Page_Controller {
         if (!$query) {
             $query = $this->getQueryBuilder();
         }
-        $query = $this->applyFiltersFromRequest($query); // additional filters based on url params
         $start = $this->request->getVar('start');
         $query->setLimit($itemsPerPage, $start ?: 0);
         $books = new ArrayList();
