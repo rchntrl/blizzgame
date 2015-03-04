@@ -1,5 +1,11 @@
 <nav role="navigation">
     <ul class="breadcrumbs">
-        $Breadcrumbs
+        <% if $ClassName.ATT == 'Forum' %>
+           <% loop $fixForumBreadcrumb($Breadcrumbs) %>
+               <li<% if $Last %> class="current"<% end_if %>>$Text</li>
+            <% end_loop %>
+        <% else %>
+            $Breadcrumbs
+        <% end_if %>
     </ul>
 </nav>

@@ -24,7 +24,7 @@ class ElementLink extends DataObject implements PermissionProvider {
     private static $db = array (
         'TitleEN' => 'Varchar(255)',
         'TitleRU' => 'Varchar(255)',
-        'LinkURL' => 'Varchar(255)',
+        //'LinkURL' => 'Varchar(255)',
         'LastLinkSegment' => 'Varchar(255)'
     );
 
@@ -72,7 +72,6 @@ class ElementLink extends DataObject implements PermissionProvider {
         $fields->replaceField('LinkToPageID',
             new TreeDropdownField("LinkToPageID", "Link To Page", 'Page', 'ID', 'TreeTitle')
         );
-        $fields->dataFieldByName('LinkURL')->setReadonly(true);
         return $fields;
     }
 

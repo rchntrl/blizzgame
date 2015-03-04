@@ -65,8 +65,20 @@ class Page_Controller extends ContentController {
     }
 
     /**
+     * @param $text
+     * @return array
+     */
+    public function fixForumBreadcrumb($text) {
+        $pages = New ArrayList();
+        foreach (explode("» ", $text) as $val) {
+            $pages->push(new ArrayData(array('Text' => $val)));
+        }
+        return $pages;
+    }
+
+    /**
      * @param DataObject $object
-     * @param string $page
+     * @param string $template
      * @param string $layout
      * @return HTMLText
      */

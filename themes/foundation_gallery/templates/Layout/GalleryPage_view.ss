@@ -26,20 +26,21 @@
     </div>
     <ul class="children-page-list">
         <% loop Tags %>
-            <li class="large-12 columns children-page">
-                <div class="element-link-image">
-                    <a href="$LinkToPage.Link" title="$TitleRU.ATT ($TitleEN.ATT)">
-                        <% if Icon %>
-                            <img class="icon-frame frame-56" alt="$TitleRU.ATT ($TitleEN.ATT)" src="$Icon.getUrl()" />
-                        <% else %>
-                            <img class="icon-frame frame-56" alt="" src="$Top.SiteConfig.DefaultElementImage.getUrl()" />
-                        <% end_if %>
-                    </a>
-                </div>
-                <h6><a href="$LinkToPage.Link" title="{$Title.ATT}">$Title</a></h6>
-                <p>$LinkToPage.Content.NoHTML.LimitWordCountXML(20)</p>
-            </li>
-
+            <% if $LinkToPage %>
+                <li class="children-page">
+                    <div class="element-link-image">
+                        <a href="$LinkToPage.Link" title="$TitleRU.ATT ($TitleEN.ATT)">
+                            <% if Icon %>
+                                <img class="icon-frame frame-56" alt="$TitleRU.ATT ($TitleEN.ATT)" src="$Icon.getUrl()" />
+                            <% else %>
+                                <img class="icon-frame frame-56" alt="" src="$Top.SiteConfig.DefaultElementImage.getUrl()" />
+                            <% end_if %>
+                        </a>
+                    </div>
+                    <h6><a href="$LinkToPage.Link" title="{$Title.ATT}">$Title</a></h6>
+                    <p>$LinkToPage.Content.NoHTML.LimitWordCountXML(20)</p>
+                </li>
+            <% end_if %>
         <% end_loop %>
     </ul>
 </div>

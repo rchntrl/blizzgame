@@ -173,11 +173,6 @@ hr {
     color: #999
 }
 
-.forum-post-add #Title.nolabel, .forum-posts-edit #Title.nolabel, .forum-posts-reply #Title.nolabel, .forum-topics-add #Title.nolabel, .h1, .h2, .h3, h1, h2, h3 {
-    margin-top: 22px;
-    margin-bottom: 11px
-}
-
 .forum-post-add #Title.nolabel .small, .forum-post-add #Title.nolabel small, .forum-posts-edit #Title.nolabel .small, .forum-posts-edit #Title.nolabel small, .forum-posts-reply #Title.nolabel .small, .forum-posts-reply #Title.nolabel small, .forum-topics-add #Title.nolabel .small, .forum-topics-add #Title.nolabel small, .h1 .small, .h1 small, .h2 .small, .h2 small, .h3 .small, .h3 small, h1 .small, h1 small, h2 .small, h2 small, h3 .small, h3 small {
     font-size: 65%
 }
