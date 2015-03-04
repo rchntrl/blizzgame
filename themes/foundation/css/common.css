@@ -85,13 +85,28 @@
     padding: 20px;
 }
 
+.blizzgame-panel {
+    background: rgba(22, 35, 49, 0.51);
+    background-position: center;
+}
+.blizzgame-panel h1, 
+.blizzgame-panel h2, 
+.blizzgame-panel h3, 
+.blizzgame-panel h4, 
+.blizzgame-panel h5, 
+.blizzgame-panel h6, 
+.blizzgame-panel p,
+.blizzgame-panel dl {
+    color: #fff;
+}
+
 #heroes-section {
     background-color: #162331;
     background-size: cover;
 }
 
 #heroes-section.panel p,
-.panel li,
+#heroes-section.blizzgame-panel li,
 #heroes-section.panel dl {
     color: #fff;
 }
@@ -106,27 +121,25 @@
 }
 
 .news-list {
-    background: #333d4f;
+    background: transparent;
     padding: 0;
 }
-
 .news-list li {
     margin-bottom: 0;
 }
 .news-list li a {
     transition: color 0.5s ease 0.1s, text-shadow 0.5s ease 0.1s;
+
 }
 .news-list li a:not(.button):hover,
 .news-list li a:not(.button):focus {
     color: #fff;
-    background: #162331;
+    background: rgba(22, 35, 49, 0.51);
     text-shadow: 0 0 1rem #009cff;
-    border-bottom: 1px solid #009cff;
-    margin-bottom: 0;
 }
 .news-list li a:not(.button) {
     color: #fff;
-    background: #162331;
+    background: rgba(22, 35, 49, 0.51);
     margin-bottom: 1px;
 }
 .news-list li a .publish-date {
