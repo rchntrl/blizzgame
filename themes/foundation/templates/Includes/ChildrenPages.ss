@@ -3,7 +3,7 @@
         <% loop Children %>
             <h3><a href="$Link">$Title</a></h3>
             <% if Children %>
-                <ul class="ency side-nav inline-list">
+                <ul class="ency inline-list">
                     <% loop Children %>
                         <li class="large-3 small-4">
                             <a class="element-link" href="{$Link}" title="$Title.ATT">
