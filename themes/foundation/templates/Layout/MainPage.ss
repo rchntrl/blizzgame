@@ -37,7 +37,7 @@
         <% end_with %>
         <div class="row">
             <div class="large-7 columns">
-                <div class="text-center panel">
+                <div class="panel">
                     <h3>Последние пополнения в галерее</h3>
                     <ul class="gallery-list clearing-thumbs large-block-grid-3 small-block-grid-4">
                         <% loop $LastArts.Limit(6) %>
@@ -54,16 +54,19 @@
 
             <% if $allNews %>
                 <div class="large-5 small-12 column">
-                    <ul class="side-nav news-list">
-                        <% loop $allNews %>
-                            <li>
-                                <a href="$alternateAbsoluteLink">
-                                    $Title
-                                    <span class="publish-date right">$PublishFrom.format('d.m.Y')</span>
-                                </a>
-                            </li>
-                        <% end_loop %>
-                    </ul>
+                    <div class="panel">
+                        <h3>Последние новости</h3>
+                        <ul class="side-nav news-list">
+                            <% loop $allNews %>
+                                <li>
+                                    <a href="$alternateAbsoluteLink">
+                                        $Title
+                                        <span class="publish-date right">$PublishFrom.format('d.m.Y')</span>
+                                    </a>
+                                </li>
+                            <% end_loop %>
+                        </ul>
+                    </div>
                 </div>
             <% end_if %>
         </div>

@@ -184,6 +184,23 @@
     max-width: 100%;
 }
 
+
+@media only screen {
+    #children-pages.column p {
+        display: block;
+    }
+}
+
+@media only screen and (min-width: 40.063em) {
+    #children-pages.column p {
+        display: block;
+    }
+}
+@media only screen and (min-width: 64.063em) {
+    #children-pages.column p {
+        display: none;
+    }
+}
 /** Icons for Children Pages */
 .icon-frame {
     display: inline-block;
@@ -321,12 +338,50 @@ a.action-link {
     font-size: 20px;
 }
 
+
+.social-icon-80 {
+    display: block;
+    width: 80px;
+    height: 80px;
+    background: url(../icons/social-icons-80.png);
+}
+.social-icon-80.vk {
+    background-position:165px 0;
+}
+.social-icon-80.facebook {
+    background-position: 250px 0;
+}
+.social-icon-80.twitter {
+    background-position: 250px 0;
+}
+.social-icon-80.odnoklassniki {
+    background-position: 80px 0;
+}
+
+.social-icon-40 {
+    display: block;
+    width: 40px;
+    height: 40px;
+    background: url(../icons/social-icons-40.png);
+}
+.social-icon-40.vk {
+    background-position: 0 0;
+}
+.social-icon-40.facebook {
+    background-position: 125px 0;
+}
+.social-icon-40.twitter {
+    background-position: 250px 0;
+}
+.social-icon-40.odnoklassniki {
+    background-position: 80px 0;
+}
+
 /** FOOTER */
 .footer {
     color: #797979;
     font-size: 1em;
     background-color: #162331;
-    min-height: 300px;
     padding: 30px;
     line-height: 15px;
 }
@@ -350,8 +405,10 @@ a.action-link {
     text-decoration: none;
     font-size: 0.85em;
 }
-.footer a {
-
+.footer .upper {
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid #333d4f;
 }
 
 .footer .side-nav li a:not(.button):hover {

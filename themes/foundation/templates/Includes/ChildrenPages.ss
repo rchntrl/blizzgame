@@ -26,7 +26,7 @@
     <div class="row">
         <ul class="children-page-list">
             <% loop Children %>
-                <li class="large-12 columns children-page">
+                <li class="children-page">
                     <div class="element-link-image">
                         <a href="{$Link}" title="$TitleRU.ATT ($TitleEN.ATT)">
                             <% if Icon %>

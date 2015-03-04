@@ -1,12 +1,19 @@
 <footer id="footerDiv" class="footer" role="contentinfo">
-    <p>&copy; $Now.Year BlizzGame</p>
     <div class="row">
+        <div class="upper">
+            <div class="small-5 large-5 column">
+                <h4>&copy; $Now.Year BlizzGame</h4>
+            </div>
+            <ul class="inline-list right">
+                <li><a href="https://facebook.com/blizzgame" title="facebook"><i class="social-icon-40 facebook"></i></a></li>
+                <li><a href="https://vk.com/blizzgameru" title="vkotakte"><i class="social-icon-40 vk"></i></a></li>
+                <li><a href="https://twitter.com/blizzgame" title="twitter"><i class="social-icon-40 twitter"></i></a></li>
+            </ul>
+        </div>
         <div class="small-12 large-3 medium-3 column">
             <ul class="side-nav">
                 <li class="heading">&radic; Интересно</li>
-                <li><a href="http://wow.blizzgame.ru/games/world-of-warcraft-mists-of-pandaria/" title="World of Warcraft: Mists of Pandaria" rel="nofollow">World of Warcraft: Mists of Pandaria</a></li>
-                <li><a href="http://starcraft.blizzgame.ru/games/starcraft-2-heart-of-the-swarm/" title="eStarCraft II: Heart of the Swarm" rel="nofollow">StarCraft II: Heart of the Swarm</a></li>
-                <li><a href="http://diablo.blizzgame.ru/games/diablo3/" title="Diablo III" rel="nofollow">Diablo III</a></li>
+                <li><a href="http://wow.blizzgame.ru/gallery/" title="Галерея Warcraft" rel="nofollow">Галерея Warcraft</a></li>
             </ul>
         </div>
         <div class="small-12 large-3 medium-3 column">
@@ -20,17 +27,16 @@
         <div class="small-12 large-3 medium-3 column">
             <ul class="side-nav">
                 <li class="heading">&radic; О сайте</li>
-                <li><a href="http://www.blizzgame.ru/feedback/" title="Связаться с нами">Связаться с нами</a></li>
                 <li><a href="http://www.blizzgame.ru/about/" title="Создатели сайта">Создатели сайта</a></li>
                 <li><a href="http://www.blizzgame.ru/partners/" title="Друзья и партнеры">Друзья и партнеры</a></li>
+                <li><a href="http://www.blizzgame.ru/privacy-policy/" title="политика конфидициальности">Политика конфидициальности</a></li>
             </ul>
         </div>
         <div class="small-12 large-3 medium-3 column">
+            <br>
             <% if SubsiteID = 1 %>
                 <div class="right"><img src="{$BaseHref}$ThemeDir/images/blizzardfansitegold.gif" /></div>
             <% end_if %>
         </div>
-
     </div>
-
 </footer>

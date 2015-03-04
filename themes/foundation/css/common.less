@@ -26,6 +26,10 @@ body {
   .bgStyle();
 }
 
+.blizzgame-panel {
+  background: @BlizzgameDark;
+  border: none;
+}
 .footer {
   background: @BlizzgameDark;
   box-shadow: inset 0 0 15px #000;
@@ -171,6 +175,12 @@ ul.children-page-list {
     padding: 20px 0;
     font-size: 0.93em;
     border-bottom: 1px solid #ddd;
+    position: relative;
+    float: left;
+    width: 100%;
+    &:last-child {
+      border-bottom: none;
+    }
     h6 {
       margin: 0;
     }
