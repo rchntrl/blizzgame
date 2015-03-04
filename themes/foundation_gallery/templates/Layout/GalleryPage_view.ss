@@ -5,14 +5,24 @@
             <li><a class="small button secondary all" title="Вернуться к списку" href="$BackURL"><i class="fi-thumbnails"></i></a></li>
             <li><a class="small button secondary next<% if $Next %>" title="$Next.Title" href="$Next.Link"<% else %> disabled"<% end_if %> ><i class="fi-play"></i></a></li>
         </ul>
-        <img class="gallery-art small-centered columns" src="$Image.setRatioSize(1024, 3000).getUrl()" />
+        <img title="$Title" class="gallery-art small-centered columns" src="$Image.setRatioSize(1024, 3000).getUrl()" />
     </div>
     <div class="art-info">
+        <div class="right">
+            <a class="small button success" title="Скачать оригинал" target="_blank" href="$Image.getUrl()">Скачать <i class="fi-download"></i></a>
+        </div>
         <% if $Author %>
-            <div class="artist">
-               <a href="$Author.AbsoluteLink()"><%t Gallery.AUTHOR 'Автор: {Name}' Name=$Author.Title %></a>
-            </div>
+        <ul class="inline-list">
+            <li class="heading">Автор:</li>
+            <li><a href="$Author.AbsoluteLink()"> $Author.Title</a></li>
+        </ul>
         <% end_if %>
+        <ul class="inline-list">
+            <li class="heading">Метки:</li>
+            <% loop $Tags %>
+                <li><a href="$Top.getFilterUrl('tag', $LastLinkSegment)">$TitleRU</a></li>
+            <% end_loop %>
+        </ul>
     </div>
     <ul class="children-page-list">
         <% loop Tags %>
@@ -34,5 +44,3 @@
     </ul>
 </div>
 <% include CommentList %>
-<% require javascript(themes/foundation/bower_components/jquery/dist/jquery.min.js) %>
-<% require javascript(themes/foundation/javascript/gallery.js) %>

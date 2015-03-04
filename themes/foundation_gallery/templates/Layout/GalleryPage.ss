@@ -5,9 +5,8 @@
         <% loop GalleryImages %>
             <li>
                 <a href="$Link" class="th" role="button" aria-label="Thumbnail" >
-                    <img class="art-thumbnail" title="$Title"
-                         src="$Image.CroppedImage(200, 200).getUrl()"
-                    />
+                    <img class="art-thumbnail" title="$Title" src="$Image.CroppedImage(200, 200).getUrl()" />
+                    <p class="crop-text">$Title</p>
                 </a>
             </li>
         <% end_loop %>

@@ -63,4 +63,16 @@ class Page_Controller extends ContentController {
         parent::init();
         Requirements::javascript($this->ThemeDir() .  'js/jquery.min.js');
     }
+
+    /**
+     * @param DataObject $object
+     * @param string $page
+     * @param string $layout
+     * @return HTMLText
+     */
+    public function renderDataObject(DataObject $object, $template, $layout) {
+        $ssv = new SSViewer($template);
+        $ssv->setTemplateFile('Layout', $layout);
+        return $this->customise($object)->renderWith($ssv);
+    }
 }
