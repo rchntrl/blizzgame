@@ -3,45 +3,52 @@
 <% loop Posts %>
     <% include SinglePost %>
 <% end_loop %>
-
-<table class="forum-topics">
-    <tr class="author">
-        <td class="author">&nbsp;</td>
-        <td class="topic">&nbsp;</td>
-        <td class="views">
-            <span><strong>$ForumThread.NumViews <% _t('Forum_show_ss.VIEWS','Views') %></strong></span>
-        </td>
-    </tr>
-    <tr>
-        <td class="page-numbers">
-            <% if Posts.MoreThanOnePage %>
-                <% if Posts.NotFirstPage %>
-                    <a class="prev" href="$Posts.PrevLink" title="<% _t('Forum_show_ss.PREVTITLE','View the previous page') %>"><% _t('Forum_show_ss.PREVLINK','Prev') %></a>
-                <% end_if %>
+<div class="row">
+    <div class="large-2 column">
+        <% if ForumThread.canCreate %>
+            <a class="button success small round" href="$ReplyLink" title="<% _t('Forum_show_ss.CLICKREPLY', 'Click to Reply') %>"><% _t('Forum_show_ss.REPLY', 'Reply') %></a>
+        <% end_if %>
+    </div>
+    <div class="large-2 column"><strong>$ForumThread.NumViews <% _t('Forum_show_ss.VIEWS','Views') %></strong></div>
+    <div class="large-8 column">
+        <% with Posts %>
+            <% if $MoreThanOnePage %>
+                <div class="right">
+                    <ul class="pagination">
+                        <% if $NotFirstPage %>
+                            <li class="arrow"><a  href="$PrevLink">&laquo;</a></li>
+                        <% else %>
+                            <li class="arrow unavailable"><a href="#">&laquo;</a></li>
+                        <% end_if %>
+                        <% loop $Pages(10) %>
+                            <% if $CurrentBool %>
+                                <li class="current"><a href="#">$PageNum</a></li>
+                            <% else %>
+                                <% if $Link %>
+                                    <li><a  href="$Link">$PageNum</a></li>
+                                <% else %>
+                                    ...
+                                <% end_if %>
+                            <% end_if %>
+                        <% end_loop %>
+                        <% if $NotLastPage %>
+                            <li class="arrow"><a  href="$NextLink">&raquo;</a></li>
+                        <% else %>
+                            <li class="arrow unavailable"><a href="#">&raquo;</a></li>
+                        <% end_if %>
+                    </ul>
+                </div>
             <% end_if %>
-        </td>
-        <td class="gotoButtonTop" >
-            <a href="#Header" title="<% _t('Forum_show_ss.CLICKGOTOTOP','Click here to go the top of this post') %>"><% _t('Forum_show_ss.GOTOTOP','Go to Top') %></a>
-        </td>
-        <td class="replyButton">
-            <% if ForumThread.canCreate %>
-                <a href="$ReplyLink" title="<% _t('Forum_show_ss.CLICKREPLY', 'Click to Reply') %>"><% _t('Forum_show_ss.REPLY', 'Reply') %></a>
-            <% end_if %>
+        <% end_with %>
+        <div class="views">
 
-            <% if Posts.MoreThanOnePage %>
-                <% if Posts.NotLastPage %>
-                    <a class="next" href="$Posts.NextLink" title="<% _t('Forum_show_ss.NEXTTITLE','View the next page') %>"><% _t('Forum_show_ss.NEXTLINK','Next') %> &gt;</a>
-                <% end_if %>
-            <% end_if %>
-        </td>
-    </tr>
-</table>
-
+        </div>
+    </div>
+</div>
 <% if AdminFormFeatures %>
     <div class="forum-admin-features">
         <h3>Forum Admin Features</h3>
         $AdminFormFeatures
     </div>
 <% end_if %>
-
 <% include ForumFooter %>

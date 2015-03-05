@@ -28,12 +28,8 @@
         "silverstripe-australia/silverstripe-pagejax": "dev-master",
         "silverstripe/tagfield": "dev-master",
         "silverstripe/googlesitemaps": "1.2.2",
+        "silverstripe/widgets": "dev-master",
         "rywa/silverstripe-foundation-forms": "dev-master"
-    },
-    "extra": {
-        "installer-paths": {
-            "/blizzgame/facebookconnect/{$name}/": ["facebook/php-sdk-v4"]
-        }
     },
     "config": {
         "process-timeout": 600

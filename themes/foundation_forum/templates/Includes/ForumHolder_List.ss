@@ -5,7 +5,7 @@
             <div class="summary">
                 <p>$Content.LimitCharacters(80)</p>
                 <% if Moderators %>
-                    <p>Moderators: <% loop Moderators %>
+                    <p>Модераторы: <% loop Moderators %>
                         <a href="$Link">$Nickname</a>
                         <% if not Last %>, <% end_if %><% end_loop %></p>
                 <% end_if %>
@@ -26,7 +26,7 @@
                 </a>
                 <p class="post-date">$Created.Ago</p>
                 <% with Author %>
-                    <p>by <% if Link %><a href="$Link"><% if Nickname %>$Nickname<% else %>Anon<% end_if %></a><% else %><span>Anon</span><% end_if %></p>
+                    <p>от <% if Link %><a href="$Link"><% if Nickname %>$Nickname<% else %>Anon<% end_if %></a><% else %><span>Anon</span><% end_if %></p>
                 <% end_with %>
             <% end_with %>
         <% end_if %>

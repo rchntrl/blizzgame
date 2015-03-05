@@ -3,9 +3,7 @@
         <div class="row">
             <div class="large-3 column">
                 <div class="forum-post-content-header">
-
                     <div class="media author-details">
-
                         <div class="img-circle-holder left">
                             <img class="avatar" src="$Author.FormattedAvatar" alt="Avatar">
                         </div>
@@ -39,12 +37,6 @@
                 </div><!-- user-info. -->
             </div>
            <div class="large-9 column">
-               <div class="quick-reply">
-                   <% if Thread.canPost %>
-                       <p>$Top.ReplyLink</p>
-                   <% end_if %>
-               </div>
-
                <% if EditLink || DeleteLink %>
                    <ul class="inline-list">
                        <% if EditLink %>
@@ -65,7 +57,6 @@
                <div class="post-type">
                    $Content.Parse(BBCodeParser)
                </div>
-
                <% if Thread.DisplaySignatures %>
                    <% with Author %>
                        <% if Signature %>
@@ -75,7 +66,6 @@
                        <% end_if %>
                    <% end_with %>
                <% end_if %>
-
                <% if Attachments %>
                    <div class="attachments">
                        <strong><% _t('SinglePost_ss.ATTACHED','Attached Files') %></strong>
@@ -93,5 +83,5 @@
            </div>
         </div>
     </div>
-
-</div><!-- forum-post. -->
+</div>
+<!-- forum-post. -->

@@ -2,7 +2,7 @@
     <div class="row">
         <div class="upper">
             <div class="small-5 large-5 column">
-                <h4>&copy; $Now.Year BlizzGame</h4>
+                <p>&copy; $Now.Year BlizzGame</p>
             </div>
             <ul class="inline-list right">
                 <li><a href="https://facebook.com/blizzgame" title="facebook"><i class="social-icon-40 facebook"></i></a></li>

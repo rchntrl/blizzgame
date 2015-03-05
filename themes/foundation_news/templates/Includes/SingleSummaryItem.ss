@@ -11,7 +11,7 @@
     <% if $Type == external && Top.SiteConfig.ReturnExternal %>
         <h4><a href='$External' target="_blank">$Title</a></h4>
     <% else_if $Type == download && Top.SiteConfig.ReturnExternal %>
-        <h4><a href='$Download.Link' title='Downloadable file'>$Title (<%t NewsHolderPage.DOWNLOADABLE "Download" %>)</a></h4>
+        <h4><a href='$Download.Link' title='файл для скачивания'>$Title (<%t NewsHolderPage.DOWNLOADABLE "Скачать" %>)</a></h4>
     <% else %>
         <h4><a class="blank" href="$alternateAbsoluteLink">$Title</a></h4>
     <% end_if %>

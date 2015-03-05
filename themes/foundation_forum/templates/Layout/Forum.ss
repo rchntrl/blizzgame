@@ -21,7 +21,7 @@
 	<% if getStickyTopics(0) %>
 		<table class="forum-sticky-topics" class="topicList" summary="List of sticky topics in this forum">
 			<tr class="category">
-				<td colspan="3"><% _t('Forum_ss.ANNOUNCEMENTS', 'Announcements') %></td>
+				<td colspan="3"><% _t('Forum_ss.ANNOUNCEMENTS', 'Обьявления') %></td>
 			</tr>
 			<% loop getStickyTopics(0) %>
 				<% include TopicListing %>
@@ -30,13 +30,10 @@
 	<% end_if %>
 
 	<table class="forum-topics" summary="List of topics in this forum">
-		<tr class="category">
-			<td colspan="4"><% _t('Forum_ss.THREADS', 'Threads') %></td>
-		</tr>
 		<tr>
-			<th class="odd"><% _t('Forum_ss.TOPIC','Topic') %></th>
-			<th class="odd"><% _t('Forum_ss.POSTS','Posts') %></th>
-			<th class="even"><% _t('Forum_ss.LASTPOST','Last Post') %></th>
+			<th class="odd"><% _t('Forum_ss.Threads','Обсуждения') %></th>
+			<th class="odd"><% _t('Forum_ss.POSTS','Сообщения') %></th>
+			<th class="even"><% _t('Forum_ss.LASTPOST','Последнее сообщение') %></th>
 		</tr>
 		<% if Topics %>
 			<% loop Topics %>
@@ -44,26 +41,37 @@
 			<% end_loop %>
 		<% else %>
 			<tr>
-				<td colspan="3" class="forumCategory"><% _t('Forum_ss.NOTOPICS','There are no topics in this forum, ') %><a href="{$Link}starttopic" title="<% _t('Forum_ss.NEWTOPIC') %>"><% _t('Forum_ss.NEWTOPICTEXT','click here to start a new topic') %>.</a></td>
+				<td colspan="3" class="forumCategory"><% _t('Forum_ss.NOTOPICS','В форуме нет тем, ') %><a href="{$Link}starttopic" title="<% _t('Forum_ss.NEWTOPIC') %>"><% _t('Forum_ss.NEWTOPICTEXT','кликните здесь, чтобы начать обусждение') %>.</a></td>
 			</tr>
 		<% end_if %>
 	</table>
 
-	<% if Topics.MoreThanOnePage %>
-		<p>
-			<% if Topics.PrevLink %><a style="float: left" href="$Topics.PrevLink">	&lt; <% _t('Forum_ss.PREVLNK','Previous Page') %></a><% end_if %>
-			<% if Topics.NextLink %><a style="float: right" href="$Topics.NextLink"><% _t('Forum_ss.NEXTLNK','Next Page') %> &gt;</a><% end_if %>
-			
-			<% loop Topics.Pages %>
-				<% if CurrentBool %>
-					<strong>$PageNum</strong>
+	<% if $Topics.MoreThanOnePage %>
+        <div class="pagination-centered">
+            <ul class="pagination">
+				<% if $Topics.NotFirstPage %>
+                    <li class="arrow"><a  href="$Topics.PrevLink">&laquo;</a></li>
 				<% else %>
-					<a href="$Link">$PageNum</a>
+                    <li class="arrow unavailable"><a href="#">&laquo;</a></li>
 				<% end_if %>
-			<% end_loop %>
-		</p>
+				<% loop $Topics.Pages(10) %>
+					<% if $CurrentBool %>
+                        <li class="current"><a href="#">$PageNum</a></li>
+					<% else %>
+						<% if $Link %>
+                            <li><a  href="$Link">$PageNum</a></li>
+						<% else %>
+                            ...
+						<% end_if %>
+					<% end_if %>
+				<% end_loop %>
+				<% if $Topics.NotLastPage %>
+                    <li class="arrow"><a  href="$Topics.NextLink">&raquo;</a></li>
+				<% else %>
+                    <li class="arrow unavailable"><a href="#">&raquo;</a></li>
+				<% end_if %>
+            </ul>
+        </div>
 	<% end_if %>
-	
 </div><!-- forum-features. -->
-
 <% include ForumFooter %>
