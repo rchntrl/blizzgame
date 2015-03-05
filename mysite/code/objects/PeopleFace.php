@@ -8,6 +8,7 @@
  * @property string Nick
  * @property string Writer
  * @property string LastLinkSegment
+ * @property string PeopleFacePageID
  * @method PeopleFacePage PeopleFacePage()
  * @method SS_List GalleryImages()
  */
@@ -68,6 +69,13 @@ class PeopleFace extends DataObject implements ObjectAsPageProvider {
      */
     public function HolderPage() {
         return $this->PeopleFacePage();
+    }
+
+    public function onBeforeWrite() {
+        parent::onBeforeWrite();
+        if (!$this->PeopleFacePage()->ID) {
+            $this->PeopleFacePageID = PeopleFacePage::get_by_id("PeopleFacePage", 1533)->ID;
+        }
     }
 
     /**
