@@ -21,8 +21,7 @@
             <div id="arts-section" style="display: none;">
                 <hr/>
                 <h3>Рисунки</h3>
-                <ul class="gallery-list clearing-thumbs" data-clearing>
-                </ul>
+                <ul class="gallery-list clearing-thumbs"></ul>
                 <button type="button" data-url="$Link" data-start="0" class="button large-12 small-12 secondary load-more-art">Еще...</button>
             </div>
         <% end_if %>
