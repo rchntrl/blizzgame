@@ -7,7 +7,7 @@
                     <a class="element-link" href="{$Link}" title="$Title.ATT">
                         <div class="element-link-image">
                             <% if Image %>
-                                <img class="icon-frame frame-56" alt="$Title" src="$Image.setSize(56, 56).getUrl()" />
+                                <img class="icon-frame frame-56" alt="$Title" src="$Image.CroppedImage(56, 56).getUrl()" />
                             <% else %>
                                 <img class="icon-frame frame-56" src="$Top.SiteConfig.DefaultElementImage().setSize(56, 56).getUrl()" />
                             <% end_if %>
