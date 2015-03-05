@@ -100,6 +100,16 @@ class PeopleFace extends DataObject implements ObjectAsPageProvider {
         return DataObject::get('PeopleFace', "\"PeopleFace\".\"" . $category . "\" = 1");
     }
 
+    public function Closest($limit  = 7) {
+        return DataObject::get('PeopleFace',
+            "\"PeopleFace\".\"HolderPageID\" = " . $this->getField('HolderPageID') .
+            " AND \"PeopleFace\".\"NumberSort\" >= " . ($this->NumberSort - round($limit / 2)),
+            "NumberSort ASC",
+            "",
+            $limit
+        );
+    }
+
     /**
      * get Artist Field
      * @param string $name

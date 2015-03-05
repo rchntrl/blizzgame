@@ -3,7 +3,7 @@
 /**
  * Class PeopleFacePage
  *
- * @method SS_List PeopleFaces
+ * @method HasManyList PeopleFaces
  */
 class PeopleFacePage extends Page
 {
@@ -31,6 +31,28 @@ class PeopleFacePage_Controller extends Page_Controller {
     static $url_handlers = array(
         '$ID!' => 'view',
     );
+
+    public function GroupedByAlphabet() {
+        $arrayList = new ArrayList();
+        $abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        for ($i = 0; $i <= 25; $i++) {
+            if (isset($abc[$i])) {
+                $arrayList->push(new ArrayData(array(
+                    'Title' => $abc[$i]
+                )));
+            }
+        }
+        return $arrayList;
+    }
+
+    public function PeopleFaces() {
+        $text = $this->request->getVar('letter') ?: 'A';
+        return PeopleFace::get("PeopleFace", "\"PeopleFace\".\"TitleEN\" LIKE '" . $text . "%'");
+    }
+
+    public function  getLetter() {
+        return $this->request->getVar('letter') ?: 'A';
+    }
 
     public function view() {
         $face = PeopleFace::get_by_url($this->urlParams['ID']);
