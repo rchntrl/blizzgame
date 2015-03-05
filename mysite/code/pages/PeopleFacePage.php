@@ -59,7 +59,7 @@ class PeopleFacePage_Controller extends Page_Controller {
         if (!$face) {
             $this->httpError(404);
         }
-        if ($this->request->isAjax() && $this->request->getVar('start')) {
+        if ($this->request->isAjax()) {
             return $this->loadArts($face);
         }
         $ssv = new SSViewer('Page');

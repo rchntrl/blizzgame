@@ -22,20 +22,14 @@
                 <hr/>
                 <h3>Рисунки</h3>
                 <ul class="gallery-list clearing-thumbs" data-clearing>
-                    <% loop GalleryImages().Limit(12) %>
-                        <li>
-                            <a href="$Image.Link()" class="th" role="button" aria-label="Thumbnail" >
-                                <img class="art-thumbnail" data-caption="$Title" src="$Image.CroppedImage(300, 100).getUrl()" />
-                            </a>
-                        </li>
-                    <% end_loop %>
                 </ul>
-                <button type="button" data-url="$Link" data-start="12" class="button large-12 small-12 secondary load-more-art">Еще...</button>
+                <button type="button" data-url="$Link" data-start="0" class="button large-12 small-12 secondary load-more-art">Еще...</button>
             </div>
         <% end_if %>
         </div>
         $Form
     </article>
+    <br/>
     <% include CommentList %>
 </div>
 <script src="$ThemeDir/javascript/blizz-people.js"></script>
