@@ -82,8 +82,11 @@ class Page_Controller extends ContentController {
      * @param string $layout
      * @return HTMLText
      */
-    public function renderDataObject(DataObject $object, $template, $layout) {
+    public function renderDataObject(DataObject $object, $template, $layout = null) {
         $ssv = new SSViewer($template);
+        if (!$layout) {
+            $layout = get_class($object);
+        }
         $ssv->setTemplateFile('Layout', $layout);
         return $this->customise($object)->renderWith($ssv);
     }

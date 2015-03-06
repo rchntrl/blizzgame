@@ -35,5 +35,7 @@
 		<% include LastComments %>
 	</div>
 </div>
+<br/>
+<br/>
 <% end_cached %>
 

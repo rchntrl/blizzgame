@@ -13,17 +13,17 @@
                 <dl>
                     <dt>Автор(ы):</dt>
                     <dd>
-                        <% if $Author %>
-                            $Author
-                        <% else %>
-                            <% loop $Authors %><a href="$AbsoluteLink">$Title</a><% if not $Last %>, <% end_if %><% end_loop %>
-                        <% end_if %>
+                        <% loop $Authors %><a href="$AbsoluteLink">$Title</a><% if not $Last %>, <% end_if %><% end_loop %>
+                        <% if $Author %>, $Author<% end_if %>
                     </dd>
                     <% if $TranslatedBy %>
                         <dt>Переводчик(и):</dt><dd>$TranslatedBy</dd>
                     <% end_if %>
                     <% if $PaintsCover %>
-                        <dt>Обложка:</dt><dd><% loop $PaintsCover %><a href="$AbsoluteLink">$Title</a><% if not $Last %>, <% end_if %><% end_loop %></dd>
+                        <dt>Оформление обложки:</dt><dd><% loop $PaintsCover %><a href="$AbsoluteLink">$Title</a><% if not $Last %>, <% end_if %><% end_loop %></dd>
+                    <% end_if %>
+                    <% if $PaintsPage %>
+                        <dt>Оформление страниц:</dt><dd><% loop $PaintsPage %><a href="$AbsoluteLink">$Title</a><% if not $Last %>, <% end_if %><% end_loop %></dd>
                     <% end_if %>
                     <dt>Мировой издатель (Дата):</dt><dd>$PublisherEN ($DateSaleEN.format("d.m.Y"))</dd>
                     <% if $PublisherRU %>

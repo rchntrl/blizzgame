@@ -74,7 +74,7 @@ class BooksHolderPage_Controller extends Page_Controller {
             $this->httpError(404);
         }
 
-        return $this->renderDataObject($book, 'Page', 'BooksHolderPage_viewBook');
+        return $this->renderDataObject($book, 'Page', 'Book');
     }
 
     public function viewChapter() {
