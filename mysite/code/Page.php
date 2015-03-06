@@ -64,14 +64,19 @@ class Page_Controller extends ContentController {
         Requirements::javascript($this->ThemeDir() .  'js/jquery.min.js');
     }
 
+    public function isString($text) {
+        return is_string($text);
+    }
     /**
      * @param $text
      * @return array
      */
     public function fixForumBreadcrumb($text) {
-        $pages = New ArrayList();
+        $pages = new ArrayList();
         foreach (explode("» ", $text) as $val) {
-            $pages->push(new ArrayData(array('Text' => $val)));
+            if ($val != ' ') {
+                $pages->push(new ArrayData(array('Text' => $val)));
+            }
         }
         return $pages;
     }
