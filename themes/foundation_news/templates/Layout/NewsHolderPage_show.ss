@@ -24,6 +24,8 @@
 					<% end_loop %>
                 </ul>
 			<% end_if %>
+            <br/>
+            <br/>
 			<% include NewsSlideshowAll %>
 			<% if $AllowComments %>
 				<% include CommentList %>
@@ -35,7 +37,5 @@
 		<% include LastComments %>
 	</div>
 </div>
-<br/>
-<br/>
 <% end_cached %>
 
