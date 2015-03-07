@@ -13,7 +13,6 @@ NewsAdmin:
   extensions:
     - SubsiteMenuExtension
 News:
-  default_sort: 'DESC PublishFrom DESC ID'
   extensions:
     - BlizzgameNewsExtension
 DataObject:
