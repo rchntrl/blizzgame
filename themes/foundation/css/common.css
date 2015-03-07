@@ -120,6 +120,22 @@
     text-transform: uppercase;
 }
 
+li .th p {
+    margin-bottom: 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #333D4F;
+}
+
+.blizzgame-panel .gallery-list .th {
+    border: solid 4px rgba(22, 35, 49, 0.51);
+    box-shadow: 0 0 0 1px rgba(250, 250, 250, 0.2);
+}
+.blizzgame-panel .gallery-list .th p {
+    background-color: rgba(22, 35, 49, 0.51);
+    color: #fff;
+}
+
 .news-list {
     background: transparent;
     padding: 0;
@@ -175,14 +191,6 @@
 
 .tab-style li.active > a:first-child:not(.button) {
     color: #222;
-}
-
-.th p {
-    margin-bottom: 0;
-    text-align: center;
-    background-color: #fff;
-    font-size: 0.9rem;
-    color: #333D4F;
 }
 
 .crop-text {

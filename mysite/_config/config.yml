@@ -13,6 +13,7 @@ NewsAdmin:
   extensions:
     - SubsiteMenuExtension
 News:
+  default_sort: 'PublishFrom DESC ID DESC'
   extensions:
     - BlizzgameNewsExtension
 DataObject:
@@ -34,9 +35,6 @@ ChronicleItem:
   extensions:
     - ObjectAsPageExtension
 Media:
-  extensions:
-    - ObjectAsPageExtension
-ForumThread:
   extensions:
     - ObjectAsPageExtension
 SiteTree:
