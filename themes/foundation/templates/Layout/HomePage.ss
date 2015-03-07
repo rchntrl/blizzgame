@@ -1,7 +1,7 @@
 <% require themedCSS('hots') %>
 <div class="orbit-container">
     <ul class="example-orbit" data-orbit>
-        <% loop $OrbitNews.Limit(7) %>
+        <% loop $OrbitNews.Limit(4) %>
             <li>
                 <a href="$alternateAbsoluteLink"><img src="$Impression.CroppedImage(1924, 530).getUrl()" alt="slide 1" /></a>
                 <div class="orbit-caption">
