@@ -14,8 +14,8 @@
 <div class="large-12 columns" xmlns="http://www.w3.org/1999/html">
     <section class="home-page-content">
         <% with $HomePageConfig %>
-            <div id="heroes-section" class="panel" style="background: url($HeroesBackground.getUrl()); background-size: cover">
-                <div class="row">
+            <div  style="background: url($HeroesBackground.getUrl()); background-size: cover">
+                <div id="heroes-section" class="panel">
                     <h2 class="page__title text-center">Heroes of the Storm</h2>
                     <h3 class="page__title text-center">Герои недели</h3>
                     <div class="hero-select-area">
