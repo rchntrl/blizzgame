@@ -23,19 +23,19 @@ class BlizzgameNewsExtension extends DataExtension {
         $this->owner->ShowInCarousel = $this->owner->ShowInCarousels ? $this->owner->ImpressionID <> 0 : false;
         /** @var News $news */
         $news = $this->owner;
-        $page = SiteTree::get_by_id("NewsHolderPage", 1640);
+        $page = SiteTree::get_one("NewsHolderPage", "\"NewsHolderPage\".\"SubsiteID\" = 0"); //1640
         $this->owner->NewsHolderPages()->add($page);
         $page = null;
         foreach ($news->Tags() as $tag) {
             switch ($tag->Title) {
                 case 'warcraft':
-                    $page = SiteTree::get_by_id("NewsHolderPage", 1519);
+                    $page = SiteTree::get_one("NewsHolderPage", "\"NewsHolderPage\".\"SubsiteID\" = 1"); //1519
                     break;
                 case 'diablo':
-                    $page = SiteTree::get_by_id("NewsHolderPage", 1639);
+                    $page = SiteTree::get_one("NewsHolderPage", "\"NewsHolderPage\".\"SubsiteID\" = 2"); //1639
                     break;
                 case 'starcraft':
-                    $page = SiteTree::get_by_id("NewsHolderPage", 1522);
+                    $page = SiteTree::get_one("NewsHolderPage", "\"NewsHolderPage\".\"SubsiteID\" = 3"); //1522
                     break;
             }
             if ($page) {

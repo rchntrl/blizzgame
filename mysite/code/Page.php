@@ -64,8 +64,8 @@ class Page_Controller extends ContentController {
         Requirements::javascript($this->ThemeDir() .  'js/jquery.min.js');
     }
 
-    public function isString($text) {
-        return is_string($text);
+    public function isForumBreadcrumbs($text) {
+        return preg_match('/»/', $text);
     }
     /**
      * @param $text

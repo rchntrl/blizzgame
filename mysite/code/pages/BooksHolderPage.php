@@ -10,11 +10,18 @@ class BooksHolderPage extends Page implements PermissionProvider {
         'Books' => 'Book'
     );
 
+    /**
+     * @return PageConfig
+     */
+    public function getPageConfig() {
+        return PageConfig::get_one('PageConfig', '"PageConfig"."UsedByID" = ' . $this->ID);
+    }
+
     public function providePermissions() {
         return array(
-            "CREATE_EDIT_BOOK" => "View/Edit Library",
-            "DELETE_BOOK" => "Delete Library",
-            "VIEW_BOOK" => "View Library",
+            'CREATE_EDIT_BOOK' => 'View/Edit Library',
+            'DELETE_BOOK' => 'Delete Library',
+            'VIEW_BOOK' => 'View Library',
         );
     }
 
@@ -29,7 +36,7 @@ class BooksHolderPage extends Page implements PermissionProvider {
         /** @var GridFieldConfig $gridFieldConfig */
         $gridFieldConfig = GridFieldConfig_RecordEditor::create();
         $gridFieldConfig->getComponentByType('GridFieldPaginator')->setItemsPerPage(10);
-        $gridField = new GridField("Books", _t("Library.BOOKS_CMS_TITLE", "Books"), $this->Books(), $gridFieldConfig);
+        $gridField = new GridField('Books', _t('Library.BOOKS_CMS_TITLE', 'Books'), $this->Books(), $gridFieldConfig);
         $fields->addFieldToTab('Root.Main', $gridField, 'MenuTitle');
 
         return $fields;
@@ -84,7 +91,7 @@ class BooksHolderPage_Controller extends Page_Controller {
         $book = Book::get_by_url($id);
         if ($this->urlParams['Number']) {
             $chapterNum = $this->urlParams['Number'];
-            $chapter = Chapter::get_by_id("Chapter", $chapterNum);
+            $chapter = Chapter::get_by_id('Chapter', $chapterNum);
         } else {
             return $this->renderDataObject($book, 'Page', 'Chapters');
         }
@@ -97,7 +104,7 @@ class BooksHolderPage_Controller extends Page_Controller {
      * @param SQLQuery|null $query
      * @return null|PaginatedList
      */
-    public function getPaginatedPages(SQLQuery $query = null,  $itemsPerPage = 16)
+    public function getPaginatedPages(SQLQuery $query = null,  $itemsPerPage = 12)
     {
         if (!$query) {
             $query = $this->getQueryBuilder();

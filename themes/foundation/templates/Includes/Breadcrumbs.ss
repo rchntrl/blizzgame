@@ -1,6 +1,6 @@
 <nav role="navigation">
     <ul class="breadcrumbs">
-        <% if $isString($Breadcrumbs) %>
+        <% if $isForumBreadcrumbs($Breadcrumbs) %>
            <% loop $fixForumBreadcrumb($Breadcrumbs) %>
                <li<% if $Last %> class="current"<% end_if %>>$Text</li>
             <% end_loop %>

@@ -10,6 +10,13 @@ class MediaPage extends Page {
         'MediaItems' => 'Media'
     );
 
+    /**
+     * @return PageConfig
+     */
+    public function getPageConfig() {
+        return PageConfig::get_one('PageConfig', '"PageConfig"."UsedByID" = ' . $this->ID);
+    }
+
     public function getCMSFields() {
         $fields = parent::getCMSFields();
         /** @var GridFieldConfig $gridFieldConfig */
@@ -24,7 +31,8 @@ class MediaPage extends Page {
 /**
  * Class MediaPage_Controller
  */
-class MediaPage_Controller extends Page_Controller {
+class MediaPage_Controller extends Page_Controller
+{
 
     static $allowed_actions = array(
         'view',
@@ -34,14 +42,25 @@ class MediaPage_Controller extends Page_Controller {
         '$ID!' => 'view',
     );
 
-    public function view() {
+    public function view()
+    {
         $media = Media::get_by_url($this->urlParams['ID']);
         if (!$media) {
             $this->httpError(404);
         }
 
-        $ssv = new SSViewer('Page');
-        $ssv->setTemplateFile('Layout', 'Media');
-        return $this->customise($media)->renderWith($ssv);
+        return $this->renderDataObject($media, 'Page', 'Media');
+    }
+
+    /**
+     * @param int $itemsPerPage
+     * @param SQLQuery|null $query
+     * @return null|PaginatedList
+     */
+    public function getPaginatedPages($itemsPerPage = 12)
+    {
+        $pages = new PaginatedList($this->MediaItems(), $this->request);
+        $pages->setLimitItems($itemsPerPage);
+        return $pages;
     }
 }

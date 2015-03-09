@@ -40,7 +40,6 @@ class HomePage_Controller  extends ContentController {
     }
 
     public function OrbitNews() {
-        //return DataObject::get('News', '"News"."NewsHolderPageID" = ' . $this->New .' AND "News"."ShowInCarousel" = 1 AND "News"."ImpressionID" <> 0', 'Created ASC', '')->limit(5);
         $filter = array(
             'Live' => 1,
             'ShowInCarousel' => 1

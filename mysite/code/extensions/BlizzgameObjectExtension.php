@@ -47,4 +47,30 @@ class BlizzgameObjectExtension extends DataExtension {
         }
         return $this->owner->getTitle();
     }
+
+    /**
+     * @return Image
+     */
+    public function bookView() {
+        if (!$this->owner instanceof Image) {
+            throw new InvalidArgumentException(sprintf(
+                'BlizzGameObjectExtension: Record of type %s does not extend Image',
+                get_class($this->owner)
+            ));
+        }
+        return $this->owner->CroppedImage(240, 370);
+    }
+
+    /**
+     * @return Image
+     */
+    public function albumView() {
+        if (!$this->owner instanceof Image) {
+            throw new InvalidArgumentException(sprintf(
+                'BlizzGameObjectExtension: Record of type %s does not extend Image',
+                get_class($this->owner)
+            ));
+        }
+        return $this->owner->CroppedImage(360, 250);
+    }
 }

@@ -75,6 +75,9 @@ class BlizzgameConfigExtension extends DataExtension {
         else {
             $fields->addFieldToTab('Root.Blizzgamesettings', HeaderField::create('NoPermissions', _t('BlizzgameConfigExtension.PERMISSIONERROR', 'You do not have the permission to edit these settings')));
         }
+        $list = PageConfig::get('PageConfig', "\"PageConfig\".\"SubsiteID\" = " . $this->owner->SubsiteID);
+        $settingGridField = new GridField('PageConfig', _t("MainPage.PAGE_CONFIG_CMS_TITLE", "Настройки вида страниц книг и медиа"), $list, GridFieldConfig_RecordEditor::create());
+        $fields->addFieldToTab('Root.Main', $settingGridField);
         if(Member::currentUser()->inGroup('administrators')){
             $adminTabs = array();
             foreach(self::$admin_tabs as $tab) {

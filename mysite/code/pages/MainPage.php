@@ -49,7 +49,21 @@ class MainPage_Controller extends HomePage_Controller {
     }
 
     public function OrbitNews() {
-        return DataObject::get('News', '"News"."Live" = 1 AND "News"."ShowInCarousel" = 1', 'Created DESC', '')->limit($this->getHomePageConfig()->OrbitLimit);
+        $filter = array(
+            'Live' => 1,
+            'ShowInCarousel' => 1
+        );
+        $exclude = array(
+            'PublishFrom:GreaterThan' => SS_Datetime::now()->Format('Y-m-d'),
+            'ImpressionID' => 0
+        );
+        /** @var DataList $allEntries */
+        $allEntries = NewsHolderPage::get_one("NewsHolderPage")->Newsitems()
+            ->limit(10)
+            ->filter($filter)
+            ->exclude($exclude)
+        ;
+        return $allEntries;
     }
 
     public function LastArts() {

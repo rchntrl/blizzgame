@@ -64,10 +64,13 @@
         <ul class="left">
             <% loop Menu(1) %>
                 <li class="<% if $LinkingMode == "current" || $LinkingMode == "section" %>active<% end_if %>">
-                    <a href="$Link" title="Go to the $Title.ATT">$MenuTitle</a>
+                    <a href="$Link" title="На страницу $Title.ATT">$MenuTitle</a>
                 </li>
                 <% if not $Last %><li class="divider"></li><% end_if %>
             <% end_loop %>
+            <% if $SubsiteID != 0 %>
+                <li><a href="http://www.blizzgame.ru/forums/" title="На форумы">Форумы</a></li>
+            <% end_if %>
         </ul>
     </section>
 </nav>

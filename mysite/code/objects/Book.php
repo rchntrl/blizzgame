@@ -6,6 +6,7 @@
  * @property string TitleEN
  * @property string TitleRU
  * @method BooksHolderPage HolderPage()
+ * @method Image Cover()
  * @method DataList Chapters()
  * @method DataList Authors()
  * @method DataList PaintsPage()
