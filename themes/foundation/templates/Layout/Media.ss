@@ -24,9 +24,9 @@
                     <dt>Продолжительность:</dt><dd>$Duration</dd>
                 </dl>
             </div>
-            $Content
-            $Form
         </div>
+        $Content
+        $Form
     </article>
 </div>
 <div class="small-12 medium-3 large-2 columns">
