@@ -12,11 +12,18 @@ class HomePage extends SiteTree {
  *
  * Class HomePage_Controller
  */
-class HomePage_Controller  extends ContentController {
+class HomePage_Controller  extends Page_Controller {
 
     static $allowed_actions = array(
 
     );
+
+    public function init() {
+        parent::init();
+        if (!Member::currentUser()->Nickname) {
+            $this->redirect('http://www.blizzgame.ru/forummemberprofile/edit/' . Member::currentUserID());
+        }
+    }
 
     public function subSiteListMenu() {
 

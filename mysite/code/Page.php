@@ -62,6 +62,9 @@ class Page_Controller extends ContentController {
     public function init() {
         parent::init();
         Requirements::javascript($this->ThemeDir() .  'js/jquery.min.js');
+        if (!Member::currentUser()->Nickname) {
+            $this->redirect('http://www.blizzgame.ru/forummemberprofile/edit/' . Member::currentUserID());
+        }
     }
 
     public function isForumBreadcrumbs($text) {
