@@ -68,7 +68,7 @@
                 </li>
                 <% if not $Last %><li class="divider"></li><% end_if %>
             <% end_loop %>
-            <% if $SubsiteID != 0 %>
+            <% if $SubsiteID %>
                 <li><a href="http://www.blizzgame.ru/forums/" title="На форумы">Форумы</a></li>
             <% end_if %>
         </ul>
