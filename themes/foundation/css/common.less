@@ -185,22 +185,15 @@ ul.children-page-list {
   }
 }
 
-.ChronicleItem {
-  color: #fff;
-  .content-section {
-    background: @BlizzgameColor;
-  }
-  .tab-style {
-    li {
-      border-color: #576989;
-    }
-    li.active > a:first-child:not(.button) {
-      color: #1cc7ff;
-    }
-  }
-}
 
 .chronicle-section {
+  article {
+    background-color: @BlizzgameColor;
+    background-image: url(@BgImage);
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #fff;
+  }
   .description {
     color: rgb(128, 128, 0);
   }

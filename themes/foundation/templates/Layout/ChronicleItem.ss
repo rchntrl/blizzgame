@@ -1,9 +1,9 @@
 <div class="page-section small-12 medium-12 large-12 columns">
-    <article class="chronicle-section">
+    <div class="chronicle-section">
         <h1>$Title</h1>
-        <div class="large-9 column">
+        <article class="large-9 column">
             $Content
-        </div>
+        </article>
         <div class="large-3 column">
             <ul class="side-nav tab-style">
                 <% loop $Closest() %>
@@ -12,6 +12,6 @@
             </ul>
         </div>
         $Form
-    </article>
+    </div>
     <% include CommentList %>
 </div>
