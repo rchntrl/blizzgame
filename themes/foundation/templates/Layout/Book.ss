@@ -49,7 +49,7 @@
     </article>
 </div>
 <div class="small-12 medium-3 large-2 columns">
-    <ul class="side-nav tab-style" title="Книги">
+    <ul class="side-nav tab-style" title="$HolderPage.Title">
         <li class="heading">$HolderPage.Title</li>
         <% loop $Closest %>
             <li <%if $ID == $Top.ID %>class="active"<% end_if %>  role="menuitem">
