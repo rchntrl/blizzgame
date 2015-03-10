@@ -19,12 +19,15 @@
                     <h2 class="page__title text-center">Heroes of the Storm</h2>
                     <h3 class="page__title text-center">Герои недели</h3>
                     <div class="hero-select-area">
-                        <ul class="hero-widget__thumbnail-list">
+                        <ul class="inline-list hero-widget__thumbnail-list">
                             <% loop $HeroesRotation %>
-                                <li class="hero-thumbnail released">
-                                    <div class="hero-thumbnail__backing">
-                                        <a href="javascript:;" class="hero-thumbnail__link $Class"></a>
+                                <li>
+                                    <div class="hero-thumbnail released">
+                                        <div class="hero-thumbnail__backing">
+                                            <a title="$MenuTitle" href="javascript:;" class="hero-thumbnail__link $Class"></a>
+                                        </div>
                                     </div>
+                                    <span class="hero-title">$Title</span>
                                 </li>
                             <% end_loop %>
                         </ul>

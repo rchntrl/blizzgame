@@ -5,6 +5,7 @@
  *
  * @property string TitleEN
  * @property string TitleRU
+ * @property integer AccessLevel
  * @property string LastLinkSegment
  * @property Image Image
  */
@@ -14,6 +15,7 @@ class StormHero extends DataObject {
         'TitleEN' => 'Varchar(255)',
         'TitleRU' => 'Varchar(255)',
         'LastLinkSegment' => 'Varchar(255)',
+        'AccessLevel' => 'Int',
         'Content' => 'HTMLText',
     );
 
@@ -25,12 +27,14 @@ class StormHero extends DataObject {
         'ID', 'TitleEN', 'TitleRU'
     );
 
+    static $default_sort = "\"AccessLevel\" ASC, \"TitleRU\" ASC";
+
     static  $plural_name = 'Heroes of the Storm';
 
     static  $singular_name = 'Hero of the Storm';
 
     public function getTitle() {
-        return $this->TitleRU;
+        return $this->AccessLevel ? $this->TitleRU . ' (' . $this->AccessLevel . ')' : $this->TitleRU;
     }
 
     public function getClass() {
