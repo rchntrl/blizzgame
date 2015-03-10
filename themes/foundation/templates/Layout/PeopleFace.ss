@@ -1,3 +1,4 @@
+<% require themedCSS('lightbox') %>
 <div class="page-section small-12 medium-12 large-12 columns">
     <article>
         <h1>$Title</h1>
@@ -52,4 +53,5 @@
     <br/>
     <% include CommentList %>
 </div>
+<script src="$ThemeDir/javascript/lightbox.min.js"></script>
 <script src="$ThemeDir/javascript/blizz-people.js"></script>
