@@ -1,7 +1,7 @@
 <ul class="gallery-list">
     <% loop GalleryImages %>
         <li>
-            <a href="$AbsoluteLink()" class="th">
+            <a title="$Title" href="$AbsoluteLink" class="th">
                 <img class="art-thumbnail" src="$Image.CroppedImage(300, 100).getUrl()" />
             </a>
         </li>
