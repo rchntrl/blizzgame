@@ -11,7 +11,7 @@
         <% end_loop %>
     </ul>
 </div>
-<div class="large-12 columns" xmlns="http://www.w3.org/1999/html">
+<div class="row">
     <section class="home-page-content">
         <% with $HomePageConfig %>
             <div  style="background: url($HeroesBackground.getUrl()); background-size: cover">
