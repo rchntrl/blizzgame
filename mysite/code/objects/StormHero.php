@@ -27,7 +27,7 @@ class StormHero extends DataObject {
         'ID', 'TitleEN', 'TitleRU'
     );
 
-    static $default_sort = "\"AccessLevel\" ASC, \"TitleRU\" ASC";
+    static $default_sort = "\"AccessLevel\" ASC, \"TitleEN\" ASC";
 
     static  $plural_name = 'Heroes of the Storm';
 
