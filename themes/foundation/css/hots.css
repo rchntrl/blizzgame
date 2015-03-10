@@ -17,6 +17,8 @@
   text-align: center;
   color: #fff;
   text-shadow: 0 0 1rem #009cff;
+  word-wrap: break-word;
+  width: 80px;
 }
 .hero-thumbnail {
   list-style-type: none;
