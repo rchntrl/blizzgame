@@ -29,7 +29,9 @@
                     <% if $PublisherRU %>
                         <dt>Российский издатель (Дата):</dt><dd>$PublisherRU ($DateSaleRU.format("d.m.Y"))</dd>
                     <% end_if %>
-                    <dt>Количество страниц:</dt><dd>$CountPage</dd>
+                    <% if $CountPage %>
+                        <dt>Количество страниц:</dt><dd>$CountPage</dd>
+                    <% end_if %>
                 </dl>
             </div>
         </div>
