@@ -4,7 +4,7 @@
     <% base_tag %>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><% if $MetaTitle %>$MetaTitle<% else %>$Title<% end_if %> - BlizzGame</title>
+    <title><% if $MetaTitle %>$MetaTitle<% else %>$Title<% end_if %> - <% if $SubsiteID %>$SiteConfig.Title: <% end_if %>BlizzGame</title>
     <meta name="description" content="$MetaDescription.ATT" />
     <%--http://ogp.me/--%>
     <meta property="og:site_name" content="$SiteConfig.Title.ATT" />
@@ -15,6 +15,7 @@
     <% if $Image %>
         <meta property="og:image" content="<% with $Image.SetSize(500,500) %>$AbsoluteURL.ATT<% end_with %>" />
     <% end_if %>
+    <link rel="alternate" hreflang="$ContentLocale.ATT" href="$BaseHref" />
     <link rel="icon" type="image/png" href="$ThemeDir/favicon.png" />
     <%--See [Requirements](http://doc.silverstripe.org/framework/en/reference/requirements) for loading from controller--%>
     <link rel="stylesheet" href="$ThemeDir/css/foundation.min.css" />
