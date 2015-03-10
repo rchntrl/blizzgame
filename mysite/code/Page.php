@@ -63,7 +63,7 @@ class Page_Controller extends ContentController {
         parent::init();
         Requirements::javascript($this->ThemeDir() .  'js/jquery.min.js');
         if (Member::currentUser() && !Member::currentUser()->Nickname) {
-            $this->redirect('http://www.blizzgame.ru/forummemberprofile/edit/' . Member::currentUserID());
+            //$this->redirect('http://www.blizzgame.ru/forummemberprofile/edit/' . Member::currentUserID());
         }
     }
 

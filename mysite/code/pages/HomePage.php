@@ -21,7 +21,7 @@ class HomePage_Controller  extends Page_Controller {
     public function init() {
         parent::init();
         if (Member::currentUser() && !Member::currentUser()->Nickname) {
-            $this->redirect('http://www.blizzgame.ru/forummemberprofile/edit/' . Member::currentUserID());
+            //$this->redirect('http://www.blizzgame.ru/forummemberprofile/edit/' . Member::currentUserID());
         }
     }
 
