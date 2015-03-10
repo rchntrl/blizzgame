@@ -30,7 +30,7 @@
                 <li><a href="http://www.blizzgame.ru/about/" title="Создатели сайта">Создатели сайта</a></li>
                 <li><a href="http://www.blizzgame.ru/partners/" title="Друзья и партнеры">Друзья и партнеры</a></li>
                 <li><a href="http://www.blizzgame.ru/forums/" title="Форумы">Форумы</a></li>
-                <li><a href="http://www.blizzgame.ru/privacy-policy/" title="политика конфидициальности">Политика конфидициальности</a></li>
+                <!--<li><a href="http://www.blizzgame.ru/privacy-policy/" title="политика конфидициальности">Политика конфидициальности</a></li>-->
             </ul>
         </div>
         <div class="small-12 large-3 medium-3 column">

@@ -23,7 +23,7 @@
                     <h3>Оформление обложек</h3>
                     <ul class="book-list inline-list">
                         <% loop $PaintsCover %>
-                            <li><a class="th" href="$AbsoluteLink">$Cover.CroppedImage(100, 150)</a></li>
+                            <li><a class="th" title="$MenuTitle.ATT" href="$AbsoluteLink">$Cover.CroppedImage(100, 150)</a></li>
                         <% end_loop %>
                     </ul>
                 </div>
@@ -33,7 +33,7 @@
                     <h3>Оформление страниц</h3>
                     <ul class="book-list inline-list">
                         <% loop $PaintsPage %>
-                            <li><a class="th" href="$AbsoluteLink">$Cover.CroppedImage(100, 150)</a></li>
+                            <li><a class="th" title="$MenuTitle.ATT" href="$AbsoluteLink">$Cover.CroppedImage(100, 150)</a></li>
                         <% end_loop %>
                     </ul>
                 </div>

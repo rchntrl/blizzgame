@@ -71,6 +71,22 @@ class PeopleFace extends DataObject implements ObjectAsPageProvider {
         return $this->PeopleFacePage();
     }
 
+    /**
+     * @return DataList
+     */
+    public function PaintsCover() {
+        return Book::get('Book', '"Book_PaintsCover"."PeopleFaceID" = ' . $this->ID)
+            ->leftJoin('Book_PaintsCover', '"Book_PaintsCover"."BookID" = "Book"."ID"');
+    }
+
+    /**
+     * @return DataList
+     */
+    public function PaintsPage() {
+        return Book::get('Book', '"Book_PaintsPage"."PeopleFaceID" = ' . $this->ID)
+            ->leftJoin('Book_PaintsPage', '"Book_PaintsPage"."BookID" = "Book"."ID"');
+    }
+
     public function onBeforeWrite() {
         parent::onBeforeWrite();
         if (!$this->PeopleFacePage()->ID) {
