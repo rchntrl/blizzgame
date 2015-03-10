@@ -45,7 +45,7 @@ class PeopleFace extends DataObject implements ObjectAsPageProvider {
     static $belongs_many_many = array(
         'Books' => 'Book',
         'PaintsCover' => 'Book',
-        'PaintsPages' => 'Book',
+        'PaintsPage' => 'Book',
     );
 
     public static $summary_fields = array (

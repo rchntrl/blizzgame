@@ -28,11 +28,11 @@
                     </ul>
                 </div>
             <% end_if %>
-            <% if $PaintsPages %>
+            <% if $PaintsPage %>
                 <div id="paints-pages">
                     <h3>Оформление страниц</h3>
                     <ul class="book-list inline-list">
-                        <% loop $PaintsPages %>
+                        <% loop $PaintsPage %>
                             <li><a class="th" href="$AbsoluteLink">$Cover.CroppedImage(100, 150)</a></li>
                         <% end_loop %>
                     </ul>
