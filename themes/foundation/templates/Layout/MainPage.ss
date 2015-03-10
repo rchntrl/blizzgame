@@ -42,7 +42,7 @@
             <div class="large-7 columns">
                 <div class="panel blizzgame-panel">
                     <h3>Последние пополнения в галерее</h3>
-                    <ul class="gallery-list clearing-thumbs large-block-grid-3 small-block-grid-2">
+                    <ul class="gallery-list clearing-thumbs large-block-grid-3 medium-block-grid-3 small-block-grid-2">
                         <% loop $LastArts.Limit(6) %>
                             <li>
                                 <a class="th" role="button" aria-label="Thumbnail" href="$AbsoluteLink">
