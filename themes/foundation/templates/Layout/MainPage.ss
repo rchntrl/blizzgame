@@ -62,7 +62,13 @@
                         <ul class="side-nav news-list">
                             <% loop $allNews %>
                                 <li>
-                                    <a href="$alternateAbsoluteLink">
+                                    <a href="<% if $Type == external && Top.SiteConfig.ReturnExternal %>
+                                        $External
+                                    <% else_if $Type == download && Top.SiteConfig.ReturnExternal %>
+                                        $Download.Link
+                                    <% else %>
+                                        $alternateAbsoluteLink
+                                    <% end_if %>">
                                         $Title
                                         <span class="publish-date right">$PublishFrom.format('d.m.Y')</span>
                                     </a>
