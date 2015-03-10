@@ -18,22 +18,27 @@
             </ul>
         <% end_if %>
         <% if $Artist %>
-            <div id="paints-cover">
-                <h3>Оформление обложек</h3>
-                <ul class="book-list inline-list">
-                    <% loop $PaintsCover %>
-                        <li><a class="th" href="$AbsoluteLink">$Cover.CroppedImage(100, 150)</a></li>
-                    <% end_loop %>
-                </ul>
-            </div>
-            <div id="paints-pages">
-                <h3>Оформление страниц</h3>
-                <ul class="book-list inline-list">
-                    <% loop $PaintsPages %>
-                        <li><a class="th" href="$AbsoluteLink">$Cover.CroppedImage(100, 150)</a></li>
-                    <% end_loop %>
-                </ul>
-            </div>
+            <% if $PaintsCover %>
+                <div id="paints-cover">
+                    <h3>Оформление обложек</h3>
+                    <ul class="book-list inline-list">
+                        <% loop $PaintsCover %>
+                            <li><a class="th" href="$AbsoluteLink">$Cover.CroppedImage(100, 150)</a></li>
+                        <% end_loop %>
+                    </ul>
+                </div>
+            <% end_if %>
+            <% if $PaintsPages %>
+                <div id="paints-pages">
+                    <h3>Оформление страниц</h3>
+                    <ul class="book-list inline-list">
+                        <% loop $PaintsPages %>
+                            <li><a class="th" href="$AbsoluteLink">$Cover.CroppedImage(100, 150)</a></li>
+                        <% end_loop %>
+                    </ul>
+                </div>
+            <% end_if %>
+
             <div id="arts-section" style="display: none;">
                 <hr/>
                 <h3>Рисунки</h3>
