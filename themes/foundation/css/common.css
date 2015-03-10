@@ -199,6 +199,10 @@ li .th p {
     white-space: nowrap;
 }
 
+.book-list li {
+    padding-bottom: 20px;
+}
+
 /* clearing carousel */
 .visible-img img {
     max-height: 88%;
