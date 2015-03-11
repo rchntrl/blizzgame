@@ -26,3 +26,25 @@
 		</p>
 	</div><!-- forum-footer. -->
 <% end_with %>
+<script type="text/javascript" src="framework/thirdparty/tinymce/tiny_mce.js"></script>
+<script type="text/javascript">
+	$("#Form_PostMessageForm").attr("novalidate", true);
+    tinyMCE.init({
+        theme : "advanced",
+        mode : "none",
+        plugins : "bbcode",
+        theme_advanced_buttons1 : "bold,italic,underline,undo,redo,link,unlink,image,forecolor,removeformat,cleanup, code, showbbcode",
+        theme_advanced_buttons2 : "",
+        theme_advanced_buttons3 : "",
+        theme_advanced_toolbar_location : "top",
+        theme_advanced_toolbar_align : "left",
+        content_css : "{$BaseHref}{$ThemeDir}/css/bbcode.css",
+		height: 400,
+        entity_encoding : "raw",
+        add_unload_trigger : false,
+        remove_linebreaks : false,
+        inline_styles : false,
+        convert_fonts_to_spans : false,
+    });
+    tinyMCE.execCommand('mceToggleEditor', false, 'Form_PostMessageForm_Content');
+</script>

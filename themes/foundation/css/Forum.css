@@ -1798,3 +1798,7 @@ input#search-text {
     padding-top: 20px;
     padding-bottom: 20px;
 }
+
+#Content label {
+    display: none;
+}
