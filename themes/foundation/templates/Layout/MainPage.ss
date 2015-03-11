@@ -11,7 +11,7 @@
         <% end_loop %>
     </ul>
 </div>
-<div class="row">
+<div>
     <section class="home-page-content">
         <% with $HomePageConfig %>
             <div  style="background: url($HeroesBackground.getUrl()); background-size: cover">
