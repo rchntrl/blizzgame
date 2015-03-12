@@ -53,14 +53,27 @@ class ElementLink extends DataObject implements PermissionProvider {
 
     public function providePermissions() {
         return array(
-            "CREATE_EDIT_TAG" => "View/Edit Tags (Authors, Element Links)",
-            "DELETE_TAG" => "Delete Tags (Authors, Element Links)",
-            "VIEW_TAG" => "View Tags (Authors, Element Links)",
+            'CREATE_EDIT_TAG' => array(
+                'name' => _t('ElementLink.PERMISSION_CREATE_EDIT_DESCRIPTION', 'Create&Edit ElementLink/PeopleFace'),
+                'category' => _t('Permissions.BLIZZGAME_TAGS', 'BlizzGame Tags'),
+                'help' => _t('ElementLink.PERMISSION_CREATE_EDIT_HELP', 'Permission required to create new ElementLink/PeopleFace.')
+            ),
+            "DELETE_TAG" => array(
+                'name' => _t('ElementLink.PERMISSION_DELETE_DESCRIPTION', 'Delete ElementLink/PeopleFace'),
+                'category' => _t('Permissions.BLIZZGAME_TAGS', 'BlizzGame Tags'),
+                'help' => _t('ElementLink.PERMISSION_DELETE_HELP', 'Permission required to delete existing ElementLink/PeopleFace.')
+            ),
+            "VIEW_TAG" => array(
+                'name' => _t('ElementLink.PERMISSION_VIEW_DESCRIPTION', 'View ElementLink/PeopleFace'),
+                'category' => _t('Permissions.BLIZZGAME_TAGS', 'BlizzGame Tags'),
+                'help' => _t('ElementLink.PERMISSION_VIEW_HELP', 'Permission required to view existing ElementLinks/PeopleFaces.')
+            ),
         );
     }
 
     function canCreate($Member = null) {return (permission::check('CREATE_EDIT_TAG')) ? true : false;}
     function canEdit($Member = null) {return (permission::check('CREATE_EDIT_TAG')) ? true : false;}
+    function canView($Member = null) {return (permission::check('VIEW_TAG')) ? true : false;}
     function canDelete($Member = null) {return (permission::check('DELETE_TAG')) ? true : false;}
 
     public function getCMSFields() {
