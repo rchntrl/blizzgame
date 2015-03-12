@@ -50,7 +50,7 @@
         <div class="pagination-centered">
             <ul class="pagination">
 				<% if $Topics.NotFirstPage %>
-                    <li class="arrow"><a  href="$Topics.PrevLink">&laquo;</a></li>
+                    <li class="arrow"><a  href="$Topics.FirstLink">&laquo;</a></li>
 				<% else %>
                     <li class="arrow unavailable"><a href="#">&laquo;</a></li>
 				<% end_if %>
@@ -66,7 +66,7 @@
 					<% end_if %>
 				<% end_loop %>
 				<% if $Topics.NotLastPage %>
-                    <li class="arrow"><a  href="$Topics.NextLink">&raquo;</a></li>
+                    <li class="arrow"><a  href="$Topics.LastLink">&raquo;</a></li>
 				<% else %>
                     <li class="arrow unavailable"><a href="#">&raquo;</a></li>
 				<% end_if %>
