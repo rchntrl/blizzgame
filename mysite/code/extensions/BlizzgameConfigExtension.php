@@ -152,13 +152,29 @@ class BlizzgameConfigExtension extends DataExtension {
             'DefaultElementImage' => '"'. $siteConfig->DefaultElementImage()->getUrl() . '"',
             'ThemeDir' => '"'. Director::absoluteBaseURL() . 'themes/foundation"',
         ));
+        $title = '';
+        if (Subsite::currentSubsiteID()) {
+            $title = strtolower(Subsite::currentSubsite()->Title)  . '-';;
+        }
+        unlink('../'. THEMES_DIR . '/foundation/css/' . $title . 'compiled.css');
         $less->compileFile(
-            '../'. THEMES_DIR . "/foundation/css/common.less",
-            '../'. THEMES_DIR . "/foundation/css/compiled.css"
+            '../'. THEMES_DIR . '/foundation/css/common.less',
+            '../'. THEMES_DIR . '/foundation/css/' . $title . 'compiled.css'
         );
         $less->compileFile(
             '../'. THEMES_DIR . "/foundation/css/editor.less",
             '../'. THEMES_DIR . "/foundation/css/compiled-editor.css"
         );
+    }
+
+    /**
+     * @return string
+     */
+    public function CurrentSheetName() {
+        $title = '';
+        if (Subsite::currentSubsiteID()) {
+            $title = strtolower(Subsite::currentSubsite()->Title) . '-';
+        }
+        return 'themes/' . SSViewer::current_custom_theme() . '/css/' . $title . 'compiled.css';
     }
 }
