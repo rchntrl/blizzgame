@@ -37,7 +37,6 @@
     </script>
 </head>
 <body class="$ClassName.ATT">
-$current_stage
 <header class="header">
     <% include TopBar %>
 </header>
