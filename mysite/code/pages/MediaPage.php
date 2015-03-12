@@ -10,6 +10,10 @@ class MediaPage extends Page {
         'MediaItems' => 'Media'
     );
 
+    function canCreate($Member = null) {return (permission::check('CREATE_EDIT_MEDIA')) ? true : false;}
+    function canEdit($Member = null) {return (permission::check('CREATE_EDIT_MEDIA')) ? true : false;}
+    function canDelete($Member = null) {return (permission::check('DELETE_MEDIA')) ? true : false;}
+
     /**
      * @return PageConfig
      */

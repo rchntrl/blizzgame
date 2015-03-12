@@ -32,6 +32,10 @@ class PeopleFacePage_Controller extends Page_Controller {
         '$ID!' => 'view',
     );
 
+    function canCreate($Member = null) {return (permission::check('CREATE_EDIT_TAG')) ? true : false;}
+    function canEdit($Member = null) {return (permission::check('CREATE_EDIT_TAG')) ? true : false;}
+    function canDelete($Member = null) {return (permission::check('DELETE_TAG')) ? true : false;}
+
     public function GroupedByAlphabet() {
         $arrayList = new ArrayList();
         $abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';

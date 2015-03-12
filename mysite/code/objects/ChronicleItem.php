@@ -6,7 +6,7 @@
  * @method ChroniclePage HolderPage
  * @property Int NumberSort
  */
-class ChronicleItem extends DataObject {
+class ChronicleItem extends DataObject implements PermissionProvider {
 
     static $db = array (
         'Title' => 'Varchar(255)',
@@ -28,6 +28,32 @@ class ChronicleItem extends DataObject {
     );
 
     static $default_sort = 'NumberSort ASC';
+
+    public function providePermissions()
+    {
+        return array(
+            'CREATE_EDIT_CHRONICLE' => array(
+                'name' => _t('ChronicleItem.PERMISSION_CREATE_EDIT_DESCRIPTION', 'Create&Edit Chronicle'),
+                'category' => _t('Permissions.BLIZZGAME_DATA', 'BlizzGame Data'),
+                'help' => _t('ChronicleItem.PERMISSION_CREATE_EDIT_HELP', 'Permission required to create/edit new Chronicle.')
+            ),
+            'DELETE_CHRONICLE' => array(
+                'name' => _t('ChronicleItem.PERMISSION_DELETE_DESCRIPTION', 'Delete Chronicle'),
+                'category' => _t('Permissions.BLIZZGAME_DATA', 'BlizzGame Data'),
+                'help' => _t('ChronicleItem.PERMISSION_DELETE_HELP', 'Permission required to delete existing Chronicle.')
+            ),
+            'VIEW_CHRONICLE' => array(
+                'name' => _t('ChronicleItem.PERMISSION_VIEW_DESCRIPTION', 'View Chronicle'),
+                'category' => _t('Permissions.BLIZZGAME_DATA', 'BlizzGame Data'),
+                'help' => _t('ChronicleItem.PERMISSION_VIEW_HELP', 'Permission required to view existing Chronicle.')
+            ),
+        );
+    }
+
+    function canCreate($Member = null) {return (permission::check('CREATE_EDIT_CHRONICLE')) ? true : false;}
+    function canEdit($Member = null) {return (permission::check('CREATE_EDIT_CHRONICLE')) ? true : false;}
+    function canDelete($Member = null) {return (permission::check('DELETE_CHRONICLE')) ? true : false;}
+    function canView($Member = null) {return (permission::check('VIEW_CHRONICLE')) ? true : false;}
 
     public function getCMSFields() {
         $fields = parent::getCMSFields();

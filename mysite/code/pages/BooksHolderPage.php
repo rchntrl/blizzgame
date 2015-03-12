@@ -19,9 +19,21 @@ class BooksHolderPage extends Page implements PermissionProvider {
 
     public function providePermissions() {
         return array(
-            'CREATE_EDIT_BOOK' => 'View/Edit Library',
-            'DELETE_BOOK' => 'Delete Library',
-            'VIEW_BOOK' => 'View Library',
+            'CREATE_EDIT_BOOK' => array(
+                'name' => _t('Book.PERMISSION_CREATE_EDIT_DESCRIPTION', 'Create&Edit Library'),
+                'category' => _t('Permissions.BLIZZGAME_DATA', 'BlizzGame Data'),
+                'help' => _t('Book.PERMISSION_CREATE_EDIT_HELP', 'Permission required to create new Library Item.')
+            ),
+            'DELETE_BOOK' => array(
+                'name' => _t('Book.PERMISSION_DELETE_DESCRIPTION', 'Delete Library'),
+                'category' => _t('Permissions.BLIZZGAME_DATA', 'BlizzGame Data'),
+                'help' => _t('Book.PERMISSION_DELETE_HELP', 'Permission required to create new Library Item.')
+            ),
+            'VIEW_BOOK' => array(
+                'name' => _t('Book.PERMISSION_VIEW_DESCRIPTION', 'View Library'),
+                'category' => _t('Permissions.BLIZZGAME_DATA', 'BlizzGame Data'),
+                'help' => _t('Book.PERMISSION_VIEW_HELP', 'Permission required to create new Library Item.')
+            ),
         );
     }
 

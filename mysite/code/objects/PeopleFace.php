@@ -18,6 +18,7 @@ class PeopleFace extends DataObject implements ObjectAsPageProvider {
     const ARTIST    = 'Artist';
     const COMPOSER  = 'Composer';
     const DEVELOPER = 'Developer';
+    const ACTOR     = 'Actor';
 
     public static $db = array (
         'TitleEN' => 'Varchar(255)',
@@ -29,6 +30,7 @@ class PeopleFace extends DataObject implements ObjectAsPageProvider {
         'Artist' => 'Boolean',
         'Composer' => 'Boolean',
         'Developer' => 'Boolean',
+        'Actor' => 'Boolean',
         'Content' => 'HTMLText',
         'WebLink' => 'Varchar(255)',
     );
@@ -105,6 +107,7 @@ class PeopleFace extends DataObject implements ObjectAsPageProvider {
 
     function canCreate($Member = null) {return (permission::check('CREATE_EDIT_TAG')) ? true : false;}
     function canEdit($Member = null) {return (permission::check('CREATE_EDIT_TAG')) ? true : false;}
+    function canView($Member = null) {return (permission::check('CREATE_EDIT_TAG')) ? true : false;}
     function canDelete($Member = null) {return (permission::check('DELETE_TAG')) ? true : false;}
 
     public function getCMSFields() {
@@ -117,7 +120,7 @@ class PeopleFace extends DataObject implements ObjectAsPageProvider {
     }
 
     /**
-     * @param String(Writer|Artist|Composer|Developer) $category
+     * @param String $category
      * @return \DataList
      */
     public static function getOnly($category) {

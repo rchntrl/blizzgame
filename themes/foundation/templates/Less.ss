@@ -6,3 +6,4 @@
 <% end_with %>
 @ThemeDir: "{$BaseHref}$ThemeDir";
 @import "$BaseUrl{$ThemeDir}/css/common.less";
+@import "$BaseUrl{$ThemeDir}/css/editor.less";

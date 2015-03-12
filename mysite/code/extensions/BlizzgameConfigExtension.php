@@ -1,5 +1,7 @@
 <?php
 
+//require "../../../vendor/leafo/lessphp/lessc.inc.php";
+
 /**
  * Add some settings to the siteconfig.
  *
@@ -75,15 +77,18 @@ class BlizzgameConfigExtension extends DataExtension {
         else {
             $fields->addFieldToTab('Root.Blizzgamesettings', HeaderField::create('NoPermissions', _t('BlizzgameConfigExtension.PERMISSIONERROR', 'You do not have the permission to edit these settings')));
         }
-        $list = PageConfig::get('PageConfig', "\"PageConfig\".\"SubsiteID\" = " . $this->owner->SubsiteID);
-        $settingGridField = new GridField('PageConfig', _t("MainPage.PAGE_CONFIG_CMS_TITLE", "Настройки вида страниц книг и медиа"), $list, GridFieldConfig_RecordEditor::create());
-        $fields->addFieldToTab('Root.Main', $settingGridField);
-        if(Member::currentUser()->inGroup('administrators')){
+        if(Member::currentUser()->inGroup('administrators')) {
             $adminTabs = array();
             foreach(self::$admin_tabs as $tab) {
                 $adminTabs[] = $this->$tab();
             }
             $fields->addFieldsToTab('Root.Blizzgamesettings', $adminTabs, 'Help');
+
+            if (Subsite::currentSubsiteID()) {
+                $list = PageConfig::get('PageConfig', "\"PageConfig\".\"SubsiteID\" = " . $this->owner->SubsiteID);
+                $settingGridField = new GridField('PageConfig', _t("MainPage.PAGE_CONFIG_CMS_TITLE", "Настройки вида страниц книг и медиа"), $list, GridFieldConfig_RecordEditor::create());
+                $fields->addFieldToTab('Root.Main', $settingGridField);
+            }
         }
     }
 
@@ -134,5 +139,26 @@ class BlizzgameConfigExtension extends DataExtension {
      */
     public function populateDefaults() {
         $this->owner->BackgroundVerticalPosition = 50;
+    }
+
+    public function onAfterWrite() {
+        $less = new lessc;
+        /** @var SiteConfig $siteConfig */
+        $siteConfig = $this->owner;
+        $less->setVariables(array(
+            'BackgroundVerticalPosition' => $siteConfig->BackgroundVerticalPosition,
+            'BackgroundImage' => '"'. $siteConfig->BackgroundImage()->getUrl() . '"',
+            'LogoImage' => '"'. $siteConfig->LogoImage()->getUrl() . '"',
+            'DefaultElementImage' => '"'. $siteConfig->DefaultElementImage()->getUrl() . '"',
+            'ThemeDir' => '"'. Director::absoluteBaseURL() . 'themes/foundation"',
+        ));
+        $less->compileFile(
+            '../'. THEMES_DIR . "/foundation/css/common.less",
+            '../'. THEMES_DIR . "/foundation/css/compiled.css"
+        );
+        $less->compileFile(
+            '../'. THEMES_DIR . "/foundation/css/editor.less",
+            '../'. THEMES_DIR . "/foundation/css/compiled-editor.css"
+        );
     }
 }

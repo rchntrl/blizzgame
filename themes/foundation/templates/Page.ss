@@ -22,13 +22,7 @@
     <link rel="stylesheet" href="$ThemeDir/icons/foundation-icons.css" />
 
     <link rel="stylesheet" href="$ThemeDir/css/common.css" />
-    <link rel="stylesheet/less" href="style/variables"/>
-    <script>
-        less = {
-            logLevel: 1
-        }
-    </script>
-    <script src="$ThemeDir/javascript/less-1.7.0.min.js"></script>
+    <% include LessSection %>
     <script src="framework/thirdparty/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="http://svkament.ru/js/SVEmbed.js"></script>
     <script type="text/javascript">

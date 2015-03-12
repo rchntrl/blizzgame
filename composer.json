@@ -11,6 +11,7 @@
         }
     ],
     "require-dev": {
+        "leafo/lessphp": "0.5.0",
         "facebook/php-sdk-v4": "4.0.15"
     },
     "require": {
