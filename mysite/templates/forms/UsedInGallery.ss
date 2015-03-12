@@ -13,6 +13,6 @@
                 <span class="readonly">$ID</span>
             </div>
         </div>
-        <h4>Просьба! Перемещайте арт в папку $HolderPage.GalFolder, если файл находится не в этой папке</h4>
+        <h4>Просьба! Переместите арт в папку $HolderPage.GalFolder, если файл находится не в этой папке</h4>
     </div>
 <% end_cached %>
