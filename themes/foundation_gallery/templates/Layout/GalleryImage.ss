@@ -1,4 +1,6 @@
+
 <div class="large-12 columns">
+<% cached $LastLinkSegment %>
     <div class="art-container">
         <ul class="art-navigation-control button-group stack-for-small">
             <li><a class="small button secondary previous<% if $Previous %>" title="$Previous.Title" href="$Previous.Link"<% else %> disabled"<% end_if %> ><i class="fi-play"></i></a></li>
@@ -24,6 +26,7 @@
             <% end_loop %>
         </ul>
     </div>
+<% end_cached %>
     <ul class="children-page-list">
         <% loop Tags %>
             <% if $LinkToPage %>

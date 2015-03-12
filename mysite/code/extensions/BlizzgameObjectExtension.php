@@ -23,6 +23,15 @@ class BlizzgameObjectExtension extends DataExtension {
             $linkField->setURLPrefix($urlPrefix);
             $fields->replaceField('LastLinkSegment', $linkField);
         }
+        if ($this->owner instanceof Image) {
+            /** @var GalleryImage $image */
+            if ($image = GalleryImage::get_one('GalleryImage', '"GalleryImage"."ImageID" = ' . $this->owner->ID)) {
+               $fields->addFieldToTab('Root.Main', new LiteralField(
+                   'UsedInGallery',
+                   SSViewer::execute_template('UsedInGallery', $image)
+               ));
+            }
+        }
     }
 
     public function updateFieldLabels(&$labels) {
