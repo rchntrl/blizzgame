@@ -46,6 +46,11 @@ class BlizzgameNewsExtension extends DataExtension {
     }
 
     public function alternateAbsoluteLink() {
+        if ($this->owner->Type == 'external') {
+            return $this->owner->External;
+        } elseif ($this->owner->Type == 'download') {
+            return $this->owner->Download->Link;
+        }
         return $this->owner->HolderPage()->alternateAbsoluteLink() . 'show/' . $this->owner->URLSegment;
     }
 
