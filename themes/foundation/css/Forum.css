@@ -1557,6 +1557,10 @@ input#search-text {
 .invisible {
     visibility: hidden
 }
+.signature {
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
 
 .text-hide {
     font: 0/0 a;

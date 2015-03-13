@@ -85,6 +85,10 @@ class Chapter extends DataObject implements ObjectAsPageProvider {
         'Title'
     );
 
+    public function metaTitle() {
+        return $this->Book()->TitleRU . '. ' . $this->Title;
+    }
+
     public function Link() {
         return $this->Book()->Link() . '/translate/' . $this->ID . '/';
     }
