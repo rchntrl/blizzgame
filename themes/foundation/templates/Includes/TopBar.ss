@@ -37,7 +37,8 @@
                     <a href="#"><span>Войти</span></a>
                     <ul class="dropdown">
                         <!--<li><a href="$FacebookLoginLink">Login via Facebook</a></li>-->
-                        <li><a href="$VkLoginLink">Login via Vk</a></li>
+                        <li><a href="$VkLoginLink">Авторизация через ВКонтакте</a></li>
+                        <li><a href="http://www.blizzgame.ru/forummemberprofile/register">Регистрация обычной формой</a></li>
                     </ul>
                 <% end_if %>
         </ul>

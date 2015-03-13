@@ -44,7 +44,7 @@
                     $NumPosts
                     <strong><% _t('ForumHeader_ss.POSTS','Сообщений') %></strong>
                     <% _t('ForumHeader_ss.IN','в') %> $NumTopics <strong><% _t('ForumHeader_ss.TOPICS','темах') %></strong>
-                    <% _t('ForumHeader_ss.BY','от') %> $NumAuthors <strong><% _t('ForumHeader_ss.MEMBERS','членов') %></strong>
+                    <% _t('ForumHeader_ss.BY','от') %> $NumAuthors <strong><% _t('ForumHeader_ss.MEMBERS','пользователей') %></strong>
                 </p>
             <% end_if %>
 
