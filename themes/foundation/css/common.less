@@ -60,10 +60,13 @@ h1, h2, h3, h4, h5, h6 {
 .top-bar-section ul {
   background: @BlizzgameColor;
   .dropdown li {
-    &:not(.has-form):not(.active)>a:not(.button),
-    &:not(.has-form):not(.active):hover>a:not(.button) {
+    &:not(.has-form):not(.active) > a:not(.button) {
       background: @BlizzgameColor;
       color: #999;
+    }
+    &:not(.has-form):not(.active):hover > a:not(.button) {
+      background: @BlizzgameColor;
+      color: #fff;
     }
   }
   li {

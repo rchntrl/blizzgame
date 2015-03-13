@@ -38,16 +38,6 @@
                     <% end_if %>
                 </select>
             </form>
-
-            <% if NumPosts %>
-                <p class="forumStats">
-                    $NumPosts
-                    <strong><% _t('ForumHeader_ss.POSTS','Сообщений') %></strong>
-                    <% _t('ForumHeader_ss.IN','в') %> $NumTopics <strong><% _t('ForumHeader_ss.TOPICS','темах') %></strong>
-                    <% _t('ForumHeader_ss.BY','от') %> $NumAuthors <strong><% _t('ForumHeader_ss.MEMBERS','пользователей') %></strong>
-                </p>
-            <% end_if %>
-
         </div><!-- forum-header-forms. -->
     <% end_loop %>
 </div><!-- forum-header. -->
