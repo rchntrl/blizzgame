@@ -1,4 +1,4 @@
-<% if $current_stage == 'Live' %>
+<% if $current_stage == 'Stage' %>
     <link rel="stylesheet/less" href="style/variables"/>
     <script>
         less = {
