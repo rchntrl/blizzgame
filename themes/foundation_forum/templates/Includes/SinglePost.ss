@@ -61,7 +61,7 @@
                    <% with Author %>
                        <% if Signature %>
                            <div class="signature">
-                               <p>$Signature</p>
+                               <p>$Signature.Parse(BBCodeParser)</p>
                            </div>
                        <% end_if %>
                    <% end_with %>
