@@ -10,6 +10,7 @@ body, td, pre {
     padding: 5px;
     border-left: 3px solid #666;
     font-size: 12px;
+    display: block;
 }
 
 .quoteStyle {
