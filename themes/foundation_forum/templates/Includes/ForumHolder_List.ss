@@ -21,7 +21,7 @@
     <td class="">
         <% if LatestPost %>
             <% with LatestPost %>
-                <a class="topicTitle" href="$Link">
+                <a class="topicTitle" href="$LastLink">
                     <p class="crop-text">$Title</p>
                 </a>
                 <p class="post-date">$Created.Ago</p>
