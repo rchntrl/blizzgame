@@ -3,7 +3,7 @@ body, td, pre {
     font-size: 1rem;
 }
 
-
+.codeStyle
 .codesnippet {
     font-family: "Courier New", Courier, monospace, serif;
     background-color: #fff;
@@ -12,7 +12,7 @@ body, td, pre {
     font-size: 12px;
 }
 
-.codeStyle {
+.quoteStyle {
     margin: 0.5rem;
     padding: 1rem;
     border: 1px solid #ddd;
