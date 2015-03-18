@@ -11,3 +11,12 @@ body, td, pre {
     border-left: 3px solid #666;
     font-size: 12px;
 }
+
+q {
+    margin: 0.5rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    line-height: 1.6;
+    color: #6f6f6f;
+    display: block;
+}
