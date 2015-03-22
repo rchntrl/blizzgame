@@ -1,27 +1,16 @@
-<h1>$Title</h1>
-<div class="chronicle-section">
-    <% if $ChronicleItems.Count <= 6 %>
-        <div class=" large-9 column">
-            <div class="tabs-content">
-                <% loop $ChronicleItems %>
-                    <div id="tab$ID" class="content<% if first %> active<% end_if %>">
-                        <div>$Content</div>
-                    </div>
+<div class="page-section small-12 medium-12 large-12 columns">
+    <div class="">
+        <h1>$Title</h1>
+        <article class="large-9 column">
+            $Content
+            <ul class="side-nav">
+                <% loop Children %>
+                    <li><a href="$Link">$MenuTitle</a></li>
                 <% end_loop %>
-            </div>
-        </div>
-        <div class="large-3 column">
-            <ul class="tabs vertical" data-tab role="tablist">
                 <% loop $ChronicleItems %>
-                    <li class="tab-title<% if first %> active<% end_if %>"><a href="#tab{$ID}">$Title</a></li>
+                    <li><a href="$Link">$Title</a></li>
                 <% end_loop %>
             </ul>
-        </div>
-    <% else %>
-        <ul class="side-nav">
-            <% loop $ChronicleItems %>
-                <li><a href="$Link">$Title</a></li>
-            <% end_loop %>
-        </ul>
-    <% end_if %>
+        </article>
+    </div>
 </div>

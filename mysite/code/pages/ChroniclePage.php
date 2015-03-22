@@ -17,6 +17,7 @@ class ChroniclePage extends Page {
         $gridFieldConfig = GridFieldConfig_RecordEditor::create();
         //$gridFieldConfig->getComponentByType('GridFieldPaginator')->setItemsPerPage(10);
         $gridFieldConfig->addComponent(new GridFieldOrderableRows('NumberSort'));
+        $gridFieldConfig->addComponent(new GridFieldAddExistingSearchButton());
         $gridField = new GridField("ChronicleItems", _t("ChronicleItem.MULTIPLE_CMS_TITLE", "Chronicle Items"), $this->ChronicleItems(), $gridFieldConfig);
         $fields->addFieldToTab('Root.Main', $gridField, 'MenuTitle');
 
