@@ -1,16 +1,28 @@
 <% with ForumHolder %>
 	<div class="forum-footer">
 		<% if $CurrentlyOnlineEnabled %>
-		<p>
+		<div>
 			<strong><% _t('ForumFooter_ss.CURRENTLYON','Сейчас онлайн:') %></strong>
 			<% if $CurrentlyOnline %>
+            <ul class="inline-list">
 				<% loop CurrentlyOnline %>
-					<% if Link %><a href="$Link" title="<% if Nickname %>$Nickname<% else %>Anon<% end_if %><% _t('ISONLINE',' is online') %>"><% if Nickname %>$Nickname<% else %>Anon<% end_if %></a><% else %><span>Anon</span><% end_if %><% if Last %><% else %>,<% end_if %>
+					<li>
+						<% if Link %>
+                            <a class="element-link" href="$Link" title="<% if Nickname %>$Nickname<% else %>Anon<% end_if %>">
+                                <span class="element-link-image">
+                                    <img class="icon-frame frame-56" src="$FormattedAvatar" />
+								</span>
+                            </a>
+						<% else %>
+                            <span>Anon</span>
+						<% end_if %>
+                    </li>
 				<% end_loop %>
+            </ul>
 			<% else %>
-				<span><% _t('ForumFooter_ss.NOONLINE','Нет никого в нлайне.') %></span>
+				<span><% _t('ForumFooter_ss.NOONLINE','Нет никого в онлайне.') %></span>
 			<% end_if %>
-		</p>
+		</div>
 		<% end_if %>
 		<p>
 			<strong><% _t('ForumFooter_ss.LATESTMEMBER','Приветствуем нового пользователя:') %></strong>
