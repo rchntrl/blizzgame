@@ -1,8 +1,8 @@
 <tr class="<% if IsSticky || IsGlobalSticky %>sticky<% end_if %> <% if IsGlobalSticky %>global-sticky<% end_if %>">
 	<td class="topicName">
-		<a class="topic-title" href="$Link">$Title</a>
+		<h5><a class="topic-title" href="$Link">$Title</a></h5>
 		<p class="topic-summary">
-			<% _t('TopicListing_ss.BY','От') %>
+			<% _t('TopicListing_ss.CREATED_BY','создал') %>
 			<% with FirstPost %>
 				<% with Author %>
 					<% if Link %>
