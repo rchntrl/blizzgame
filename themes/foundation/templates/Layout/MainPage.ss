@@ -1,45 +1,47 @@
 <% require themedCSS('hots') %>
     <section class="home-page-content">
-        <div>
+        <div style="position: relative;">
         <% with $HomePageConfig %>
-        <ul class="example-orbit" data-orbit data-options="animation:fade;next_on_click:false;timer:false;navigation_arrows:false;bullets:false;slide_number:false;">
-            <li data-orbit-slide="heroes">
-                <div id="heroes-section" class="panel" style="background: url($HeroesBackground.getUrl()); background-size: cover">
-                    <h2 class="widget-title text-center">Heroes of the Storm</h2>
-                    <h3 class="widget-title text-center">Герои недели</h3>
-                    <div class="hero-select-area">
-                        <ul class="inline-list hero-widget__thumbnail-list">
-                            <% loop $HeroesRotation %>
-                                <li>
-                                    <div class="hero-thumbnail released">
-                                        <div class="hero-thumbnail__backing">
-                                            <a title="$MenuTitle" href="javascript:;" class="hero-thumbnail__link $Class"></a>
+            <ul class="example-orbit" data-orbit data-options="animation:fade;next_on_click:false;timer:false;navigation_arrows:false;bullets:false;slide_number:false;">
+                <li data-orbit-slide="heroes">
+                    <div id="heroes-section" class="panel" style="background: url($HeroesBackground.getUrl()); background-size: cover">
+                        <h2 class="widget-title text-center">Heroes of the Storm</h2>
+                        <h3 class="widget-title text-center">Герои недели</h3>
+                        <div class="hero-select-area">
+                            <ul class="inline-list hero-widget__thumbnail-list">
+                                <% loop $HeroesRotation %>
+                                    <li>
+                                        <div class="hero-thumbnail released">
+                                            <div class="hero-thumbnail__backing">
+                                                <a title="$MenuTitle" href="javascript:;" class="hero-thumbnail__link $Class"></a>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <span class="hero-title">$Title</span>
-                                </li>
-                            <% end_loop %>
-                        </ul>
+                                        <span class="hero-title">$Title</span>
+                                    </li>
+                                <% end_loop %>
+                            </ul>
+                        </div>
+                        <div class="widget-text">
+                            $HeroesSaleText
+                        </div>
                     </div>
-                    <div class="widget-text">
-                        $HeroesSaleText
+                </li>
+                <li data-orbit-slide="hearthstone">
+                    <div id="hearthstone-section" class="panel" style="background: url($HearthBackground.getUrl()); background-size: cover">
+                        <h2 class="widget-title text-center">HEARTHSTONE</h2>
+                        <div class="widget-text">
+                            $HearthStoneText
+                        </div>
                     </div>
-                </div>
-            </li>
-            <li data-orbit-slide="hearthstone">
-                <div id="hearthstone-section" class="panel" style="background: url($HearthBackground.getUrl()); background-size: cover">
-                    <h2 class="widget-title text-center">HEARTHSTONE</h2>
-                    <div class="widget-text">
-                        $HearthStoneText
-                    </div>
-                </div>
-            </li>
-        </ul>
+                </li>
+            </ul>
         <% end_with %>
-        <ul class="button-group">
-            <li><a data-orbit-link="heroes" class="small button">Heroes of the Storm</a></li>
-            <li><a data-orbit-link="hearthstone" class="small button">Hearthstone</a></li>
-        </ul>
+            <div style="position: absolute; bottom: 0; right: 0;">
+                <ul class="button-group">
+                    <li><a data-orbit-link="heroes" class="small button">Heroes of the Storm</a></li>
+                    <li><a data-orbit-link="hearthstone" class="small button">Hearthstone</a></li>
+                </ul>
+            </div>
         </div>
         <div class="row">
             <div class="large-7 columns">
