@@ -106,6 +106,7 @@
 }
 
 #heroes-section.panel p,
+#heroes-section.panel a,
 #heroes-section.blizzgame-panel li,
 #heroes-section.panel dl {
     color: #fff;
