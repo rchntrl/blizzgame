@@ -30,7 +30,7 @@
                 <div id="hearthstone-section" class="panel" style="background: url($HearthBackground.getUrl()); background-size: cover">
                     <h2 class="widget-title text-center">HEARTHSTONE</h2>
                     <div class="widget-text">
-                        $HeroesSaleText
+                        $HearthStoneText
                     </div>
                 </div>
             </li>
