@@ -7160,3 +7160,7 @@ th.hide-for-touch {
 .typography {
     padding: 18px 20px
 }
+
+.column, .columns {
+    border: 1px solid #ddd;
+}
