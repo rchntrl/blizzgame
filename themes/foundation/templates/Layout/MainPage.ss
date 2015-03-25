@@ -1,6 +1,6 @@
 <% require themedCSS('hots') %>
     <section class="home-page-content">
-        <div style="position: relative;">
+        <div style="position: relative; height: auto;" class="hide-for-small">
         <% with $HomePageConfig %>
             <ul class="example-orbit" data-orbit data-options="animation:fade;next_on_click:false;timer:false;navigation_arrows:false;bullets:false;slide_number:false;">
                 <li data-orbit-slide="heroes">
