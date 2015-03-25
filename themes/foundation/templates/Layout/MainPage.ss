@@ -51,7 +51,7 @@
                         <% loop $LastArts.Limit(6) %>
                             <li>
                                 <a class="th" role="button" aria-label="Thumbnail" href="$AbsoluteLink">
-                                    <img class="art-thumbnail" title="$Title" src="$Image.CroppedImage(230, 230).getUrl()" />
+                                    <img class="art-thumbnail" title="$Title" src="$Image.CroppedImage(290, 290).getUrl()" />
                                     <p class="crop-text">$Title</p>
                                 </a>
                             </li>
