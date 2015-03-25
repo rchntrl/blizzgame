@@ -177,6 +177,10 @@
 .hero-thumbnail__link.the-lost-vikings {
   background-position: 0 -2376px;
 }
+.hero-thumbnail__link.sylvanas {
+  background-position: 0 -2448px;
+}
+
 .hero-thumbnail__link {
   width: 64px;
   height: 72px;
