@@ -16,7 +16,6 @@
     position: relative;
 }
 .art-container .gallery-art {
-    min-width: 500px;
     height: auto;
 }
 .art-container .art-navigation-control {
