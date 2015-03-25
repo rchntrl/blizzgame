@@ -5,6 +5,18 @@
 @ImageDir: "@{ThemeDir}/images/";
 @blueColor: #00B4FF;
 
+button,
+.button {
+  background-color: @BlizzgameColor;
+}
+
+button:hover,
+button:focus,
+.button:hover,
+.button:focus {
+  background-color: lighten(@BlizzgameColor, 10%);
+}
+
 .chronicle-section {
   article {
     background-color: @BlizzgameColor;

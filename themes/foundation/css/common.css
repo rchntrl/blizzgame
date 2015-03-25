@@ -100,28 +100,45 @@
     color: #fff;
 }
 
+#hearthstone-section,
 #heroes-section {
     background-color: transparent;
     background-size: cover;
+    height: 500px;
 }
 
 #heroes-section.panel p,
 #heroes-section.panel a,
-#heroes-section.blizzgame-panel li,
+#heroes-section.panel li,
 #heroes-section.panel dl {
     color: #fff;
+    font-size: 0.9rem;
 }
 
 #heroes-section.panel a {
     text-decoration: underline;
 }
-#heroes-section .page__title {
+#heroes-section .widget-title {
     font-family: "Metronic", "Myriad Pro", Myriad, Arial, sans-serif;
     font-weight: 700;
     color: #ffffff;
     line-height: 1.2;
     text-shadow: 0 0 1rem #009cff;
     text-transform: uppercase;
+}
+
+#hearthstone-section.panel .widget-title {
+    font-family: "Bliz Quadrata", Times New Roman, Serif;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: #fff;
+}
+#hearthstone-section.panel p,
+#hearthstone-section.panel a,
+#hearthstone-section.panel li,
+#hearthstone-section.panel dl {
+    color: #fff;
+    font-size: 0.9rem;
 }
 
 li .th p {
@@ -138,6 +155,9 @@ li .th p {
 .blizzgame-panel .gallery-list .th p {
     background-color: rgba(22, 35, 49, 0.51);
     color: #fff;
+}
+.blizzgame-panel .gallery-list .th:hover {
+    opacity: .5;
 }
 
 .news-list {
@@ -397,4 +417,12 @@ li .th p {
 
 .footer .side-nav li a:not(.button):hover {
     color: #ff0000
+}
+
+
+@font-face {
+    font-family: 'Bliz Quadrata';
+    font-weight: normal;
+    font-style: normal;
+    src: local('Bliz Quadrata'), url('../fonts/bliz-quadrata/bliz-quadrata.woff?v=58-15') format('woff');
 }

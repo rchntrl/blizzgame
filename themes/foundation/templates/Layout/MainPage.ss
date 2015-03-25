@@ -1,23 +1,12 @@
 <% require themedCSS('hots') %>
-<div class="orbit-container">
-    <ul class="example-orbit" data-orbit>
-        <% loop $OrbitNews.Limit(7) %>
-            <li>
-                <a href="$alternateAbsoluteLink"><img src="$Impression.CroppedImage(1924, 530).getUrl()" alt="slide 1" /></a>
-                <div class="orbit-caption">
-                    $Title
-                </div>
-            </li>
-        <% end_loop %>
-    </ul>
-</div>
-<div>
     <section class="home-page-content">
+        <div>
         <% with $HomePageConfig %>
-            <div  style="background: url($HeroesBackground.getUrl()); background-size: cover">
-                <div id="heroes-section" class="panel">
-                    <h2 class="page__title text-center">Heroes of the Storm</h2>
-                    <h3 class="page__title text-center">Герои недели</h3>
+        <ul class="example-orbit" data-orbit data-options="animation:fade;next_on_click:false;timer:false;navigation_arrows:false;bullets:false;slide_number:false;">
+            <li data-orbit-slide="heroes">
+                <div id="heroes-section" class="panel" style="background: url($HeroesBackground.getUrl()); background-size: cover">
+                    <h2 class="widget-title text-center">Heroes of the Storm</h2>
+                    <h3 class="widget-title text-center">Герои недели</h3>
                     <div class="hero-select-area">
                         <ul class="inline-list hero-widget__thumbnail-list">
                             <% loop $HeroesRotation %>
@@ -32,12 +21,26 @@
                             <% end_loop %>
                         </ul>
                     </div>
-                    <div class="sales-text">
+                    <div class="widget-text">
                         $HeroesSaleText
                     </div>
                 </div>
-            </div>
+            </li>
+            <li data-orbit-slide="hearthstone">
+                <div id="hearthstone-section" class="panel" style="background: url($HearthBackground.getUrl()); background-size: cover">
+                    <h2 class="widget-title text-center">HEARTHSTONE</h2>
+                    <div class="widget-text">
+                        $HeroesSaleText
+                    </div>
+                </div>
+            </li>
+        </ul>
         <% end_with %>
+        <ul class="button-group">
+            <li><a data-orbit-link="heroes" class="small button">Heroes of the Storm</a></li>
+            <li><a data-orbit-link="hearthstone" class="small button">Hearthstone</a></li>
+        </ul>
+        </div>
         <div class="row">
             <div class="large-7 columns">
                 <div class="panel blizzgame-panel">

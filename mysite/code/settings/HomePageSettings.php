@@ -17,12 +17,14 @@ class HomePageSettings extends DataObject {
         "UseThisOne" => "Boolean",
         'HeroesRotation' => 'Varchar(255)',
         'HeroesSaleText' => 'HTMLText',
+        'HearthStoneText' => 'HTMLText',
         'OrbitLimit' => 'Int',
     );
 
     static $has_one = array(
         'UsedBy' => 'HomePage',
         'HeroesBackground' => 'Image',
+        'HearthBackground' => 'Image',
     );
 
     static $summary_fields = array(
@@ -68,6 +70,7 @@ class HomePageSettings extends DataObject {
         $fields->removeByName(array(
             'HeroesRotation',
             'HeroesBackground',
+            'HearthBackground',
         ));
 
         if (Member::currentUser()->inGroup('administrators')) {
@@ -83,6 +86,9 @@ class HomePageSettings extends DataObject {
             $fields->addFieldToTab('Root.Main', $tabSet);
             $fields->addFieldsToTab('Root.Main.MainPageSettings.HeroesOfTheStorm', array(
                 $fields->dataFieldByName('HeroesSaleText')
+            ));
+            $fields->addFieldsToTab('Root.Main.MainPageSettings.HearthStone', array(
+                $fields->dataFieldByName('HearthStoneText')
             ));
         }
 
@@ -116,14 +122,15 @@ class HomePageSettings extends DataObject {
                 8,
                 true
             ),
-            $this->getUploadField('HeroesBackground', 'Background Image')
+            $this->getUploadField('HeroesBackground', 'Heroes Background')
         );
     }
 
     protected function HearthStoneTab() {
         return Tab::create(
             'HearthStone',
-            _t('MainPage.HS', 'HearthStone')
+            _t('MainPage.HS', 'HearthStone'),
+            $this->getUploadField('HearthBackground', 'HearthStone Background')
         );
     }
 
