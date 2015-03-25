@@ -1,7 +1,7 @@
 <div class="gallery-section">
     <h1 class="gallery-title">$Title</h1>
     <% include FilterWidget %>
-    <ul class="gallery-list clearing-thumbs large-block-grid-5 small-block-grid-4">
+    <ul class="gallery-list clearing-thumbs large-block-grid-5 medium-block-grid-4 small-block-grid-2">
         <% loop GalleryImages %>
             <li>
                 <a href="$Link" class="th" role="button" aria-label="Thumbnail" >
