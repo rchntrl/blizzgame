@@ -1,6 +1,7 @@
 .hero-select-area {
   position: relative;
-  height: 140px;
+  padding-bottom: 25px;
+  float: left;
 }
 
 .hero-widget__thumbnail-list {
