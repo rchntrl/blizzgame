@@ -105,7 +105,7 @@
 #heroes-section {
     background-color: transparent;
     background-size: cover;
-    min-height: 500px;
+    float: left;
     height: auto;
 }
 
