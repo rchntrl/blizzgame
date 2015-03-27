@@ -2,7 +2,7 @@
     <section class="home-page-content">
         <div style="position: relative; height: auto;" class="hide-for-small">
         <% with $HomePageConfig %>
-            <ul class="example-orbit" data-orbit data-options="animation:fade;next_on_click:false;timer:false;navigation_arrows:false;bullets:false;slide_number:false;">
+            <ul class="example-orbit" data-orbit data-options="variable_height:true;animation:fade;next_on_click:false;timer:false;navigation_arrows:false;bullets:false;slide_number:false;">
                 <li data-orbit-slide="heroes">
                     <div id="heroes-section" class="panel" style="background: url($HeroesBackground.getUrl()); background-size: cover">
                         <h2 class="widget-title text-center">Heroes of the Storm</h2>
