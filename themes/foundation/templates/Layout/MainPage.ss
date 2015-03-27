@@ -4,7 +4,7 @@
         <% with $HomePageConfig %>
             <ul class="example-orbit" data-orbit data-options="variable_height:true;animation:fade;next_on_click:false;timer:false;navigation_arrows:false;bullets:false;slide_number:false;">
                 <li data-orbit-slide="heroes">
-                    <div id="heroes-section" class="panel" style="background: url($HeroesBackground.getUrl()); background-size: cover">
+                    <div id="heroes-section" class="panel" style="background-image: url($HeroesBackground.getUrl());">
                         <h2 class="widget-title text-center">Heroes of the Storm</h2>
                         <h3 class="widget-title text-center">Герои недели</h3>
                         <div class="hero-select-area">
@@ -27,7 +27,7 @@
                     </div>
                 </li>
                 <li data-orbit-slide="hearthstone">
-                    <div id="hearthstone-section" class="panel" style="background: url($HearthBackground.getUrl()); background-size: cover">
+                    <div id="hearthstone-section" class="panel" style="background-image: url($HearthBackground.getUrl());">
                         <h2 class="widget-title text-center">HEARTHSTONE</h2>
                         <div class="widget-text">
                             $HearthStoneText
