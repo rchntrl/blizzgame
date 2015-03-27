@@ -36,7 +36,7 @@
                 </li>
             </ul>
         <% end_with %>
-            <div style="position: absolute; bottom: 0; right: 0;">
+            <div style="position: absolute; bottom: 0; right: 0; z-index: 1000;">
                 <ul class="button-group">
                     <li><a data-orbit-link="heroes" class="small button">Heroes of the Storm</a></li>
                     <li><a data-orbit-link="hearthstone" class="small button">Hearthstone</a></li>
