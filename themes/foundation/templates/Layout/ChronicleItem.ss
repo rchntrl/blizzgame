@@ -1,3 +1,4 @@
+<% require themedCSS('lightbox') %>
 <div class="page-section small-12 medium-12 large-12 columns">
     <div class="chronicle-section">
         <h1>$Title</h1>
@@ -15,3 +16,4 @@
     </div>
     <% include CommentList %>
 </div>
+<script src="$ThemeDir/javascript/lightbox.min.js"></script>
