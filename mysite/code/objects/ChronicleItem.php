@@ -65,7 +65,7 @@ class ChronicleItem extends DataObject implements PermissionProvider {
         ));
         /** @var UploadField $uploadField */
         $uploadField = $fields->dataFieldByName('MenuImage');
-        $uploadField->setFolderName('Chronicles/' . Subsite::currentSubsite() . '/MenuItems/');
+        $uploadField->setFolderName('Chronicles/' . Subsite::currentSubsiteID() . '/MenuItems/');
         $fields->addFieldsToTab('Root', $this->getElementLinksTab());
         return $fields;
     }
