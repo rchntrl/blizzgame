@@ -24,6 +24,7 @@ class ChronicleItem extends DataObject implements PermissionProvider {
     );
 
     static $has_one = array (
+        'MenuImage' => 'Image',
         'HolderPage' => 'ChroniclePage'
     );
 
