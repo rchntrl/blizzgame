@@ -63,6 +63,9 @@ class ChronicleItem extends DataObject implements PermissionProvider {
             'Monsters', 'Places', 'Items',
             'HolderPageID'
         ));
+        /** @var UploadField $uploadField */
+        $uploadField = $fields->dataFieldByName('MenuImage');
+        $uploadField->setFolderName('Chronicles/' . Subsite::currentSubsite() . '/MenuItems/');
         $fields->addFieldsToTab('Root', $this->getElementLinksTab());
         return $fields;
     }
