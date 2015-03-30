@@ -1,4 +1,3 @@
-<% if $current_stage == 'Live' %>
 <!-- KAMENT -->
 <div id="kament_comments"></div>
 <script type="text/javascript">
@@ -13,4 +12,3 @@
 </script>
 <noscript>Для отображения комментариев нужно включить Javascript</noscript>
 <!-- /KAMENT -->
-<% end_if %>
