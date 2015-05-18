@@ -16,7 +16,7 @@
     },
     "require": {
         "php": ">=5.3.2",
-        "silverstripe/framework": ">=3.1",
+        "silverstripe/framework": ">=3.0",
         "silverstripe/cms": "~3.1",
         "silverstripe/subsites": "1.2.*@dev",
         "silverstripe-australia/gridfieldextensions": "*",
