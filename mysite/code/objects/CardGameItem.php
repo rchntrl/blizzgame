@@ -7,6 +7,7 @@
  * @property String TitleRU
  * @method Image CoverCard
  * @method CardGamePage HolderPage
+ * @method GalleryImage LinkToArt
  */
 class CardGameItem extends DataObject {
 
@@ -38,7 +39,7 @@ class CardGameItem extends DataObject {
     );
 
     private static $has_one = array (
-        'LinkToArt' => 'GalleryImage',
+        'LinkToArt' => 'Link',
         'HolderPage' => 'CardGamePage',
         'CoverCard' => 'Image',
         'PromoCard' => 'Image',
@@ -56,9 +57,9 @@ class CardGameItem extends DataObject {
         $fields = parent::getCMSFields();
         $fields->removeByName(array(
             'Race', 'Class', 'Profession', 'Faction', 'Artist',
-            'LinkToArt', 'HolderPage',
+            'LinkToArtID', 'HolderPage',
         ));
-
+        $fields->addFieldToTab('Root.LinkToArt', LinkField::create('LinkToArtID'));
         $fields->replaceField('CoverCard', $this->getUploadField('CoverCard'));
         $fields->replaceField('PromoCard', $this->getUploadField('PromoCard'));
 
@@ -73,7 +74,7 @@ class CardGameItem extends DataObject {
      */
     protected function getUploadField($name, $title = null) {
         $field = new UploadField($name, $title);
-        $field->setFolderName('CardGame/' . $this->HolderPage()->MenuTitle);
+        $field->setFolderName('CardGame/' . $this->HolderPage()->URLSegment);
         return $field;
     }
 }
