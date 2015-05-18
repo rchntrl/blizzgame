@@ -39,7 +39,7 @@
             </button>
             <br>
             <ul id="filter-by-tag" data-dropdown-content class="small f-dropdown" aria-hidden="true" tabindex="-1">
-                <li  data-ng-hide="isUsedTag(tag)" data-ng-repeat="tag in tags | orderBy : 'TitleRU'">
+                <li  data-ng-hide="isUsedTag(tag)" data-ng-repeat="tag in gallery.tags | orderBy : 'TitleRU'">
                     <a data-ng-click="addFilterTag(tag)" href="javascript:;"><span data-ng-bind="tag.Title"></span></a>
                 </li>
             </ul>

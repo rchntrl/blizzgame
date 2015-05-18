@@ -22,6 +22,7 @@
         "silverstripe-australia/gridfieldextensions": "*",
         "colymba/gridField-bulk-editing-tools" : "2.1.1",
         "firesphere/silverstripe-newsmodule": "dev-master",
+        "sheadawson/silverstripe-linkable": "dev-master",
         "silverstripe/forum": "0.8.*@dev",
         "wilr/silverstripe-facebookconnect": "dev-master",
         "rchntrl/silverstripe-vk-connect": "dev-master",
