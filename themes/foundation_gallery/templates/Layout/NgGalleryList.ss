@@ -4,11 +4,11 @@
     <dl class="sub-nav">
         <dt><%t Gallery.FILTER_SIZE_TITLE 'Фильтр по размерам' %>:</dt>
         <dd data-ng-repeat="item in gallery.sizes"
-            data-ng-class="{ 'active': item.Name == appliedFilters.size }">
+            data-ng-class="{ 'active': item.Name == gallery.appliedFilters.size }">
             <a data-ng-click="selectSize(item.Name)" href="javascript:;" title="{{ item.Title }}" >{{ item.MenuTitle }}</a>
         </dd>
     </dl>
-    <dl id="applied-filters" class="sub-nav" data-ng-show="appliedFilters.tag.length">
+    <dl id="applied-filters" class="sub-nav" data-ng-show="gallery.appliedFilters.tag.length">
         <h4 id="inline-lists"></h4>
         <dt><%t Gallery.FILTER_SIZE_TITLE 'Примененные теги' %>:</dt>
         <dd data-ng-repeat="tag in gallery.appliedFilters.tag | orderBy : 'TitleRU'">
@@ -27,7 +27,7 @@
             </a>
             <br>
             <ul id="filter-by-author" data-dropdown-content class="small f-dropdown" aria-hidden="true" tabindex="-1">
-                <li data-ng-hide="artist.LastLinkSegment == gallerySearch.author"  data-ng-repeat="artist in gallery.artists">
+                <li data-ng-hide="artist.LastLinkSegment == gallery.gallerySearch.author"  data-ng-repeat="artist in gallery.artists">
                     <a data-ng-click="setAuthor(artist)" href="javascript:;"><span>{{ artist.Title }}</span></a>
                 </li>
             </ul>
