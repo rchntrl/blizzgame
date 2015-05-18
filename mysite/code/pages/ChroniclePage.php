@@ -7,7 +7,7 @@
  */
 class ChroniclePage extends Page {
 
-    static $has_many = array (
+    private static $has_many = array (
         'ChronicleItems' => 'ChronicleItem'
     );
 
@@ -28,11 +28,11 @@ class ChroniclePage extends Page {
 
 class ChroniclePage_Controller extends Page_Controller {
 
-    static $allowed_actions = array(
+    private static $allowed_actions = array(
         'view',
     );
 
-    static $url_handlers = array(
+    private static $url_handlers = array(
         '$ID!' => 'view',
     );
 

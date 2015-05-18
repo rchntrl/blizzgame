@@ -8,7 +8,7 @@
  * @property string LastLinkSegment
  * @method Image Icon()
  * @method Subsite Subsite()
- * @method SiteTree LinkToPage()
+ * @method Page LinkToPage()
  * @method ElementLinkGroup ElementLinkGroup()
  */
 class ElementLink extends DataObject implements PermissionProvider {
@@ -35,7 +35,7 @@ class ElementLink extends DataObject implements PermissionProvider {
         'Icon' => 'Image',
     );
 
-    static $default_sort = 'TitleRU ASC';
+    private static $default_sort = 'TitleRU ASC';
 
     private static $searchable_fields = array(
         'TitleEN', 'TitleRU', 'ElementLinkGroupID'
@@ -50,6 +50,12 @@ class ElementLink extends DataObject implements PermissionProvider {
         'SubsiteID' => 'Subsite',
         'ElementLinkGroupID' => 'Group'
     );
+
+    public function toMap() {
+        $map = parent::toMap();
+        $map['Title'] = $this->getTitle();
+        return $map;
+    }
 
     public function providePermissions() {
         return array(

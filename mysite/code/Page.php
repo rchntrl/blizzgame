@@ -14,10 +14,13 @@ class Page extends SiteTree {
     private static $has_one = array(
     );
 
+    /**
+     * @return bool|Image
+     */
     function Icon() {
         /** @var ElementLink $tag */
         $tag = DataObject::get_one('ElementLink', 'ElementLink.LinkToPageID = ' . Convert::raw2sql($this->ID));
-        return $tag ? $tag->Icon() : false;
+        return $tag ? $tag->Icon() : SiteConfig::current_site_config()->DefaultElementImage();
     }
 
     function alternateAbsoluteLink() {
@@ -35,6 +38,23 @@ class Page extends SiteTree {
     public function LatestMembers() {
         return Member::get_one('Member', '', true, 'ID DESC');
     }
+
+    /**
+     * @param int $numWords
+     * @param string $add
+     * @return string
+     */
+    public function Summary($numWords = 26, $add = '...') {
+        $content = Convert::html2raw($this->Content);
+        $summary = explode(' ', $content, $numWords + 1);
+        if(count($summary) <= $numWords - 1) {
+            $summary = $content;
+        } else {
+            array_pop($summary);
+            $summary = implode(' ', $summary) . $add;
+        }
+        return $summary;
+    }
 }
 
 /**
@@ -45,6 +65,7 @@ class Page extends SiteTree {
  * @method  string getFacebookAppId
  * @method  mixed getFacebookSession
  * @method  getFacebookCallbackLink
+ * @method Browser getBrowser
  */
 class Page_Controller extends ContentController {
 
@@ -55,16 +76,40 @@ class Page_Controller extends ContentController {
         return DataObject::get('Subsite', "", "ID ASC");
     }
 
-    public function ajaxTitle() {
-        return $this->MenuTitle();
+    protected function metaTags() {
+        return array(
+            'metaDescription' => $this->MetaDescription,
+            'metaKeywords' => $this->MetaKeywords,
+            'title' => $this->MenuTitle(),
+        );
     }
 
     public function init() {
         parent::init();
-        Requirements::javascript($this->ThemeDir() .  'js/jquery.min.js');
-        if (Member::currentUser() && !Member::currentUser()->Nickname) {
-            //$this->redirect('http://www.blizzgame.ru/forummemberprofile/edit/' . Member::currentUserID());
+        Requirements::javascript(THEMES_DIR . '/foundation/javascript/modernizr.js');
+        Requirements::javascript(THEMES_DIR. '/foundation/javascript/foundation.min.js');
+        Requirements::javascript(THEMES_DIR. '/foundation/javascript/foundation/foundation.topbar.js');
+        Requirements::javascript(THEMES_DIR. '/foundation/js/jquery.min.js');
+        Requirements::javascript(THEMES_DIR. '/foundation/javascript/app.js');
+        Requirements::javascript(THEMES_DIR. '/foundation/javascript/init.js');
+    }
+
+    /**
+     * @return bool
+     */
+    public function angularSupport() {
+        if ($this->getBrowser()->getName() == 'ie') {
+            return $this->getBrowser()->getVersion() > 8.0;
         }
+        if ($this->getBrowser()->getName() == 'opera') {
+            return $this->getBrowser()->getVersion() >= 15;
+        }
+
+        if (!Member::currentUser()) {
+            return permission::check('EDIT_GALLERY') ? true : false;
+        }
+
+        return true;
     }
 
     public function isForumBreadcrumbs($text) {

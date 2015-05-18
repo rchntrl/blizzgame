@@ -9,6 +9,7 @@ After:
 # Caution: Indentation through two spaces, not tabs
 SSViewer:
   theme: 'foundation'
+  rewrite_hash_links: false
 NewsAdmin:
   extensions:
     - SubsiteMenuExtension

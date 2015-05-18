@@ -11,7 +11,7 @@
  */
 class CalendarRelease extends DataObject {
 
-    static $db = array (
+    private static $db = array (
         'Title' => 'Varchar(255)',
         'Date' => 'Date',
         'DateEnd' => 'Date',
@@ -20,7 +20,7 @@ class CalendarRelease extends DataObject {
         'Type' => "Enum('Product,Event','Product')",
     );
 
-    static $default_sort = 'Date DESC';
+    private static $default_sort = 'Date DESC';
 
     public function onBeforeWrite() {
         parent::onBeforeWrite();

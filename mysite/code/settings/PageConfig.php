@@ -9,18 +9,18 @@
  */
 class PageConfig extends DataObject {
 
-    static $db = array(
+    private static $db = array(
         'Title' => 'Varchar(255)',
         "UseThisOne" => "Boolean",
         'View' => "Enum('BookView,AlbumView')",
     );
 
-    static $has_one = array(
+    private static $has_one = array(
         'UsedBy' => 'Page',
         'Subsite' => 'Subsite',
     );
 
-    static $summary_fields = array(
+    private static $summary_fields = array(
         "Title" => "Title",
         "UseThisOneNice" => "Use this configuration set"
     );

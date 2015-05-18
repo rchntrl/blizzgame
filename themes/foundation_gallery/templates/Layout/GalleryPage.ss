@@ -1,15 +1,21 @@
-<div class="gallery-section">
-    <h1 class="gallery-title">$Title</h1>
-    <% include FilterWidget %>
-    <ul class="gallery-list clearing-thumbs large-block-grid-5 medium-block-grid-4 small-block-grid-2">
-        <% loop GalleryImages %>
-            <li>
-                <a href="$Link" class="th" role="button" aria-label="Thumbnail" >
-                    <img class="art-thumbnail" title="$Title" src="$Image.CroppedImage(290, 290).getUrl()" />
-                    <p class="crop-text">$Title</p>
-                </a>
-            </li>
-        <% end_loop %>
-    </ul>
-    <% include Imagination %>
-</div>
+<% if $angularSupport %>
+    <div data-ng-app="gallery" data-ng-controller="arts" data-ng-init="gallery.reloadArts=true">
+        <div data-ng-view=""></div>
+    </div>
+<% else %>
+    <div class="gallery-section">
+        <h1 class="gallery-title">$Title</h1>
+        <% include FilterWidget %>
+        <ul class="gallery-list clearing-thumbs large-block-grid-5 medium-block-grid-4 small-block-grid-2">
+            <% loop GalleryImages %>
+                <li>
+                    <a href="$Link" class="th" role="button" aria-label="Thumbnail" >
+                        <img class="art-thumbnail" title="$Title" src="$Image.CroppedImage(290, 290).getUrl()" />
+                        <p class="crop-text">$Title</p>
+                    </a>
+                </li>
+            <% end_loop %>
+        </ul>
+        <% include Imagination %>
+    </div>
+<% end_if %>

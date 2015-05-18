@@ -6,7 +6,7 @@
  */
 class MediaPage extends Page {
 
-    static $has_many = array (
+    private static $has_many = array (
         'MediaItems' => 'Media'
     );
 
@@ -34,15 +34,17 @@ class MediaPage extends Page {
 
 /**
  * Class MediaPage_Controller
+ *
+ * @method SS_List MediaItems
  */
 class MediaPage_Controller extends Page_Controller
 {
 
-    static $allowed_actions = array(
+    private static $allowed_actions = array(
         'view',
     );
 
-    static $url_handlers = array(
+    private static $url_handlers = array(
         '$ID!' => 'view',
     );
 
@@ -58,12 +60,11 @@ class MediaPage_Controller extends Page_Controller
 
     /**
      * @param int $itemsPerPage
-     * @param SQLQuery|null $query
      * @return null|PaginatedList
      */
     public function getPaginatedPages($itemsPerPage = 12)
     {
-        $pages = new PaginatedList($this->MediaItems(), $this->request);
+        $pages = new PaginatedList($this->MediaItems(), $this->getRequest());
         $pages->setLimitItems($itemsPerPage);
         return $pages;
     }

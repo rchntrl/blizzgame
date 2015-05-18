@@ -26,7 +26,7 @@
  */
 class Book extends DataObject {
 
-    public static $db = array (
+    private static $db = array (
         'TitleEN' => 'Varchar(255)',
         'TitleRU' => 'Varchar(255)',
         'CountPage' => 'Int',
@@ -49,36 +49,36 @@ class Book extends DataObject {
         'Author' => 'Varchar(255)'
     );
 
-    public static $indexes = array(
+    private static $indexes = array(
         'ID_UniqueLastLinkSegment' => array(
             'type' => 'unique',
             'value' => 'LastLinkSegment'
         )
     );
 
-    public static $has_one = array(
+    private static $has_one = array(
         'Cover' => 'Image',
         'Preview' => 'Image',
         'HolderPage' => 'BooksHolderPage'
     );
 
-    public static $has_many = array(
+    private static $has_many = array(
         'Chapters' => 'Chapter'
     );
 
-    public static $many_many = array(
+    private static $many_many = array(
         'Authors' => 'PeopleFace',
         'PaintsPage' => 'PeopleFace',
         'PaintsCover' => 'PeopleFace',
     );
 
-    static $default_sort = 'DateSaleEN DESC';
+    private static $default_sort = 'DateSaleEN DESC';
 
-    static $summary_fields = array(
+    private static $summary_fields = array(
         'ID', 'TitleEN', 'TitleRU', 'Author'
     );
 
-    static $searchable_fields = array(
+    private static $searchable_fields = array(
         'HolderPage.SubsiteID',
         'HolderPageID',
         'Category',

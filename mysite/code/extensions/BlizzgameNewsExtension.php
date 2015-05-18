@@ -6,11 +6,11 @@
  */
 class BlizzgameNewsExtension extends DataExtension {
 
-    static $db = array(
+    private static $db = array(
         'ShowInCarousel' => "Boolean"
     );
 
-    static $has_one = array(
+    private static $has_one = array(
         'HolderPage' => 'NewsHolderPage'
     );
 

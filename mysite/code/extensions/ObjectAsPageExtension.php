@@ -6,6 +6,7 @@
  * Don't use for children objects of the object which already use this extension
  */
 class ObjectAsPageExtension extends DataExtension {
+
     /**
      * @return string
      */
@@ -19,6 +20,12 @@ class ObjectAsPageExtension extends DataExtension {
 
     public function alternateAbsoluteLink() {
         return $this->owner->HolderPage()->alternateAbsoluteLink() . $this->owner->LastLinkSegment;
+    }
+
+    public function toMap() {
+        $map = $this->getOwner()->toMap();
+        $map['Link'] = $this->Link();
+        return $map;
     }
 
     /**

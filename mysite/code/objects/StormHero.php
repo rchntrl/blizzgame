@@ -11,7 +11,7 @@
  */
 class StormHero extends DataObject implements PermissionProvider {
 
-    static $db = array(
+    private static $db = array(
         'TitleEN' => 'Varchar(255)',
         'TitleRU' => 'Varchar(255)',
         'LastLinkSegment' => 'Varchar(255)',
@@ -19,19 +19,19 @@ class StormHero extends DataObject implements PermissionProvider {
         'Content' => 'HTMLText',
     );
 
-    public static $has_one = array(
+    private static $has_one = array(
         'Image' => 'Image'
     );
 
-    static $summary_fields = array(
+    private static $summary_fields = array(
         'ID', 'TitleEN', 'TitleRU'
     );
 
-    static $default_sort = "\"AccessLevel\" ASC, \"TitleEN\" ASC";
+    private static $default_sort = "\"AccessLevel\" ASC, \"TitleEN\" ASC";
 
-    static  $plural_name = 'Heroes of the Storm';
+    private static  $plural_name = 'Heroes of the Storm';
 
-    static  $singular_name = 'Hero of the Storm';
+    private static  $singular_name = 'Hero of the Storm';
 
     public function providePermissions()
     {

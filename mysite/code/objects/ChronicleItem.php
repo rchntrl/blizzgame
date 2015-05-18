@@ -8,7 +8,7 @@
  */
 class ChronicleItem extends DataObject implements PermissionProvider {
 
-    static $db = array (
+    private static $db = array (
         'Title' => 'Varchar(255)',
         'LastLinkSegment' => 'Varchar',
         'Content' => 'HTMLText',
@@ -23,12 +23,12 @@ class ChronicleItem extends DataObject implements PermissionProvider {
         'Items' => 'Varchar(255)',
     );
 
-    static $has_one = array (
+    private static $has_one = array (
         'MenuImage' => 'Image',
         'HolderPage' => 'ChroniclePage'
     );
 
-    static $default_sort = 'NumberSort ASC';
+    private static $default_sort = 'NumberSort ASC';
 
     public function providePermissions()
     {

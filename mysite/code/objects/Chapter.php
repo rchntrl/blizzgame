@@ -8,21 +8,21 @@
  */
 class AttachedImageChapter extends DataObject {
 
-    static $db = array(
+    private static $db = array(
         'NumberSort' => 'Int'
     );
 
-    static $has_one = array(
+    private static $has_one = array(
         'Image' => 'Image',
         'Chapter' => 'Chapter'
     );
 
-    static $summary_fields = array(
+    private static $summary_fields = array(
         'Image.Title',
         'Thumbnail',
     );
 
-    static $default_sort = array(
+    private static $default_sort = array(
         'NumberSort DESC',
         'Created DESC',
     );
@@ -56,32 +56,32 @@ class AttachedImageChapter extends DataObject {
  * @method Book Book()
  */
 class Chapter extends DataObject implements ObjectAsPageProvider {
-    static $db = array (
+    private static $db = array (
         'Title' => 'Varchar(255)',
         'Content' => 'HTMLText',
         'NumberSort' => 'Int'
     );
 
-    static $has_many = array(
+    private static $has_many = array(
         'AttachedImages' => 'AttachedImageChapter'
     );
 
-    static $has_one = array (
+    private static $has_one = array (
         'Book' => 'Book'
     );
 
-    static $default_sort = array(
+    private static $default_sort = array(
         'NumberSort ASC',
         'Created ASC',
     );
 
-    static $summary_fields = array(
+    private static $summary_fields = array(
         'ID',
         'Title',
         'NumberSort'
     );
 
-    static $searchable_fields = array(
+    private static $searchable_fields = array(
         'Title'
     );
 

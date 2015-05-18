@@ -12,7 +12,7 @@
  */
 class HomePageSettings extends DataObject {
 
-    static $db = array(
+    private static $db = array(
         'Title' => 'Varchar(255)',
         "UseThisOne" => "Boolean",
         'HeroesRotation' => 'Varchar(255)',
@@ -21,13 +21,13 @@ class HomePageSettings extends DataObject {
         'OrbitLimit' => 'Int',
     );
 
-    static $has_one = array(
+    private static $has_one = array(
         'UsedBy' => 'HomePage',
         'HeroesBackground' => 'Image',
         'HearthBackground' => 'Image',
     );
 
-    static $summary_fields = array(
+    private static $summary_fields = array(
         "Title" => "Title",
         "UseThisOneNice" => "Use this configuration set"
     );

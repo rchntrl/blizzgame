@@ -13,23 +13,38 @@
 }
 .art-container {
     position: relative;
+    min-height: 500px;
 }
 .art-container .gallery-art {
     height: auto;
 }
+
 .art-container .art-navigation-control {
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;
 }
+
 .art-container .art-navigation-control li span,
 .art-container .art-navigation-control li a {
     margin-bottom: 0;
 }
+
 .art-container .art-navigation-control .previous .fi-play:before {
     transform: rotate(180deg);
 }
+
+.art-navigation-control img {
+    width: 50px;
+    padding: 2px;
+    border: 1px #ddd solid;
+}
+
 #filter-by-tag,
 #filter-by-author {
     height: 300px;
     overflow-y: auto;
+}
+
+.loading {
+    opacity: 0.6;
 }

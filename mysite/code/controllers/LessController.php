@@ -2,7 +2,7 @@
 
 class LessController extends Controller {
 
-    public static $allowed_actions = array(
+    private static $allowed_actions = array(
         'variables',
     );
 

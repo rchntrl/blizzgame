@@ -14,7 +14,7 @@
  */
 class Media extends DataObject implements PermissionProvider {
 
-    static $db = array (
+    private static $db = array (
         'TitleEN' => 'Varchar(255)',
         'TitleRU' => 'Varchar(255)',
         'LastLinkSegment' => 'Varchar(255)',
@@ -26,20 +26,20 @@ class Media extends DataObject implements PermissionProvider {
         'Category' => "Enum('soundtrack,behind-the-scenes-dvd')",
     );
 
-    static $has_one = array (
+    private static $has_one = array (
         'Cover' => 'Image',
         'HolderPage' => 'MediaPage'
     );
 
-    static $many_many = array(
+    private static $many_many = array(
         'Authors' => 'PeopleFace'
     );
 
-    static $summary_fields = array(
+    private static $summary_fields = array(
         'ID', 'Title', 'DateSaleEN'
     );
 
-    static $default_sort = 'DateSaleEN DESC';
+    private static $default_sort = 'DateSaleEN DESC';
 
     public function providePermissions()
     {

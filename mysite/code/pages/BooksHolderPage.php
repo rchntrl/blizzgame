@@ -6,7 +6,7 @@
  */
 class BooksHolderPage extends Page implements PermissionProvider {
 
-    static $has_many = array(
+    private static $has_many = array(
         'Books' => 'Book'
     );
 
@@ -55,6 +55,11 @@ class BooksHolderPage extends Page implements PermissionProvider {
     }
 }
 
+/**
+ * Class BooksHolderPage_Controller
+ *
+ * @method SS_List Books()
+ */
 class BooksHolderPage_Controller extends Page_Controller {
 
     private static $allowed_actions = array(
@@ -62,18 +67,17 @@ class BooksHolderPage_Controller extends Page_Controller {
         'viewChapter',
     );
 
-    static $url_handlers = array(
+    private static $url_handlers = array(
         '$ID!/translate/$Number' => 'viewChapter',
         '$ID!' => 'viewBook',
     );
 
     /**
-     * @return SQLQuery
+     * @return SQLSelect
      */
     public function getQueryBuilder() {
-        $qb = new SQLQuery();
+        $qb = new SQLSelect('*', 'Book');
         $qb
-            ->setFrom('Book')
             ->setOrderBy(array('Book.DateSaleEN DESC'))
             ->setWhere('Book.HolderPageID = ' . $this->ID) // Books must belong to this page
         ;
@@ -113,27 +117,13 @@ class BooksHolderPage_Controller extends Page_Controller {
 
     /**
      * @param int $itemsPerPage
-     * @param SQLQuery|null $query
+     * @param SQLSelect|null $query
      * @return null|PaginatedList
      */
-    public function getPaginatedPages(SQLQuery $query = null,  $itemsPerPage = 12)
+    public function getPaginatedPages($itemsPerPage = 12)
     {
-        if (!$query) {
-            $query = $this->getQueryBuilder();
-        }
-        $start = $this->request->getVar('start');
-        $query->setLimit($itemsPerPage, $start ?: 0);
-        $books = new ArrayList();
-        $records = $query->execute();
-        foreach($records as $rowArray) {
-            $books->push(new Book($rowArray));
-        }
-
-        $pages = new PaginatedList($books, $this->request);
-        $pages
-            ->setLimitItems(false)
-            ->setPaginationFromQuery($query)
-        ;
+        $pages = new PaginatedList($this->Books(), $this->request);
+        $pages->setPageLength($itemsPerPage);
 
         return $pages;
     }

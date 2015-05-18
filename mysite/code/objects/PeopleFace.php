@@ -20,7 +20,7 @@ class PeopleFace extends DataObject implements ObjectAsPageProvider {
     const DEVELOPER = 'Developer';
     const ACTOR     = 'Actor';
 
-    public static $db = array (
+    private static $db = array (
         'TitleEN' => 'Varchar(255)',
         'TitleRU' => 'Varchar(255)',
         'Nick' => 'Varchar(255)',
@@ -35,16 +35,16 @@ class PeopleFace extends DataObject implements ObjectAsPageProvider {
         'WebLink' => 'Varchar(255)',
     );
 
-    public static $has_one = array (
+    private static $has_one = array (
         'Photo' => 'Image',
         'PeopleFacePage' => 'PeopleFacePage'
     );
 
-    public static $has_many = array (
+    private static $has_many = array (
          'GalleryImages' => 'GalleryImage',
     );
 
-    static $belongs_many_many = array(
+    private static $belongs_many_many = array(
         'Books' => 'Book',
     );
 
@@ -52,11 +52,11 @@ class PeopleFace extends DataObject implements ObjectAsPageProvider {
         'ID', 'TitleEN', 'TitleRU', 'Nick'
     );
 
-    static $singular_name = 'Blizz People';
+    private static $singular_name = 'Blizz People';
 
-    static $plural_name = 'Blizz Person';
+    private static $plural_name = 'Blizz Person';
 
-    static $default_sort = 'TitleEN ASC';
+    private static $default_sort = 'TitleEN ASC';
 
     public function getTitle() {
         return $this->getField('TitleEN') . ($this->getField('Nick') ? ' (' . $this->getField('Nick') . ')' : '');
@@ -71,6 +71,13 @@ class PeopleFace extends DataObject implements ObjectAsPageProvider {
      */
     public function HolderPage() {
         return $this->PeopleFacePage();
+    }
+
+    public function toMap() {
+        $map = parent::toMap();
+        $map['Title'] = $this->getTitle();
+        unset($map['Content']);
+        return $map;
     }
 
     /**

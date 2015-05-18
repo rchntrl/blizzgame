@@ -1,5 +1,8 @@
 .idea
 framework/
+reports/
+siteconfig/
+browser-information/
 cms/
 /subsites
 /googlesitemaps
