@@ -24,10 +24,10 @@ class CardGameItem extends DataObject implements PermissionProvider {
         'Rules' => 'Varchar(255)', //
         'Flavor' => 'HTMLText', // Особенность
         'Comment' =>  "HTMLText",
-        'Rarity' => "Enum('Free, Common, Uncommon, Rare, Epic, Legendary')",
-        'Type' => "Enum('Ally, Armor, Boss, Hero, Item, Location, Main-Hero, Quest, Spell, Weapon, None')",
+        'Rarity' => "Enum('None, Free, Common, Uncommon, Rare, Epic, Legendary')",
+        'Type' => "Enum('None, Ally, Armor, Boss, Hero, Item, Location, Main Hero, Quest, Spell, Weapon')",
         'Faction' => "Enum('None, Alliance, Horde, Neutral, Monster')",
-        'Class' => "Varchar(255)", // если это карта хс, то выбирают один класс, если тсг, то несколько
+        'Class' => "Enum('None, Warrior, Druid, Priest, Mage, Monk, Hunter, Paladin, Rogue, Death Knight, Warlock, Shaman')",
         'StrikeCost' => 'Int',
         'Cost' => 'Int',
         'Attack' => 'Int',
@@ -84,7 +84,7 @@ class CardGameItem extends DataObject implements PermissionProvider {
         $fields->removeByName(array(
             'Flavor', 'Rules', 'Comment'
             ,'StrikeCost', 'Cost', 'Attack', 'Defense', 'Health'
-            ,'Race', 'Class', 'Faction', 'Set'
+            ,'Race', 'Faction', 'Set'
             ,'ArtistID', 'LinkToArtID', 'HolderPageID' 
             ,'CoverCard', 'PromoCard'
         ));
@@ -125,7 +125,8 @@ class CardGameItem extends DataObject implements PermissionProvider {
         return Tab::create(
             'Description',
             _t('CardGame.DESCRIPTION_TAB', 'Описание'),
-            new TextField('Rules', 'Описание'),
+            new NumericField('Set', 'Название Сета'),
+            new TextField('Rules', 'Предписания'),
             new HtmlEditorField('Flavor', 'Особенность'),
             new HtmlEditorField('Comments', 'Комментарий')
         );
