@@ -8,46 +8,72 @@
  * @method Image CoverCard
  * @method CardGamePage HolderPage
  * @method GalleryImage LinkToArt
+ * @method PeopleFace Artist
  */
-class CardGameItem extends DataObject {
+class CardGameItem extends DataObject implements PermissionProvider {
+
+    private static  $singular_name = 'Game Card';
+
+    private static  $plural_name = 'Game Cards';
 
     private static $db = array(
         'TitleEN' => 'Varchar',
         'TitleRU' => 'Varchar',
         'Order' => 'Int',
         'Hearthstone' => 'Boolean',
-        /*'Rarity' => "Enum('Обычные,Необычные,Редкие,Эпические,Легендарные')",
-        'Type' => "Enum('None,Босс,Броня,Задание,Герой,Главный герой,Способность,Союзник,Предмет,Оружие,Местность','None')",
-        'Faction' => "Enum('None,Альянс,Орда,Серебряный Авангард,Нейтральный,Плеть,Монстры','Нейтральный')",
-        'Race' => "Varchar(255)",
-        'Class' => "Varchar(255)",
-        'Profession' => "Varchar(255)",
-        'Talent' => "Varchar(255)",
-        'Rules' => 'HTMLText',
-        'Flavor' => 'HTMLText',
-        'Cost' => 'Int',
+        'Rules' => 'Varchar(255)', //
+        'Flavor' => 'HTMLText', // Особенность
+        'Comment' =>  "HTMLText",
+        'Rarity' => "Enum('Free, Common, Uncommon, Rare, Epic, Legendary')",
+        'Type' => "Enum('Ally, Armor, Boss, Hero, Item, Location, Main-Hero, Quest, Spell, Weapon, None')",
+        'Faction' => "Enum('None, Alliance, Horde, Neutral, Monster')",
+        'Class' => "Varchar(255)", // если это карта хс, то выбирают один класс, если тсг, то несколько
         'StrikeCost' => 'Int',
+        'Cost' => 'Int',
+        'Attack' => 'Int',
         'Health' => 'Int',
-        'ATK' => 'Int',
-        'ATKType' => "Enum('None,Урон от ближнего боя,Урон от дальнего боя,Магический,Огненный,Природный,Святой,Ледяной,Теневой','None')",
-        'Defence' => 'Int',
-        'Artist' => "Varchar(255)",
-        'LootCard' =>  "HTMLText",
-        'SetName' =>  "Varchar(255)",
-        'Tags' => "Varchar(255)",
-        'ClassRestriction' => "Varchar(255)",*/
+        'Defense' => 'Int',
+        'Set' =>  "Varchar(255)",
     );
 
+    static $api_access = true;
+
     private static $has_one = array (
-        'LinkToArt' => 'Link',
+        'LinkToArt' => 'GalleryImage',
         'HolderPage' => 'CardGamePage',
         'CoverCard' => 'Image',
         'PromoCard' => 'Image',
+        'Artist' => 'PeopleFace'
     );
 
     private static $summary_fields = array(
         'TitleEN', 'TitleRU', 'Thumbnail'
     );
+
+    public function providePermissions() {
+        return array(
+            'CREATE_EDIT_CARD' => array(
+                'name' => _t('StormHero.PERMISSION_CREATE_EDIT_DESCRIPTION', 'Create Card'),
+                'category' => _t('Permissions.BLIZZGAME_CARDS', 'BlizzGame Cards'),
+                'help' => _t('StormHero.PERMISSION_CREATE_EDIT_HELP', 'Permission required to create new card.')
+            ),
+            'DELETE_CARD' => array(
+                'name' => _t('StormHero.PERMISSION_DELETE_DESCRIPTION', 'Edit Card'),
+                'category' => _t('Permissions.BLIZZGAME_CARDS', 'BlizzGame Cards'),
+                'help' => _t('StormHero.PERMISSION_DELETE_HELP', 'Permission required to delete existing card.')
+            ),
+        );
+    }
+
+    //Permissions
+    function canCreate($Member = null) {return (permission::check('CREATE_CARD')) ? true : false;}
+    function canEdit($Member = null) {return (permission::check('EDIT_CARD')) ? true : false;}
+    function canDelete($Member = null) {return (permission::check('DELETE_CARD')) ? true : false;}
+    function canView($Member = null) {return true;}
+
+    public function getTitle() {
+        return $this->getField('TitleRU') . ' (' . $this->getField('TitleEN') . ')';
+    }
 
     public function getThumbnail() {
         return $this->CoverCard()->CMSThumbnail();
@@ -56,20 +82,58 @@ class CardGameItem extends DataObject {
     public function getCMSFields() {
         $fields = parent::getCMSFields();
         $fields->removeByName(array(
-            'Race', 'Class', 'Profession', 'Faction', 'Artist',
-            'LinkToArtID', 'HolderPage',
+            'Flavor', 'Rules', 'Comment'
+            ,'StrikeCost', 'Cost', 'Attack', 'Defense', 'Health'
+            ,'Race', 'Class', 'Faction', 'Set'
+            ,'ArtistID', 'LinkToArtID', 'HolderPageID' 
+            ,'CoverCard', 'PromoCard'
         ));
-        $fields->addFieldToTab('Root.LinkToArt', LinkField::create('LinkToArtID'));
-        $fields->replaceField('CoverCard', $this->getUploadField('CoverCard'));
-        $fields->replaceField('PromoCard', $this->getUploadField('PromoCard'));
-
+        $tabSet = new TabSet('BookTabSet',
+            $this->getMainTab(),
+            $this->getArtTab(),
+            $this->getDescriptionTab()
+        );
+        $fields->addFieldsToTab('Root.Main', $tabSet);
         return $fields;
+    }
+
+    private function getMainTab() {
+        return Tab::create(
+            'MainFields',
+            _t('CardGame.MAIN_TAB', 'Основное'),
+            new NumericField('StrikeCost'),
+            new NumericField('Cost'),
+            new NumericField('Attack'),
+            new NumericField('Health'),
+            new NumericField('Defense')
+        );
+    }
+
+    private function getArtTab() {
+        return Tab::create(
+            'ArtFields',
+            _t('CardGame.ART_TAB', 'Рисунок'),
+            //PeopleFace::getArtistField('ArtistID', 'Artist'),
+            new HasOnePickerField($this, 'ArtistID', 'Artist', $this->Artist()),
+            new HasOnePickerField($this, 'LinkToArtID', 'Link to Art', $this->LinkToArt()),
+            $this->getUploadField('CoverCard'),
+            $this->getUploadField('PromoCard')
+        );
+    }
+
+    private function getDescriptionTab() {
+        return Tab::create(
+            'Description',
+            _t('CardGame.DESCRIPTION_TAB', 'Описание'),
+            new TextField('Rules', 'Описание'),
+            new HtmlEditorField('Flavor', 'Особенность'),
+            new HtmlEditorField('Comments', 'Комментарий')
+        );
     }
 
     /**
      * @param $name
      * @param string $title
-     * @param string $folderName
      * @return UploadField
      */
     protected function getUploadField($name, $title = null) {

@@ -108,7 +108,7 @@ class Book extends DataObject {
     function canCreate($Member = null) {return (permission::check('CREATE_EDIT_BOOK')) ? true : false;}
     function canEdit($Member = null) {return (permission::check('CREATE_EDIT_BOOK')) ? true : false;}
     function canDelete($Member = null) {return (permission::check('DELETE_BOOK')) ? true : false;}
-    function canView($Member = null) {return (permission::check('VIEW_BOOK')) ? true : false;}
+    function canView($Member = null) {return true;}
 
     public function getCMSFields() {
         $cmsFields = parent::getCMSFields();

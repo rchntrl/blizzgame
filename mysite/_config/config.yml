@@ -14,28 +14,43 @@ NewsAdmin:
   extensions:
     - SubsiteMenuExtension
 News:
+  api_access: true
   default_sort: "\"PublishFrom\" DESC, \"ID\" DESC"
   extensions:
     - BlizzgameNewsExtension
 DataObject:
   extensions:
     - BlizzgameObjectExtension
+Image:
+  api_access: true
+ElementLink:
+  api_access: true
+StormHero:
+  api_access: true
 GalleryImage:
+  api_access: true
   extensions:
     - ObjectAsPageExtension
+CardGameItem:
+  api_access: true
 Book:
+  api_access: true
   extensions:
     - ObjectAsPageExtension
 Chapter:
+  api_access: true
   extensions:
     - ObjectAsPageExtension
 PeopleFace:
+  api_access: true
   extensions:
     - ObjectAsPageExtension
 ChronicleItem:
+  api_access: true
   extensions:
     - ObjectAsPageExtension
 Media:
+  api_access: true
   extensions:
     - ObjectAsPageExtension
 SiteTree:

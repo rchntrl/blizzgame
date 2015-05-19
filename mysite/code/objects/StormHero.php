@@ -33,8 +33,7 @@ class StormHero extends DataObject implements PermissionProvider {
 
     private static  $singular_name = 'Hero of the Storm';
 
-    public function providePermissions()
-    {
+    public function providePermissions() {
         return array(
             'CREATE_EDIT_HERO' => array(
                 'name' => _t('StormHero.PERMISSION_CREATE_EDIT_DESCRIPTION', 'Create Heroes of the Storm'),
@@ -56,8 +55,8 @@ class StormHero extends DataObject implements PermissionProvider {
 
     function canCreate($Member = null) {return (permission::check('CREATE_EDIT_HERO')) ? true : false;}
     function canEdit($Member = null) {return (permission::check('CREATE_EDIT_HERO')) ? true : false;}
-    function canView($Member = null) {return (permission::check('VIEW_HERO')) ? true : false;}
     function canDelete($Member = null) {return (permission::check('DELETE_HERO')) ? true : false;}
+    function canView($Member = null) {return true;}
 
     public function getTitle() {
         return $this->AccessLevel ? $this->TitleRU . ' (' . $this->AccessLevel . ')' : $this->TitleRU;

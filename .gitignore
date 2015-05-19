@@ -1,9 +1,9 @@
 .idea
 framework/
-reports/
-siteconfig/
+pickerfield/
 browser-information/
 cms/
+restfulserver/
 /subsites
 /googlesitemaps
 /gridfieldextensions

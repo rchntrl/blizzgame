@@ -54,7 +54,7 @@ class ChronicleItem extends DataObject implements PermissionProvider {
     function canCreate($Member = null) {return (permission::check('CREATE_EDIT_CHRONICLE')) ? true : false;}
     function canEdit($Member = null) {return (permission::check('CREATE_EDIT_CHRONICLE')) ? true : false;}
     function canDelete($Member = null) {return (permission::check('DELETE_CHRONICLE')) ? true : false;}
-    function canView($Member = null) {return (permission::check('VIEW_CHRONICLE')) ? true : false;}
+    function canView($Member = null) {return true;}
 
     public function getCMSFields() {
         $fields = parent::getCMSFields();

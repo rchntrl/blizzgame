@@ -65,7 +65,7 @@ class Media extends DataObject implements PermissionProvider {
     function canCreate($Member = null) {return (permission::check('CREATE_EDIT_MEDIA')) ? true : false;}
     function canEdit($Member = null) {return (permission::check('CREATE_EDIT_MEDIA')) ? true : false;}
     function canDelete($Member = null) {return (permission::check('DELETE_MEDIA')) ? true : false;}
-    function canView($Member = null) {return (permission::check('VIEW_MEDIA')) ? true : false;}
+    function canView($Member = null) {return true;}
 
     /**
      * @param $url

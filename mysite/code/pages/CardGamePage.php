@@ -3,7 +3,7 @@
 /**
  * Class CardGamePage
  *
- * @method SS_List Items()
+ * @method HasManyList Items()
  */
 class CardGamePage extends Page {
     
@@ -13,8 +13,10 @@ class CardGamePage extends Page {
 
     public function getCMSFields() {
         $fields = parent::getCMSFields();
+        /** @var GridFieldConfig $gridFieldConfig */
         $gridFieldConfig = GridFieldConfig_RecordEditor::create();
         $gridFieldConfig->getComponentByType('GridFieldPaginator')->setItemsPerPage(10);
+        $gridFieldConfig->addComponent(new GridFieldOrderableRows('Order'));
         $gridField = new GridField('Cards', _t('CardGame.CARDGAME_CMS_TITLE', 'Cards'), $this->Items(), $gridFieldConfig);
         $fields->addFieldToTab('Root.Main', $gridField, 'MenuTitle');
         return $fields;

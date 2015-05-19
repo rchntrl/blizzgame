@@ -48,8 +48,12 @@ class PeopleFace extends DataObject implements ObjectAsPageProvider {
         'Books' => 'Book',
     );
 
-    public static $summary_fields = array (
+    private static $summary_fields = array (
         'ID', 'TitleEN', 'TitleRU', 'Nick'
+    );
+
+    private static $searchable_fields = array (
+        'TitleEN', 'TitleRU'
     );
 
     private static $singular_name = 'Blizz People';
