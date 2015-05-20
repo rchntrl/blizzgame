@@ -11,18 +11,12 @@ Base project folder for a Blizzgame website ([http://blizzgame.ru](http://blizzg
 * [`Silverstripe 3 Newsmodule 5.1 `](https://github.com/Firesphere/silverstripe-newsmodule/)
 * [`SilverStripe Member Profile Pages Module`](https://github.com/silverstripe-australia/silverstripe-memberprofiles)
 * [`Google Sitemaps Module`](https://github.com/silverstripe-labs/silverstripe-googlesitemaps)
-
+* [`silverstripe-pickerfield`](https://github.com/briceburg/silverstripe-pickerfield)
 
 ## Installation ##
 Run Composer to get the dependencies: cd composer && php ../composer.phar install
 See [installation on different platforms](http://doc.silverstripe.org/framework/en/installation/),
 and [installation from source](http://doc.silverstripe.org/framework/en/installation/from-source).
-
-## Development and Contribution ##
-
-If you would like to make changes to the Blizzgame codebase,
-
-## Links ##
 
 ## Actual license
 
