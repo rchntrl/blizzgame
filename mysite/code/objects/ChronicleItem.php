@@ -14,7 +14,6 @@ class ChronicleItem extends DataObject implements PermissionProvider {
         'Content' => 'HTMLText',
         'ShortText' => 'Text',
         'NumberSort' => 'Int',
-        //'ProvideComments' => "Int(1)",
         'Races' => 'Varchar(255)',
         'Fractions' => 'Varchar(255)',
         'Heroes' => 'Varchar(255)',
@@ -42,11 +41,6 @@ class ChronicleItem extends DataObject implements PermissionProvider {
                 'name' => _t('ChronicleItem.PERMISSION_DELETE_DESCRIPTION', 'Delete Chronicle'),
                 'category' => _t('Permissions.BLIZZGAME_DATA', 'BlizzGame Data'),
                 'help' => _t('ChronicleItem.PERMISSION_DELETE_HELP', 'Permission required to delete existing Chronicle.')
-            ),
-            'VIEW_CHRONICLE' => array(
-                'name' => _t('ChronicleItem.PERMISSION_VIEW_DESCRIPTION', 'View Chronicle'),
-                'category' => _t('Permissions.BLIZZGAME_DATA', 'BlizzGame Data'),
-                'help' => _t('ChronicleItem.PERMISSION_VIEW_HELP', 'Permission required to view existing Chronicle.')
             ),
         );
     }

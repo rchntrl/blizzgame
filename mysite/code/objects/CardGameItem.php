@@ -21,7 +21,7 @@ class CardGameItem extends DataObject implements PermissionProvider {
         'TitleRU' => 'Varchar',
         'Order' => 'Int',
         'Hearthstone' => 'Boolean',
-        'Rules' => 'Varchar(255)', //
+        'Rules' => 'HTMLText', //
         'Flavor' => 'HTMLText', // Особенность
         'Comment' =>  "HTMLText",
         'Rarity' => "Enum('None, Free, Common, Uncommon, Rare, Epic, Legendary')",
@@ -126,7 +126,7 @@ class CardGameItem extends DataObject implements PermissionProvider {
             'Description',
             _t('CardGame.DESCRIPTION_TAB', 'Описание'),
             new NumericField('Set', 'Название Сета'),
-            new TextField('Rules', 'Предписания'),
+            new HtmlEditorField('Rules', 'Правила'),
             new HtmlEditorField('Flavor', 'Особенность'),
             new HtmlEditorField('Comments', 'Комментарий')
         );
