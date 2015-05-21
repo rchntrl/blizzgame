@@ -25,5 +25,37 @@ class CardGamePage extends Page {
 
 class CardGamePage_Controller extends Page_Controller {
 
+    private static $allowed_actions = array(
+        'view',
+        'ng',
+    );
 
+    private static $url_handlers = array(
+        'ng/$ID!' => 'ng',
+        '$ID!' => 'view',
+    );
+
+    public function init() {
+        parent::init();
+        Requirements::themedCSS('card-game');
+        if ($this->angularSupport()) {
+            Requirements::javascript("https://code.angularjs.org/1.2.22/angular.js");
+            Requirements::javascript("https://code.angularjs.org/1.2.20/angular-route.js");
+            Requirements::javascript(THEMES_DIR . "/foundation/javascript/paging.js");
+            Requirements::javascript(THEMES_DIR . "/foundation/javascript/cardgame.js");
+        }
+    }
+
+    public function ng() {
+        $action = $this->urlParams['ID'];
+        switch ($action) {
+            case 'card-list':
+                break;
+            case 'template':
+                $id = $this->request->getVar('ID');
+                $this->response->setBody($this->renderWith($id));
+        }
+        //$this->response->addHeader("Content-Type", "application/json");
+        return $this->getResponse();
+    }
 }
