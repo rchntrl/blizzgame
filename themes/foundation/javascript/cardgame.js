@@ -14,7 +14,7 @@ app.value("cardGameData", {
 });
 
 app.factory("cardGame", function(cardGameData, $http, $location) {
-    var apiUrl = location.origin + "api/v1/";
+    var apiUrl = location.origin + "/api/v1/";
     function loadCardList() {
         $http({
             url: apiUrl + "CardGamePage/" + cardGameData.pageID + "/Items.json"
