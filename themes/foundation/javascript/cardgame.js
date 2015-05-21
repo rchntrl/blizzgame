@@ -14,7 +14,7 @@ app.value("cardGameData", {
 });
 
 app.factory("cardGame", function(cardGameData, $http, $location) {
-    var apiUrl = "http://localhost/blizzgame/api/v1/";
+    var apiUrl = "http://www.blizzgame.ru/api/v1/";
     function loadCardList() {
         $http({
             url: apiUrl + "CardGamePage/" + cardGameData.pageID + "/Items.json"
