@@ -39,9 +39,13 @@ class CardGamePage_Controller extends Page_Controller {
         parent::init();
         Requirements::themedCSS('card-game');
         if ($this->angularSupport()) {
-            Requirements::javascript("https://code.angularjs.org/1.2.22/angular.js");
+            //Requirements::javascript("https://code.angularjs.org/1.2.22/angular.js");
+            Requirements::javascript(THEMES_DIR . "/foundation/bower_components/angular/angular.min.js");
             Requirements::javascript("https://code.angularjs.org/1.2.20/angular-route.js");
-            Requirements::javascript(THEMES_DIR . "/foundation/javascript/paging.js");
+            Requirements::javascript(THEMES_DIR . "/foundation/bower_components/angular-foundation/mm-foundation.min.js");
+            Requirements::javascript(THEMES_DIR . "/foundation/bower_components/angular-foundation/mm-foundation-tpls.min.js");
+            Requirements::javascript(THEMES_DIR . "/foundation/bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js");
+
             Requirements::javascript(THEMES_DIR . "/foundation/javascript/cardgame.js");
         }
     }

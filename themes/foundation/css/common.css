@@ -299,6 +299,15 @@ li .th p {
     }
 }
 
+.horizontal-preloader {
+    background-image: url(../images/preloader-horizontal.gif);
+    background-repeat:  no-repeat;
+    background-position: 50% 50%;
+    width: 100%;
+    height: 85px;
+    padding: 40px;
+}
+
 .blizzquote {
     background: #111a22 url(../images/bg/blizzquote.jpg) top right no-repeat;
     border: 1px solid #000;

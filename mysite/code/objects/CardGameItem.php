@@ -20,6 +20,7 @@ class CardGameItem extends DataObject implements PermissionProvider {
         'TitleEN' => 'Varchar',
         'TitleRU' => 'Varchar',
         'Order' => 'Int',
+        'LastLinkSegment' => 'Varchar(255)',
         'Hearthstone' => 'Boolean',
         'Rules' => 'HTMLText', //
         'Flavor' => 'HTMLText', // Особенность
@@ -36,7 +37,13 @@ class CardGameItem extends DataObject implements PermissionProvider {
         'Set' =>  "Varchar(255)",
     );
 
-    static $api_access = true;
+    private static $indexes = array(
+        'ID_UniqueLastLinkSegment' => array(
+            'type' => 'unique',
+            'value' => 'LastLinkSegment'
+        ),
+        'Class' => true,
+    );
 
     private static $has_one = array (
         'LinkToArt' => 'GalleryImage',
