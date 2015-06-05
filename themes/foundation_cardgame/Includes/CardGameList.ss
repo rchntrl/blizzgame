@@ -17,11 +17,11 @@
         </ul>
     </div>
     <div class="small-12 medium-6 columns">
-
+        {{filtered.length}}
     </div>
 
-    <ul class="card-list small-block-grid-4 medium-block-grid-5" data-infinite-scroll='loadMore()' data-infinite-scroll-distance='2'>
-        <li data-ng-repeat="(key, card) in cardGameData.items | filter:search:strict">
+    <ul class="card-list small-block-grid-4 medium-block-grid-5">
+        <li data-ng-repeat="(key, card) in (filtered = (cardGameData.items | filter:search:strict)) | startFrom:cardGame.getStart() | limitTo:cardGame.getSize()">
             <a class="th hearthstone-link" href="javascript:;" data-ng-click="clickMe(key)"
                data-tooltip-placement="right"
                data-tooltip-popup-delay="600"
@@ -34,7 +34,14 @@
             </a>
         </li>
     </ul>
-    <div style="width: 100%; text-align: center;" data-ng-show="cardGameData.totalSize > cardGameData.items.length">
-        идет загрузка...
+    <div class="pagination-centered ng-scope">
+        <pagination on-select-page="paginate(page)"
+                    boundary-links="true"
+                    previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                    max-size="5"
+                    total-items="filtered.length"
+                    page="cardGameData.currentPage"
+                    items-per-page="cardGame.getSize()" >
+        </pagination>
     </div>
 </div>

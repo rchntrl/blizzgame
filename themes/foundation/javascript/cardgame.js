@@ -13,7 +13,9 @@ app.value("cardGameData", {
     pageID: pageContainer.data("pageId"),
     defaultCardImage: "themes/foundation/images/hearthstone/cardback.png",
     totalSize: null,
+    currentPage: 1,
     viewMode: "",
+    pages: [],
     items: [],
     // Warrior, Druid, Priest, Mage, Monk, Hunter, Paladin, Rogue, Death Knight, Warlock, Shaman
     classes: [
@@ -86,24 +88,13 @@ app.value("cardGameData", {
 app.factory("cardGame", function(cardGameData, $http, $location) {
     var apiUrl =cardGameData.baseHref + "api/v1/";
     var start = 0;
-    var size = 15;
-    function setStart(s) {
-        start = s;
-    }
-    function getStart() {
-        return start;
-    }
-    function incStart() {
-        start += size;
-    }
-    function setSize(s) {
-        size = s;
-    }
+    var size = 20;
+    var currentPage = 1;
     function loadCardList() {
         $http({
             url: apiUrl + "CardGamePage/" + cardGameData.pageID + "/Items.json",
             params: {
-                limit: start + "," + size
+                //limit: start + "," + size
             }
         }).success(function(data) {
             if (cardGameData.items.length == 0) {
@@ -113,22 +104,34 @@ app.factory("cardGame", function(cardGameData, $http, $location) {
                     cardGameData.items.push(this);
                 });
             }
-            $.each(cardGameData.items, function(key) {
-                if(!this.CoverCard.Filename) {
-                    $http({
-                        url: cardGameData.items[key].CoverCard.href
-                    }).success(function(data) {
-                        $.extend(cardGameData.items[key].CoverCard, data);
-                    });
-                }
-            });
+            loadImages();
+        });
+    }
+    function loadImages() {
+        $.each(cardGameData.items, function(key) {
+            if (key >= start && key <= (start + size) && !cardGameData.items[key].CoverCard.Filename) {
+                cardGameData.items[key].page = cardGameData.currentPage;
+                $http({
+                    url: cardGameData.items[key].CoverCard.href
+                }).success(function(data) {
+                    $.extend(cardGameData.items[key].CoverCard, data);
+                });
+            }
         });
     }
     return {
-        setStart: setStart,
-        getStart: getStart,
-        incStart: incStart,
-        setSize: setSize,
+        setStart: function(s) {
+            start = s;
+        },
+        getStart: function() {
+            return start;
+        },
+        currentPage: function() {
+            return currentPage;
+        },
+        getSize: function() {
+            return size;
+        },
         loadCardList: loadCardList
     };
 });
@@ -148,6 +151,13 @@ app.config(function ($routeProvider, $locationProvider) {
         })
     ;
     $locationProvider.html5Mode(true);
+});
+
+app.filter('startFrom', function() {
+    return function(input, start) {
+        start = +start;
+        return input.slice(start);
+    }
 });
 
 app.filter('multipleFilter', function () {
@@ -176,20 +186,18 @@ app.filter('multipleFilter', function () {
  */
 app.controller("cards", function (cardGame, cardGameData, $scope, $http, $routeParams, $location, $window, $rootScope) {
     $scope.cardGameData = cardGameData;
+    $scope.cardGame = cardGame;
+    if (cardGameData.viewMode == "list") {
+        cardGame.loadCardList();
+
+    }
     cardGameData.viewMode = $routeParams.pageName ? "view" : "list";
     $scope.page = $routeParams.pageName;
     $scope.search = {
         Class: ""
     };
+
     $scope.clickMe = function(card) {
         console.log(card);
-    };
-    $scope.loadMore = function() {
-        if (cardGameData.totalSize >= cardGame.getStart()) {
-            cardGame.loadCardList();
-            cardGame.incStart();
-        } else {
-            return false;
-        }
     };
 });
