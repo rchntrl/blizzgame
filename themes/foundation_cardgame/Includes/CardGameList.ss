@@ -22,7 +22,7 @@
 
     <ul class="card-list small-block-grid-4 medium-block-grid-5">
         <li data-ng-repeat="(key, card) in (filtered = (cardGameData.items | filter:search:strict)) | startFrom:cardGame.getStart() | limitTo:cardGame.getSize()">
-            <a class="th hearthstone-link" href="javascript:;" data-ng-click="clickMe(key)"
+            <a class="th hearthstone-link" href="javascript:;"
                data-tooltip-placement="right"
                data-tooltip-popup-delay="600"
                data-tooltip-animation="true"
