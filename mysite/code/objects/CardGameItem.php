@@ -5,7 +5,10 @@
  *
  * @property String TitleEN
  * @property String TitleRU
+ * @property String CoverThumbnail
+ * @property String PromoThumbnail
  * @method Image CoverCard
+ * @method Image PromoCard
  * @method CardGamePage HolderPage
  * @method GalleryImage LinkToArt
  * @method PeopleFace Artist
@@ -35,6 +38,8 @@ class CardGameItem extends DataObject implements PermissionProvider {
         'Health' => 'Int',
         'Defense' => 'Int',
         'Set' =>  "Varchar(255)",
+        'CoverThumbnail' => "Varchar(255)",
+        'PromoThumbnail' => "Varchar(255)",
     );
 
     private static $indexes = array(
@@ -86,6 +91,12 @@ class CardGameItem extends DataObject implements PermissionProvider {
         return $this->CoverCard()->CMSThumbnail();
     }
 
+    public function onBeforeWrite() {
+        parent::onBeforeWrite();
+        $this->CoverThumbnail = $this->CoverCard()->bookView()->getURL();
+        $this->PromoThumbnail = $this->PromoCard()->bookView()->getURL();
+    }
+
     public function getCMSFields() {
         $fields = parent::getCMSFields();
         $fields->removeByName(array(
@@ -120,7 +131,6 @@ class CardGameItem extends DataObject implements PermissionProvider {
         return Tab::create(
             'ArtFields',
             _t('CardGame.ART_TAB', 'Рисунок'),
-            //PeopleFace::getArtistField('ArtistID', 'Artist'),
             new HasOnePickerField($this, 'ArtistID', 'Artist', $this->Artist()),
             new HasOnePickerField($this, 'LinkToArtID', 'Link to Art', $this->LinkToArt()),
             $this->getUploadField('CoverCard'),

@@ -24,10 +24,6 @@
     <link rel="stylesheet" href="$ThemeDir/css/common.css" />
     <% include LessSection %>
     <script src="framework/thirdparty/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="http://svkament.ru/js/SVEmbed.js"></script>
-    <script type="text/javascript">
-        SV.init({subdomain: 'blizzgame'})
-    </script>
     <% include AnalyticsTracking %>
 </head>
 <body class="$ClassName.ATT">

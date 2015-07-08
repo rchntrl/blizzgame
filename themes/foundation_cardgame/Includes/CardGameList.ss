@@ -17,7 +17,6 @@
         </ul>
     </div>
     <div class="small-12 medium-6 columns">
-        {{filtered.length}}
     </div>
 
     <ul class="card-list small-block-grid-4 medium-block-grid-5">

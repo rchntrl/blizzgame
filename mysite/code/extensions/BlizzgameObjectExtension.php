@@ -67,7 +67,7 @@ class BlizzgameObjectExtension extends DataExtension {
                 get_class($this->owner)
             ));
         }
-        return $this->owner->CroppedImage(240, 370);
+        return $this->owner->CroppedImage(300, 462);
     }
 
     /**

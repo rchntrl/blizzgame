@@ -1,4 +1,8 @@
 <% if $current_stage == 'Live' %>
+    <script type="text/javascript" src="http://svkament.ru/js/SVEmbed.js"></script>
+    <script type="text/javascript">
+        SV.init({subdomain: 'blizzgame'})
+    </script>
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
