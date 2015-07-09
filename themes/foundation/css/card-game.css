@@ -28,7 +28,7 @@
     background-image: url(themes/foundation/images/hearthstone/classes.png);
 }
 
-.card-list li:focus {
+.card-list > li:focus:nth-of-type(5n+1) {
     width: 45%;
 }
 
