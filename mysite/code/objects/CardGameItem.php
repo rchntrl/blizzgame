@@ -62,6 +62,8 @@ class CardGameItem extends DataObject implements PermissionProvider {
         'TitleEN', 'TitleRU', 'Thumbnail'
     );
 
+    private static $default_sort = 'Order ASC';
+
     public function providePermissions() {
         return array(
             'CREATE_EDIT_CARD' => array(
@@ -103,8 +105,8 @@ class CardGameItem extends DataObject implements PermissionProvider {
             'Flavor', 'Rules', 'Comment'
             ,'StrikeCost', 'Cost', 'Attack', 'Defense', 'Health'
             ,'Race', 'Faction', 'Set'
-            ,'ArtistID', 'LinkToArtID', 'HolderPageID' 
-            ,'CoverCard', 'PromoCard'
+            ,'ArtistID', 'LinkToArtID', 'HolderPageID'
+            ,'CoverCard', 'PromoCard', 'CoverThumbnail', 'PromoThumbnail'
         ));
         $tabSet = new TabSet('BookTabSet',
             $this->getMainTab(),

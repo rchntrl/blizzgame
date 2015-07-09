@@ -54,6 +54,22 @@ class CardGamePage_Controller extends Page_Controller {
             case 'template':
                 $id = $this->request->getVar('ID');
                 $this->response->setBody($this->renderWith($id));
+                break;
+            case 'update':
+                $items = CardGameItem::get()
+                    ->filter( array(
+                        'CoverThumbnail' => ''
+                    ))
+                    ->limit(15)
+                ;
+                /** @var CardGameItem $item */
+                foreach($items as $item) {
+                    $item->write();
+                }
+                $this->response->setBody(json_encode(
+                    array('count' => CardGameItem::get()->filter(array('CoverThumbnail' => ''))->count())
+                ));
+                break;
         }
         //$this->response->addHeader("Content-Type", "application/json");
         return $this->getResponse();
