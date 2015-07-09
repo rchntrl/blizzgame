@@ -1,11 +1,3 @@
-.card-list > li {
-
-}
-
-.card-list > li > a {
-
-}
-
 .hearthstone-link img.loading {
     opacity: 0.6;
     background-image: url(../images/preloader-horizontal.gif);
@@ -18,9 +10,11 @@
 .flavor {
     color: #ffff00;
 }
+
 .rules {
     color: #44EF1E;
 }
+
 .rules p,
 .flavor p {
     font-size: 1em;
@@ -29,6 +23,7 @@
 .class-icon {
     background-image: url(themes/foundation/images/hearthstone/classes.png);
 }
+
 .druid {
     background-image: url(themes/foundation/images/hearthstone/classes.png);
 }
