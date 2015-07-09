@@ -28,6 +28,10 @@
     background-image: url(themes/foundation/images/hearthstone/classes.png);
 }
 
+.card-list li:focus {
+    width: 45%;
+}
+
 .card-list li:focus a {
     position: relative;
     width: 900px;
