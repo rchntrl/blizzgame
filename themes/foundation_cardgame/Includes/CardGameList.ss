@@ -26,7 +26,7 @@
                data-tooltip-popup-delay="600"
                data-tooltip-animation="true"
                data-tooltip-html-unsafe="{{ '<div class=rules>' + card.Rules + '<div class=flavor>' + card.Flavor + '</div>' }}">
-                <img data-ng-src="{{ card.CoverCard.Filename }}" src="" data-ng-class="{ 'loading' :  !card.CoverCard.Filename }" />
+                <img data-ng-src="{{ card.CoverThumbnail }}" src="" data-ng-class="{ 'loading' :  !card.CoverThumbnail }" />
                 <div class="info">
                     <p class="crop-text">{{ card.TitleRU }}</p>
                 </div>
