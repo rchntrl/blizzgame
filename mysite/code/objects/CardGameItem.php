@@ -93,8 +93,8 @@ class CardGameItem extends DataObject implements PermissionProvider {
 
     public function onBeforeWrite() {
         parent::onBeforeWrite();
-        $this->CoverThumbnail = $this->CoverCard()->CroppedImage(240, 370)->getURL();
-        $this->PromoThumbnail = $this->PromoCard()->CroppedImage(240, 370)->getURL();
+        $this->CoverThumbnail = $this->PromoCard() ? $this->CoverCard()->CroppedImage(240, 370)->getURL() : '';
+        $this->PromoThumbnail = $this->PromoCard() ? $this->PromoCard()->CroppedImage(240, 370)->getURL() : '';
     }
 
     public function getCMSFields() {
