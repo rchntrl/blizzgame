@@ -126,6 +126,14 @@ app.factory("cardGame", function(cardGameData, $http, $location) {
         getStart: function() {
             return start;
         },
+        incStart: function() {
+            start += size;
+        },
+        setCurrentPage: function(page) {
+            currentPage = page;
+            start = (currentPage  - 1) * size;
+            loadImages();
+        },
         currentPage: function() {
             return currentPage;
         },
@@ -155,7 +163,7 @@ app.config(function ($routeProvider, $locationProvider) {
 
 app.filter('startFrom', function() {
     return function(input, start) {
-        start = +start;
+        start = +start; //parse to int
         return input.slice(start);
     }
 });
@@ -199,5 +207,9 @@ app.controller("cards", function (cardGame, cardGameData, $scope, $http, $routeP
 
     $scope.clickMe = function(card) {
         console.log(card);
+    };
+
+    $scope.paginate = function(page) {
+        cardGame.setCurrentPage(page);
     };
 });
