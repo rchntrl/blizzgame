@@ -37,6 +37,9 @@ class BlizzgameNewsExtension extends DataExtension {
                 case 'starcraft':
                     $page = SiteTree::get_by_id("NewsHolderPage", 1522);
                     break;
+                case 'overwatch':
+                    $page = SiteTree::get_by_id("NewsHolderPage", 2244);
+                    break;
             }
             if ($page) {
                 $news->NewsHolderPages()->add($page);
