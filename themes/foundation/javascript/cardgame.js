@@ -6,6 +6,12 @@ var app = angular.module("cardGame", [
     "infinite-scroll"
 ]);
 
+app.filter('unsafe', function($sce) {
+    return function(val) {
+        return $sce.trustAsHtml(val);
+    };
+});
+
 app.value("cardGameData", {
     title: pageContainer.data("title"),
     pageUrl: pageContainer.data("pageUrl"),
@@ -104,7 +110,6 @@ app.factory("cardGame", function(cardGameData, $http, $location) {
                     cardGameData.items.push(this);
                 });
             }
-            loadImages();
         });
     }
     function loadImages() {
@@ -132,7 +137,6 @@ app.factory("cardGame", function(cardGameData, $http, $location) {
         setCurrentPage: function(page) {
             currentPage = page;
             start = (currentPage  - 1) * size;
-            loadImages();
         },
         currentPage: function() {
             return currentPage;
@@ -166,6 +170,22 @@ app.filter('startFrom', function() {
         start = +start; //parse to int
         return input.slice(start);
     }
+});
+
+app.directive('toggleClass', function() {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            element.bind('click', function() {
+                if (!element.hasClass(attrs.toggleClass)) {
+                    element.closest("ul").find("li").removeClass(attrs.toggleClass);
+                }
+                ulTop = element.offset().top - element.closest("ul").offset().top;
+                element.toggleClass(attrs.toggleClass);
+                element.css("top", ulTop);
+            });
+        }
+    };
 });
 
 app.filter('multipleFilter', function () {

@@ -54,6 +54,9 @@
 .top-bar-section ul li.game-icon > a.Diablo:before {
     background-image: url("../images/games/d3.png");
 }
+.top-bar-section ul li.game-icon > a.Overwatch:before {
+    background-image: url("../images/games/overwatch.png");
+}
 .top-bar-section ul li.game-icon > a span {
     display: inline;
     text-transform: uppercase;

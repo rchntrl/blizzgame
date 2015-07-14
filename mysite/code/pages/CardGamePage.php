@@ -56,13 +56,13 @@ class CardGamePage_Controller extends Page_Controller {
                 $this->response->setBody($this->renderWith($id));
                 break;
             case 'update':
-                $items = CardGameItem::get("CardGameItem", "ISNULL(CardGameItem.CoverThumbnail)")->limit(15);
+                $items = CardGameItem::get("CardGameItem", "DAY(NOW()) > DAY(CardGameItem.LastEdited)")->limit(15);
                 /** @var CardGameItem $item */
                 foreach($items as $item) {
                     $item->write();
                 }
                 $this->response->setBody(json_encode(
-                    array('count' => CardGameItem::get("CardGameItem", "ISNULL(CardGameItem.CoverThumbnail)")->count())
+                    array('count' => CardGameItem::get("CardGameItem", "DAY(NOW()) > DAY(CardGameItem.LastEdited)")->count())
                 ));
                 break;
         }

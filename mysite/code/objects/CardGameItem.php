@@ -95,8 +95,8 @@ class CardGameItem extends DataObject implements PermissionProvider {
 
     public function onBeforeWrite() {
         parent::onBeforeWrite();
-        $this->CoverThumbnail = $this->CoverCardID ? $this->CoverCard()->CroppedImage(240, 370)->getURL() : '';
-        $this->PromoThumbnail = $this->PromoCardID ? $this->PromoCard()->CroppedImage(240, 370)->getURL() : '';
+        $this->CoverThumbnail = $this->CoverCardID ? $this->CoverCard()->SetRatioSize(240, 370)->getURL() : '';
+        $this->PromoThumbnail = $this->PromoCardID ? $this->PromoCard()->SetRatioSize(240, 370)->getURL() : '';
     }
 
     public function getCMSFields() {
@@ -110,10 +110,12 @@ class CardGameItem extends DataObject implements PermissionProvider {
         ));
         $tabSet = new TabSet('BookTabSet',
             $this->getMainTab(),
-            $this->getArtTab(),
             $this->getDescriptionTab()
         );
         $fields->addFieldsToTab('Root.Main', $tabSet);
+        if ($this->ID) {
+            $fields->addFieldsToTab('Root.Main.BookTabSet', $this->getArtTab(), 'Description');
+        }
         return $fields;
     }
 
@@ -130,14 +132,14 @@ class CardGameItem extends DataObject implements PermissionProvider {
     }
 
     private function getArtTab() {
-        return Tab::create(
-            'ArtFields',
-            _t('CardGame.ART_TAB', 'Рисунок'),
+        /** @var Tab $tab */
+        $tab = Tab::create('ArtFields', _t('CardGame.ART_TAB', 'Рисунок'),
             new HasOnePickerField($this, 'ArtistID', 'Artist', $this->Artist()),
             new HasOnePickerField($this, 'LinkToArtID', 'Link to Art', $this->LinkToArt()),
             $this->getUploadField('CoverCard'),
             $this->getUploadField('PromoCard')
         );
+        return $tab;
     }
 
     private function getDescriptionTab() {

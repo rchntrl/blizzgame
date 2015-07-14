@@ -27,24 +27,58 @@
 .druid {
     background-image: url(themes/foundation/images/hearthstone/classes.png);
 }
+.card-img {
+    -moz-transition: all 0.8s;
+    -o-transition: all 0.8s;
+    -webkit-transition: all 0.8s;
+    transition: all 0.8s;
 
-.card-list > li:focus:nth-of-type(5n+1) {
-    width: 45%;
+    /* zoom acceleration */
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
 }
 
-.card-list li:focus a {
+.card-list {
     position: relative;
-    width: 900px;
-    height: 590px;
 }
 
-.card-list li:focus img {
-    width: 40%;
+.card-list > li.focused {
+    position: absolute;
+    background-color: #fff;
+    width: 100%;
+    z-index: 1000;
+    top: 10%;
 }
 
-.card-list li:focus div.info {
+.card-list li.focused a {
+    position: relative;
+    width: 100%;
+}
+
+.card-list li.focused img {
+    width: 18%;
+}
+
+.card-list li.focused .info {
+    width: 20%;
+}
+
+.card-list > li:not(.focused) .details {
+    display: none;
+}
+
+.card-list > li.focused .details {
     position: absolute;
     top: 0;
     width: 100%;
     height: 100%;
+    line-height: 1;
+}
+
+li.focused .th .details p {
+    text-align: left;
+    color: inherit;
 }
