@@ -110,11 +110,14 @@ class CardGameItem extends DataObject implements PermissionProvider {
         ));
         $tabSet = new TabSet('BookTabSet',
             $this->getMainTab(),
+            $this->getArtTab(),
             $this->getDescriptionTab()
         );
         $fields->addFieldsToTab('Root.Main', $tabSet);
-        if ($this->ID) {
-            $fields->addFieldsToTab('Root.Main.BookTabSet', $this->getArtTab(), 'Description');
+        if (!$this->ID) {
+            $fields->removeFieldsFromTab('Root.Main.BookTabSet', array(
+                'ArtFields'
+            ));
         }
         return $fields;
     }
