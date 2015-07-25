@@ -31,12 +31,16 @@ class DownloadFile extends Controller {
             header('Content-Disposition: ' . 'attachment; filename="' . $image->getTitle() . '.' . $image->getExtension() . '"');
             header('Content-length: ' . $image->getAbsoluteSize());
             header('Cache-control: ' . 'private');/**/
-            readfile($image->getFullPath());
-            $log = new DownloadLog();
-            $log->setDownloadedFile($image);
-            $log->setBrowser($this->getBrowser());
-            $log->setIP($ip);
-            $log->write();
+            try {
+                readfile($image->getFullPath());
+                $log = new DownloadLog();
+                $log->setDownloadedFile($image);
+                //$log->setBrowser($this->getBrowser());
+                $log->setIP($ip);
+                $log->write();
+            } catch (\Exception $ex) {
+                echo $ex->getMessage();
+            }
             exit;
         }
         return $this->httpError(404);
