@@ -5,10 +5,11 @@ class DownloadLog extends DataObject {
     private static $db = array(
         'IPAddress' => 'Varchar',
         'FileID' => 'Int',
-        'FileName' => 'Varchar',
+        'Title' => 'Varchar',
+        'FileName' => 'Varchar(255)',
         'Size' => 'Varchar(10)',
         'AbsoluteSize' => 'Int',
-        'Browser' => 'Varchar(50)',
+        'Browser' => 'Varchar',
         'System' => 'Varchar',
         'Device' => 'Varchar',
     );
@@ -21,7 +22,7 @@ class DownloadLog extends DataObject {
 
     public function setDownloadedFile(File $file) {
         $this->FileID = $file->ID;
-        $this->FileName = $file->getFilename();
+        $this->FileName = $file->getTitle();
         $this->Size = $file->getSize();
         $this->AbsoluteSize = $file->getAbsoluteSize();
 
@@ -29,8 +30,10 @@ class DownloadLog extends DataObject {
     }
 
     public function setBrowser(Browser $browser) {
-        $this->Browser = $browser->getName();
-        $this->System = $browser->getSystem();
-        $this->Device = $browser->getDevice();
+        $this->setField('Browser', $browser->getName());
+        $this->setField('System', $browser->getSystem());
+        $this->setField('Device', $browser->getDevice());
+
+        return $this;
     }
 }

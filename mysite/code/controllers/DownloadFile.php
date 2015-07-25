@@ -30,16 +30,16 @@ class DownloadFile extends Controller {
             header('Content-type: ' . Http::get_mime_type($image->getFilename()));
             header('Content-Disposition: ' . 'attachment; filename="' . $image->getTitle() . '.' . $image->getExtension() . '"');
             header('Content-length: ' . $image->getAbsoluteSize());
-            header('Cache-control: ' . 'private');/**/
+            header('Cache-control: ' . 'private');
             try {
                 readfile($image->getFullPath());
                 $log = new DownloadLog();
                 $log->setDownloadedFile($image);
-                //$log->setBrowser($this->getBrowser());
+                $log->setBrowser($this->getBrowser());
                 $log->setIP($ip);
                 $log->write();
             } catch (\Exception $ex) {
-                echo $ex->getMessage();
+                $ex->getMessage();
             }
             exit;
         }
@@ -51,7 +51,7 @@ class DownloadFile extends Controller {
         $q
             ->setFrom('DownloadLog')
             ->setSelect(array(
-                'IPAddress', 'Sum(AbsoluteSize) as CommonSize'
+                'IPAddress', 'Sum(AbsoluteSize) as CommonSize', 'Count(*) Count'
             ))
             ->setWhere('WEEK(NOW()) = WEEK(Created)')
             ->setGroupBy(array(
@@ -70,7 +70,7 @@ class DownloadFile extends Controller {
         $q
             ->setFrom('DownloadLog')
             ->setSelect(array(
-                'IPAddress', 'Sum(AbsoluteSize) as CommonSize'
+                'IPAddress', 'Sum(AbsoluteSize) as CommonSize', 'Count(*) Count'
             ))
             ->setWhere('DAY(NOW()) = DAY(Created)')
             ->setGroupBy(array(
