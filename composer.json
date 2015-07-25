@@ -28,6 +28,7 @@
         "wilr/silverstripe-facebookconnect": "dev-master",
         "rchntrl/silverstripe-vk-connect": "dev-master",
         "meerware/browser-information": "dev-master",
+        "silverstripe/geoip": "dev-master",
         "silverstripe/googlesitemaps": "1.2.2",
         "rywa/silverstripe-foundation-forms": "dev-master"
     },

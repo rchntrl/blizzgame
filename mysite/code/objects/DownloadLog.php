@@ -12,11 +12,12 @@ class DownloadLog extends DataObject {
         'Browser' => 'Varchar',
         'System' => 'Varchar',
         'Device' => 'Varchar',
+        'Country' => 'Varchar',
     );
 
     public function setIP($ip) {
         $this->setField('IPAddress', $ip);
-
+        $this->setField('Country', Geoip::visitor_country());
         return $this;
     }
 

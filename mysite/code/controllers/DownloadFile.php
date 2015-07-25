@@ -33,6 +33,7 @@ class DownloadFile extends Controller {
         ;
         return $q->execute()->value();
     }
+
     public function image() {
         $id = $this->urlParams['ID'];
         $ip = $_SERVER['REMOTE_ADDR'];
@@ -93,5 +94,21 @@ class DownloadFile extends Controller {
         ;
         $result = $q->execute();
         return $this->response->setBody($result->table());
+    }
+
+    public function formatSize($integer) {
+        $size = $integer;
+        $metrics = array('bytes', 'KB', 'MB', 'GB', 'TB');
+        $metric = 0;
+        while (floor($size / 1024) > 0) {
+            ++$metric;
+            $size /= 1024;
+        }
+        if (isset($metrics[$metric])) {
+            $format = round($size, 1) . ' ' . $metrics[$metric];
+        } else {
+            $format = $integer . ' ' . $metrics[0];
+        }
+        return $format;
     }
 }
