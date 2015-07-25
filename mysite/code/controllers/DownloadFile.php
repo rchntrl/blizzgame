@@ -21,12 +21,24 @@ class DownloadFile extends Controller {
         return Director::BaseURL();
     }
 
+    public function getDownloadsByIP($ip) {
+        $q = new SQLQuery();
+        $q
+            ->setFrom('DownloadLog')
+            ->setSelect('Count(*)')
+            ->setWhere(array(
+                'DAY(NOW()) = DAY(Created)',
+                'IPAddress = \'' . $ip . '\'',
+            ))
+        ;
+        return $q->execute()->value();
+    }
     public function image() {
         $id = $this->urlParams['ID'];
         $ip = $_SERVER['REMOTE_ADDR'];
         /** @var Image $image */
         $image = Image::get_by_id('Image', $id);
-        if ($image) {
+        if ($image && $this->getDownloadsByIP($ip) < 100) {
             header('Content-type: ' . Http::get_mime_type($image->getFilename()));
             header('Content-Disposition: ' . 'attachment; filename="' . $image->getTitle() . '.' . $image->getExtension() . '"');
             header('Content-length: ' . $image->getAbsoluteSize());
@@ -43,6 +55,7 @@ class DownloadFile extends Controller {
             }
             exit;
         }
+        echo 'You have exceeded the limit of downloads per day.';
         return $this->httpError(404);
     }
 

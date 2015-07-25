@@ -15,16 +15,17 @@ class DownloadLog extends DataObject {
     );
 
     public function setIP($ip) {
-        $this->IPAddress = $ip;
+        $this->setField('IPAddress', $ip);
 
         return $this;
     }
 
     public function setDownloadedFile(File $file) {
-        $this->FileID = $file->ID;
-        $this->FileName = $file->getTitle();
-        $this->Size = $file->getSize();
-        $this->AbsoluteSize = $file->getAbsoluteSize();
+        $this->setField('FileID', $file->ID);
+        $this->setField('Title', $file->getTitle());
+        $this->setField('FileName', $file->getFilename());
+        $this->setField('Size', $file->getSize());
+        $this->setField('AbsoluteSize',$file->getAbsoluteSize());
 
         return $this;
     }
