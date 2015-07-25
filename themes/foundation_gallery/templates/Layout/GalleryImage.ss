@@ -11,7 +11,7 @@
     </div>
     <div class="art-info">
         <div class="right">
-            <a class="small button success" title="Скачать оригинал" target="_blank" href="$Image.getUrl()">Скачать <i class="fi-download"></i></a>
+            <a class="small button success" title="Скачать оригинал" target="_blank" href="$Image.downloadLink()">Скачать <i class="fi-download"></i></a>
         </div>
         <% if $Author %>
         <ul class="inline-list">

@@ -83,6 +83,12 @@ class BlizzgameObjectExtension extends DataExtension {
         return $this->owner->CroppedImage(360, 250);
     }
 
+    public function downloadLink() {
+        if ($this->owner instanceof File) {
+            return Director::baseURL() . 'download/image/' . $this->owner->ID;
+        }
+    }
+
     /**
      * @link http://www.silverstripe.org/community/forums/data-model-questions/show/6568
      * Convert this object to a JSON string. It will includes all the has_one objects recursively.

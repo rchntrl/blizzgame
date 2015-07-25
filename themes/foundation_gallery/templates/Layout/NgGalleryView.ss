@@ -11,7 +11,7 @@
     </div>
     <div class="art-info">
         <div class="right">
-            <a class="small button success" title="Скачать оригинал" target="_blank" data-ng-href="{{ gallery.currentArt.Image.Original }}">Скачать <i class="fi-download"></i></a>
+            <a class="small button success" title="Скачать оригинал" target="_blank" data-ng-href="/download/image/{{ gallery.currentArt.Image.ID }}">Скачать <i class="fi-download"></i></a>
         </div>
         <ul data-ng-show="gallery.currentArt.Author" class="inline-list">
             <li class="heading">Автор:</li>
