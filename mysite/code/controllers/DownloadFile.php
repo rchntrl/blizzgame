@@ -57,7 +57,6 @@ class DownloadFile extends Controller {
             exit;
         }
         echo 'You have exceeded the limit of downloads per day.';
-        return $this->httpError(404);
     }
 
     public function weekly() {
