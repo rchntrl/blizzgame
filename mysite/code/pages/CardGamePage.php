@@ -23,6 +23,9 @@ class CardGamePage extends Page {
         $gridFieldConfig->addComponent(new GridFieldOrderableRows('Order'));
         $gridField = new GridField('Cards', _t('CardGame.CARDGAME_CMS_TITLE', 'Cards'), $this->Items(), $gridFieldConfig);
         $fields->addFieldToTab('Root.Main', $gridField, 'MenuTitle');
+        $uploadField = new UploadField('Image', 'Image');
+        $uploadField->setFolderName('CardGame/' . $this->URLSegment);
+        $fields->addFieldToTab('Root.Main', $uploadField, 'Cards');
         return $fields;
     }
 }

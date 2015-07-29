@@ -19,7 +19,7 @@
 </div>
 
 <div class="medium-5 column">
-
+    <a data-ng-show="cardGameData.selectedCard.LinkToArt.ID" data-ng-href="/gallery/{{ cardGameData.selectedCard.LinkToArt.LastLinkSegment }}">Ссылка на арт</a>
 </div>
 <div class="medium-12 column">
     <div data-ng-bind-html="cardGameData.selectedCard.Rules | unsafe"></div>
