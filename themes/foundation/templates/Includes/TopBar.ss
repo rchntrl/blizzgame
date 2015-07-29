@@ -8,13 +8,11 @@
         <ul class="right">
             <li class="game-icon <% if 0 == $SubsiteID %> active<% end_if %>">
                 <a class="Blizzgame" href="http://www.blizzgame.ru" title="Главная">
-                    <span class="">Главный сайт</span>
                 </a>
             </li>
             <% loop subSiteListMenu() %>
                 <li class="game-icon <% if currentSubsiteID == $ID %> active<% end_if %>">
                     <a class="$title" href="http://$PrimaryDomain" title="$Title.ATT">
-                        <span class="">$Title</span>
                     </a>
                 </li>
             <% end_loop %>

@@ -91,38 +91,61 @@ app.value("cardGameData", {
     ]
 });
 
-app.factory("cardGame", function(cardGameData, $http, $location) {
+app.factory("cardGame", function(cardGameData, $http, $routeParams) {
     var apiUrl =cardGameData.baseHref + "api/v1/";
     var start = 0;
     var size = 20;
     var currentPage = 1;
     function loadCardList() {
-        $http({
-            url: apiUrl + "CardGamePage/" + cardGameData.pageID + "/Items.json",
-            params: {
-                //limit: start + "," + size
-            }
-        }).success(function(data) {
-            if (cardGameData.items.length == 0) {
-                $.extend(cardGameData, data);
-            } else {
-                $.each(data.items, function() {
-                    cardGameData.items.push(this);
-                });
-            }
-        });
+        if (!cardGameData.items.length) {
+            $http({
+                url: apiUrl + "CardGamePage/" + cardGameData.pageID + "/Items.json",
+                params: {
+                    //limit: start + "," + size
+                }
+            }).success(function(data) {
+                if (cardGameData.items.length == 0) {
+                    $.extend(cardGameData, data);
+                } else {
+                    $.each(data.items, function() {
+                        cardGameData.items.push(this);
+                    });
+                }
+                if ($routeParams.pageName) {
+                    cardGameData.selectedCard = cardGameData.items.filter(function(obj) {
+                        return obj.LastLinkSegment == $routeParams.pageName;
+                    });
+                    cardGameData.selectedCard = cardGameData.selectedCard[0];
+                    loadDetails();
+                }
+            });
+        }
     }
-    function loadImages() {
-        $.each(cardGameData.items, function(key) {
-            if (key >= start && key <= (start + size) && !cardGameData.items[key].CoverCard.Filename) {
-                cardGameData.items[key].page = cardGameData.currentPage;
-                $http({
-                    url: cardGameData.items[key].CoverCard.href
-                }).success(function(data) {
-                    $.extend(cardGameData.items[key].CoverCard, data);
-                });
-            }
-        });
+    function loadDetails() {
+        if (!cardGameData.selectedCard.CoverCard.Filename) {
+            cardGameData.selectedCard.page = cardGameData.currentPage;
+            $http({
+                url: cardGameData.selectedCard.CoverCard.href
+            }).success(function(data) {
+                $.extend(cardGameData.selectedCard.CoverCard, data);
+            });
+        }
+        if (!cardGameData.selectedCard.LinkToArt.Title) {
+            cardGameData.selectedCard.page = cardGameData.currentPage;
+            $http({
+                url: cardGameData.selectedCard.LinkToArt.href
+            }).success(function(data) {
+                $.extend(cardGameData.selectedCard.LinkToArt, data);
+            });
+        }
+        if (!cardGameData.selectedCard.Artist.TitleEN) {
+            cardGameData.selectedCard.page = cardGameData.currentPage;
+            $http({
+                url: cardGameData.selectedCard.Artist.href
+            }).success(function(data) {
+                $.extend(cardGameData.selectedCard.Artist, data);
+            });
+        }
     }
     return {
         setStart: function(s) {
@@ -144,6 +167,7 @@ app.factory("cardGame", function(cardGameData, $http, $location) {
         getSize: function() {
             return size;
         },
+        loadDetails: loadDetails,
         loadCardList: loadCardList
     };
 });
@@ -212,21 +236,22 @@ app.filter('multipleFilter', function () {
  * @description
  * gallery pagination, view, filter
  */
-app.controller("cards", function (cardGame, cardGameData, $scope, $http, $routeParams, $location, $window, $rootScope) {
+app.controller("cards", function (cardGame, cardGameData, $scope, $http, $routeParams, $location, $modal, $log) {
     $scope.cardGameData = cardGameData;
     $scope.cardGame = cardGame;
-    if (cardGameData.viewMode == "list") {
+    if (cardGameData.pageReady) {
         cardGame.loadCardList();
-
     }
-    cardGameData.viewMode = $routeParams.pageName ? "view" : "list";
-    $scope.page = $routeParams.pageName;
+    if (cardGameData.items.length && $routeParams.pageName) {
+        cardGameData.selectedCard = cardGameData.items.filter(function(obj) {
+            return obj.LastLinkSegment == $routeParams.pageName;
+        });
+        cardGameData.selectedCard = cardGameData.selectedCard[0];
+        cardGame.loadDetails();
+    }
+    cardGameData.pageReady = $routeParams.pageName ? false : true;
     $scope.search = {
         Class: ""
-    };
-
-    $scope.clickMe = function(card) {
-        console.log(card);
     };
 
     $scope.paginate = function(page) {

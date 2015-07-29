@@ -6,7 +6,11 @@
  * @method HasManyList Items()
  */
 class CardGamePage extends Page {
-    
+
+    private static $has_one = array(
+        'Image' => 'Image',
+    );
+
     private static $has_many = array(
         'Items' => 'CardGameItem'
     );
@@ -63,6 +67,20 @@ class CardGamePage_Controller extends Page_Controller {
                 }
                 $this->response->setBody(json_encode(
                     array('count' => CardGameItem::get("CardGameItem", "DAY(NOW()) > DAY(CardGameItem.LastEdited)")->count())
+                ));
+                break;
+            case 'updatedir':
+                /** @var CardGameItem $cover */
+                $parentID = File::get_one("Folder", "\"File\".\"Name\" = '" . $this->URLSegment . "'")->ID;
+                foreach (Image::get("Image", "ParentID = 13833")->limit(15) as $cover) {
+                    if ($cover->CoverCard()->ParentID != $parentID) {
+                        $image = $cover->CoverCard();
+                        $image->setParentID($parentID);
+                        $image->write();
+                    }
+                }
+                $this->response->setBody(json_encode(
+                    array('count' => Image::get("Image", "ParentID = 13833")->count())
                 ));
                 break;
         }

@@ -33,6 +33,8 @@ GalleryImage:
     - ObjectAsPageExtension
 CardGameItem:
   api_access: true
+  extensions:
+    - ObjectAsPageExtension
 Book:
   api_access: true
   extensions:
