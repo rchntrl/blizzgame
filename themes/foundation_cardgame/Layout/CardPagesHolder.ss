@@ -7,7 +7,7 @@
                     <% if $Image %>
                         <img alt="$MenuTitle" src="$Image.SetRatioSize(240, 370).getUrl()" />
                     <% else %>
-                        <img alt="$MenuTitle" src="$SiteConfig.DefaultBookCover.SetRatioSize(240, 370).getUrl()" />
+                        <img alt="$MenuTitle" src="/assets/CardGame/classic/Hearthstone.png" />
                     <% end_if %>
                     <p class="crop-text">$MenuTitle</p>
                 </a>
