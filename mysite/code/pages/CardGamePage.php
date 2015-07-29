@@ -72,7 +72,7 @@ class CardGamePage_Controller extends Page_Controller {
             case 'updatedir':
                 /** @var CardGameItem $cover */
                 $parentID = File::get_one("Folder", "\"File\".\"Name\" = '" . $this->URLSegment . "'")->ID;
-                foreach (Image::get("Image", "ParentID = 13833")->limit(15) as $cover) {
+                foreach ($this->Items() as $cover) {
                     if ($cover->CoverCard()->ParentID != $parentID) {
                         $image = $cover->CoverCard();
                         $image->setParentID($parentID);
