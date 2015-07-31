@@ -2,7 +2,7 @@
     <dt><%t Gallery.FILTER_SIZE_TITLE 'Фильтр по размерам' %>:</dt>
     <% loop FilterBySize %>
         <dd <%if $Current %>class="active"<% end_if %> >
-            <a href="$Top.getFilterUrl('size', $Name)" title="$Title" >$MenuTitle</a>
+            <a href="$Top.getFilterUrl('size', $value)" title="$Title" >$MenuTitle</a>
         </dd>
     <% end_loop %>
 </dl>

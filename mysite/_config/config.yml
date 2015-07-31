@@ -28,11 +28,11 @@ ElementLink:
 StormHero:
   api_access: true
 GalleryImage:
-  api_access: true
+  #api_access: true
   extensions:
     - ObjectAsPageExtension
 CardGameItem:
-  api_access: true
+  #api_access: true
   extensions:
     - ObjectAsPageExtension
 Book:

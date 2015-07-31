@@ -46,11 +46,3 @@
         </div>
     </div>
 </div>
-
-<script type="text/ng-template" id="myModalContent.html">
-    <h3>{{ card.TitleRU }}</h3>
-    <div>sadfsdf
-        {{ card.Flavor }}
-    </div>
-    <a class="close-reveal-modal" aria-label="Close" ng-click="cancel()">&#215;</a>
-</script>

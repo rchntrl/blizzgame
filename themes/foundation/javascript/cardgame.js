@@ -91,7 +91,7 @@ app.value("cardGameData", {
     ]
 });
 
-app.factory("cardGame", function(cardGameData, $http, $routeParams) {
+app.factory("cardGame", function(cardGameData, $http, $routeParams, $location, $anchorScroll) {
     var apiUrl =cardGameData.baseHref + "api/v1/";
     var start = 0;
     var size = 20;
@@ -122,6 +122,9 @@ app.factory("cardGame", function(cardGameData, $http, $routeParams) {
         }
     }
     function loadDetails() {
+        $location.hash('top');
+        $anchorScroll();
+        size = 8;
         if (!cardGameData.selectedCard.CoverCard.Filename) {
             cardGameData.selectedCard.page = cardGameData.currentPage;
             $http({
@@ -166,6 +169,9 @@ app.factory("cardGame", function(cardGameData, $http, $routeParams) {
         },
         getSize: function() {
             return size;
+        },
+        setSize: function(s) {
+            size = s;
         },
         loadDetails: loadDetails,
         loadCardList: loadCardList
@@ -248,6 +254,9 @@ app.controller("cards", function (cardGame, cardGameData, $scope, $http, $routeP
         });
         cardGameData.selectedCard = cardGameData.selectedCard[0];
         cardGame.loadDetails();
+    } else {
+        cardGame.setSize(20);
+        cardGame.setCurrentPage(1);
     }
     cardGameData.pageReady = $routeParams.pageName ? false : true;
     $scope.search = {

@@ -12,6 +12,7 @@
             <dd data-ng-bind="cardGameData.selectedCard.Set">
             </dd>
             <dt>Тип:</dt><dd data-ng-bind="cardGameData.selectedCard.Type"></dd>
+            <dt>Класс:</dt><dd data-ng-bind="cardGameData.selectedCard.Class"></dd>
             <dt>Качество:</dt><dd data-ng-bind="cardGameData.selectedCard.Rarity"></dd>
             <dt>Художник :</dt><dd data-ng-bind="cardGameData.selectedCard.Artist.TitleEN"></dd>
         </dl>
@@ -19,9 +20,37 @@
 </div>
 
 <div class="medium-5 column">
-    <a data-ng-show="cardGameData.selectedCard.LinkToArt.ID" data-ng-href="/gallery/{{ cardGameData.selectedCard.LinkToArt.LastLinkSegment }}">Ссылка на арт</a>
+    <a target="_blank" data-ng-show="cardGameData.selectedCard.LinkToArt.ID" data-ng-href="{{ cardGameData.selectedCard.LinkToArt.Link }}">Ссылка на арт</a>
+    <br/>
+    <img data-ng-src="{{ cardGameData.selectedCard.LinkToArt.PageSize }}" />
 </div>
 <div class="medium-12 column">
     <div data-ng-bind-html="cardGameData.selectedCard.Rules | unsafe"></div>
     <div data-ng-bind-html="cardGameData.selectedCard.Flavor | unsafe"></div>
+</div>
+<hr/>
+<div class="small-12 medium-12 columns">
+    <h3>Карты из этого набора</h3>
+    <ul class="card-list small-block-grid-4 medium-block-grid-8">
+        <li data-ng-repeat="(key, card) in (filtered = (cardGameData.items | filter:search:strict)) | startFrom:cardGame.getStart() | limitTo:cardGame.getSize()">
+            <a class="th hearthstone-link" href="{{ cardGameData.pageUrl + card.LastLinkSegment }}">
+                <img class="card-img" data-ng-src="{{ card.CoverThumbnail }}" src="" data-ng-class="{ 'loading' :  !card.CoverThumbnail }" />
+                <div class="info">
+                    <p class="crop-text">{{ card.TitleRU }}</p>
+                </div>
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="small-12 medium-12 columns">
+    <div class="pagination-centered ng-scope">
+        <pagination on-select-page="paginate(page)"
+                    boundary-links="true"
+                    previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                    max-size="5"
+                    total-items="filtered.length"
+                    page="cardGameData.currentPage"
+                    items-per-page="cardGame.getSize()" >
+        </pagination>
+    </div>
 </div>

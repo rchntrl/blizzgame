@@ -38,8 +38,16 @@ class CardGameItem extends DataObject implements PermissionProvider {
         'Health' => 'Int',
         'Defense' => 'Int',
         'Set' =>  "Varchar(255)",
-        'CoverThumbnail' => "Varchar(255)",
-        'PromoThumbnail' => "Varchar(255)",
+    );
+
+    private static $api_access = array(
+        'view' => array(
+            'Title', 'TitleEN', 'TitleRU', 'LastLinkSegment', 'Link',
+            'Order', 'Hearthstone', 'Rules', 'Flavor', 'Comment',
+            'Rarity', 'Type', 'Faction', 'Class',
+            'Cost', 'Attack', 'Health', 'Defense', 'Set',
+            'CoverThumbnail'
+        )
     );
 
     private static $indexes = array(
@@ -93,10 +101,14 @@ class CardGameItem extends DataObject implements PermissionProvider {
         return $this->CoverCard()->CMSThumbnail();
     }
 
+    public function getCoverThumbnail() {
+        return  $this->CoverCard()->SetRatioSize(240, 370)->getURL();
+    }
+
     public function onBeforeWrite() {
         parent::onBeforeWrite();
-        $this->CoverThumbnail = $this->CoverCardID ? $this->CoverCard()->SetRatioSize(240, 370)->getURL() : '';
-        $this->PromoThumbnail = $this->PromoCardID ? $this->PromoCard()->SetRatioSize(240, 370)->getURL() : '';
+        //$this->CoverThumbnail = $this->CoverCardID ? $this->CoverCard()->SetRatioSize(240, 370)->getURL() : '';
+        //$this->PromoThumbnail = $this->PromoCardID ? $this->PromoCard()->SetRatioSize(240, 370)->getURL() : '';
     }
 
     public function getCMSFields() {
@@ -149,7 +161,7 @@ class CardGameItem extends DataObject implements PermissionProvider {
         return Tab::create(
             'Description',
             _t('CardGame.DESCRIPTION_TAB', 'Описание'),
-            new NumericField('Set', 'Название Сета'),
+            new TextField('Set', 'Название Сета'),
             new HtmlEditorField('Rules', 'Правила'),
             new HtmlEditorField('Flavor', 'Особенность'),
             new HtmlEditorField('Comments', 'Комментарий')
