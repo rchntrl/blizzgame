@@ -102,7 +102,7 @@ class CardGameItem extends DataObject implements PermissionProvider {
     }
 
     public function getCoverThumbnail() {
-        return  $this->CoverCard()->SetRatioSize(240, 370)->getURL();
+        return  $this->CoverCard()->SetRatioSize(240, 370) ? $this->CoverCard()->SetRatioSize(240, 370)->getURL() : '';
     }
 
     public function onBeforeWrite() {
