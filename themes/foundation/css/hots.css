@@ -2,13 +2,22 @@
 .hero-widget__thumbnail-list {
   text-align: center;
   margin: auto;
-  padding-bottom: 13px;
+  padding-bottom: 33px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
   width: 248px;
 
+}
+
+.hero-title {
+  display: none;
+  position: absolute;
+}
+
+.hexagon__clip:hover .hero-title {
+  display: block;
 }
 
 .hero-widget__thumbnail-list:after, .hero-widget__thumbnail-list:before {
@@ -20,7 +29,8 @@
   clear: both
 }
 
-.hero-widget__thumbnail-list:after, .hero-widget__thumbnail-list:before {
+.hero-widget__thumbnail-list:after,
+.hero-widget__thumbnail-list:before {
   display: table;
   content: "";
   visibility: hidden;

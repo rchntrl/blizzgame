@@ -10,7 +10,7 @@
                         <div class="hero-select-area">
                             <ul class="hero-widget__thumbnail-list">
                                 <% loop $HeroesRotation %>
-                                    <li class="hero-thumbnail released hexagon ">
+                                    <li class="hero-thumbnail released hexagon">
                                         <div class="hexagon__clip">
                                             <a title="$MenuTitle" href="javascript:;" class="js-hero-thumbnail hero-thumbnail__link hexagon__item" data-slug="$Class"></a>
                                             <span class="hero-thumbnail__icon $Class"></span>

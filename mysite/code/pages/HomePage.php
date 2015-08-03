@@ -20,9 +20,12 @@ class HomePage_Controller  extends Page_Controller {
 
     public function init() {
         parent::init();
-        if (Member::currentUser() && !Member::currentUser()->Nickname) {
-            //$this->redirect('http://www.blizzgame.ru/forummemberprofile/edit/' . Member::currentUserID());
-        }
+        Requirements::javascript(THEMES_DIR. '/foundation/bower_components/jquery/dist/jquery.min.js');
+        Requirements::javascript(THEMES_DIR . '/foundation/bower_components/foundation/modernizr/modernizr.js');
+        Requirements::javascript(THEMES_DIR. '/foundation/bower_components/foundation/js/foundation.min.js');
+        Requirements::javascript(THEMES_DIR. '/foundation/bower_components/foundation/js/foundation/foundation.topbar.js');
+        Requirements::javascript(THEMES_DIR. '/foundation/javascript/app.js');
+        Requirements::javascript(THEMES_DIR. '/foundation/javascript/init.js');
     }
 
     public function subSiteListMenu() {

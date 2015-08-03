@@ -22,7 +22,6 @@
     <link rel="stylesheet" href="$ThemeDir/icons/foundation-icons.css" />
     <link rel="stylesheet" href="$ThemeDir/css/common.css" />
     <% include LessSection %>
-    <script src="framework/thirdparty/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="http://svkament.ru/js/SVEmbed.js"></script>
     <script type="text/javascript">
         SV.init({subdomain: 'blizzgame'})
@@ -42,12 +41,5 @@
 </div>
     <%--See [Requirements](http://doc.silverstripe.org/framework/en/reference/requirements) for loading from controller--%>
 
-<script src="$ThemeDir/javascript/modernizr.js"></script>
-<script src="$ThemeDir/javascript/foundation.min.js"></script>
-<script src="$ThemeDir/javascript/foundation/foundation.topbar.js"></script>
-
-<script src="$ThemeDir/javascript/app.js"></script>
-<script src="$ThemeDir/javascript/init.js"></script>
-<!-- Yandex.Metrika counter --><script type="text/javascript">(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter1231901 = new Ya.Metrika({id:1231901, accurateTrackBounce:true}); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script><noscript><div><img src="//mc.yandex.ru/watch/1231901" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!-- /Yandex.Metrika counter -->
 </body>
 </html>
