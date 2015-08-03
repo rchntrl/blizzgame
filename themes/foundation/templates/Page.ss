@@ -23,7 +23,6 @@
 
     <link rel="stylesheet" href="$ThemeDir/css/common.css" />
     <% include LessSection %>
-    <script src="framework/thirdparty/jquery/jquery.min.js"></script>
     <% include AnalyticsTracking %>
 </head>
 <body class="$ClassName.ATT">
@@ -41,7 +40,6 @@
             <% include Footer %>
         </div>
 <%--See [Requirements](http://doc.silverstripe.org/framework/en/reference/requirements) for loading from controller--%>
-
 
 </body>
 </html>

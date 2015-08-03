@@ -89,7 +89,7 @@ class Page_Controller extends ContentController {
         Requirements::javascript(THEMES_DIR . '/foundation/javascript/modernizr.js');
         Requirements::javascript(THEMES_DIR. '/foundation/javascript/foundation.min.js');
         Requirements::javascript(THEMES_DIR. '/foundation/javascript/foundation/foundation.topbar.js');
-        Requirements::javascript(THEMES_DIR. '/foundation/js/jquery.min.js');
+        Requirements::javascript(THEMES_DIR. 'framework/thirdparty/jquery/jquery.min.js');
         Requirements::javascript(THEMES_DIR. '/foundation/javascript/app.js');
         Requirements::javascript(THEMES_DIR. '/foundation/javascript/init.js');
     }
