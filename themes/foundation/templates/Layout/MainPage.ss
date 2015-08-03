@@ -8,15 +8,13 @@
                         <h2 class="widget-title text-center">Heroes of the Storm</h2>
                         <h3 class="widget-title text-center">Герои недели</h3>
                         <div class="hero-select-area">
-                            <ul class="inline-list hero-widget__thumbnail-list">
+                            <ul class="hero-widget__thumbnail-list">
                                 <% loop $HeroesRotation %>
-                                    <li>
-                                        <div class="hero-thumbnail released">
-                                            <div class="hero-thumbnail__backing">
-                                                <a title="$MenuTitle" href="javascript:;" class="hero-thumbnail__link $Class"></a>
-                                            </div>
+                                    <li class="hero-thumbnail released hexagon ">
+                                        <div class="hexagon__clip">
+                                            <a title="$MenuTitle" href="javascript:;" class="js-hero-thumbnail hero-thumbnail__link hexagon__item" data-slug="$Class"></a>
+                                            <span class="hero-thumbnail__icon $Class"></span>
                                         </div>
-                                        <span class="hero-title hide-for-small">$Title</span>
                                     </li>
                                 <% end_loop %>
                             </ul>

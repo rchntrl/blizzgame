@@ -1,209 +1,343 @@
-.hero-select-area {
-  position: relative;
-  padding-bottom: 25px;
-  float: left;
-}
 
 .hero-widget__thumbnail-list {
-  width: auto;
-  overflow: visible;
-  margin: 0;
-}
-.hero-widget__thumbnail-list li {
-  margin-left: 0;
-  margin-right: 1.375rem;;
-
-}
-.hero-widget__thumbnail-list .hero-title {
   text-align: center;
-  color: #fff;
-  text-shadow: 0 0 1rem #009cff;
-  word-wrap: break-word;
-  width: 90px;
-}
-.hero-thumbnail {
-  list-style-type: none;
-  padding: 2px;
-  width: 68px;
-  background: #0097ad;
-  background: linear-gradient(#0097ad, #5a54e5);
-  display: inline-block;
   margin: auto;
-  position: relative;
+  padding-bottom: 13px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 248px;
+
 }
 
-.hero-thumbnail.is-active {
-  background: #00d8ff;
-  box-shadow: 0 0 1em 2px #009cff;
+.hero-widget__thumbnail-list:after, .hero-widget__thumbnail-list:before {
+  content: " ";
+  display: table
 }
-.hero-thumbnail.is-active:before,
-.hero-thumbnail.is-active:after {
+
+.hero-widget__thumbnail-list:after {
+  clear: both
+}
+
+.hero-widget__thumbnail-list:after, .hero-widget__thumbnail-list:before {
+  display: table;
+  content: "";
+  visibility: hidden;
+  line-height: 0
+}
+
+.hero-widget__thumbnail-list:after {
+  clear: both
+}
+
+@media only screen and (min-width: 30em) {
+  .hero-widget__thumbnail-list {
+    width: 25rem
+  }
+}
+.hexagon {
+  position: relative;
+  width: 68px;
+  height: 74px;
+  float: left
+}
+
+.hexagon__clip {
+  width: 100%;
+  height: 100%;
+  overflow: hidden
+}
+
+.hexagon__item {
+  position: relative;
+  top: 10px;
+  left: 0;
+  z-index: 1;
+  display: inline-block;
+  width: 52px;
+  height: 52px;
+  -webkit-transform: scaleX(1.74) rotate(45deg);
+  -ms-transform: scaleX(1.74) rotate(45deg);
+  transform: scaleX(1.74) rotate(45deg);
+  -webkit-tap-highlight-color: transparent
+}
+
+.hero-thumbnail {
+  margin: 0 1px -13px;
+}
+
+.hero-thumbnail:nth-child(6n+4) {
+  margin-left: 36px;
+}
+
+@media only screen and (min-width: 30em) {
+  .hero-thumbnail:nth-child(6n+4) {
+    margin-left: .0625rem
+  }
+
+  .hero-thumbnail:nth-child(10n+6) {
+    margin-left: 2.25rem
+  }
+}
+
+@media only screen and (min-width: 38em) {
+  .hero-thumbnail:nth-child(10n+6) {
+    margin-left: .0625rem
+  }
+
+  .hero-thumbnail:nth-child(14n+8) {
+    margin-left: 2.25rem
+  }
+}
+
+@media only screen and (min-width: 50em) {
+  .hero-thumbnail:nth-child(14n+8) {
+    margin-left: .0625rem
+  }
+
+  .hero-thumbnail:nth-child(20n+11) {
+    margin-left: 2.25rem
+  }
+}
+
+@media only screen and (min-width: 68em) {
+  .hero-thumbnail:nth-child(20n+11) {
+    margin-left: .0625rem
+  }
+
+  .hero-thumbnail:nth-child(14n+8) {
+    margin-left: 2.25rem
+  }
+}
+
+.ie8 .hero-thumbnail.hero-thumbnail--offset {
+  margin-left: 36px;
+}
+
+.hero-thumbnail:before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: #00d8ff;
-  background: linear-gradient(to right, #00d8ff, #ffffff, #00d8ff);
-}
-.hero-thumbnail.is-active:before {
-  top: -4px;
-}
-.hero-thumbnail.is-active:after {
-  top: auto;
-  bottom: -4px;
+  top: -15px;
+  left: -10px;
+  width: 90px;
+  height: 100px;
+  background: url(../images/heroes/thumbnail-borders.png) -368px 0 no-repeat;
+  background-size: 458px 100px
 }
 
-.hero-thumbnail.unreleased {
-  background: #261e4a;
-}
-.hero-thumbnail.unreleased:before,
-.hero-thumbnail.unreleased:after {
-  opacity: .25;
-}
-.hero-thumbnail.unreleased .hero-thumbnail__link:before {
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  opacity: .5;
-}
-.hero-thumbnail__backing {
-  background-color: #000000;
-  top: 2px;
-  bottom: 2px;
-  left: 2px;
-  right: 2px;
-}
-.hero-thumbnail__link.abathur {
-  background-position: 0 0;
-}
-.hero-thumbnail__link.arthas {
-  background-position: 0 -72px;
-}
-.hero-thumbnail__link.diablo {
-  background-position: 0 -144px;
-}
-.hero-thumbnail__link.etc {
-  background-position: 0 -216px;
-}
-.hero-thumbnail__link.falstad {
-  background-position: 0 -288px;
-}
-.hero-thumbnail__link.gazlowe {
-  background-position: 0 -360px;
-}
-.hero-thumbnail__link.illidan {
-  background-position: 0 -432px;
-}
-.hero-thumbnail__link.kerrigan {
-  background-position: 0 -504px;
-}
-.hero-thumbnail__link.malfurion {
-  background-position: 0 -576px;
-}
-.hero-thumbnail__link.muradin {
-  background-position: 0 -648px;
-}
-.hero-thumbnail__link.naziba {
-  background-position: 0 -720px;
-}
-.hero-thumbnail__link.nova {
-  background-position: 0 -792px;
-}
-.hero-thumbnail__link.raynor {
-  background-position: 0 -864px;
-}
-.hero-thumbnail__link.sghammer {
-  background-position: 0 -936px;
-}
-.hero-thumbnail__link.sonya {
-  background-position: 0 -1008px;
-}
-.hero-thumbnail__link.stitches {
-  background-position: 0 -1080px;
-}
-.hero-thumbnail__link.tassadar {
-  background-position: 0 -1152px;
-}
-.hero-thumbnail__link.tychus {
-  background-position: 0 -1224px;
-}
-.hero-thumbnail__link.tyrael {
-  background-position: 0 -1296px;
-}
-.hero-thumbnail__link.tyrande {
-  background-position: 0 -1368px;
-}
-.hero-thumbnail__link.uther {
-  background-position: 0 -1440px;
-}
-.hero-thumbnail__link.valla {
-  background-position: 0 -1512px;
-}
-.hero-thumbnail__link.zeratul {
-  background-position: 0 -1584px;
-}
-.hero-thumbnail__link.brightwing {
-  background-position: 0 -1656px;
-}
-.hero-thumbnail__link.lili {
-  background-position: 0 -1728px;
-}
-.hero-thumbnail__link.murky {
-  background-position: 0 -1800px;
-}
-.hero-thumbnail__link.zagara {
-  background-position: 0 -1872px;
-}
-.hero-thumbnail__link.rehgar {
-  background-position: 0 -1944px;
-}
-.hero-thumbnail__link.anubarak {
-  background-position: 0 -2016px;
-}
-.hero-thumbnail__link.azmodan {
-  background-position: 0 -2088px;
-}
-.hero-thumbnail__link.chen {
-  background-position: 0 -2160px;
-}
-.hero-thumbnail__link.jaina {
-  background-position: 0 -2232px;
-}
-.hero-thumbnail__link.thrall {
-  background-position: 0 -2304px;
-}
-.hero-thumbnail__link.the-lost-vikings {
-  background-position: 0 -2376px;
-}
-.hero-thumbnail__link.sylvanas {
-  background-position: 0 -2448px;
-}
-.hero-thumbnail__link.kaelthas {
-  background-position: 0 -2520px;
-}
-.hero-thumbnail__link.johanna {
-  background-position: 0 -2592px;
+@media (-webkit-min-device-pixel-ratio: 2),(min-resolution: 2dppx) {
+  .hero-thumbnail:before {
+    background-image: url(../images/heroes/thumbnail-borders@2x.png)
+  }
 }
 
-.hero-thumbnail__link {
-  width: 64px;
-  height: 72px;
-  background: #0d0119 url("../images/heroes/thumbnails-64.png");
-  display: block;
-  position: relative;
-  z-index: 2;
-  transition: opacity .5s;
+.hero-thumbnail__icon {
+  position: absolute;
+  top: -14px;
+  left: -12px;
+  display: inline-block;
+  width: 90px;
+  height: 100px;
+
+  background: url(../images/heroes/thumbnails-hexagon.png);
+  background-size: 92px 3900px
 }
-.unreleased .hero-thumbnail__link {
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
-  filter: alpha(opacity=50);
-  opacity: .5;
+
+.hero-thumbnail__icon.the-lost-vikings {
+  background-position: 0 0
 }
-.hero-thumbnail__link:hover {
-  opacity: .5;
-  filter: alpha(opacity=50);
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+
+.hero-thumbnail__icon.anubarak {
+  background-position: 0 -100px
+}
+
+.hero-thumbnail__icon.arthas {
+  background-position: 0 -200px
+}
+
+.hero-thumbnail__icon.abathur {
+  background-position: 0 -300px
+}
+
+.hero-thumbnail__icon.chen {
+  background-position: 0 -400px
+}
+
+.hero-thumbnail__icon.diablo {
+  background-position: 0 -500px
+}
+
+.hero-thumbnail__icon.falstad {
+  background-position: 0 -600px
+}
+
+.hero-thumbnail__icon.illidan {
+  background-position: 0 -700px
+}
+
+.hero-thumbnail__icon.jaina {
+  background-position: 0 -800px
+}
+
+.hero-thumbnail__icon.kaelthas {
+  background-position: 0 -900px
+}
+
+.hero-thumbnail__icon.kerrigan {
+  background-position: 0 -1000px
+}
+
+.hero-thumbnail__icon.lili {
+  background-position: 0 -1100px
+}
+
+.hero-thumbnail__icon.etc {
+  background-position: 0 -1200px
+}
+
+.hero-thumbnail__icon.muradin {
+  background-position: 0 -1300px
+}
+
+.hero-thumbnail__icon.murky {
+  background-position: 0 -1400px
+}
+
+.hero-thumbnail__icon.nazeebo {
+  background-position: 0 -1500px
+}
+
+.hero-thumbnail__icon.nova {
+  background-position: 0 -1600px
+}
+
+.hero-thumbnail__icon.raynor {
+  background-position: 0 -1700px
+}
+
+.hero-thumbnail__icon.rehgar {
+  background-position: 0 -1800px
+}
+
+.hero-thumbnail__icon.malfurion {
+  background-position: 0 -1900px
+}
+
+.hero-thumbnail__icon.gazlowe {
+  background-position: 0 -2000px
+}
+
+.hero-thumbnail__icon.tychus {
+  background-position: 0 -2100px
+}
+
+.hero-thumbnail__icon.tyrael {
+  background-position: 0 -2200px
+}
+
+.hero-thumbnail__icon.uther {
+  background-position: 0 -2300px
+}
+
+.hero-thumbnail__icon.valla {
+  background-position: 0 -2400px
+}
+
+.hero-thumbnail__icon.zagara {
+  background-position: 0 -2500px
+}
+
+.hero-thumbnail__icon.zeratul {
+  background-position: 0 -2600px
+}
+
+.hero-thumbnail__icon.thrall {
+  background-position: 0 -2700px
+}
+
+.hero-thumbnail__icon.sgt-hammer {
+  background-position: 0 -2800px
+}
+
+.hero-thumbnail__icon.sonya {
+  background-position: 0 -2900px
+}
+
+.hero-thumbnail__icon.stitches {
+  background-position: 0 -3000px
+}
+
+.hero-thumbnail__icon.sylvanas {
+  background-position: 0 -3100px
+}
+
+.hero-thumbnail__icon.azmodan {
+  background-position: 0 -3200px
+}
+
+.hero-thumbnail__icon.brightwing {
+  background-position: 0 -3300px
+}
+
+.hero-thumbnail__icon.tassadar {
+  background-position: 0 -3400px
+}
+
+.hero-thumbnail__icon.tyrande {
+  background-position: 0 -3500px
+}
+
+.hero-thumbnail__icon.johanna {
+  background-position: 0 -3600px
+}
+
+.hero-thumbnail__icon.the-butcher {
+  background-position: 0 -3700px
+}
+
+.hero-thumbnail__icon.leoric {
+  background-position: 0 -3800px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),(min-resolution: 2dppx) {
+  .hero-thumbnail__icon {
+    background-image: url(../images/heroes/thumbnails-hexagon@2x.png)
+  }
+}
+
+.hero-thumbnail__icon:after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 90px;
+  height: 100px;
+  background: url(../images/heroes/thumbnail-borders.png) -276px 0 no-repeat;
+  background-size: 458px 100px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),(min-resolution: 2dppx) {
+  .hero-thumbnail__icon:after {
+    background-image: url(../images/heroes/thumbnail-borders@2x.png)
+  }
+}
+
+.free-rotation .hero-thumbnail__icon:after {
+  background-position: -92px 0
+}
+
+.unreleased .hero-thumbnail__icon {
+  opacity: .5
+}
+
+.hero-thumbnail__link.is-active + .hero-thumbnail__icon:after,
+.hero-thumbnail__link:hover + .hero-thumbnail__icon:after {
+  content: " ";
+  background-position: 0 0
+}
+
+.free-rotation .hero-thumbnail__link.is-active + .hero-thumbnail__icon:after,
+.free-rotation .hero-thumbnail__link:hover + .hero-thumbnail__icon:after {
+  background-position: -184px 0
 }
