@@ -86,10 +86,10 @@ class Page_Controller extends ContentController {
 
     public function init() {
         parent::init();
-        Requirements::javascript(THEMES_DIR . '/foundation/javascript/modernizr.js');
-        Requirements::javascript(THEMES_DIR. '/foundation/javascript/foundation.min.js');
-        Requirements::javascript(THEMES_DIR. '/foundation/javascript/foundation/foundation.topbar.js');
-        Requirements::javascript(THEMES_DIR. 'framework/thirdparty/jquery/jquery.min.js');
+        Requirements::javascript(THEMES_DIR. '/foundation/bower_components/jquery/dist/jquery.min.js');
+        Requirements::javascript(THEMES_DIR . '/foundation/bower_components/foundation/modernizr/modernizr.js');
+        Requirements::javascript(THEMES_DIR. '/foundation/bower_components/foundation/js/foundation.min.js');
+        Requirements::javascript(THEMES_DIR. '/foundation/bower_components/foundation/js/foundation/foundation.topbar.js');
         Requirements::javascript(THEMES_DIR. '/foundation/javascript/app.js');
         Requirements::javascript(THEMES_DIR. '/foundation/javascript/init.js');
     }

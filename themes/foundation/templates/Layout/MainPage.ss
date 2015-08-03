@@ -1,6 +1,6 @@
 <% require themedCSS('hots') %>
     <section class="home-page-content">
-        <div class="medium-12 columns">
+        <div class="medium-12 columns hide-for-small">
         <% with $HomePageConfig %>
             <ul class="example-orbit" data-orbit data-options="variable_height:true;animation:fade;next_on_click:false;timer:false;navigation_arrows:true;bullets:false;slide_number:false;">
                 <li data-orbit-slide="heroes">
@@ -21,7 +21,7 @@
                                 <% end_loop %>
                             </ul>
                         </div>
-                        <div class="widget-text">
+                        <div class="widget-text hide-for-small">
                             $HeroesSaleText
                         </div>
                     </div>
