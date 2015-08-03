@@ -7,7 +7,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  width: 248px;
+  width: 500px;
 
 }
 
@@ -41,11 +41,6 @@
   clear: both
 }
 
-@media only screen and (min-width: 30em) {
-  .hero-widget__thumbnail-list {
-    width: 25rem
-  }
-}
 .hexagon {
   position: relative;
   width: 68px;
