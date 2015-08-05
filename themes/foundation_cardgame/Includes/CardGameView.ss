@@ -1,4 +1,4 @@
-<h1 data-ng-bind-html="cardGameData.selectedCard.TitleRU | html"></h1>
+<h1 data-ng-bind-html="cardGameData.selectedCard.TitleRU | unsafe"></h1>
 <div class="medium-12">
     <a data-ng-href="{{ cardGameData.pageUrl }}" class="small button secondary all" title="Вернуться к списку"><i class="fi-thumbnails"></i></a>
 </div>

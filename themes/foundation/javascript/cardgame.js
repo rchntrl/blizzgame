@@ -2,8 +2,7 @@ var pageContainer = angular.element(document.querySelector("#pageConfigContainer
 
 var app = angular.module("cardGame", [
     "ngRoute",
-    "mm.foundation",
-    "infinite-scroll"
+    "mm.foundation"
 ]);
 
 app.filter('unsafe', function($sce) {
