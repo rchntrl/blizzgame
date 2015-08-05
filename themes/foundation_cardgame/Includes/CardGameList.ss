@@ -26,7 +26,7 @@
                 <a class="th hearthstone-link" href="{{ cardGameData.pageUrl + card.LastLinkSegment }}">
                     <img class="card-img" data-ng-src="{{ card.CoverThumbnail }}" src="" data-ng-class="{ 'loading' :  !card.CoverThumbnail }" />
                     <div class="info">
-                        <p class="crop-text">{{ card.TitleRU }}</p>
+                        <p data-ng-bind-html="card.TitleRU | unsafe" class="crop-text"></p>
                     </div>
                 </a>
             </li>
