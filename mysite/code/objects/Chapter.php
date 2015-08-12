@@ -14,7 +14,8 @@ class AttachedImageChapter extends DataObject {
 
     private static $has_one = array(
         'Image' => 'Image',
-        'Chapter' => 'Chapter'
+        'Chapter' => 'Chapter',
+        'Book' => 'Book',
     );
 
     private static $summary_fields = array(
@@ -23,8 +24,8 @@ class AttachedImageChapter extends DataObject {
     );
 
     private static $default_sort = array(
-        'NumberSort DESC',
-        'Created DESC',
+        'NumberSort ASC',
+        'Created ASC',
     );
 
     public static $field_labels = array(
@@ -62,10 +63,6 @@ class Chapter extends DataObject implements ObjectAsPageProvider {
         'NumberSort' => 'Int'
     );
 
-    private static $has_many = array(
-        'AttachedImages' => 'AttachedImageChapter'
-    );
-
     private static $has_one = array (
         'Book' => 'Book'
     );
@@ -101,6 +98,10 @@ class Chapter extends DataObject implements ObjectAsPageProvider {
         return $this->Book();
     }
 
+    public function Image() {
+        return $this->Book()->Cover();
+    }
+
     public function Next() {
         return DataObject::get_one('Chapter',
             "\"Chapter\".\"BookID\" = " . $this->getField('BookID') . " AND \"Chapter\".\"NumberSort\" = " . ($this->getField('NumberSort') + 1)
@@ -122,18 +123,6 @@ class Chapter extends DataObject implements ObjectAsPageProvider {
     public function getCMSFields() {
         $fields = parent::getCMSFields();
         $fields->removeFieldFromTab('Root.Main', array('BookID'));
-        if ($fields->dataFieldByName('AttachedImages')) {
-            /** @var GridFieldConfig $gridFieldConfig */
-            $gridFieldConfig = $fields->dataFieldByName('AttachedImages')->getConfig();
-            $gridFieldConfig->addComponent(new GridFieldBulkManager());
-            $bulkUpload = new GridFieldBulkUpload();
-            $bulkUpload->setUfSetup('setFolderName', 'Attached-Images/' . SiteConfig::current_site_config()->Title);
-            $gridFieldConfig->addComponent($bulkUpload);
-            /** @var GridFieldConfig $gridFieldConfig */
-            $gridFieldConfig->addComponent(new GridFieldOrderableRows('NumberSort'));
-            $gridFieldConfig->removeComponentsByType('GridFieldAddNewButton');
-            $fields->dataFieldByName('AttachedImages')->setConfig($gridFieldConfig);
-        }
         return $fields;
     }
 

@@ -22,22 +22,11 @@
     <link rel="stylesheet" href="$ThemeDir/icons/foundation-icons.css" />
 
     <link rel="stylesheet" href="$ThemeDir/css/common.css" />
-    <% include LessSection %>
     <% include AnalyticsTracking %>
 </head>
 <body class="$ClassName.ATT">
-        <header class="header">
-            <% include TopBar %>
-        </header>
-        <!-- CONTENT SECTION -->
-        <div class="row content-section">
-            <% include Breadcrumbs %>
-            <div class="main-content">
-                $Layout
-            </div>
-        </div>
-            <% include Footer %>
-<%--See [Requirements](http://doc.silverstripe.org/framework/en/reference/requirements) for loading from controller--%>
-
+    <div class="main-content">
+        $Layout
+    </div>
 </body>
 </html>

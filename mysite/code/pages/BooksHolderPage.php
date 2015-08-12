@@ -65,18 +65,28 @@ class BooksHolderPage_Controller extends Page_Controller {
     private static $allowed_actions = array(
         'viewBook',
         'viewChapter',
+        'viewComic',
     );
 
     private static $url_handlers = array(
         '$ID!/translate/$Number' => 'viewChapter',
+        '$ID!/view' => 'viewComic',
         '$ID!' => 'viewBook',
     );
+    
+    public function init() {
+        parent::init();
+        Requirements::javascript(THEMES_DIR . "/foundation/bower_components/angular/angular.min.js");
+        Requirements::javascript(THEMES_DIR . "/foundation/javascript/wow_book.min.js");
+        Requirements::themedCSS('wow_book');
+        Requirements::themedCSS('comic-view');
+    }
 
     /**
-     * @return SQLSelect
+     * @return SQLQuery
      */
     public function getQueryBuilder() {
-        $qb = new SQLSelect('*', 'Book');
+        $qb = new SQLQuery('*', 'Book');
         $qb
             ->setOrderBy(array('Book.DateSaleEN DESC'))
             ->setWhere('Book.HolderPageID = ' . $this->ID) // Books must belong to this page
@@ -100,6 +110,21 @@ class BooksHolderPage_Controller extends Page_Controller {
         return $this->renderDataObject($book, 'Page', 'Book');
     }
 
+    public function viewComic() {
+        /** @var Book $book */
+        $book = null;
+        if($this->urlParams['ID']) {
+            $id = $this->urlParams['ID'];
+            $book = Book::get_by_url($id);
+            if (!$book->ID || $book->HolderPage()->ID != $this->ID) {
+                $this->httpError(404);
+            }
+        } else {
+            $this->httpError(404);
+        }
+        return $this->renderDataObject($book, 'WowBook', 'Comic');
+    }
+
     public function viewChapter() {
         /** @var Chapter $chapter */
         $chapter = null;
@@ -117,7 +142,7 @@ class BooksHolderPage_Controller extends Page_Controller {
 
     /**
      * @param int $itemsPerPage
-     * @param SQLSelect|null $query
+     * @param SQLQuery|null $query
      * @return null|PaginatedList
      */
     public function getPaginatedPages($itemsPerPage = 12)

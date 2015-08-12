@@ -44,6 +44,9 @@
             <h3>Описание</h3>
             $TextDescription
         <% end_if %>
+        <% if $AttachedImages.Count() %>
+            <a  target="_blank" class="button large-12 small-12" href="$Link/view/" ><%t Book.READ_BOOK_BUTTON 'Смотреть {Title}' Title=$MenuTitle %></a>
+        <% end_if %>
         <% if $Chapters.Count() %>
             <a class="button large-12 small-12" href="$Chapters.first().Link()" ><%t Book.READ_BOOK_BUTTON 'Читать {Title}' Title=$MenuTitle %></a>
         <% end_if %>

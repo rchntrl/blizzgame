@@ -63,7 +63,8 @@ class Book extends DataObject {
     );
 
     private static $has_many = array(
-        'Chapters' => 'Chapter'
+        'AttachedImages' => 'AttachedImageChapter',
+        'Chapters' => 'Chapter',
     );
 
     private static $many_many = array(
@@ -93,6 +94,10 @@ class Book extends DataObject {
 
     public function getTitle() {
         return $this->getField('TitleRU') . ' (' . $this->getField('TitleEN') . ')';
+    }
+
+    public function Image() {
+        return $this->Cover();
     }
 
     /**
@@ -136,6 +141,15 @@ class Book extends DataObject {
             $gridFieldConfig = $cmsFields->dataFieldByName('Chapters')->getConfig();
             $gridFieldConfig->addComponent(new GridFieldOrderableRows('NumberSort'));
             $cmsFields->dataFieldByName('Chapters')->setConfig($gridFieldConfig);
+        }
+        if ($cmsFields->dataFieldByName('AttachedImages')) {
+            $gridFieldConfig = $cmsFields->dataFieldByName('AttachedImages')->getConfig();
+            $bulkUpload = new GridFieldBulkUpload();
+            $bulkUpload->setUfSetup('setFolderName', 'Attached-Images/' . SiteConfig::current_site_config()->Title . '/' . $this->LastLinkSegment);
+            $gridFieldConfig->addComponent($bulkUpload);
+            $gridFieldConfig->addComponent(new GridFieldOrderableRows('NumberSort'));
+            $gridFieldConfig->removeComponentsByType('GridFieldAddNewButton');
+            $cmsFields->dataFieldByName('AttachedImages')->setConfig($gridFieldConfig);
         }
         return $cmsFields;
     }
