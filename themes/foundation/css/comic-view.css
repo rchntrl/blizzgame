@@ -62,7 +62,7 @@ h2 {
 
 nav.control {
   position: absolute;
-  left: 20px;
+  right: 20px;
   bottom: 20px;
   z-index: 2147483647;
   -webkit-touch-callout: none;
