@@ -36,7 +36,7 @@
     $(document).ready(function () {
         $('#pages').wowBook({
             height: 700
-            , width: 1100
+            , width: 1070
             , centeredWhenClosed: true
             , hardcovers: true
             , turnPageDuration: 1000
