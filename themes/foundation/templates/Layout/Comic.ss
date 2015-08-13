@@ -1,9 +1,9 @@
 <div id="container">
     <div id="main">
         <div id='pages'>
-            <div id='cover' class="page">$Cover</div>
+            <div id='cover'>$Cover</div>
             <% loop $AttachedImages %>
-                <div class="page">$Image</div>
+                <div id="$Title" class="page">$Image</div>
             <% end_loop %>
         </div>
     </div>
@@ -11,16 +11,13 @@
         <div class="button-bar">
             <ul class="button-group">
                 <li>
-                    <a id="first" class="small button"><i class="fi-previous"></i></a>
+                    <a id="first" class="small button"><i class="fi-home"></i></a>
                 </li>
-                <!--<li>
+                <li>
                     <a id="back" class="small button"><i class="fi-arrow-left"></i></a>
                 </li>
                 <li>
                     <a id="next" class="small button"><i class="fi-arrow-right"></i></a>
-                </li>-->
-                <li>
-                    <a id="last" class="small button"><i class="fi-next"></i></a>
                 </li>
                 <li>
                     <a id="zoomin" class="small button"><i class="fi-zoom-in"></i></a>
@@ -78,24 +75,24 @@
         }
 
         $("#thumbs_position button").on("click", function () {
-            var position = $(this).text().toLowerCase()
+            var position = $(this).text().toLowerCase();
             if ($(this).data("customized")) {
-                position = "top"
+                position = "top";
                 book.opts.thumbnailsParent = "#thumbs_holder";
             } else {
                 book.opts.thumbnailsParent = "body";
             }
-            book.opts.thumbnailsPosition = position
+            book.opts.thumbnailsPosition = position;
             rebuildThumbnails();
         });
         $("#thumb_automatic").click(function () {
-            book.opts.thumbnailsSprite = null
-            book.opts.thumbnailWidth = null
+            book.opts.thumbnailsSprite = null;
+            book.opts.thumbnailWidth = null;
             rebuildThumbnails();
         });
         $("#thumb_sprite").click(function () {
-            book.opts.thumbnailsSprite = "images/thumbs.jpg"
-            book.opts.thumbnailWidth = 136
+            book.opts.thumbnailsSprite = "images/thumbs.jpg";
+            book.opts.thumbnailWidth = 136;
             rebuildThumbnails();
         });
         $("#thumbs_size button").click(function () {
@@ -103,6 +100,5 @@
             book.opts.thumbnailScale = book.opts.thumbnailScale + factor;
             rebuildThumbnails();
         });
-
     });
 </script>
