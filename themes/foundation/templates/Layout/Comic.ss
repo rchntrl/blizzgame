@@ -11,22 +11,22 @@
         <div class="button-bar">
             <ul class="button-group">
                 <li>
-                    <a id="first" class="small button"><i class="fi-home"></i></a>
+                    <a id="first" title="На начало" class="small button"><i class="fi-home"></i></a>
                 </li>
                 <li>
-                    <a id="back" class="small button"><i class="fi-arrow-left"></i></a>
+                    <a id="back" title="Листаем назад" class="small button"><i class="fi-arrow-left"></i></a>
                 </li>
                 <li>
-                    <a id="next" class="small button"><i class="fi-arrow-right"></i></a>
+                    <a id="next" title="Листаем вперед" class="small button"><i class="fi-arrow-right"></i></a>
                 </li>
                 <li>
-                    <a id="zoomin" class="small button"><i class="fi-zoom-in"></i></a>
+                    <a id="zoomin" title="Увеличить" class="small button"><i class="fi-zoom-in"></i></a>
                 </li>
                 <li>
-                    <a id="zoomout" class="small button"><i class="fi-zoom-out"></i></a>
+                    <a id="zoomout" title="Уменьшить" class="small button"><i class="fi-zoom-out"></i></a>
                 </li>
                 <li>
-                    <a id="fullscreen" class="small button"><i class="fi-arrows-out"></i></a>
+                    <a id="fullscreen" title="Переключение между режимами экрана" class="small button"><i class="fi-arrows-out"></i></a>
                 </li>
             </ul>
         </div>
@@ -36,7 +36,7 @@
     $(document).ready(function () {
         $('#pages').wowBook({
             height: 700
-            , width: 1000
+            , width: 1100
             , centeredWhenClosed: true
             , hardcovers: true
             , turnPageDuration: 1000
