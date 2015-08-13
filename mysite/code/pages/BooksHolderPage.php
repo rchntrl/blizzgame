@@ -78,8 +78,6 @@ class BooksHolderPage_Controller extends Page_Controller {
         parent::init();
         Requirements::javascript(THEMES_DIR . "/foundation/bower_components/angular/angular.min.js");
         Requirements::javascript(THEMES_DIR . "/foundation/javascript/wow_book.min.js");
-        Requirements::themedCSS('wow_book');
-        Requirements::themedCSS('comic-view');
     }
 
     /**

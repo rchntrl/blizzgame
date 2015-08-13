@@ -1,3 +1,5 @@
+<% require themedCSS('wow_book') %>
+<% require themedCSS('comic-view') %>
 <div id="container">
     <div id="main">
         <div id='pages'>
