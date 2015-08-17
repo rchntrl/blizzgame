@@ -32,7 +32,7 @@ class CardGameItem extends DataObject implements PermissionProvider {
         'Rarity' => "Enum('None, Free, Common, Uncommon, Rare, Epic, Legendary')",
         'Type' => "Enum('None, Ally, Armor, Boss, Hero, Item, Location, Main Hero, Quest, Spell, Weapon')",
         'Faction' => "Enum('None, Alliance, Horde, Neutral, Monster')",
-        'Class' => "Enum('None, Warrior, Druid, Priest, Mage, Monk, Hunter, Paladin, Rogue, Death Knight, Warlock, Shaman', 'Common')",
+        'Class' => "Enum('None, Common, Warrior, Druid, Priest, Mage, Monk, Hunter, Paladin, Rogue, Death Knight, Warlock, Shaman')",
         'StrikeCost' => 'Int',
         'Cost' => 'Int',
         'Attack' => 'Int',
