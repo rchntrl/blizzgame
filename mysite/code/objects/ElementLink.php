@@ -69,18 +69,12 @@ class ElementLink extends DataObject implements PermissionProvider {
                 'category' => _t('Permissions.BLIZZGAME_TAGS', 'BlizzGame Tags'),
                 'help' => _t('ElementLink.PERMISSION_DELETE_HELP', 'Permission required to delete existing ElementLink/PeopleFace.')
             ),
-            "VIEW_TAG" => array(
-                'name' => _t('ElementLink.PERMISSION_VIEW_DESCRIPTION', 'View ElementLink/PeopleFace'),
-                'category' => _t('Permissions.BLIZZGAME_TAGS', 'BlizzGame Tags'),
-                'help' => _t('ElementLink.PERMISSION_VIEW_HELP', 'Permission required to view existing ElementLinks/PeopleFaces.')
-            ),
         );
     }
 
     function canCreate($Member = null) {return (permission::check('CREATE_EDIT_TAG')) ? true : false;}
     function canEdit($Member = null) {return (permission::check('CREATE_EDIT_TAG')) ? true : false;}
     function canDelete($Member = null) {return (permission::check('DELETE_TAG')) ? true : false;}
-    function canView($Member = null) {return true;}
 
     public function getCMSFields() {
         $fields = parent::getCMSFields();
