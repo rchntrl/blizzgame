@@ -1,9 +1,27 @@
+window.i18n = {
+    'Ally': 'Созюник', 'Armor': 'Броня', 'Boss': 'Босс', 'Hero': 'Герой', 'Item': 'Предмет', 'Location': 'Локация',
+    'Main Hero': 'Главный герой', 'Quest': 'Задание', 'Spell': 'Заклинание', 'Weapon': 'Оружие',
+
+    'Warrior': 'Воин', 'Druid': 'Друид', 'Priest': 'Жрец', 'Mage': 'Маг', 'Monk': 'Монах', 'Hunter': 'Охотник',
+    'Paladin': 'Паладин', 'Rogue': 'Разбойник', 'Death Knight': 'Рыцарь смерти', 'Warlock': 'Чернокнижник', 'Shaman': 'Шаман',
+
+    'Free': 'Низкий', 'Common': 'Обычный', 'Uncommon': 'Необычный', 'Rare': 'Редкий', 'Epic': 'Эпический', 'Legendary': 'Легендарный'
+};
+
 var pageContainer = angular.element(document.querySelector("#pageConfigContainer"));
 
 var app = angular.module("cardGame", [
     "ngRoute",
+    "localize",
     "mm.foundation"
 ]);
+
+angular.module('localize').config(['$provide', function ($provide) {
+    $provide.decorator('localizeConfig', ['$delegate', function ($delegate) {
+        $delegate.observableAttrs = /^data-(?!ng-|localize)/;
+        return $delegate;
+    }]);
+}]);
 
 app.filter('unsafe', function($sce) {
     return function(val) {
@@ -17,7 +35,7 @@ app.value("cardGameData", {
     baseHref: angular.element(document.querySelector("base")).attr("href"),
     pageID: pageContainer.data("pageId"),
     defaultCardImage: "themes/foundation/images/hearthstone/cardback.png",
-    totalSize: null,
+    totalSize: 1,
     currentPage: 1,
     viewMode: "",
     pages: [],
@@ -84,8 +102,15 @@ app.value("cardGameData", {
         },
         {
             title: "Warrior",
+            class: "warrior",
             hearthStone: true,
             value: "Warrior"
+        },
+        {
+            title: "Common",
+            class: "common",
+            hearthStone: true,
+            value: "Common"
         }
     ]
 });
@@ -96,7 +121,7 @@ app.factory("cardGame", function(cardGameData, $http, $routeParams, $location, $
     var size = 20;
     var currentPage = 1;
     function loadCardList() {
-        if (!cardGameData.items.length) {
+        if (cardGameData.items.length < cardGameData.totalSize) {
             $http({
                 url: apiUrl + "CardGamePage/" + cardGameData.pageID + "/Items.json",
                 params: {
@@ -110,7 +135,9 @@ app.factory("cardGame", function(cardGameData, $http, $routeParams, $location, $
                         cardGameData.items.push(this);
                     });
                 }
-                if ($routeParams.pageName) {
+                //start += size;
+                //loadCardList();
+                if ($routeParams.pageName && !cardGameData.selectedCard) {
                     cardGameData.selectedCard = cardGameData.items.filter(function(obj) {
                         return obj.LastLinkSegment == $routeParams.pageName;
                     });
@@ -121,7 +148,7 @@ app.factory("cardGame", function(cardGameData, $http, $routeParams, $location, $
         }
     }
     function loadDetails() {
-        $location.hash('top');
+        $location.hash('');
         $anchorScroll();
         size = 8;
         if (!cardGameData.selectedCard.CoverCard.Filename) {
@@ -201,22 +228,6 @@ app.filter('startFrom', function() {
     }
 });
 
-app.directive('toggleClass', function() {
-    return {
-        restrict: 'A',
-        link: function(scope, element, attrs) {
-            element.bind('click', function() {
-                if (!element.hasClass(attrs.toggleClass)) {
-                    element.closest("ul").find("li").removeClass(attrs.toggleClass);
-                }
-                ulTop = element.offset().top - element.closest("ul").offset().top;
-                element.toggleClass(attrs.toggleClass);
-                element.css("top", ulTop);
-            });
-        }
-    };
-});
-
 app.filter('multipleFilter', function () {
     return function (cards, searchableItems, fieldName) {
         var items = {
@@ -236,7 +247,6 @@ app.filter('multipleFilter', function () {
 /**
  * @ngDoc controller
  * @name ng.module:gallery
- *
  *
  * @description
  * gallery pagination, view, filter

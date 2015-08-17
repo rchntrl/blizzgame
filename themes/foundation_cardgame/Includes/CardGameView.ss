@@ -11,9 +11,9 @@
             <dt>Набор:</dt>
             <dd data-ng-bind="cardGameData.title">
             </dd>
-            <dt>Тип:</dt><dd data-ng-bind="cardGameData.selectedCard.Type"></dd>
-            <dt>Класс:</dt><dd data-ng-bind="cardGameData.selectedCard.Class"></dd>
-            <dt>Качество:</dt><dd data-ng-bind="cardGameData.selectedCard.Rarity"></dd>
+            <dt>Тип:</dt><dd localize="{{ cardGameData.selectedCard.Type }}"></dd>
+            <dt>Класс:</dt><dd localize="{{ cardGameData.selectedCard.Class }}"></dd>
+            <dt>Качество:</dt><dd localize="{{ cardGameData.selectedCard.Rarity }}"></dd>
             <dt>Художник :</dt><dd data-ng-bind="cardGameData.selectedCard.Artist.TitleEN"></dd>
         </dl>
     </div>

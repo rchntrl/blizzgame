@@ -5,6 +5,7 @@
  *
  * @property String TitleEN
  * @property String TitleRU
+ * @property String Keywords
  * @property String CoverThumbnail
  * @property String PromoThumbnail
  * @method Image CoverCard
@@ -31,13 +32,14 @@ class CardGameItem extends DataObject implements PermissionProvider {
         'Rarity' => "Enum('None, Free, Common, Uncommon, Rare, Epic, Legendary')",
         'Type' => "Enum('None, Ally, Armor, Boss, Hero, Item, Location, Main Hero, Quest, Spell, Weapon')",
         'Faction' => "Enum('None, Alliance, Horde, Neutral, Monster')",
-        'Class' => "Enum('None, Warrior, Druid, Priest, Mage, Monk, Hunter, Paladin, Rogue, Death Knight, Warlock, Shaman')",
+        'Class' => "Enum('None, Warrior, Druid, Priest, Mage, Monk, Hunter, Paladin, Rogue, Death Knight, Warlock, Shaman', 'Common')",
         'StrikeCost' => 'Int',
         'Cost' => 'Int',
         'Attack' => 'Int',
         'Health' => 'Int',
         'Defense' => 'Int',
         'Set' =>  "Varchar(255)",
+        'Keywords' => 'Text',
     );
 
     private static $api_access = array(
@@ -107,8 +109,7 @@ class CardGameItem extends DataObject implements PermissionProvider {
 
     public function onBeforeWrite() {
         parent::onBeforeWrite();
-        //$this->CoverThumbnail = $this->CoverCardID ? $this->CoverCard()->SetRatioSize(240, 370)->getURL() : '';
-        //$this->PromoThumbnail = $this->PromoCardID ? $this->PromoCard()->SetRatioSize(240, 370)->getURL() : '';
+        $this->Keywords = $this->Keywords ?: $this->TitleRU . '';
     }
 
     public function getCMSFields() {
