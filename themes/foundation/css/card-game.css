@@ -86,11 +86,15 @@ li.focused .th .details p {
 .card-classes input {
     display: none;
 }
-.card-classes label {
+
+.card-classes .button-group > li > button,
+.card-classes .button-group > li .button {
     background-image: url(../images/wow/wowclasess.png);
     background-size: 256px 256px;
     width: 64px;
     height: 64px;
+    padding: 0;
+    background-color: #fff;
 }
 
 .card-classes .all {
@@ -99,18 +103,15 @@ li.focused .th .details p {
 .card-classes .warrior {
     background-position: 0 0;
 }
-
 .card-classes .mage {
     background-position: -64px 0;
 }
-
 .card-classes .rogue {
     background-position: -126px 0;
 }
 .card-classes .druid {
     background-position: 64px 0;;
 }
-
 .card-classes .hunter {
     background-position: 0 -64px;
 }

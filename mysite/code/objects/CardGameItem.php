@@ -5,6 +5,7 @@
  *
  * @property String TitleEN
  * @property String TitleRU
+ * @property String LastLinkSegment
  * @property String Keywords
  * @property String CoverThumbnail
  * @property String PromoThumbnail

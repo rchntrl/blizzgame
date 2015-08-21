@@ -46,6 +46,7 @@ class CardGamePage_Controller extends Page_Controller {
         parent::init();
         Requirements::themedCSS('card-game');
         Requirements::javascript(THEMES_DIR . "/foundation/bower_components/angular/angular.min.js");
+        Requirements::javascript(THEMES_DIR . "/foundation/bower_components/angular-resource/angular-resource.min.js");
         Requirements::javascript(THEMES_DIR . "/foundation/bower_components/angular-route/angular-route.min.js");
         Requirements::javascript(THEMES_DIR . "/foundation/bower_components/angular-sanitize/angular-sanitize.min.js");
         Requirements::javascript(THEMES_DIR . "/foundation/bower_components/angular-localize/angular-localize.min.js");

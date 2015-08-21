@@ -32,7 +32,6 @@ GalleryImage:
   extensions:
     - ObjectAsPageExtension
 CardGameItem:
-  #api_access: true
   extensions:
     - ObjectAsPageExtension
 Book:
@@ -44,7 +43,6 @@ Chapter:
   extensions:
     - ObjectAsPageExtension
 PeopleFace:
-  api_access: true
   extensions:
     - ObjectAsPageExtension
 ChronicleItem:

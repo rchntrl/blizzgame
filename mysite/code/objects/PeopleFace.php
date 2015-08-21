@@ -56,6 +56,8 @@ class PeopleFace extends DataObject implements ObjectAsPageProvider {
         'TitleEN', 'TitleRU'
     );
 
+    public static $api_access = true;
+
     private static $singular_name = 'Blizz People';
 
     private static $plural_name = 'Blizz Person';
@@ -119,6 +121,7 @@ class PeopleFace extends DataObject implements ObjectAsPageProvider {
     function canCreate($Member = null) {return (permission::check('CREATE_EDIT_TAG')) ? true : false;}
     function canEdit($Member = null) {return (permission::check('CREATE_EDIT_TAG')) ? true : false;}
     function canDelete($Member = null) {return (permission::check('DELETE_TAG')) ? true : false;}
+    function canView() {return true;}
 
     public function getCMSFields() {
         $fields = parent::getCMSFields();

@@ -75,6 +75,7 @@ class ElementLink extends DataObject implements PermissionProvider {
     function canCreate($Member = null) {return (permission::check('CREATE_EDIT_TAG')) ? true : false;}
     function canEdit($Member = null) {return (permission::check('CREATE_EDIT_TAG')) ? true : false;}
     function canDelete($Member = null) {return (permission::check('DELETE_TAG')) ? true : false;}
+    function canView() {return true;}
 
     public function getCMSFields() {
         $fields = parent::getCMSFields();
