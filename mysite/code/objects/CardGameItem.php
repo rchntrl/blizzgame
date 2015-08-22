@@ -49,7 +49,8 @@ class CardGameItem extends DataObject implements PermissionProvider {
             'Order', 'Hearthstone', 'Rules', 'Flavor', 'Comment',
             'Rarity', 'Type', 'Faction', 'Class',
             'Cost', 'Attack', 'Health', 'Defense', 'Set',
-            'CoverThumbnail'
+            'CoverThumbnail',
+            'HolderPageID',
         )
     );
 
@@ -99,6 +100,8 @@ class CardGameItem extends DataObject implements PermissionProvider {
     public function getTitle() {
         return $this->getField('TitleRU') . ' (' . $this->getField('TitleEN') . ')';
     }
+
+    public function getLink() {}
 
     public function getThumbnail() {
         return $this->CoverCard()->CMSThumbnail();

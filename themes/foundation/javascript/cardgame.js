@@ -120,7 +120,7 @@ app.factory("cardGame", function(cardGameData, $http, $routeParams, $location, $
     var start = 0;
     var size = 20;
     var currentPage = 1;
-    var card = $resource(apiUrl + "CardGamePage/:id/Items.json", {id: cardGameData.pageID}, {});
+    var card = $resource(apiUrl + "CardGamePage/:id/Items", {id: cardGameData.pageID}, {});
     function loadCardList() {
         if (cardGameData.items.length < cardGameData.totalSize) {
             card.get(function(data) {
@@ -175,8 +175,8 @@ app.factory("cardGame", function(cardGameData, $http, $routeParams, $location, $
             cardGameData.selectedCard = cardGameData.selectedCard[0];
             loadDetails();
         } else {
-            this.setSize(20);
-            this.setCurrentPage(1);
+            size = 20;
+            currentPage = 1;
         }
     }
     return {

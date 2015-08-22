@@ -45,6 +45,12 @@
     position: relative;
 }
 
+.preloader {
+    height: 400px;
+    padding: 50px;
+    background: url('../images/preloader-horizontal.gif') no-repeat 50% 50% transparent;
+}
+
 .card-list > li.focused {
     position: absolute;
     background-color: #fff;
