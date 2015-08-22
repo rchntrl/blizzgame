@@ -1,8 +1,8 @@
 <h1>{{ cardGameData.Title }}</h1>
 <div class="small-12 medium-12 columns">
     <div ng-show="cardGameData.totalSize > 1" class="small-12 columns">
-        <label for="searchByTitle">Поиск по названию</label>
-        <input id="searchByTitle" type="text" placeholder="Поиск по названию" data-ng-model="search.TitleRU" />
+        <label for="searchByTitle">Поиск</label>
+        <input id="searchByTitle" type="text" placeholder="Поиск" data-ng-model="search.Keywords" />
     </div>
     <div ng-show="cardGameData.totalSize > 1" class="small-12 large-12 columns card-classes">
         <ul class="button-group large-block-grid-12 medium-block-grid-6 small-block-grid-4">

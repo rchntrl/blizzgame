@@ -48,7 +48,7 @@ class CardGameItem extends DataObject implements PermissionProvider {
             'Title', 'TitleEN', 'TitleRU', 'LastLinkSegment', 'Link',
             'Order', 'Hearthstone', 'Rules', 'Flavor', 'Comment',
             'Rarity', 'Type', 'Faction', 'Class',
-            'Cost', 'Attack', 'Health', 'Defense', 'Set',
+            'Cost', 'Attack', 'Health', 'Defense', 'Set', 'Keywords',
             'CoverThumbnail',
             'HolderPageID',
         )
