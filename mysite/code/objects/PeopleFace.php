@@ -53,7 +53,7 @@ class PeopleFace extends DataObject implements ObjectAsPageProvider {
     );
 
     private static $searchable_fields = array (
-        'TitleEN', 'TitleRU'
+        'TitleEN', 'Writer', 'Artist', 'Composer', 'Developer', 'Actor'
     );
 
     public static $api_access = true;
