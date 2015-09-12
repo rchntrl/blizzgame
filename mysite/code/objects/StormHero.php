@@ -20,7 +20,11 @@ class StormHero extends DataObject implements PermissionProvider {
     );
 
     private static $has_one = array(
-        'Image' => 'Image'
+        'Image' => 'Image',
+    );
+
+    private static $has_many = array(
+        'Speech' => 'HeroSpeech',
     );
 
     private static $summary_fields = array(
@@ -45,18 +49,13 @@ class StormHero extends DataObject implements PermissionProvider {
                 'category' => _t('Permissions.BLIZZGAME_HEROES', 'BlizzGame Heroes'),
                 'help' => _t('StormHero.PERMISSION_DELETE_HELP', 'Permission required to delete existing Heroes of the Storm.')
             ),
-            'VIEW_HERO' => array(
-                'name' => _t('StormHero.PERMISSION_VIEW_DESCRIPTION', 'Delete Heroes of the Storm'),
-                'category' => _t('Permissions.BLIZZGAME_HEROES', 'BlizzGame Heroes'),
-                'help' => _t('StormHero.PERMISSION_VIEW_HELP', 'Permission required to view existing Heroes of the Storm.')
-            ),
         );
     }
 
-    function canCreate($Member = null) {return (permission::check('CREATE_EDIT_HERO')) ? true : false;}
-    function canEdit($Member = null) {return (permission::check('CREATE_EDIT_HERO')) ? true : false;}
-    function canDelete($Member = null) {return (permission::check('DELETE_HERO')) ? true : false;}
-    function canView($Member = null) {return true;}
+    public function canCreate($Member = null) {return (permission::check('CREATE_EDIT_HERO')) ? true : false;}
+    public function canEdit($Member = null) {return (permission::check('CREATE_EDIT_HERO')) ? true : false;}
+    public function canDelete($Member = null) {return (permission::check('DELETE_HERO')) ? true : false;}
+    public function canView($member = null) {return true;}
 
     public function getTitle() {
         return $this->AccessLevel ? $this->TitleRU . ' (' . $this->AccessLevel . ')' : $this->TitleRU;
@@ -72,6 +71,7 @@ class StormHero extends DataObject implements PermissionProvider {
 
     public function getCMSFields() {
         $fields = parent::getCMSFields();
+
         return $fields;
     }
 }
