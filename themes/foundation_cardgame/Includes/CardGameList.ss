@@ -7,7 +7,7 @@
     <div ng-show="cardGameData.totalSize > 1" class="small-12 large-12 columns card-classes">
         <ul class="button-group large-block-grid-12 medium-block-grid-6 small-block-grid-4">
             <li><button type="button" class="button small secondary all" data-ng-model="search.Class" btn-radio="''">Все</button></li>
-            <li data-ng-repeat="item in cardGameData.classes | filter: {hearthStone: true}">
+            <li data-ng-repeat="item in cardGameData.classes | filter: cardGameData.filterByClasses">
                 <button type="button" data-ng-class="item.class" class="button small secondary"
                         data-ng-model="search.Class"
                         btn-radio="'{{ item.value }}'">
@@ -23,6 +23,7 @@
         <ul class="card-list small-block-grid-3 medium-block-grid-5">
             <li data-ng-repeat="(key, card) in (filtered = (cardGameData.items | filter:search:strict)) | startFrom:cardGame.getStart() | limitTo:cardGame.getSize()">
                 <a class="th hearthstone-link" data-ng-href="{{ card.Link }}">
+                    <span title="имеется ссылка на арт" data-ng-if="card.LinkToArt.id > 0" class="has-art-link"></span>
                     <img class="card-img" data-ng-src="{{ card.CoverThumbnail }}" src="" data-ng-class="{ 'loading' :  !card.CoverThumbnail }" />
                     <div class="info">
                         <p data-ng-bind-html="card.TitleRU | unsafe" class="crop-text"></p>

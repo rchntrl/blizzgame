@@ -35,6 +35,7 @@ class CardGameItem extends DataObject implements PermissionProvider {
         'Faction' => "Enum('None, Alliance, Horde, Neutral, Monster')",
         'Class' => "Enum('None, Common, Warrior, Druid, Priest, Mage, Monk, Hunter, Paladin, Rogue, Death Knight, Warlock, Shaman')",
         'StrikeCost' => 'Int',
+        'CreatureType' => 'Varchar',
         'Cost' => 'Int',
         'Attack' => 'Int',
         'Health' => 'Int',
@@ -47,7 +48,7 @@ class CardGameItem extends DataObject implements PermissionProvider {
         'view' => array(
             'Title', 'TitleEN', 'TitleRU', 'LastLinkSegment', 'Link',
             'Order', 'Hearthstone', 'Rules', 'Flavor', 'Comment',
-            'Rarity', 'Type', 'Faction', 'Class',
+            'Rarity', 'Type', 'Faction', 'Class', 'CreatureType',
             'Cost', 'Attack', 'Health', 'Defense', 'Set', 'Keywords',
             'CoverThumbnail',
             'HolderPageID',
@@ -119,8 +120,8 @@ class CardGameItem extends DataObject implements PermissionProvider {
     public function getCMSFields() {
         $fields = parent::getCMSFields();
         $fields->removeByName(array(
-            'Flavor', 'Rules', 'Comment'
-            ,'StrikeCost', 'Cost', 'Attack', 'Defense', 'Health'
+            'Flavor', 'Rules', 'Comment', 'Keywords'
+            ,'StrikeCost', 'Cost', 'Attack', 'Defense', 'Health', 'CreatureType'
             ,'Race', 'Faction', 'Set'
             ,'ArtistID', 'LinkToArtID', 'HolderPageID'
             ,'CoverCard', 'PromoCard', 'CoverThumbnail', 'PromoThumbnail'
@@ -147,7 +148,9 @@ class CardGameItem extends DataObject implements PermissionProvider {
             new NumericField('Cost'),
             new NumericField('Attack'),
             new NumericField('Health'),
-            new NumericField('Defense')
+            new NumericField('Defense'),
+            new TextField('CreatureType', 'Тип существа'),
+            new TextareaField('Keywords', 'Ключевые слова')
         );
     }
 
