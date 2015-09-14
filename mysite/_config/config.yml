@@ -10,6 +10,9 @@ After:
 SSViewer:
   theme: 'foundation'
   #rewrite_hash_links: false
+BetterButtonsActions:
+  create:
+    BetterButton_SaveAndAdd: true
 NewsAdmin:
   extensions:
     - SubsiteMenuExtension

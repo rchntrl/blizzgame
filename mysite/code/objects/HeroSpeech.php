@@ -9,7 +9,7 @@
 class HeroSpeech extends DataObject {
 
     private static $db = array(
-        'Type' => "Enum('Question, Response, Pissed')",
+        'Type' => "Enum('Negative, Positive, Neutral, Question, Response, Pissed, WhenKill')",
         'Phrase' => 'Text',
         'OriginalPhrase' => 'Text',
     );

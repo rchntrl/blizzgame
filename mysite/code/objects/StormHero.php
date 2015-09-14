@@ -40,14 +40,14 @@ class StormHero extends DataObject implements PermissionProvider {
     public function providePermissions() {
         return array(
             'CREATE_EDIT_HERO' => array(
-                'name' => _t('StormHero.PERMISSION_CREATE_EDIT_DESCRIPTION', 'Create Heroes of the Storm'),
-                'category' => _t('Permissions.BLIZZGAME_HEROES', 'BlizzGame Heroes'),
-                'help' => _t('StormHero.PERMISSION_CREATE_EDIT_HELP', 'Permission required to create new Hero of the Storm.')
+                'name' => _t('StormHero.PERMISSION_CREATE_EDIT_DESCRIPTION', 'Create objects of Nexus'),
+                'category' => _t('Permissions.BLIZZGAME_HEROES', 'BlizzGame Nexus'),
+                'help' => _t('StormHero.PERMISSION_CREATE_EDIT_HELP', 'Permission required to create new object of Nexus.')
             ),
             'DELETE_HERO' => array(
-                'name' => _t('StormHero.PERMISSION_DELETE_DESCRIPTION', 'Edit Heroes of the Storm'),
-                'category' => _t('Permissions.BLIZZGAME_HEROES', 'BlizzGame Heroes'),
-                'help' => _t('StormHero.PERMISSION_DELETE_HELP', 'Permission required to delete existing Heroes of the Storm.')
+                'name' => _t('StormHero.PERMISSION_DELETE_DESCRIPTION', 'Edit objects of Nexus'),
+                'category' => _t('Permissions.BLIZZGAME_HEROES', 'BlizzGame Nexus'),
+                'help' => _t('StormHero.PERMISSION_DELETE_HELP', 'Permission required to delete existing object of Nexus.')
             ),
         );
     }
