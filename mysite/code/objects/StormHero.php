@@ -21,6 +21,7 @@ class StormHero extends DataObject implements PermissionProvider {
 
     private static $has_one = array(
         'Image' => 'Image',
+        'Icon' => 'Image',
     );
 
     private static $has_many = array(
