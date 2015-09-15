@@ -41,7 +41,11 @@ class HeroSpeech extends DataObject {
     public function getCMSFields() {
         $fields = parent::getCMSFields();
         $fields->replaceField('FromID', new HasOnePickerField($this, 'FromID', 'From', $this->From()));
-        $fields->replaceField('ToID', new HasOnePickerField($this, 'ToID', 'To', $this->To()));
+        $toField = new HasOnePickerField($this, 'ToID', 'To', $this->To());
+        if (empty($this->ID)) {
+            $toField = StormHero::getHeroesField('ToID', 'To');
+        }
+        $fields->replaceField('ToID', $toField);
         return $fields;
     }
 }

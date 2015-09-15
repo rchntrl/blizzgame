@@ -67,12 +67,21 @@ class StormHero extends DataObject implements PermissionProvider {
     }
 
     public function getURLPrefix() {
-        return '/heroes/';
+        return '/nexus/';
     }
 
     public function getCMSFields() {
         $fields = parent::getCMSFields();
 
         return $fields;
+    }
+
+    public static function getHeroesField($name, $title) {
+        $tagsField = new DropdownField(
+            $name,
+            $title,
+            DataObject::get('ElementLink', null, 'TitleEN')->map('ID', 'TitleEN')->toArray()
+        );
+        return $tagsField;
     }
 }
