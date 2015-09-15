@@ -80,7 +80,7 @@ class StormHero extends DataObject implements PermissionProvider {
         $tagsField = new DropdownField(
             $name,
             $title,
-            DataObject::get('ElementLink', null, 'TitleEN')->map('ID', 'TitleEN')->toArray()
+            DataObject::get('StormHero', null, 'TitleEN')->map('ID', 'TitleEN')->toArray()
         );
         return $tagsField;
     }
