@@ -46,6 +46,7 @@
             <% end_if %>
         <% end_loop %>
     </ul>
+    <h4>Герои Нексуса</h4>
     <ul class="children-page-list">
         <% loop NexusTags %>
                 <li class="children-page">
@@ -58,7 +59,7 @@
                             <% end_if %>
                         </a>
                     </div>
-                    <h6><a href="#" title="{$Title.ATT}">$Title</a></h6>
+                    <h6><a href="#" title="{$TitleRU.ATT}">$TitleRU</a></h6>
                     <p>$Content.NoHTML.LimitWordCountXML(20)</p>
                 </li>
         <% end_loop %>
