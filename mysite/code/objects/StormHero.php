@@ -77,11 +77,12 @@ class StormHero extends DataObject implements PermissionProvider {
     }
 
     public static function getHeroesField($name, $title) {
-        $tagsField = new DropdownField(
+        $field = new DropdownField(
             $name,
             $title,
             DataObject::get('StormHero', null, 'TitleEN')->map('ID', 'TitleEN')->toArray()
         );
-        return $tagsField;
+        $field ->setEmptyString(_t('HeroSpeech.SELECT_HERO', 'Укажите героя нексуса'));
+        return $field;
     }
 }
