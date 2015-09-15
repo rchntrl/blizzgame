@@ -9,7 +9,8 @@
 class HeroSpeech extends DataObject {
 
     private static $db = array(
-        'Type' => "Enum('Pissed, Question, Response, WhenKill, Negative, Positive, Neutral', 'Pissed')",
+        'Type' => "Enum('Pissed, Question, Response, WhenKill', 'Pissed')",
+        'Tone' => "Enum('Negative, Positive, Neutral')",
         'Phrase' => 'Text',
         'OriginalPhrase' => 'Text',
     );
@@ -20,11 +21,15 @@ class HeroSpeech extends DataObject {
     );
 
     private static $summary_fields = array(
-        'ID', 'Type', 'Phrase',
+        'ID', 'Type', 'Phrase', 'To.TitleRU'
     );
 
     private static $searchable_fields = array(
         'Type'
+    );
+
+    private static $field_labels = array(
+        'To.TitleRU' => 'To',
     );
 
     public static $api_access = array(
