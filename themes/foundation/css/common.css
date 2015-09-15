@@ -166,6 +166,10 @@ li .th p {
     opacity: .5;
 }
 
+ul.children-page-list {
+    margin-left: 0;
+}
+
 .news-list {
     background: transparent;
     padding: 0;
@@ -192,6 +196,7 @@ li .th p {
     color: #008CBA;
     text-shadow: none;
 }
+
 
 /** BOOK */
 .book-info {
