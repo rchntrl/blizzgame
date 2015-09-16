@@ -310,3 +310,7 @@ app.controller("cards", function (cardGame, cardGameData, $scope, $http, $routeP
         cardGame.setCurrentPage(page);
     };
 });
+
+app.controller("breadcrumbs", function ($scope) {
+
+});
