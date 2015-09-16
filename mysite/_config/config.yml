@@ -28,8 +28,6 @@ Image:
   api_access: true
 ElementLink:
   api_access: true
-StormHero:
-  api_access: true
 GalleryImage:
   #api_access: true
   extensions:

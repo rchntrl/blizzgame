@@ -1,0 +1,11 @@
+<h1>{{ nexusData.title }}</h1>
+<ul class="ency inline-list">
+    <li class="large-3 small-4" data-ng-repeat="item in nexusData.items" >
+        <a class="element-link" data-ng-href="{{ item.url }}" title="{{item.TitlRU }}">
+            <div class="element-link-image">
+                <img class="icon-frame frame-56" alt="{{ item.TitleRU }}" data-ng-src="{{ item.IconSrc }}" />
+            </div>
+            <span class="element-link-title">{{ item.TitleRU }}</span>
+        </a>
+    </li>
+</ul>

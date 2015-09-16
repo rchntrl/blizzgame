@@ -1,5 +1,5 @@
-<nav role="navigation">
-    <ul class="breadcrumbs">
+<nav role="navigation" data-ng-controller="breadcrumbs">
+    <ul data-ng-show="!breadcrumbs" class="breadcrumbs">
         <% if $isForumBreadcrumbs($Breadcrumbs) %>
            <% loop $fixForumBreadcrumb($Breadcrumbs) %>
                <li<% if $Last %> class="current"<% end_if %>>$Text</li>
@@ -7,5 +7,8 @@
         <% else %>
             $Breadcrumbs
         <% end_if %>
+    </ul>
+    <ul data-ng-show="breadcrumbs" class="breadcrumbs">
+        <li data-ng-repeat="crumb in breadcrumbs">{{ crumb.Title }}</li>
     </ul>
 </nav>

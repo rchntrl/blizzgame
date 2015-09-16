@@ -34,7 +34,7 @@ class HeroSpeech extends DataObject {
 
     public static $api_access = array(
         'view' => array(
-            'Type', 'Phrase', 'OriginalPhrase',
+            'Type', 'Tone', 'Phrase', 'OriginalPhrase',
         ),
     );
 

@@ -7,14 +7,16 @@
  * @property string TitleRU
  * @property integer AccessLevel
  * @property string LastLinkSegment
- * @property Image Image
- */
+ * @method Image Image()
+ * @method Image Icon()
+  */
 class StormHero extends DataObject implements PermissionProvider {
 
     private static $db = array(
         'TitleEN' => 'Varchar(255)',
         'TitleRU' => 'Varchar(255)',
         'LastLinkSegment' => 'Varchar(255)',
+        'Universe' => "Enum('Warcraft, Diablo, Starcraft, Overwatch, Other')",
         'AccessLevel' => 'Int',
         'Content' => 'HTMLText',
     );
@@ -30,6 +32,21 @@ class StormHero extends DataObject implements PermissionProvider {
 
     private static $summary_fields = array(
         'ID', 'TitleEN', 'TitleRU'
+    );
+
+    private static $indexes = array(
+        'ID_StormHero_LastLinkSegment' => array(
+            'type' => 'unique',
+            'value' => 'LastLinkSegment'
+        ),
+        'Universe' => true,
+    );
+
+    public static $api_access = array(
+       'view' => array(
+           'Title', 'TitleEN', 'TitleRU', 'LastLinkSegment', 'Link', 'Universe', 'AccessLevel', 'Content',
+           'IconSrc'
+       )
     );
 
     private static $default_sort = "\"AccessLevel\" ASC, \"TitleEN\" ASC";
@@ -70,9 +87,13 @@ class StormHero extends DataObject implements PermissionProvider {
         return '/nexus/';
     }
 
+    public function getIconSrc() {
+        return $this->Icon()->ID ? $this->Icon()->getURL() : SiteConfig::current_site_config()->DefaultElementImage()->getUrl();
+    }
+
     public function getCMSFields() {
         $fields = parent::getCMSFields();
-
+        $fields->dataFieldByName('Icon')->setFolderName('NexusIcons/');
         return $fields;
     }
 

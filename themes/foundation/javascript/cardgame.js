@@ -36,7 +36,7 @@ var Card = function (data) {
 
 var pageContainer = angular.element(document.querySelector("#pageConfigContainer"));
 
-var app = angular.module("cardGame", [
+var app = angular.module("blizzgame", [
     "ngRoute",
     "localize",
     "ngResource",
