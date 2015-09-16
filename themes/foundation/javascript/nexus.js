@@ -24,6 +24,7 @@ app.config(function ($routeProvider, $locationProvider) {
             controller: "nexus",
             templateUrl: baseUrl  + "themes/foundation/templates/html/nexus/hero.html"
         })
+        .otherwise({redirectTo : $routeProvider.url})
     ;
     $locationProvider.html5Mode(true);
 });
@@ -83,6 +84,8 @@ app.controller("nexus", function (nexusData, heroes, $scope, $http, $routeParams
     nexusData.heroSelected = $routeParams.heroName ? false : true;
 });
 
-app.controller("breadcrumbs", function (nexusData, $scope) {
+app.controller("breadcrumbs", function (nexusData, $scope, $locationProvider, $routeProvider) {
     $scope.breadCrumbs = nexusData.breadCrumbs;
+    $locationProvider.html5Mode(false);
+    $routeProvider.disable();
 });

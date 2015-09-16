@@ -25,7 +25,7 @@
     <% include LessSection %>
     <% include AnalyticsTracking %>
 </head>
-<body class="$ClassName.ATT" data-ng-app="blizzgame">
+<body class="$ClassName.ATT">
         <header class="header">
             <% include TopBar %>
         </header>
