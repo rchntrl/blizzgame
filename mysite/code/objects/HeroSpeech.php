@@ -9,8 +9,8 @@
 class HeroSpeech extends DataObject {
 
     private static $db = array(
-        'Type' => "Enum('Pissed, Question, Response, WhenKill', 'Pissed')",
-        'Tone' => "Enum('None, Negative, Positive, Neutral')",
+        'Type' => "Enum('Pissed, Question, Response, WhenKill, Boast', 'Pissed')",
+        'Tone' => "Enum('None, Negative, Positive, Neutral, Other')",
         'Phrase' => 'Text',
         'OriginalPhrase' => 'Text',
     );
@@ -45,6 +45,7 @@ class HeroSpeech extends DataObject {
 
     public function getCMSFields() {
         $fields = parent::getCMSFields();
+        $fields->replaceField('Type', new OptionsetField('Type', 'Type', $fields->dataFieldByName('Type')->getSource()));
         $fields->replaceField('FromID', new HasOnePickerField($this, 'FromID', 'From', $this->From()));
         $toField = new HasOnePickerField($this, 'ToID', 'To', $this->To());
         if (empty($this->ID)) {

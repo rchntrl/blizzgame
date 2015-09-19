@@ -28,6 +28,7 @@ class StormHero extends DataObject implements PermissionProvider {
 
     private static $has_many = array(
         'Speech' => 'HeroSpeech',
+        'Skins' => 'HeroSkin',
     );
 
     private static $summary_fields = array(
