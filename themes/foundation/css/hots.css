@@ -150,6 +150,7 @@
   background-size: 92px 3900px
 }
 
+
 .hero-thumbnail__icon.the-lost-vikings {
   background-position: 0 0
 }
@@ -306,6 +307,14 @@
   background-position: 0 -3800px
 }
 
+.hero-thumbnail__icon.kharazim {
+  background-position: 0 -3900px
+}
+
+.hero-thumbnail__icon.rexxar {
+  background-position: 0 -4000px
+}
+
 @media (-webkit-min-device-pixel-ratio: 2),(min-resolution: 2dppx) {
   .hero-thumbnail__icon {
     background-image: url(../images/heroes/thumbnails-hexagon@2x.png)
@@ -347,3 +356,4 @@
 .free-rotation .hero-thumbnail__link:hover + .hero-thumbnail__icon:after {
   background-position: -184px 0
 }
+
