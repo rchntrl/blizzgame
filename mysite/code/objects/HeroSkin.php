@@ -5,7 +5,7 @@ class HeroSkin extends DataObject {
     private static $db = array(
         'TitleEN' => 'Varchar(255)',
         'TitleRU' => 'Varchar(255)',
-        'Type' => "Enum('Epic, Unique, Legendary')",
+        'Type' => "Enum('Epic, Ultimate, Legendary')",
         'Content' => 'HTMLText',
     );
 
