@@ -15,7 +15,7 @@ class NexusPage_Controller extends Page_Controller {
 
     public function init() {
         parent::init();
-        Requirements::themedCSS('nexus');
+        Requirements::themedCSS('hots');
         Requirements::javascript(THEMES_DIR . "/foundation/bower_components/angular/angular.min.js");
         Requirements::javascript(THEMES_DIR . "/foundation/bower_components/angular-resource/angular-resource.min.js");
         Requirements::javascript(THEMES_DIR . "/foundation/bower_components/angular-route/angular-route.min.js");

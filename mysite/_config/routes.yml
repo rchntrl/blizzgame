@@ -2,3 +2,4 @@ Director:
   rules:
     'style//$Action/$ID/$OtherID': 'LessController'
     'download//$Action/$ID/$OtherID': 'DownloadFile'
+    'api/blizz': 'BlizzgameAPI'

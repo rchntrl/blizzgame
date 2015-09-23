@@ -1,11 +1,23 @@
 var pageContainer = angular.element(document.querySelector("#pageConfigContainer"));
 var baseUrl = angular.element(document.querySelector("base")).attr("href");
 
-var HeroOfNexus = function(data) {
-    data.url = pageContainer.data("pageUrl") + data.LastLinkSegment;
-    return data;
-};
-
+/**
+ *
+ * @param data
+ * @constructor
+ * @property TitleRU String
+ * @property TitleEN String
+ * @property LastLinkSegment String
+ * @property Url String
+ * @property Speech Object
+ */
+function HeroOfNexus(data) {
+    for (var key in data) {
+        this[key] = data[key];
+    }
+    this.Url = pageContainer.data("pageUrl") + data.LastLinkSegment;
+    this.ImageSrc = null;
+}
 
 var app = angular.module("blizzgame", [
     "ngRoute",
@@ -17,75 +29,115 @@ app.config(function ($routeProvider, $locationProvider) {
     pageUrl = pageUrl.replace(baseUrl , "/");
     $routeProvider
         .when(pageUrl, {
-            controller: "nexus",
+            controller: "loadNexusData",
             templateUrl: baseUrl  + "themes/foundation/templates/html/nexus/list.html"
         })
         .when(pageUrl + ":heroName", {
-            controller: "nexus",
+            controller: "loadNexusData",
             templateUrl: baseUrl  + "themes/foundation/templates/html/nexus/hero.html"
         })
-        .otherwise({redirectTo : $routeProvider.url})
     ;
     $locationProvider.html5Mode(true);
 });
 
 app.value("nexusData", {
     title: pageContainer.data("title"),
-    heroSelected: false,
     breadcrumbs: null,
-    heroId: null,
     selectedHero: null,
     totalSize: 1,
     items:[]
-
 });
 
 app.factory("heroes", function(nexusData, $http, $routeParams, $location, $anchorScroll, $resource) {
-    var apiUrl = baseUrl + "api/v1/";
+    var apiUrl = baseUrl + "api/blizz/";
     var hero = $resource(
-        apiUrl + "StormHero/:id",
+        apiUrl + "StormHero/:id/:relation",
         {
-            id: "@id"
+            id: "@id",
+            relation: "@relation"
         }
     );
+    function loadDetails(obj) {
+        hero.get({id: obj.ID, relation: 'Speech'}, function (data) {
+            obj.Speech = data.items;
+        });
+        hero.get({id: obj.ID, relation: 'Image'}, function (data) {
+            obj.Image = data.items[0];
+            console.log(obj);
+        });
+    }
+
     function load() {
+        var id = $routeParams.heroName;
+        if (nexusData.items.length && id) {
+            nexusData.selectedHero = getByLink(id);
+            loadDetails(nexusData.selectedHero);
+        } else if (id) {
+            hero.get({id: id}, function (data) {
+                nexusData.selectedHero = new HeroOfNexus(data);
+                loadDetails(nexusData.selectedHero);
+            });
+        }
         hero.get(function (data) {
             nexusData.totalSize = data.totalSize;
+            nexusData.items.length = 0;
             for (var item in data.items) {
                 nexusData.items.push(new HeroOfNexus(data.items[item]));
             }
         });
     }
 
-    function selectHero() {
-        if (nexusData.items.length && $routeParams.heroName) {
-            nexusData.selectedHero = nexusData.items.filter(function (obj) {
-                return obj.LastLinkSegment == $routeParams.heroName;
-            });
-            nexusData.selectedHero = nexusData.selectedHero[0];
-            hero.get({id: nexusData.heroId}, function (data) {
-                nexusData.selectedHero = new HeroOfNexus(data);
-            });
-        }
+    /**
+     *
+     * @param id
+     * @returns {HeroOfNexus}
+     */
+    function getById(id) {
+        data = nexusData.items.filter(function (obj) {
+            return obj.ID == id;
+        });
+        return data[0];
+    }
+
+    /**
+     *
+     * @param id
+     * @returns {HeroOfNexus}
+     */
+    function getByLink(id) {
+        data = nexusData.items.filter(function (obj) {
+            return obj.LastLinkSegment == id;
+        });
+        return data[0];
     }
     return {
-        load: load,
-        selectOne: selectHero
+        getById: getById,
+        getByLink: getByLink,
+        load: load
     }
 });
 
-app.controller("nexus", function (nexusData, heroes, $scope, $http, $routeParams, $location, $anchorScroll) {
+app.controller("nexus", function (nexusData, heroes, $scope, $anchorScroll) {
     $scope.nexusData = nexusData;
-    if (!nexusData.heroSelected) {
-        heroes.load();
-    }
-    heroes.selectOne();
 
-    nexusData.heroSelected = $routeParams.heroName ? false : true;
+    $scope.getHeroById = function(id) {
+        if (id > 0) {
+            return heroes.getById(id);
+        }
+        return null;
+    }
 });
 
-app.controller("breadcrumbs", function (nexusData, $scope, $locationProvider, $routeProvider) {
+app.controller("loadNexusData", function (heroes) {
+    heroes.load();
+});
+
+app.controller("breadcrumbs", function (nexusData, $scope) {
     $scope.breadCrumbs = nexusData.breadCrumbs;
-    $locationProvider.html5Mode(false);
-    $routeProvider.disable();
+});
+
+app.filter("unsafe", function ($sce) {
+    return function (val) {
+        return $sce.trustAsHtml(val);
+    };
 });

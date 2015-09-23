@@ -356,3 +356,37 @@
   background-position: -184px 0
 }
 
+.hero-speech {
+  list-style-type: none;
+  display: block;
+  margin-left: 0;
+}
+
+.hero-speech li {
+  position: relative;
+  padding: 20px;
+  margin-bottom: 10px;
+  border-bottom: solid #ddd 1px;
+  width: 100%;
+  float: left;
+}
+.hero-speech li:last-child {
+  border-bottom: none;
+}
+.intro li .phrase {
+  float: right;
+  width: 80%;
+  font-size: 0.8rem;
+}
+.intro li .question {
+  height: 60px;
+}
+.intro li .response {
+  position: relative;
+  height: 60px;
+}
+.intro li .response .hero-thumbnail {
+  position: absolute;
+  top: 0;
+  left: 36px;
+}

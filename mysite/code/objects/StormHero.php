@@ -15,15 +15,20 @@ class StormHero extends DataObject implements PermissionProvider {
     private static $db = array(
         'TitleEN' => 'Varchar(255)',
         'TitleRU' => 'Varchar(255)',
+        'IdentityTitle'=> 'Varchar(255)',
         'LastLinkSegment' => 'Varchar(255)',
         'Universe' => "Enum('Warcraft, Diablo, Starcraft, Overwatch, Other')",
+        'Role' => "Enum('Assassin, Specialist, Support, Warrior')",
         'AccessLevel' => 'Int',
+        'Draft' => 'Boolean',
+        'Trailer' => 'Varchar(255)',
+        'Spotlight' => 'Varchar(255)',
         'Content' => 'HTMLText',
     );
 
     private static $has_one = array(
-        'Image' => 'Image',
         'Icon' => 'Image',
+        'Image' => 'Image',
     );
 
     private static $has_many = array(
@@ -45,8 +50,10 @@ class StormHero extends DataObject implements PermissionProvider {
 
     public static $api_access = array(
        'view' => array(
-           'Title', 'TitleEN', 'TitleRU', 'LastLinkSegment', 'Link', 'Universe', 'AccessLevel', 'Content',
-           'IconSrc'
+           'Title', 'TitleEN', 'TitleRU', 'IdentityTitle',
+           'LastLinkSegment', 'AccessLevel', 'Draft',
+           'Role', 'Universe', 'Trailer', 'Spotlight',
+           'Content', 'IconSrc'
        )
     );
 
@@ -94,7 +101,8 @@ class StormHero extends DataObject implements PermissionProvider {
 
     public function getCMSFields() {
         $fields = parent::getCMSFields();
-        $fields->dataFieldByName('Icon')->setFolderName('NexusIcons/');
+        $fields->dataFieldByName('Icon')->setFolderName('Nexus/Icons/');
+        $fields->dataFieldByName('Image')->setFolderName('Nexus/Heroes/');
         return $fields;
     }
 

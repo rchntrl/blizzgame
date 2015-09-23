@@ -3,10 +3,17 @@
 /**
  * Class HeroSpeech
  *
+ * @property String $Type
+ * @property String $Tone
+ * @property String $Phrase
+ * @property String $OriginalPhrase
  * @method StormHero From()
- * @method  StormHero To()
+ * @method StormHero To()
  */
 class HeroSpeech extends DataObject {
+    const
+        QUESTION = 'Question',
+        RESPONSE = 'Response';
 
     private static $db = array(
         'Type' => "Enum('Pissed, Question, Response, WhenKill, Boast', 'Pissed')",
@@ -34,7 +41,7 @@ class HeroSpeech extends DataObject {
 
     public static $api_access = array(
         'view' => array(
-            'Type', 'Tone', 'Phrase', 'OriginalPhrase',
+            'Type', 'Tone', 'Phrase', 'OriginalPhrase', 'Intro', 'TargetPhrase'
         ),
     );
 
@@ -53,5 +60,29 @@ class HeroSpeech extends DataObject {
         }
         $fields->replaceField('ToID', $toField);
         return $fields;
+    }
+
+    public function getIntro() {
+        return in_array($this->Type, array('Question', 'Response'));
+    }
+
+    public function getTargetPhrase() {
+        $type = null;
+        switch ($this->Type) {
+            case HeroSpeech::QUESTION:
+                $type = HeroSpeech::RESPONSE;
+                break;
+            case HeroSpeech::RESPONSE:
+                $type = HeroSpeech::QUESTION;
+                break;
+            default:
+                return null;
+                break;
+        }
+        return HeroSpeech::get_one('HeroSpeech',
+            'HeroSpeech.FromID = ' . $this->To()->ID
+            . ' AND HeroSpeech.ToID = ' . $this->From()->ID
+            . ' AND HeroSpeech.Type = \'' . $type . '\''
+        )->Phrase;
     }
 }
