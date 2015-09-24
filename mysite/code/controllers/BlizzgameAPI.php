@@ -6,7 +6,7 @@
  */
 class BlizzgameAPI extends RestfulServer {
 
-    protected static $api_base = "api/blizzgame/";
+    protected static $api_base = "api/blizz/";
 
     /**
      * Gets a single DataObject by ID,

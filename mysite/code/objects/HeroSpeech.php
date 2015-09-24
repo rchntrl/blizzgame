@@ -41,9 +41,14 @@ class HeroSpeech extends DataObject {
 
     public static $api_access = array(
         'view' => array(
-            'Type', 'Tone', 'Phrase', 'OriginalPhrase', 'Intro', 'TargetPhrase'
+            'Type', 'Tone', 'Phrase', 'OriginalPhrase', 'Intro', 'MateOriginalPhrase', 'MatePhrase'
         ),
     );
+
+    /**
+     * @var HeroSpeech
+     */
+    private $mateSpeech;
 
     public function canCreate($Member = null) {return (permission::check('CREATE_EDIT_HERO')) ? true : false;}
     public function canEdit($Member = null) {return (permission::check('CREATE_EDIT_HERO')) ? true : false;}
@@ -66,23 +71,35 @@ class HeroSpeech extends DataObject {
         return in_array($this->Type, array('Question', 'Response'));
     }
 
-    public function getTargetPhrase() {
-        $type = null;
-        switch ($this->Type) {
-            case HeroSpeech::QUESTION:
-                $type = HeroSpeech::RESPONSE;
-                break;
-            case HeroSpeech::RESPONSE:
-                $type = HeroSpeech::QUESTION;
-                break;
-            default:
-                return null;
-                break;
+    public function getMatePhrase() {
+        return $this->getMateSpeech()->Phrase;
+    }
+
+    public function getMateOriginalPhrase() {
+        return $this->getMateSpeech()->OriginalPhrase;
+    }
+
+    public function getMateSpeech() {
+        if (!$this->mateSpeech) {
+            $type = null;
+            switch ($this->Type) {
+                case HeroSpeech::QUESTION:
+                    $type = HeroSpeech::RESPONSE;
+                    break;
+                case HeroSpeech::RESPONSE:
+                    $type = HeroSpeech::QUESTION;
+                    break;
+                default:
+                    return null;
+                    break;
+            }
+            $this->mateSpeech = HeroSpeech::get_one('HeroSpeech',
+                'HeroSpeech.FromID = ' . $this->To()->ID
+                . ' AND HeroSpeech.ToID = ' . $this->From()->ID
+                . ' AND HeroSpeech.Type = \'' . $type . '\''
+            );
         }
-        return HeroSpeech::get_one('HeroSpeech',
-            'HeroSpeech.FromID = ' . $this->To()->ID
-            . ' AND HeroSpeech.ToID = ' . $this->From()->ID
-            . ' AND HeroSpeech.Type = \'' . $type . '\''
-        )->Phrase;
+
+        return $this->mateSpeech;
     }
 }

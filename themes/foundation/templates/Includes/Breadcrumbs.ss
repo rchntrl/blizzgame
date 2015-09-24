@@ -1,4 +1,4 @@
-<nav role="navigation">
+<nav role="navigation" data-ng-controller="breadcrumbs">
     <ul class="breadcrumbs">
         <% if $isForumBreadcrumbs($Breadcrumbs) %>
            <% loop $fixForumBreadcrumb($Breadcrumbs) %>

@@ -58,13 +58,16 @@ app.factory("heroes", function(nexusData, $http, $routeParams, $location, $ancho
         }
     );
     function loadDetails(obj) {
-        hero.get({id: obj.ID, relation: 'Speech'}, function (data) {
-            obj.Speech = data.items;
-        });
-        hero.get({id: obj.ID, relation: 'Image'}, function (data) {
-            obj.Image = data.items[0];
-            console.log(obj);
-        });
+        if (!obj.Speech[0].ID) {
+            hero.get({id: obj.ID, relation: 'Speech'}, function (data) {
+                obj.Speech = data.items;
+            });
+        }
+        if (!obj.Image.Filename) {
+            hero.get({id: obj.ID, relation: 'Image'}, function (data) {
+                obj.Image = data.items[0];
+            });
+        }
     }
 
     function load() {

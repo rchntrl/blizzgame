@@ -1,9 +1,6 @@
 
-<h1>{{ nexusData.selectedHero.TitleRU }}</h1>
+<h1>{{ nexusData.selectedHero.TitleRU }} <small>{{ nexusData.selectedHero.IdentityTitle }}</small></h1>
 <div class="large-12">
-    <div class="">
-        <img data-ng-src="{{ nexusData.selectedHero.Image.Filename }}" />
-    </div>
     <div class="large-9 column">
         <div data-ng-bind-html="nexusData.selectedHero.Content | unsafe"></div>
     </div>
@@ -12,31 +9,69 @@
         <ul class="hero-speech intro">
             <li data-ng-repeat="item in nexusData.selectedHero.Speech | filter:{Intro: 1} |orderBy:'-To.id'"
                 ng-init="targetHero = getHeroById(item.To.id)" >
-                <div class="question">
-                    <div class="hero-thumbnail released hexagon">
-                        <div class="hexagon__clip">
-                            <a href="javascript:;" class="js-hero-thumbnail hero-thumbnail__link hexagon__item"></a>
-                            <span ng-class="nexusData.selectedHero.LastLinkSegment" class="hero-thumbnail__icon"></span>
+                <div data-ng-if="item.Type == 'Question'" >
+                    <div class="question">
+                        <div class="hero-thumbnail released hexagon">
+                            <div class="hexagon__clip">
+                                <a href="javascript:;" class="js-hero-thumbnail hero-thumbnail__link hexagon__item"></a>
+                                <span ng-class="nexusData.selectedHero.LastLinkSegment" class="hero-thumbnail__icon"></span>
+                            </div>
                         </div>
+                        <div class="phrase" data-ng-bind-html="item.Phrase | unsafe"></div>
                     </div>
-                    <div class="phrase" data-ng-bind-html="item.Phrase | unsafe"></div>
+                    <div class="response" data-ng-if="targetHero">
+                        <div  class="hero-thumbnail released hexagon">
+                            <div class="hexagon__clip">
+                                <a data-ng-href="{{ targetHero.Url }}" class="js-hero-thumbnail hero-thumbnail__link hexagon__item"></a>
+                                <span ng-class="targetHero.LastLinkSegment" class="hero-thumbnail__icon"></span>
+                            </div>
+                        </div>
+                        <div class="phrase" data-ng-bind-html="item.MatePhrase | unsafe"></div>
+                    </div>
                 </div>
-                <div class="response" data-ng-if="targetHero">
-                    <div  class="hero-thumbnail released hexagon">
-                        <div class="hexagon__clip">
-                            <a data-ng-href="{{ targetHero.Url }}" class="js-hero-thumbnail hero-thumbnail__link hexagon__item"></a>
-                            <span ng-class="targetHero.LastLinkSegment" class="hero-thumbnail__icon"></span>
+                <div data-ng-if="item.Type == 'Response'">
+                    <div class="question" data-ng-if="targetHero">
+                        <div  class="hero-thumbnail released hexagon">
+                            <div class="hexagon__clip">
+                                <a data-ng-href="{{ targetHero.Url }}" class="js-hero-thumbnail hero-thumbnail__link hexagon__item"></a>
+                                <span ng-class="targetHero.LastLinkSegment" class="hero-thumbnail__icon"></span>
+                            </div>
                         </div>
+                        <div class="phrase" data-ng-bind-html="item.MatePhrase | unsafe"></div>
                     </div>
-                    <div class="phrase" data-ng-bind-html="item.TargetPhrase | unsafe"></div>
+                    <div class="response">
+                        <div class="hero-thumbnail released hexagon">
+                            <div class="hexagon__clip">
+                                <a href="javascript:;" class="js-hero-thumbnail hero-thumbnail__link hexagon__item"></a>
+                                <span ng-class="nexusData.selectedHero.LastLinkSegment" class="hero-thumbnail__icon"></span>
+                            </div>
+                        </div>
+                        <div class="phrase" data-ng-bind-html="item.Phrase | unsafe"></div>
+                    </div>
                 </div>
             </li>
         </ul>
-        <h3>Реплики при клике мыши</h3>
+    </div>
+    <div class="large-9">
+        <h3>Реплики при клике</h3>
         <ul class="hero-speech">
-            <li data-ng-repeat="item in nexusData.selectedHero.Speech | filter:{Type: 'Pissed'} |orderBy:'ID'">
+            <li data-ng-repeat="item in nexusData.selectedHero.Speech | filter:{Type: 'Pissed'} | orderBy:'ID'">
                 <div class="phrase" data-ng-bind-html="item.Phrase | unsafe"></div>
-
+            </li>
+        </ul>
+    </div>
+    <div class="large-9">
+        <h3>Реплики при убийстве</h3>
+        <ul class="hero-speech">
+            <li data-ng-repeat="item in nexusData.selectedHero.Speech | filter:{Type: 'WhenKill'} | orderBy:'-To.id'"
+                ng-init="targetHero = getHeroById(item.To.id)">
+                <div class="phrase" data-ng-bind-html="item.Phrase | unsafe"></div>
+                <div data-ng-if="targetHero" class="hero-thumbnail released hexagon right">
+                    <div class="hexagon__clip">
+                        <a data-ng-href="{{ targetHero.Url }}" class="js-hero-thumbnail hero-thumbnail__link hexagon__item"></a>
+                        <span ng-class="targetHero.LastLinkSegment" class="hero-thumbnail__icon"></span>
+                    </div>
+                </div>
             </li>
         </ul>
     </div>

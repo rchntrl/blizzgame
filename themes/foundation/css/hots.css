@@ -364,11 +364,11 @@
 
 .hero-speech li {
   position: relative;
-  padding: 20px;
-  margin-bottom: 10px;
+  padding: 15px 15px 15px 0;
   border-bottom: solid #ddd 1px;
   width: 100%;
   float: left;
+  font-size: 0.8rem;
 }
 .hero-speech li:last-child {
   border-bottom: none;
@@ -376,11 +376,9 @@
 .intro li .phrase {
   float: right;
   width: 80%;
-  font-size: 0.8rem;
+  height: 74px;
 }
-.intro li .question {
-  height: 60px;
-}
+.intro li .question,
 .intro li .response {
   position: relative;
   height: 60px;
