@@ -7,6 +7,7 @@
  * @property string TitleRU
  * @property integer AccessLevel
  * @property string LastLinkSegment
+ * @property HTMLText Content
  * @method Image Image()
  * @method Image Icon()
   */
@@ -84,6 +85,14 @@ class StormHero extends DataObject implements PermissionProvider {
     public function canView($member = null) {return true;}
 
     public function getTitle() {
+        return $this->TitleRU;
+    }
+
+    public function getMetaDescription() {
+        return strip_tags($this->Content);
+    }
+
+    public function getTitleWithAccess() {
         return $this->AccessLevel ? $this->TitleRU . ' (' . $this->AccessLevel . ')' : $this->TitleRU;
     }
 

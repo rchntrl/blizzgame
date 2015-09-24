@@ -55,41 +55,27 @@ class CardGamePage_Controller extends Page_Controller {
         Requirements::javascript(THEMES_DIR . "/foundation/javascript/cardgame.js");
     }
 
-    public function ng() {
-        $action = $this->urlParams['ID'];
-        switch ($action) {
-            case 'card-list':
-                break;
-            case 'template':
-                $id = $this->request->getVar('ID');
-                $this->response->setBody($this->renderWith($id));
-                break;
-            case 'update':
-                $items = CardGameItem::get("CardGameItem", "DAY(NOW()) > DAY(CardGameItem.LastEdited)")->limit(15);
-                /** @var CardGameItem $item */
-                foreach($items as $item) {
-                    $item->write();
-                }
-                $this->response->setBody(json_encode(
-                    array('count' => CardGameItem::get("CardGameItem", "DAY(NOW()) > DAY(CardGameItem.LastEdited)")->count())
-                ));
-                break;
-            case 'updatedir':
-                /** @var CardGameItem $cover */
-                $parentID = File::get_one("Folder", "\"File\".\"Name\" = '" . $this->URLSegment . "'")->ID;
-                foreach ($this->Items() as $cover) {
-                    if ($cover->CoverCard()->ParentID != $parentID) {
-                        $image = $cover->CoverCard();
-                        $image->setParentID($parentID);
-                        $image->write();
-                    }
-                }
-                $this->response->setBody(json_encode(
-                    array('count' => Image::get("Image", "ParentID = 13833")->count())
-                ));
-                break;
+   public function view() {
+       /** @var CardGameItem $object */
+        $object = null;
+        if($this->urlParams['ID']) {
+            $id = $this->urlParams['ID'];
+            if (is_numeric($id)) {
+                $object = DataObject::get_by_id("CardGameItem", $id);
+            } else {
+                $object = DataObject::get_one('CardGameItem', "\"CardGameItem\".\"LastLinkSegment\" = '" . $id ."'");
+            }
+
+            if (!$object->ID) {
+                $this->httpError(404);
+            }
+        } else {
+            $this->httpError(404);
         }
-        //$this->response->addHeader("Content-Type", "application/json");
-        return $this->getResponse();
-    }
+
+        return $this->customise(array(
+            'Title' => $object->getTitle(),
+            'MetaDescription' => $object->getMetaDescription(),
+        ));
+   }
 }

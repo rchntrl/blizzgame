@@ -28,6 +28,8 @@ class ObjectAsPageExtension extends DataExtension {
         return $map;
     }
 
+
+
     /**
      * @return String
      */

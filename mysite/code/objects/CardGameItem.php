@@ -99,10 +99,16 @@ class CardGameItem extends DataObject implements PermissionProvider {
     function canView($Member = null) {return true;}
 
     public function getTitle() {
-        return $this->getField('TitleRU') . ' (' . $this->getField('TitleEN') . ')';
+        return $this->TitleRU;
     }
 
-    public function getLink() {}
+    public function getMetaDescription() {
+        return strip_tags($this->Rules) . ' | ' . strip_tags($this->Flavor);
+    }
+
+    public function getLink() {
+        //empty
+    }
 
     public function getThumbnail() {
         return $this->CoverCard()->CMSThumbnail();

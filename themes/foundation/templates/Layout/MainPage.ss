@@ -12,7 +12,7 @@
                                 <% loop $HeroesRotation %>
                                     <li class="hero-thumbnail released hexagon">
                                         <div class="hexagon__clip">
-                                            <a title="$MenuTitle" href="javascript:;" class="js-hero-thumbnail hero-thumbnail__link hexagon__item" data-slug="$Class"></a>
+                                            <a title="$TitleWithAccess" href="javascript:;" class="js-hero-thumbnail hero-thumbnail__link hexagon__item" data-slug="$Class"></a>
                                             <span class="hero-thumbnail__icon $Class"></span>
                                         </div>
                                     </li>

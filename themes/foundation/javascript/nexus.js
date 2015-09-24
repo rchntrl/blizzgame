@@ -60,15 +60,15 @@ app.factory("heroes", function(nexusData, $http, $routeParams, $location, $ancho
             relation: "@relation"
         }
     );
-    function loadDetails(obj) {
-        if (!obj.Speech) {
-            hero.get({id: obj.ID, relation: 'Speech'}, function (data) {
-                obj.Speech = data.items;
+    function loadDetails() {
+        if (!nexusData.selectedHero.Speech) {
+            hero.get({id: nexusData.selectedHero.ID, relation: 'Speech'}, function (data) {
+                nexusData.selectedHero.Speech = data.items;
             });
         }
-        if (!obj.Image.Filename) {
-            hero.get({id: obj.ID, relation: 'Image'}, function (data) {
-                obj.Image = data.items[0];
+        if (!nexusData.selectedHero.Image.Filename) {
+            hero.get({id: nexusData.selectedHero.ID, relation: 'Image'}, function (data) {
+                nexusData.selectedHero.Image = data.items[0];
             });
         }
     }
@@ -81,7 +81,7 @@ app.factory("heroes", function(nexusData, $http, $routeParams, $location, $ancho
         } else if (id) {
             hero.get({id: id}, function (data) {
                 nexusData.selectedHero = new HeroOfNexus(data);
-                loadDetails(nexusData.selectedHero);
+                loadDetails();
             });
         }
         hero.get(function (data) {

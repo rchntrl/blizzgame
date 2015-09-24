@@ -31,7 +31,9 @@ window.i18n = {
 };
 
 var Card = function (data) {
-    return data;
+    for (var key in data) {
+        this[key] = data[key];
+    }
 };
 
 var pageContainer = angular.element(document.querySelector("#pageConfigContainer"));
@@ -43,18 +45,6 @@ var app = angular.module("blizzgame", [
     "mm.foundation"
 ]);
 
-angular.module("localize").config(function ($provide) {
-    $provide.decorator("localizeConfig", function ($delegate) {
-        $delegate.observableAttrs = /^data-(?!ng-|localize)/;
-        return $delegate;
-    });
-});
-
-app.filter("unsafe", function ($sce) {
-    return function (val) {
-        return $sce.trustAsHtml(val);
-    };
-});
 
 app.value("cardGameData", {
     title: pageContainer.data("title"),
@@ -62,6 +52,7 @@ app.value("cardGameData", {
     baseHref: angular.element(document.querySelector("base")).attr("href"),
     pageID: pageContainer.data("pageId"),
     totalSize: 1,
+    selectedCard: null,
     filterByClasses: {hearthStone: true},
     currentPage: 1,
     viewMode: "",
@@ -154,33 +145,61 @@ app.value("cardGameData", {
 });
 
 app.factory("cardGame", function (cardGameData, $http, $routeParams, $location, $anchorScroll, $resource) {
-    var apiUrl = cardGameData.baseHref + "api/v1/";
+    var apiUrl = cardGameData.baseHref + "api/blizz/";
     var start = 0;
     var size = 20;
     var currentPage = 1;
-    var card = $resource(apiUrl + "CardGamePage/:id/Items", {id: cardGameData.pageID}, {});
+    var card = $resource(apiUrl + ":object/:id/:relation", {
+        object: "@object",
+        id: "@id",
+        relation: "@relation"
+    }, {});
+    var title = angular.element(document.querySelector("title"));
 
-    function loadCardList() {
-        if (cardGameData.items.length < cardGameData.totalSize) {
-            card.get(function (data) {
-                cardGameData.totalSize = data.totalSize;
-                $.each(data.items, function () {
-                    cardGameData.items.push(new Card(this));
+    function load() {
+        var id = $routeParams.pageName;
+        if (id) {
+            if (cardGameData.items.length) {
+                cardGameData.selectedCard = getByLink(id);
+                loadDetails(cardGameData.selectedCard);
+            } else {
+                card.get({
+                    object: "CardGameItem",
+                    id: id
+                }, function (data) {
+                    cardGameData.selectedCard = new Card(data);
+                    title.html(cardGameData.selectedCard.Title);
+                    loadDetails(cardGameData.selectedCard);
                 });
+            }
+            size = 8;
+            setCurrentPage(1);
+            $location.hash('');
+            $anchorScroll();
+        } else {
+            size = 20;
+            setCurrentPage(1)
+        }
+        if (!cardGameData.items.length) {
+            card.get({
+                object: "CardGamePage",
+                relation: "Items",
+                id: cardGameData.pageID
+            }, function (data) {
+                cardGameData.totalSize = data.totalSize;
+                cardGameData.items.length = 0;
+                for (var item in data.items) {
+                    cardGameData.items.push(new Card(data.items[item]));
+                }
                 if (cardGameData.items[0].Hearthstone == 0) {
                     cardGameData.filterByClasses = {onlyHeartStone: false};
                 }
-                selectCard();
-            }, function (error) {
-                console.log(error);
             });
         }
+
     }
 
     function loadDetails() {
-        $location.hash('');
-        $anchorScroll();
-        size = 8;
         if (!cardGameData.selectedCard.CoverCard.Filename) {
             cardGameData.selectedCard.page = cardGameData.currentPage;
             $http({
@@ -207,16 +226,17 @@ app.factory("cardGame", function (cardGameData, $http, $routeParams, $location, 
         }
     }
 
-    function selectCard() {
-        if (cardGameData.items.length && $routeParams.pageName) {
+    /**
+     *
+     * @param link
+     * @returns {Card}
+     */
+    function getByLink(link) {
+        if (cardGameData.items.length) {
             cardGameData.selectedCard = cardGameData.items.filter(function (obj) {
-                return obj.LastLinkSegment == $routeParams.pageName;
+                return obj.LastLinkSegment == link;
             });
-            cardGameData.selectedCard = cardGameData.selectedCard[0];
-            loadDetails();
-        } else {
-            size = 20;
-            setCurrentPage(1)
+            return cardGameData.selectedCard[0];
         }
     }
 
@@ -242,9 +262,9 @@ app.factory("cardGame", function (cardGameData, $http, $routeParams, $location, 
         setSize: function (s) {
             size = s;
         },
-        selectCard: selectCard,
+        getByLink: getByLink,
         loadDetails: loadDetails,
-        loadCardList: loadCardList
+        load: load
     };
 });
 
@@ -252,17 +272,54 @@ app.config(function ($routeProvider, $locationProvider) {
     var pageUrl = location.origin + pageContainer.data("pageUrl");
     var baseHref = angular.element(document.querySelector("base")).attr("href");
     pageUrl = pageUrl.replace(baseHref, "/");
+    console.log(baseHref);
     $routeProvider
         .when(pageUrl, {
-            controller: "cards",
-            templateUrl: baseHref + pageUrl + "ng/template/?ID=CardGameList"
+            controller: "loadCardGameData",
+            templateUrl: baseHref  + "themes/foundation/templates/html/card-game/list.html"
         })
         .when(pageUrl + ":pageName", {
-            controller: "cards",
-            templateUrl: baseHref + pageUrl + "ng/template/?ID=CardGameView"
+            controller: "loadCardGameData",
+            templateUrl: baseHref  + "themes/foundation/templates/html/card-game/card.html"
         })
     ;
     $locationProvider.html5Mode(true);
+});
+
+angular.module("localize").config(function ($provide) {
+    $provide.decorator("localizeConfig", function ($delegate) {
+        $delegate.observableAttrs = /^data-(?!ng-|localize)/;
+        return $delegate;
+    });
+});
+
+/**
+ * @ngDoc controller
+ * @name ng.module:cards
+ *
+ * @description
+ * cards pagination, view, filter
+ */
+app.controller("cards", function (cardGame, cardGameData, $scope) {
+    $scope.cardGameData = cardGameData;
+    $scope.cardGame = cardGame;
+    $scope.search = {
+        Class: ""
+    };
+
+    $scope.paginate = function (page) {
+        cardGame.setCurrentPage(page);
+    };
+});
+
+app.controller("loadCardGameData", function (cardGame) {
+    cardGame.load();
+});
+
+app.filter("unsafe", function ($sce) {
+    return function (val) {
+        return $sce.trustAsHtml(val);
+    };
 });
 
 app.filter('startFrom', function () {
@@ -285,32 +342,4 @@ app.filter('multipleFilter', function () {
         }, items);
         return items.out;
     };
-});
-
-/**
- * @ngDoc controller
- * @name ng.module:gallery
- *
- * @description
- * gallery pagination, view, filter
- */
-app.controller("cards", function (cardGame, cardGameData, $scope, $http, $routeParams) {
-    $scope.cardGameData = cardGameData;
-    $scope.cardGame = cardGame;
-    if (cardGameData.pageReady) {
-        cardGame.loadCardList();
-    }
-    cardGame.selectCard();
-    cardGameData.pageReady = $routeParams.pageName ? false : true;
-    $scope.search = {
-        Class: ""
-    };
-
-    $scope.paginate = function (page) {
-        cardGame.setCurrentPage(page);
-    };
-});
-
-app.controller("breadcrumbs", function ($scope) {
-
 });
