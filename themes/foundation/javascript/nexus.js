@@ -142,10 +142,6 @@ app.controller("breadcrumbs", function (nexusData, $scope) {
     $scope.breadCrumbs = nexusData.breadCrumbs;
 });
 
-app.controller("default", function ($routeParams, $scope) {
-    console.log('default');
-    document.location.href = location.link();
-});
 
 app.filter("unsafe", function ($sce) {
     return function (val) {
