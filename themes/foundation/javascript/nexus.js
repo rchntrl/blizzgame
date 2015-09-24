@@ -36,6 +36,9 @@ app.config(function ($routeProvider, $locationProvider) {
             controller: "loadNexusData",
             templateUrl: baseUrl  + "themes/foundation/templates/html/nexus/hero.html"
         })
+        .otherwise({
+            redirectTo: $routeProvider.current
+        })
     ;
     $locationProvider.html5Mode(true);
 });
@@ -58,7 +61,7 @@ app.factory("heroes", function(nexusData, $http, $routeParams, $location, $ancho
         }
     );
     function loadDetails(obj) {
-        if (!obj.Speech[0].ID) {
+        if (!obj.Speech) {
             hero.get({id: obj.ID, relation: 'Speech'}, function (data) {
                 obj.Speech = data.items;
             });
@@ -137,6 +140,11 @@ app.controller("loadNexusData", function (heroes) {
 
 app.controller("breadcrumbs", function (nexusData, $scope) {
     $scope.breadCrumbs = nexusData.breadCrumbs;
+});
+
+app.controller("default", function ($routeParams, $scope) {
+    console.log('default');
+    document.location.href = location.link();
 });
 
 app.filter("unsafe", function ($sce) {

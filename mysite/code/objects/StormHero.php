@@ -53,7 +53,7 @@ class StormHero extends DataObject implements PermissionProvider {
            'Title', 'TitleEN', 'TitleRU', 'IdentityTitle',
            'LastLinkSegment', 'AccessLevel', 'Draft',
            'Role', 'Universe', 'Trailer', 'Spotlight',
-           'Content', 'IconSrc'
+           'Content', 'IconSrc', 'Image'
        )
     );
 

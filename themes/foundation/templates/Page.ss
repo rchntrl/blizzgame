@@ -32,7 +32,7 @@
         <!-- CONTENT SECTION -->
         <div class="row content-section">
             <% include Breadcrumbs %>
-            <div class="main-content">
+            <div data-ng-app="blizzgame" class="main-content">
                 $Layout
             </div>
         </div>
