@@ -172,13 +172,8 @@ app.factory("cardGame", function (cardGameData, $http, $routeParams, $location, 
                     loadDetails(cardGameData.selectedCard);
                 });
             }
-            size = 8;
-            setCurrentPage(1);
             $location.hash('');
             $anchorScroll();
-        } else {
-            size = 20;
-            setCurrentPage(1)
         }
         if (!cardGameData.items.length) {
             card.get({
