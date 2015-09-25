@@ -75,22 +75,26 @@ app.factory("heroes", function(nexusData, $http, $routeParams, $location, $ancho
 
     function load() {
         var id = $routeParams.heroName;
-        if (nexusData.items.length && id) {
-            nexusData.selectedHero = getByLink(id);
-            loadDetails(nexusData.selectedHero);
-        } else if (id) {
-            hero.get({id: id},function(data) {
-                nexusData.selectedHero = new HeroOfNexus(data);
-                loadDetails();
+        if (id) {
+            if (nexusData.items.length) {
+                nexusData.selectedHero = getByLink(id);
+                loadDetails(nexusData.selectedHero);
+            } else {
+                hero.get({id: id},function(data) {
+                    nexusData.selectedHero = new HeroOfNexus(data);
+                    loadDetails();
+                });
+            }
+        }
+        if (!nexusData.items.length) {
+            hero.get(function(data) {
+                nexusData.totalSize = data.totalSize;
+                nexusData.items.length = 0;
+                for (var item in data.items) {
+                    nexusData.items.push(new HeroOfNexus(data.items[item]));
+                }
             });
         }
-        hero.get(function(data) {
-            nexusData.totalSize = data.totalSize;
-            nexusData.items.length = 0;
-            for (var item in data.items) {
-                nexusData.items.push(new HeroOfNexus(data.items[item]));
-            }
-        });
     }
 
     /**

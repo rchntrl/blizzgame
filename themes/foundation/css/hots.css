@@ -373,18 +373,14 @@
 .hero-speech li:last-child {
   border-bottom: none;
 }
-.intro li .phrase {
-  float: right;
-  width: 80%;
-  height: 74px;
+.hero-speech li .phrase {
+  width: 100%;
+}
+.hero-speech li .original-phrase {
+  color: #6f6f6f;
 }
 .intro li .question,
 .intro li .response {
   position: relative;
   height: 60px;
-}
-.intro li .response .hero-thumbnail {
-  position: absolute;
-  top: 0;
-  left: 36px;
 }

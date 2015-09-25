@@ -11,42 +11,46 @@
                 ng-init="targetHero = getHeroById(item.To.id)" >
                 <div data-ng-if="item.Type == 'Question'" >
                     <div class="question">
-                        <div class="hero-thumbnail released hexagon">
-                            <div class="hexagon__clip">
-                                <a href="javascript:;" class="js-hero-thumbnail hero-thumbnail__link hexagon__item"></a>
-                                <span ng-class="nexusData.selectedHero.LastLinkSegment" class="hero-thumbnail__icon"></span>
+                        <a class="element-link" data-ng-href="{{ nexusData.selectedHero.Url }}" title="{{nexusData.selectedHero.TitlRU }}">
+                            <div class="element-link-image">
+                                <img class="icon-frame frame-56" data-ng-src="{{ nexusData.selectedHero.IconSrc }}" />
                             </div>
-                        </div>
+                            <span class="element-link-title">{{ item.TitleRU }}</span>
+                        </a>
                         <div class="phrase" data-ng-bind-html="item.Phrase | unsafe"></div>
+                        <div class="original-phrase" data-ng-bind-html="item.OriginalPhrase | unsafe"></div>
                     </div>
                     <div class="response" data-ng-if="targetHero">
-                        <div  class="hero-thumbnail released hexagon">
-                            <div class="hexagon__clip">
-                                <a data-ng-href="{{ targetHero.Url }}" class="js-hero-thumbnail hero-thumbnail__link hexagon__item"></a>
-                                <span ng-class="targetHero.LastLinkSegment" class="hero-thumbnail__icon"></span>
+                        <a class="element-link" data-ng-href="{{ targetHero.Url }}" title="{{ targetHero.TitlRU }}">
+                            <div class="element-link-image">
+                                <img class="icon-frame frame-56" data-ng-src="{{ targetHero.IconSrc }}" />
                             </div>
-                        </div>
+                            <span class="element-link-title">{{ item.TitleRU }}</span>
+                        </a>
                         <div class="phrase" data-ng-bind-html="item.MatePhrase | unsafe"></div>
+                        <div class="original-phrase" data-ng-bind-html="item.MateOriginalPhrase | unsafe"></div>
                     </div>
                 </div>
                 <div data-ng-if="item.Type == 'Response'">
                     <div class="question" data-ng-if="targetHero">
-                        <div  class="hero-thumbnail released hexagon">
-                            <div class="hexagon__clip">
-                                <a data-ng-href="{{ targetHero.Url }}" class="js-hero-thumbnail hero-thumbnail__link hexagon__item"></a>
-                                <span ng-class="targetHero.LastLinkSegment" class="hero-thumbnail__icon"></span>
+                        <a class="element-link" data-ng-href="{{ targetHero.Url }}" title="{{ targetHero.TitlRU }}">
+                            <div class="element-link-image">
+                                <img class="icon-frame frame-56" data-ng-src="{{ targetHero.IconSrc }}" />
                             </div>
-                        </div>
+                            <span class="element-link-title">{{ item.TitleRU }}</span>
+                        </a>
                         <div class="phrase" data-ng-bind-html="item.MatePhrase | unsafe"></div>
+                        <div class="original-phrase" data-ng-bind-html="item.MateOriginalPhrase | unsafe"></div>
                     </div>
                     <div class="response">
-                        <div class="hero-thumbnail released hexagon">
-                            <div class="hexagon__clip">
-                                <a href="javascript:;" class="js-hero-thumbnail hero-thumbnail__link hexagon__item"></a>
-                                <span ng-class="nexusData.selectedHero.LastLinkSegment" class="hero-thumbnail__icon"></span>
+                        <a class="element-link" data-ng-href="{{ nexusData.selectedHero.Url }}" title="{{nexusData.selectedHero.TitlRU }}">
+                            <div class="element-link-image">
+                                <img class="icon-frame frame-56" data-ng-src="{{ nexusData.selectedHero.IconSrc }}" />
                             </div>
-                        </div>
+                            <span class="element-link-title">{{ item.TitleRU }}</span>
+                        </a>
                         <div class="phrase" data-ng-bind-html="item.Phrase | unsafe"></div>
+                        <div class="original-phrase" data-ng-bind-html="item.OriginalPhrase | unsafe"></div>
                     </div>
                 </div>
             </li>
@@ -57,6 +61,7 @@
         <ul class="hero-speech">
             <li data-ng-repeat="item in nexusData.selectedHero.Speech | filter:{Type: 'Pissed'} | orderBy:'ID'">
                 <div class="phrase" data-ng-bind-html="item.Phrase | unsafe"></div>
+                <div class="original-phrase" data-ng-bind-html="item.OriginalPhrase | unsafe"></div>
             </li>
         </ul>
     </div>
@@ -65,12 +70,17 @@
         <ul class="hero-speech">
             <li data-ng-repeat="item in nexusData.selectedHero.Speech | filter:{Type: 'WhenKill'} | orderBy:'-To.id'"
                 ng-init="targetHero = getHeroById(item.To.id)">
-                <div class="phrase" data-ng-bind-html="item.Phrase | unsafe"></div>
-                <div data-ng-if="targetHero" class="hero-thumbnail released hexagon right">
-                    <div class="hexagon__clip">
-                        <a data-ng-href="{{ targetHero.Url }}" class="js-hero-thumbnail hero-thumbnail__link hexagon__item"></a>
-                        <span ng-class="targetHero.LastLinkSegment" class="hero-thumbnail__icon"></span>
-                    </div>
+                <div class="medium-9 column">
+                    <div class="phrase" data-ng-bind-html="item.Phrase | unsafe"></div>
+                    <div class="original-phrase" data-ng-bind-html="item.OriginalPhrase | unsafe"></div>
+                </div>
+                <div class="medium-3 column">
+                    <a data-ng-if="targetHero" class="right element-link" data-ng-href="{{ targetHero.Url }}" title="{{ targetHero.TitlRU }}">
+                        <div class="element-link-image">
+                            <img class="icon-frame frame-56" data-ng-src="{{ targetHero.IconSrc }}" />
+                        </div>
+                        <span class="element-link-title">{{ item.TitleRU }}</span>
+                    </a>
                 </div>
             </li>
         </ul>
