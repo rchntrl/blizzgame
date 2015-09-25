@@ -9,7 +9,7 @@ class HeroTag extends DataObject {
     );
 
     private static $has_one = array(
-        'Image' => 'Image',
+        'Icon' => 'Image',
     );
 
     private static $summary_fields = array(
@@ -19,7 +19,7 @@ class HeroTag extends DataObject {
     public static $api_access = array(
         'view' => array(
             'Title', 'TitleEN', 'TitleRU',
-            'LastLinkSegment', 'Image'
+            'LastLinkSegment', 'Icon'
         )
     );
 
@@ -30,7 +30,7 @@ class HeroTag extends DataObject {
 
     public function getCMSFields() {
         $fields = parent::getCMSFields();
-        $fields->dataFieldByName('Image')->setFolderName('Nexus/Tags/');
+        $fields->dataFieldByName('Icon')->setFolderName('Nexus/Tags/');
         return $fields;
     }
 
