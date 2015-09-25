@@ -1,6 +1,6 @@
 <h1>{{ nexusData.title }}</h1>
 <ul class="ency inline-list">
-    <li class="large-3 small-4" data-ng-repeat="item in nexusData.items | orderBy:'TitleRU'" >
+    <li class="large-3 small-4" data-ng-repeat="item in nexusData.items | filter:{Draft: 0} | orderBy:'TitleRU'" >
         <a class="element-link" data-ng-href="{{ item.Url }}" title="{{item.TitlRU }}">
             <div class="element-link-image">
                 <img class="icon-frame frame-56" alt="{{ item.TitleRU }}" data-ng-src="{{ item.IconSrc }}" />

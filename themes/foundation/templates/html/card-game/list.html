@@ -24,7 +24,7 @@
             <li data-ng-repeat="(key, card) in (filtered = (cardGameData.items | filter:search:strict)) | startFrom:cardGame.getStart() | limitTo:cardGame.getSize()">
                 <a class="th hearthstone-link" data-ng-href="{{ card.Link }}">
                     <span title="имеется ссылка на арт" data-ng-if="card.LinkToArt.id > 0" class="has-art-link"></span>
-                    <img class="card-img" data-ng-src="{{ card.CoverThumbnail }}" src="" data-ng-class="{ 'loading' :  !card.CoverThumbnail }" />
+                    <img class="card-img" data-ng-src="{{ card.CoverThumbnail }}" data-ng-class="{ 'loading' :  !card.CoverThumbnail }" />
                     <div class="info">
                         <p data-ng-bind-html="card.TitleRU | unsafe" class="crop-text"></p>
                     </div>

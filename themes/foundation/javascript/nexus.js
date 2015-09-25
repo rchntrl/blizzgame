@@ -24,7 +24,7 @@ var app = angular.module("blizzgame", [
     "ngResource"
 ]);
 
-app.config(function ($routeProvider, $locationProvider) {
+app.config(function($routeProvider, $locationProvider) {
     var pageUrl = location.origin + pageContainer.data("pageUrl");
     pageUrl = pageUrl.replace(baseUrl , "/");
     $routeProvider
@@ -62,12 +62,12 @@ app.factory("heroes", function(nexusData, $http, $routeParams, $location, $ancho
     );
     function loadDetails() {
         if (!nexusData.selectedHero.Speech) {
-            hero.get({id: nexusData.selectedHero.ID, relation: 'Speech'}, function (data) {
+            hero.get({id: nexusData.selectedHero.ID, relation: 'Speech'},function(data) {
                 nexusData.selectedHero.Speech = data.items;
             });
         }
         if (!nexusData.selectedHero.Image.Filename) {
-            hero.get({id: nexusData.selectedHero.ID, relation: 'Image'}, function (data) {
+            hero.get({id: nexusData.selectedHero.ID, relation: 'Image'},function(data) {
                 nexusData.selectedHero.Image = data.items[0];
             });
         }
@@ -79,12 +79,12 @@ app.factory("heroes", function(nexusData, $http, $routeParams, $location, $ancho
             nexusData.selectedHero = getByLink(id);
             loadDetails(nexusData.selectedHero);
         } else if (id) {
-            hero.get({id: id}, function (data) {
+            hero.get({id: id},function(data) {
                 nexusData.selectedHero = new HeroOfNexus(data);
                 loadDetails();
             });
         }
-        hero.get(function (data) {
+        hero.get(function(data) {
             nexusData.totalSize = data.totalSize;
             nexusData.items.length = 0;
             for (var item in data.items) {
@@ -99,7 +99,7 @@ app.factory("heroes", function(nexusData, $http, $routeParams, $location, $ancho
      * @returns {HeroOfNexus}
      */
     function getById(id) {
-        data = nexusData.items.filter(function (obj) {
+        data = nexusData.items.filter(function(obj) {
             return obj.ID == id;
         });
         return data[0];
@@ -111,7 +111,7 @@ app.factory("heroes", function(nexusData, $http, $routeParams, $location, $ancho
      * @returns {HeroOfNexus}
      */
     function getByLink(id) {
-        data = nexusData.items.filter(function (obj) {
+        data = nexusData.items.filter(function(obj) {
             return obj.LastLinkSegment == id;
         });
         return data[0];
@@ -123,7 +123,7 @@ app.factory("heroes", function(nexusData, $http, $routeParams, $location, $ancho
     }
 });
 
-app.controller("nexus", function (nexusData, heroes, $scope, $anchorScroll) {
+app.controller("nexus",function(nexusData, heroes, $scope, $anchorScroll) {
     $scope.nexusData = nexusData;
 
     $scope.getHeroById = function(id) {
@@ -134,17 +134,17 @@ app.controller("nexus", function (nexusData, heroes, $scope, $anchorScroll) {
     }
 });
 
-app.controller("loadNexusData", function (heroes) {
+app.controller("loadNexusData",function(heroes) {
     heroes.load();
 });
 
-app.controller("breadcrumbs", function (nexusData, $scope) {
+app.controller("breadcrumbs",function(nexusData, $scope) {
     $scope.breadCrumbs = nexusData.breadCrumbs;
 });
 
 
-app.filter("unsafe", function ($sce) {
-    return function (val) {
+app.filter("unsafe",function($sce) {
+    return function(val) {
         return $sce.trustAsHtml(val);
     };
 });

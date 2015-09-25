@@ -24,6 +24,7 @@ class HeroSpeech extends DataObject {
 
     private static $has_one = array(
         'To' => 'StormHero',
+        'ToSeveral' => 'HeroTag',
         'From' => 'StormHero',
     );
 
@@ -59,11 +60,8 @@ class HeroSpeech extends DataObject {
         $fields = parent::getCMSFields();
         $fields->replaceField('Type', new OptionsetField('Type', 'Type', $fields->dataFieldByName('Type')->getSource()));
         $fields->replaceField('FromID', new HasOnePickerField($this, 'FromID', 'From', $this->From()));
-        $toField = new HasOnePickerField($this, 'ToID', 'To', $this->To());
-        if (empty($this->ID)) {
-            $toField = StormHero::getHeroesField('ToID', 'To');
-        }
-        $fields->replaceField('ToID', $toField);
+        $fields->replaceField('ToID', StormHero::getHeroesField('ToID', 'To'));
+        $fields->replaceField('ToSeveralID', HeroTag::getListField('ToSeveralID', 'To'));
         return $fields;
     }
 

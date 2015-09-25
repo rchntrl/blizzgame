@@ -37,6 +37,10 @@ class StormHero extends DataObject implements PermissionProvider {
         'Skins' => 'HeroSkin',
     );
 
+    private static $many_many = array(
+        'Tags' => 'HeroTag',
+    );
+
     private static $summary_fields = array(
         'ID', 'TitleEN', 'TitleRU'
     );
@@ -121,7 +125,7 @@ class StormHero extends DataObject implements PermissionProvider {
             $title,
             DataObject::get('StormHero', null, 'TitleEN')->map('ID', 'TitleEN')->toArray()
         );
-        $field ->setEmptyString(_t('HeroSpeech.SELECT_HERO', 'Укажите героя нексуса'));
+        $field->setEmptyString(_t('HeroSpeech.SELECT_HERO', 'Укажите героя нексуса'));
         return $field;
     }
 }

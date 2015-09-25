@@ -4,6 +4,7 @@ class BlizzgameAdmin extends ModelAdmin {
 
     private static $managed_models = array(
         'StormHero',
+        'HeroTag',
         'ElementLink',
         'ElementLinkGroup',
         'PeopleFace',

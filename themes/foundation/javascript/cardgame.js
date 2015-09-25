@@ -30,11 +30,11 @@ window.i18n = {
     "Legendary": "Легендарный"
 };
 
-var Card = function (data) {
+function Card(data) {
     for (var key in data) {
         this[key] = data[key];
     }
-};
+}
 
 var pageContainer = angular.element(document.querySelector("#pageConfigContainer"));
 
@@ -144,7 +144,7 @@ app.value("cardGameData", {
     ]
 });
 
-app.factory("cardGame", function (cardGameData, $http, $routeParams, $location, $anchorScroll, $resource) {
+app.factory("cardGame", function(cardGameData, $http, $routeParams, $location, $anchorScroll, $resource) {
     var apiUrl = cardGameData.baseHref + "api/blizz/";
     var start = 0;
     var size = 20;
@@ -166,7 +166,7 @@ app.factory("cardGame", function (cardGameData, $http, $routeParams, $location, 
                 card.get({
                     object: "CardGameItem",
                     id: id
-                }, function (data) {
+                }, function(data) {
                     cardGameData.selectedCard = new Card(data);
                     title.html(cardGameData.selectedCard.Title);
                     loadDetails(cardGameData.selectedCard);
@@ -180,7 +180,7 @@ app.factory("cardGame", function (cardGameData, $http, $routeParams, $location, 
                 object: "CardGamePage",
                 relation: "Items",
                 id: cardGameData.pageID
-            }, function (data) {
+            }, function(data) {
                 cardGameData.totalSize = data.totalSize;
                 cardGameData.items.length = 0;
                 for (var item in data.items) {
@@ -199,7 +199,7 @@ app.factory("cardGame", function (cardGameData, $http, $routeParams, $location, 
             cardGameData.selectedCard.page = cardGameData.currentPage;
             $http({
                 url: cardGameData.selectedCard.CoverCard.href
-            }).success(function (data) {
+            }).success(function(data) {
                 $.extend(cardGameData.selectedCard.CoverCard, data);
             });
         }
@@ -207,7 +207,7 @@ app.factory("cardGame", function (cardGameData, $http, $routeParams, $location, 
             cardGameData.selectedCard.page = cardGameData.currentPage;
             $http({
                 url: cardGameData.selectedCard.LinkToArt.href
-            }).success(function (data) {
+            }).success(function(data) {
                 $.extend(cardGameData.selectedCard.LinkToArt, data);
             });
         }
@@ -215,7 +215,7 @@ app.factory("cardGame", function (cardGameData, $http, $routeParams, $location, 
             cardGameData.selectedCard.page = cardGameData.currentPage;
             $http({
                 url: cardGameData.selectedCard.Artist.href
-            }).success(function (data) {
+            }).success(function(data) {
                 $.extend(cardGameData.selectedCard.Artist, data);
             });
         }
@@ -228,7 +228,7 @@ app.factory("cardGame", function (cardGameData, $http, $routeParams, $location, 
      */
     function getByLink(link) {
         if (cardGameData.items.length) {
-            cardGameData.selectedCard = cardGameData.items.filter(function (obj) {
+            cardGameData.selectedCard = cardGameData.items.filter(function(obj) {
                 return obj.LastLinkSegment == link;
             });
             return cardGameData.selectedCard[0];
@@ -241,20 +241,20 @@ app.factory("cardGame", function (cardGameData, $http, $routeParams, $location, 
     }
 
     return {
-        setStart: function (s) {
+        setStart: function(s) {
             start = s;
         },
-        getStart: function () {
+        getStart: function() {
             return start;
         },
         setCurrentPage: setCurrentPage,
-        currentPage: function () {
+        currentPage: function() {
             return currentPage;
         },
-        getSize: function () {
+        getSize: function() {
             return size;
         },
-        setSize: function (s) {
+        setSize: function(s) {
             size = s;
         },
         getByLink: getByLink,
@@ -263,7 +263,7 @@ app.factory("cardGame", function (cardGameData, $http, $routeParams, $location, 
     };
 });
 
-app.config(function ($routeProvider, $locationProvider) {
+app.config(function($routeProvider, $locationProvider) {
     var pageUrl = location.origin + pageContainer.data("pageUrl");
     var baseHref = angular.element(document.querySelector("base")).attr("href");
     pageUrl = pageUrl.replace(baseHref, "/");
@@ -271,18 +271,18 @@ app.config(function ($routeProvider, $locationProvider) {
     $routeProvider
         .when(pageUrl, {
             controller: "loadCardGameData",
-            templateUrl: baseHref  + "themes/foundation/templates/html/card-game/list.html"
+            templateUrl: baseHref + "themes/foundation/templates/html/card-game/list.html"
         })
         .when(pageUrl + ":pageName", {
             controller: "loadCardGameData",
-            templateUrl: baseHref  + "themes/foundation/templates/html/card-game/card.html"
+            templateUrl: baseHref + "themes/foundation/templates/html/card-game/card.html"
         })
     ;
     $locationProvider.html5Mode(true);
 });
 
-angular.module("localize").config(function ($provide) {
-    $provide.decorator("localizeConfig", function ($delegate) {
+angular.module("localize").config(function($provide) {
+    $provide.decorator("localizeConfig", function($delegate) {
         $delegate.observableAttrs = /^data-(?!ng-|localize)/;
         return $delegate;
     });
@@ -295,42 +295,42 @@ angular.module("localize").config(function ($provide) {
  * @description
  * cards pagination, view, filter
  */
-app.controller("cards", function (cardGame, cardGameData, $scope) {
+app.controller("cards", function(cardGame, cardGameData, $scope) {
     $scope.cardGameData = cardGameData;
     $scope.cardGame = cardGame;
     $scope.search = {
         Class: ""
     };
 
-    $scope.paginate = function (page) {
+    $scope.paginate = function(page) {
         cardGame.setCurrentPage(page);
     };
 });
 
-app.controller("loadCardGameData", function (cardGame) {
+app.controller("loadCardGameData", function(cardGame) {
     cardGame.load();
 });
 
-app.filter("unsafe", function ($sce) {
-    return function (val) {
+app.filter("unsafe", function($sce) {
+    return function(val) {
         return $sce.trustAsHtml(val);
     };
 });
 
-app.filter('startFrom', function () {
-    return function (input, start) {
+app.filter('startFrom', function() {
+    return function(input, start) {
         start = +start; //parse to int
         return input.slice(start);
     }
 });
 
-app.filter('multipleFilter', function () {
-    return function (cards, searchableItems, fieldName) {
+app.filter('multipleFilter', function() {
+    return function(cards, searchableItems, fieldName) {
         var items = {
             searchableItems: searchableItems,
             out: []
         };
-        angular.forEach(cards, function (value, key) {
+        angular.forEach(cards, function(value, key) {
             if (this.searchableItems[value[fieldName]] === true) {
                 this.out.push(value);
             }
