@@ -85,6 +85,8 @@ app.factory("heroes", function(nexusData, $http, $routeParams, $location, $ancho
                     loadDetails();
                 });
             }
+            $location.hash(""); // scroll top
+            $anchorScroll();
         }
         if (!nexusData.items.length) {
             hero.get(function(data) {

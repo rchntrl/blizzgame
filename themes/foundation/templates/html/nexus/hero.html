@@ -70,18 +70,16 @@
         <ul class="hero-speech">
             <li data-ng-repeat="item in nexusData.selectedHero.Speech | filter:{Type: 'WhenKill'} | orderBy:'-To.id'"
                 ng-init="targetHero = getHeroById(item.To.id)">
-                <div class="medium-9 column">
+                <div class="left">
                     <div class="phrase" data-ng-bind-html="item.Phrase | unsafe"></div>
                     <div class="original-phrase" data-ng-bind-html="item.OriginalPhrase | unsafe"></div>
                 </div>
-                <div class="medium-3 column">
-                    <a data-ng-if="targetHero" class="right element-link" data-ng-href="{{ targetHero.Url }}" title="{{ targetHero.TitlRU }}">
-                        <div class="element-link-image">
-                            <img class="icon-frame frame-56" data-ng-src="{{ targetHero.IconSrc }}" />
-                        </div>
-                        <span class="element-link-title">{{ item.TitleRU }}</span>
-                    </a>
-                </div>
+                <a data-ng-if="targetHero" class="right element-link" data-ng-href="{{ targetHero.Url }}" title="{{ targetHero.TitlRU }}">
+                    <div class="element-link-image">
+                        <img class="icon-frame frame-56" data-ng-src="{{ targetHero.IconSrc }}" />
+                    </div>
+                    <span class="element-link-title">{{ item.TitleRU }}</span>
+                </a>
             </li>
         </ul>
     </div>
