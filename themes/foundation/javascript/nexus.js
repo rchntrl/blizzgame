@@ -66,9 +66,9 @@ app.factory("heroes", function(nexusData, $http, $routeParams, $location, $ancho
                 nexusData.selectedHero.Speech = data.items;
             });
         }
-        if (!nexusData.selectedHero.Image.Filename) {
-            hero.get({id: nexusData.selectedHero.ID, relation: 'Image'},function(data) {
-                nexusData.selectedHero.Image = data.items[0];
+        if (!nexusData.selectedHero.Skins) {
+            hero.get({id: nexusData.selectedHero.ID, relation: 'Skins'},function(data) {
+                nexusData.selectedHero.Skins = data.items;
             });
         }
     }
