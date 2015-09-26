@@ -1,19 +1,19 @@
 
-<h1>{{ nexusData.selectedHero.TitleRU }} <small>{{ nexusData.selectedHero.IdentityTitle }}</small></h1>
+<h1>{{ nexusData.selectedItem.TitleRU }} <small>{{ nexusData.selectedItem.IdentityTitle }}</small></h1>
 <div class="large-12">
     <div class="large-9 column">
-        <div data-ng-bind-html="nexusData.selectedHero.Content | unsafe"></div>
+        <div data-ng-bind-html="nexusData.selectedItem.Content | unsafe"></div>
     </div>
     <div class="large-9">
         <h3>Реплики перед началом матча</h3>
         <ul class="hero-speech intro">
-            <li data-ng-repeat="item in nexusData.selectedHero.Speech | filter:{Intro: 1} |orderBy:'-To.id'"
+            <li data-ng-repeat="item in nexusData.selectedItem.Speech | filter:{Intro: 1} |orderBy:'-To.id'"
                 ng-init="targetHero = getHeroById(item.To.id)" >
                 <div data-ng-if="item.Type == 'Question'" >
                     <div class="question">
-                        <a class="element-link" data-ng-href="{{ nexusData.selectedHero.Url }}" title="{{nexusData.selectedHero.TitlRU }}">
+                        <a class="element-link" data-ng-href="{{ nexusData.selectedItem.Url }}" title="{{nexusData.selectedItem.TitleRU }}">
                             <div class="element-link-image">
-                                <img class="icon-frame frame-56" data-ng-src="{{ nexusData.selectedHero.IconSrc }}" />
+                                <img class="icon-frame frame-56" data-ng-src="{{ nexusData.selectedItem.IconSrc }}" />
                             </div>
                             <span class="element-link-title">{{ item.TitleRU }}</span>
                         </a>
@@ -21,7 +21,7 @@
                         <div class="original-phrase" data-ng-bind-html="item.OriginalPhrase | unsafe"></div>
                     </div>
                     <div class="response" data-ng-if="targetHero">
-                        <a class="element-link" data-ng-href="{{ targetHero.Url }}" title="{{ targetHero.TitlRU }}">
+                        <a class="element-link" data-ng-href="{{ targetHero.Url }}" title="{{ targetHero.TitleRU }}">
                             <div class="element-link-image">
                                 <img class="icon-frame frame-56" data-ng-src="{{ targetHero.IconSrc }}" />
                             </div>
@@ -33,7 +33,7 @@
                 </div>
                 <div data-ng-if="item.Type == 'Response'">
                     <div class="question" data-ng-if="targetHero">
-                        <a class="element-link" data-ng-href="{{ targetHero.Url }}" title="{{ targetHero.TitlRU }}">
+                        <a class="element-link" data-ng-href="{{ targetHero.Url }}" title="{{ targetHero.TitleRU }}">
                             <div class="element-link-image">
                                 <img class="icon-frame frame-56" data-ng-src="{{ targetHero.IconSrc }}" />
                             </div>
@@ -43,9 +43,9 @@
                         <div class="original-phrase" data-ng-bind-html="item.MateOriginalPhrase | unsafe"></div>
                     </div>
                     <div class="response">
-                        <a class="element-link" data-ng-href="{{ nexusData.selectedHero.Url }}" title="{{nexusData.selectedHero.TitlRU }}">
+                        <a class="element-link" data-ng-href="{{ nexusData.selectedItem.Url }}" title="{{nexusData.selectedItem.TitleRU }}">
                             <div class="element-link-image">
-                                <img class="icon-frame frame-56" data-ng-src="{{ nexusData.selectedHero.IconSrc }}" />
+                                <img class="icon-frame frame-56" data-ng-src="{{ nexusData.selectedItem.IconSrc }}" />
                             </div>
                             <span class="element-link-title">{{ item.TitleRU }}</span>
                         </a>
@@ -59,7 +59,7 @@
     <div class="large-9">
         <h3>Реплики при клике</h3>
         <ul class="hero-speech">
-            <li data-ng-repeat="item in nexusData.selectedHero.Speech | filter:{Type: 'Pissed'} | orderBy:'ID'">
+            <li data-ng-repeat="item in nexusData.selectedItem.Speech | filter:{Type: 'Pissed'} | orderBy:'ID'">
                 <div class="phrase" data-ng-bind-html="item.Phrase | unsafe"></div>
                 <div class="original-phrase" data-ng-bind-html="item.OriginalPhrase | unsafe"></div>
             </li>
@@ -68,13 +68,13 @@
     <div class="large-9">
         <h3>Реплики при убийстве</h3>
         <ul class="hero-speech">
-            <li data-ng-repeat="item in nexusData.selectedHero.Speech | filter:{Type: 'WhenKill'} | orderBy:'-To.id'"
+            <li data-ng-repeat="item in nexusData.selectedItem.Speech | filter:{Type: 'WhenKill'} | orderBy:'-To.id'"
                 ng-init="targetHero = getHeroById(item.To.id)">
                 <div class="left">
                     <div class="phrase" data-ng-bind-html="item.Phrase | unsafe"></div>
                     <div class="original-phrase" data-ng-bind-html="item.OriginalPhrase | unsafe"></div>
                 </div>
-                <a data-ng-if="targetHero" class="right element-link" data-ng-href="{{ targetHero.Url }}" title="{{ targetHero.TitlRU }}">
+                <a data-ng-if="targetHero" class="right element-link" data-ng-href="{{ targetHero.Url }}" title="{{ targetHero.TitleRU }}">
                     <div class="element-link-image">
                         <img class="icon-frame frame-56" data-ng-src="{{ targetHero.IconSrc }}" />
                     </div>

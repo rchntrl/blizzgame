@@ -10,6 +10,8 @@
  * @property HTMLText Content
  * @method Image Image()
  * @method Image Icon()
+ * @method ManyManyList Tags()[HeroTag]
+ *
   */
 class StormHero extends DataObject implements PermissionProvider {
 

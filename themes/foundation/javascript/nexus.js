@@ -8,6 +8,7 @@ var baseUrl = angular.element(document.querySelector("base")).attr("href");
  * @property TitleRU String
  * @property TitleEN String
  * @property LastLinkSegment String
+ * @property Draft Int
  * @property Url String
  * @property Speech Object
  */
@@ -15,7 +16,7 @@ function HeroOfNexus(data) {
     for (var key in data) {
         this[key] = data[key];
     }
-    this.Url = pageContainer.data("pageUrl") + data.LastLinkSegment;
+    this.Url = this.Draft == 0 ?  pageContainer.data("pageUrl") + data.LastLinkSegment : null;
     this.ImageSrc = null;
 }
 
@@ -44,15 +45,17 @@ app.config(function($routeProvider, $locationProvider) {
 });
 
 app.value("nexusData", {
+    titlePattern: '',
     title: pageContainer.data("title"),
     breadcrumbs: null,
-    selectedHero: null,
+    selectedItem: null,
     totalSize: 1,
     items:[]
 });
 
-app.factory("heroes", function(nexusData, $http, $routeParams, $location, $anchorScroll, $resource) {
+app.factory("heroes", function(nexusData, $routeParams, $location, $anchorScroll, $resource, $cacheFactory) {
     var apiUrl = baseUrl + "api/blizz/";
+    var titleNode = angular.element(document.querySelector("title"));
     var hero = $resource(
         apiUrl + "StormHero/:id/:relation",
         {
@@ -61,14 +64,15 @@ app.factory("heroes", function(nexusData, $http, $routeParams, $location, $ancho
         }
     );
     function loadDetails() {
-        if (!nexusData.selectedHero.Speech) {
-            hero.get({id: nexusData.selectedHero.ID, relation: 'Speech'},function(data) {
-                nexusData.selectedHero.Speech = data.items;
+        setTitle(nexusData.selectedItem.TitleRU);
+        if (!nexusData.selectedItem.Speech) {
+            hero.get({id: nexusData.selectedItem.ID, relation: 'Speech'},function(data) {
+                nexusData.selectedItem.Speech = data.items;
             });
         }
-        if (!nexusData.selectedHero.Skins) {
-            hero.get({id: nexusData.selectedHero.ID, relation: 'Skins'},function(data) {
-                nexusData.selectedHero.Skins = data.items;
+        if (!nexusData.selectedItem.Skins) {
+            hero.get({id: nexusData.selectedItem.ID, relation: 'Skins'},function(data) {
+                nexusData.selectedItem.Skins = data.items;
             });
         }
     }
@@ -77,16 +81,18 @@ app.factory("heroes", function(nexusData, $http, $routeParams, $location, $ancho
         var id = $routeParams.heroName;
         if (id) {
             if (nexusData.items.length) {
-                nexusData.selectedHero = getByLink(id);
-                loadDetails(nexusData.selectedHero);
+                nexusData.selectedItem = getByLink(id);
+                loadDetails(nexusData.selectedItem);
             } else {
                 hero.get({id: id},function(data) {
-                    nexusData.selectedHero = new HeroOfNexus(data);
+                    nexusData.selectedItem = new HeroOfNexus(data);
                     loadDetails();
                 });
             }
             $location.hash(""); // scroll top
             $anchorScroll();
+        } else {
+            setTitle(nexusData.title);
         }
         if (!nexusData.items.length) {
             hero.get(function(data) {
@@ -122,14 +128,19 @@ app.factory("heroes", function(nexusData, $http, $routeParams, $location, $ancho
         });
         return data[0];
     }
+
+    function setTitle(title) {
+        titleNode.html(nexusData.titlePattern.replace(/__title__/, title));
+    }
     return {
         getById: getById,
         getByLink: getByLink,
         load: load
-    }
+    };
 });
 
-app.controller("nexus",function(nexusData, heroes, $scope, $anchorScroll) {
+app.controller("nexus",function(nexusData, heroes, $scope) {
+    nexusData.titlePattern = $scope.titlePattern;
     $scope.nexusData = nexusData;
 
     $scope.getHeroById = function(id) {
@@ -137,7 +148,7 @@ app.controller("nexus",function(nexusData, heroes, $scope, $anchorScroll) {
             return heroes.getById(id);
         }
         return null;
-    }
+    };
 });
 
 app.controller("loadNexusData",function(heroes) {

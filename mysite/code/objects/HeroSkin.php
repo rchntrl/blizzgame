@@ -47,4 +47,14 @@ class HeroSkin extends DataObject {
     public function getImageSrc() {
         return $this->Image()->ID ? $this->Image()->getURL() : null;
     }
+
+    public static function getListField($name, $title) {
+        $field = new DropdownField(
+            $name,
+            $title,
+            DataObject::get('HeroSkin', null, 'TitleEN')->map('ID', 'TitleEN')->toArray()
+        );
+        $field->setEmptyString(_t('HeroSpeech.SELECT_SKIN', 'Укажите облик героя'));
+        return $field;
+    }
 }

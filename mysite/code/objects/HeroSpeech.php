@@ -9,6 +9,8 @@
  * @property String $OriginalPhrase
  * @method StormHero From()
  * @method StormHero To()
+ * @method HeroTag ToSeveral()
+ * @method HeroSkin Skin()
  */
 class HeroSpeech extends DataObject {
     const
@@ -24,12 +26,13 @@ class HeroSpeech extends DataObject {
 
     private static $has_one = array(
         'To' => 'StormHero',
+        'Skin' => 'HeroSkin',
         'ToSeveral' => 'HeroTag',
         'From' => 'StormHero',
     );
 
     private static $summary_fields = array(
-        'ID', 'Type', 'Phrase', 'To.TitleRU'
+        'ID', 'Type', 'Phrase', 'To.TitleRU', 'ToSeveral.TitleRU', 'Skin.TitleRU'
     );
 
     private static $searchable_fields = array(
@@ -38,6 +41,8 @@ class HeroSpeech extends DataObject {
 
     private static $field_labels = array(
         'To.TitleRU' => 'To',
+        'ToSeveral.TitleRU' => 'Tag',
+        'Skin.TitleRU' => 'Skin',
     );
 
     public static $api_access = array(
@@ -62,6 +67,7 @@ class HeroSpeech extends DataObject {
         $fields->replaceField('FromID', new HasOnePickerField($this, 'FromID', 'From', $this->From()));
         $fields->replaceField('ToID', StormHero::getHeroesField('ToID', 'To'));
         $fields->replaceField('ToSeveralID', HeroTag::getListField('ToSeveralID', 'To'));
+        $fields->replaceField('SkinID', HeroSkin::getListField('SkinID', 'Skin'));
         return $fields;
     }
 
@@ -92,10 +98,21 @@ class HeroSpeech extends DataObject {
                     break;
             }
             $this->mateSpeech = HeroSpeech::get_one('HeroSpeech',
-                'HeroSpeech.FromID = ' . $this->To()->ID
-                . ' AND HeroSpeech.ToID = ' . $this->From()->ID
+                'HeroSpeech.FromID = ' . $this->ToID
+                . ($this->SkinID > 0 ? ' AND HeroSpeech.SkinID = ' . $this->SkinID : '')
+                . ' AND HeroSpeech.ToID = ' . $this->FromID
                 . ' AND HeroSpeech.Type = \'' . $type . '\''
             );
+            /**
+             if (!$this->mateSpeech) {
+             // пробуем подставить вместо этого фразу, обращенную к герою по его признаку
+               $idList = implode(', ', $this->To()->Tags()->getIDList());
+               $this->mateSpeech = HeroSpeech::get_one('HeroSpeech',
+                   'HeroSpeech.FromID = ' . $this->To()->ID
+                   . ($idList ? ' AND HeroSpeech.ToSeveralID IN(' . $idList  . ')' : '')
+                   . ' AND HeroSpeech.Type = \'' . $type . '\''
+               );
+           }/**/
         }
 
         return $this->mateSpeech;
