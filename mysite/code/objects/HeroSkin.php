@@ -19,7 +19,8 @@ class HeroSkin extends DataObject {
 
     private static $has_one = array(
         'Hero' => 'StormHero',
-        'Image' => 'Image'
+        'Image' => 'Image',
+        'Icon' => 'Image',
     );
 
     private static $summary_fields = array(
@@ -29,7 +30,7 @@ class HeroSkin extends DataObject {
     public static $api_access = array(
         'view' => array(
             'Title', 'TitleEN', 'TitleRU', 'Type',
-            'Content', 'ImageSrc'
+            'Content', 'ImageSrc', 'IconSrc',
         )
     );
 
@@ -41,6 +42,7 @@ class HeroSkin extends DataObject {
     public function getCMSFields() {
         $fields = parent::getCMSFields();
         $fields->dataFieldByName('Image')->setFolderName('Nexus/Skins/');
+        $fields->dataFieldByName('Icon')->setFolderName('Nexus/Icon/');
         return $fields;
     }
 
