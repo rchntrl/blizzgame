@@ -48,7 +48,7 @@ class HeroSpeech extends DataObject {
     public static $api_access = array(
         'view' => array(
             'Type', 'Tone', 'Phrase', 'OriginalPhrase', 'Intro', 'MateOriginalPhrase', 'MatePhrase',
-            'SkinOwnerID', 'SkinIconSrc',
+            'SkinOwnerID', 'SkinIconSrc', 'TagIconSrc',
         ),
     );
 
@@ -77,11 +77,15 @@ class HeroSpeech extends DataObject {
     }
 
     public function getMatePhrase() {
-        return $this->getMateSpeech()->Phrase;
+        return $this->getMateSpeech() ? $this->getMateSpeech()->Phrase : null;
     }
 
     public function getMateOriginalPhrase() {
-        return $this->getMateSpeech()->OriginalPhrase;
+        return $this->getMateSpeech() ? $this->getMateSpeech()->OriginalPhrase : null;
+    }
+
+    public function getTagIconSrc() {
+        return $this->ToSeveralID ? $this->ToSeveral()->getIconSrc() : null;
     }
 
     public function getSkinIconSrc() {

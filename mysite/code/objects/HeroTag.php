@@ -25,8 +25,8 @@ class HeroTag extends DataObject {
 
     public static $api_access = array(
         'view' => array(
-            'Title', 'TitleEN', 'TitleRU',
-            'LastLinkSegment', 'Icon'
+            'Title', 'TitleEN', 'TitleRU', 'LastLinkSegment',
+            'Icon', 'IconSrc',
         )
     );
 
@@ -43,6 +43,10 @@ class HeroTag extends DataObject {
 
     public function getTitle() {
         return $this->TitleRU;
+    }
+
+    public function getIconSrc() {
+        return $this->IconID ? $this->Icon()->getURL() : SiteConfig::current_site_config()->DefaultElementImage()->getUrl();
     }
 
     public static function getListField($name, $title) {
