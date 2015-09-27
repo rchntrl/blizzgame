@@ -7,6 +7,7 @@
  * @property String Type
  * @method StormHero Hero()
  * @method Image Image()
+ * @method Image Icon()
  */
 class HeroSkin extends DataObject {
 
@@ -47,7 +48,11 @@ class HeroSkin extends DataObject {
     }
 
     public function getImageSrc() {
-        return $this->Image()->ID ? $this->Image()->getURL() : null;
+        return $this->ImageID ? $this->Image()->getURL() : null;
+    }
+
+    public function getIconSrc() {
+        return $this->IconID ? $this->Icon()->getURL() : SiteConfig::current_site_config()->DefaultElementImage()->getUrl();
     }
 
     public static function getListField($name, $title) {

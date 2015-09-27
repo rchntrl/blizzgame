@@ -47,7 +47,8 @@ class HeroSpeech extends DataObject {
 
     public static $api_access = array(
         'view' => array(
-            'Type', 'Tone', 'Phrase', 'OriginalPhrase', 'Intro', 'MateOriginalPhrase', 'MatePhrase'
+            'Type', 'Tone', 'Phrase', 'OriginalPhrase', 'Intro', 'MateOriginalPhrase', 'MatePhrase',
+            'SkinOwnerID', 'SkinIconSrc',
         ),
     );
 
@@ -83,6 +84,20 @@ class HeroSpeech extends DataObject {
         return $this->getMateSpeech()->OriginalPhrase;
     }
 
+    public function getSkinIconSrc() {
+        if ($this->SkinID) {
+            return $this->Skin()->getIconSrc();
+        }
+        return 0;
+    }
+
+    public function getSkinOwnerID() {
+        if ($this->SkinID) {
+            return $this->Skin()->HeroID;
+        }
+        return 0;
+    }
+
     public function getMateSpeech() {
         if (!$this->mateSpeech) {
             $type = null;
@@ -99,20 +114,19 @@ class HeroSpeech extends DataObject {
             }
             $this->mateSpeech = HeroSpeech::get_one('HeroSpeech',
                 'HeroSpeech.FromID = ' . $this->ToID
-                . ($this->SkinID > 0 ? ' AND HeroSpeech.SkinID = ' . $this->SkinID : '')
+                . ' AND HeroSpeech.SkinID = ' . $this->SkinID // skin speech
                 . ' AND HeroSpeech.ToID = ' . $this->FromID
                 . ' AND HeroSpeech.Type = \'' . $type . '\''
             );
-            /**
-             if (!$this->mateSpeech) {
-             // пробуем подставить вместо этого фразу, обращенную к герою по его признаку
-               $idList = implode(', ', $this->To()->Tags()->getIDList());
-               $this->mateSpeech = HeroSpeech::get_one('HeroSpeech',
-                   'HeroSpeech.FromID = ' . $this->To()->ID
-                   . ($idList ? ' AND HeroSpeech.ToSeveralID IN(' . $idList  . ')' : '')
-                   . ' AND HeroSpeech.Type = \'' . $type . '\''
-               );
-           }/**/
+            if (!$this->mateSpeech) {
+                // пробуем подставить фразу, обращенную к герою по его признаку
+                $idList = implode(', ', $this->From()->Tags()->getIDList());
+                $this->mateSpeech = HeroSpeech::get_one('HeroSpeech',
+                    'HeroSpeech.FromID = ' . $this->ToID
+                    . ($idList ? ' AND HeroSpeech.ToSeveralID IN(' . $idList . ')' : '')
+                    . ' AND HeroSpeech.Type = \'' . $type . '\''
+                );
+            }
         }
 
         return $this->mateSpeech;

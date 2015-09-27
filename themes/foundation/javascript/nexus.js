@@ -1,8 +1,11 @@
 var pageContainer = angular.element(document.querySelector("#pageConfigContainer"));
 var baseUrl = angular.element(document.querySelector("base")).attr("href");
+var app = angular.module("blizzgame", [
+    "ngRoute",
+    "ngResource"
+]);
 
 /**
- *
  * @param data
  * @constructor
  * @property TitleRU String
@@ -10,6 +13,7 @@ var baseUrl = angular.element(document.querySelector("base")).attr("href");
  * @property LastLinkSegment String
  * @property Draft Int
  * @property Url String
+ * @property IconSrc String
  * @property Speech Object
  */
 function HeroOfNexus(data) {
@@ -18,12 +22,9 @@ function HeroOfNexus(data) {
     }
     this.Url = this.Draft == 0 ?  pageContainer.data("pageUrl") + data.LastLinkSegment : null;
     this.ImageSrc = null;
+    this.Speech = [];
 }
 
-var app = angular.module("blizzgame", [
-    "ngRoute",
-    "ngResource"
-]);
 
 app.config(function($routeProvider, $locationProvider) {
     var pageUrl = location.origin + pageContainer.data("pageUrl");
@@ -53,7 +54,7 @@ app.value("nexusData", {
     items:[]
 });
 
-app.factory("heroes", function(nexusData, $routeParams, $location, $anchorScroll, $resource, $cacheFactory) {
+app.factory("heroes", function(nexusData, $routeParams, $location, $anchorScroll, $resource) {
     var apiUrl = baseUrl + "api/blizz/";
     var titleNode = angular.element(document.querySelector("title"));
     var hero = $resource(
@@ -63,11 +64,38 @@ app.factory("heroes", function(nexusData, $routeParams, $location, $anchorScroll
             relation: "@relation"
         }
     );
+
+    /**
+     * @param data
+     * @constructor
+     * @property SkinOwnerID int
+     * @property SkinIconSrc string
+     * @property From
+     * @property To
+     */
+    function HeroSpeech(data) {
+        for (var key in data) {
+            this[key] = data[key];
+        }
+        this.owner = getById(this.From.id);
+        this.mate = getById(this.To.id);
+        this.OwnerIconSrc = this.owner ? this.owner.IconSrc : null;
+        this.MateIconSrc = this.mate ? this.mate.IconSrc : null;
+        if (this.SkinOwnerID == this.To.id) {
+            this.MateIconSrc = this.SkinIconSrc;
+        } else if (this.SkinOwnerID == this.From.id) {
+            this.OwnerIconSrc = this.SkinIconSrc;
+        }
+    }
+
     function loadDetails() {
         setTitle(nexusData.selectedItem.TitleRU);
-        if (!nexusData.selectedItem.Speech) {
+        if (!nexusData.selectedItem.Speech.length) {
             hero.get({id: nexusData.selectedItem.ID, relation: 'Speech'},function(data) {
-                nexusData.selectedItem.Speech = data.items;
+                //nexusData.selectedItem.Speech = data.items;
+                for (var key in data.items) {
+                    nexusData.selectedItem.Speech.push(new HeroSpeech(data.items[key]));
+                }
             });
         }
         if (!nexusData.selectedItem.Skins) {
@@ -132,6 +160,7 @@ app.factory("heroes", function(nexusData, $routeParams, $location, $anchorScroll
     function setTitle(title) {
         titleNode.html(nexusData.titlePattern.replace(/__title__/, title));
     }
+
     return {
         getById: getById,
         getByLink: getByLink,

@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Class HeroTag
+ * @property string TitleEN
+ * @property string TitleRU
+ * @property string LastLinkSegment
+ * @method Image Icon()
+ */
 class HeroTag extends DataObject {
 
     private static $db = array(

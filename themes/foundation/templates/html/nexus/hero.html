@@ -11,19 +11,19 @@
                 ng-init="targetHero = getHeroById(item.To.id)" >
                 <div data-ng-if="item.Type == 'Question'" >
                     <div class="question">
-                        <a class="element-link" data-ng-href="{{ nexusData.selectedItem.Url }}" title="{{nexusData.selectedItem.TitleRU }}">
+                        <a class="element-link" data-ng-href="{{ item.owner.Url }}" title="{{ item.owner.TitleRU }}">
                             <div class="element-link-image">
-                                <img class="icon-frame frame-56" data-ng-src="{{ nexusData.selectedItem.IconSrc }}" />
+                                <img class="icon-frame frame-56" data-ng-src="{{ item.OwnerIconSrc }}" />
                             </div>
                             <span class="element-link-title">{{ item.TitleRU }}</span>
                         </a>
                         <div class="phrase" data-ng-bind-html="item.Phrase | unsafe"></div>
                         <div class="original-phrase" data-ng-bind-html="item.OriginalPhrase | unsafe"></div>
                     </div>
-                    <div class="response" data-ng-if="targetHero">
-                        <a class="element-link" data-ng-href="{{ targetHero.Url }}" title="{{ targetHero.TitleRU }}">
+                    <div class="response" data-ng-if="item.mate">
+                        <a class="element-link" data-ng-href="{{ item.mate.Url }}" title="{{ item.mate.TitleRU }}">
                             <div class="element-link-image">
-                                <img class="icon-frame frame-56" data-ng-src="{{ targetHero.IconSrc }}" />
+                                <img class="icon-frame frame-56" data-ng-src="{{ item.MateIconSrc }}" />
                             </div>
                             <span class="element-link-title">{{ item.TitleRU }}</span>
                         </a>
@@ -32,10 +32,10 @@
                     </div>
                 </div>
                 <div data-ng-if="item.Type == 'Response'">
-                    <div class="question" data-ng-if="targetHero">
-                        <a class="element-link" data-ng-href="{{ targetHero.Url }}" title="{{ targetHero.TitleRU }}">
+                    <div class="question" data-ng-if="item.mate">
+                        <a class="element-link" data-ng-href="{{ item.mate.Url }}" title="{{ item.mate.TitleRU }}">
                             <div class="element-link-image">
-                                <img class="icon-frame frame-56" data-ng-src="{{ targetHero.IconSrc }}" />
+                                <img class="icon-frame frame-56" data-ng-src="{{ item.MateIconSrc }}" />
                             </div>
                             <span class="element-link-title">{{ item.TitleRU }}</span>
                         </a>
@@ -43,9 +43,9 @@
                         <div class="original-phrase" data-ng-bind-html="item.MateOriginalPhrase | unsafe"></div>
                     </div>
                     <div class="response">
-                        <a class="element-link" data-ng-href="{{ nexusData.selectedItem.Url }}" title="{{nexusData.selectedItem.TitleRU }}">
+                        <a class="element-link" data-ng-href="{{ item.owner.Url }}" title="{{item.owner.TitleRU }}">
                             <div class="element-link-image">
-                                <img class="icon-frame frame-56" data-ng-src="{{ nexusData.selectedItem.IconSrc }}" />
+                                <img class="icon-frame frame-56" data-ng-src="{{ item.OwnerIconSrc }}" />
                             </div>
                             <span class="element-link-title">{{ item.TitleRU }}</span>
                         </a>
@@ -68,15 +68,14 @@
     <div class="large-9">
         <h3>Реплики при убийстве</h3>
         <ul class="hero-speech">
-            <li data-ng-repeat="item in nexusData.selectedItem.Speech | filter:{Type: 'WhenKill'} | orderBy:'-To.id'"
-                ng-init="targetHero = getHeroById(item.To.id)">
+            <li data-ng-repeat="item in nexusData.selectedItem.Speech | filter:{Type: 'WhenKill'} | orderBy:'-To.id'">
                 <div class="left">
                     <div class="phrase" data-ng-bind-html="item.Phrase | unsafe"></div>
                     <div class="original-phrase" data-ng-bind-html="item.OriginalPhrase | unsafe"></div>
                 </div>
-                <a data-ng-if="targetHero" class="right element-link" data-ng-href="{{ targetHero.Url }}" title="{{ targetHero.TitleRU }}">
+                <a data-ng-if="item.mate" class="right element-link" data-ng-href="{{ item.mate.Url }}" title="{{ item.mate.TitleRU }}">
                     <div class="element-link-image">
-                        <img class="icon-frame frame-56" data-ng-src="{{ targetHero.IconSrc }}" />
+                        <img class="icon-frame frame-56" data-ng-src="{{ item.mate.IconSrc }}" />
                     </div>
                     <span class="element-link-title">{{ item.TitleRU }}</span>
                 </a>
