@@ -43,10 +43,10 @@ function HeroSpeech(data) {
     this.mate = this.getById(this.To.id);
     this.OwnerIconSrc = this.owner ? this.owner.IconSrc : null;
     this.MateIconSrc = this.mate ? this.mate.IconSrc : null;
-    if (this.SkinOwnerID == this.To.id) {
+    if (this.SkinOwnerID == this.From.id) {
+        this.OwnerIconSrc= this.SkinIconSrc;
+    } else if (this.SkinOwnerID == this.To.id) {
         this.MateIconSrc = this.SkinIconSrc;
-    } else if (this.SkinOwnerID == this.From.id) {
-        this.OwnerIconSrc = this.SkinIconSrc;
     }
 }
 
