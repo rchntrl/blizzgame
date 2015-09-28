@@ -128,6 +128,13 @@ class HeroSpeech extends DataObject {
                 . ' AND HeroSpeech.Type = \'' . $type . '\''
             );
             if (!$this->mateSpeech) {
+                $this->mateSpeech = HeroSpeech::get_one('HeroSpeech',
+                    'HeroSpeech.FromID = ' . $this->ToID
+                    . ' AND HeroSpeech.ToID = ' . $this->FromID
+                    . ' AND HeroSpeech.Type = \'' . $type . '\''
+                );
+            }
+            if (!$this->mateSpeech) {
                 // пробуем подставить фразу, обращенную к герою по его признаку
                 $idList = implode(', ', $this->From()->Tags()->getIDList());
                 $this->mateSpeech = HeroSpeech::get_one('HeroSpeech',
