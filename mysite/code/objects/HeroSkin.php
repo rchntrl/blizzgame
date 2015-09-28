@@ -15,7 +15,7 @@ class HeroSkin extends DataObject {
         'TitleEN' => 'Varchar(255)',
         'TitleRU' => 'Varchar(255)',
         'Type' => "Enum('Master, Epic, Legendary')",
-        'Content' => 'HTMLText',
+        'Content' => 'Text',
     );
 
     private static $has_one = array(

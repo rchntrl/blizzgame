@@ -31,6 +31,8 @@ class HeroSpeech extends DataObject {
         'From' => 'StormHero',
     );
 
+    private static $default_sort = "\"ToID\" DESC, \"ToSeveralID\" DESC";
+
     private static $summary_fields = array(
         'ID', 'Type', 'Phrase', 'To.TitleRU', 'ToSeveral.TitleRU', 'Skin.TitleRU'
     );
@@ -40,7 +42,7 @@ class HeroSpeech extends DataObject {
     );
 
     private static $field_labels = array(
-        'To.TitleRU' => 'To',
+        'To.TitleRU' => 'Mate',
         'ToSeveral.TitleRU' => 'Tag',
         'Skin.TitleRU' => 'Skin',
     );
@@ -77,11 +79,11 @@ class HeroSpeech extends DataObject {
     }
 
     public function getMatePhrase() {
-        return $this->getMateSpeech() ? $this->getMateSpeech()->Phrase : null;
+        return $this->getMateSpeech() ? $this->getMateSpeech()->Phrase : '???';
     }
 
     public function getMateOriginalPhrase() {
-        return $this->getMateSpeech() ? $this->getMateSpeech()->OriginalPhrase : null;
+        return $this->getMateSpeech() ? $this->getMateSpeech()->OriginalPhrase : '???';
     }
 
     public function getTagIconSrc() {
@@ -102,6 +104,9 @@ class HeroSpeech extends DataObject {
         return 0;
     }
 
+    /**
+     * @return HeroSpeech|null
+     */
     public function getMateSpeech() {
         if (!$this->mateSpeech) {
             $type = null;

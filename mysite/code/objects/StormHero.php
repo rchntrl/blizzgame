@@ -26,7 +26,7 @@ class StormHero extends DataObject implements PermissionProvider {
         'Draft' => 'Boolean',
         'Trailer' => 'Varchar(255)',
         'Spotlight' => 'Varchar(255)',
-        'Content' => 'HTMLText',
+        'Content' => 'Text',
     );
 
     private static $has_one = array(
@@ -95,7 +95,7 @@ class StormHero extends DataObject implements PermissionProvider {
     }
 
     public function getMetaDescription() {
-        return strip_tags($this->Content);
+        return $this->Content;
     }
 
     public function getTitleWithAccess() {

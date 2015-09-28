@@ -29,6 +29,27 @@ function HeroOfNexus(data) {
     this.Speech = [];
 }
 
+/**
+ * @param data
+ * @constructor
+ * @property SkinOwnerID int
+ * @property SkinIconSrc string
+ * @property From
+ * @property To
+ */
+function HeroSpeech(data) {
+    NexusObject.call(this, data);
+    this.owner = this.getById(this.From.id);
+    this.mate = this.getById(this.To.id);
+    this.OwnerIconSrc = this.owner ? this.owner.IconSrc : null;
+    this.MateIconSrc = this.mate ? this.mate.IconSrc : null;
+    if (this.SkinOwnerID == this.To.id) {
+        this.MateIconSrc = this.SkinIconSrc;
+    } else if (this.SkinOwnerID == this.From.id) {
+        this.OwnerIconSrc = this.SkinIconSrc;
+    }
+}
+
 app.config(function($routeProvider, $locationProvider) {
     var pageUrl = location.origin + pageContainer.data("pageUrl");
     pageUrl = pageUrl.replace(baseUrl , "/");
@@ -40,9 +61,6 @@ app.config(function($routeProvider, $locationProvider) {
         .when(pageUrl + ":heroName", {
             controller: "loadNexusData",
             templateUrl: baseUrl  + "themes/foundation/templates/html/nexus/hero.html"
-        })
-        .otherwise({
-            redirectTo: $routeProvider.current
         })
     ;
     $locationProvider.html5Mode(true);
@@ -69,27 +87,7 @@ app.factory("heroes", function(nexusData, $routeParams, $location, $anchorScroll
         }
     );
 
-    /**
-     * @param data
-     * @constructor
-     * @property SkinOwnerID int
-     * @property SkinIconSrc string
-     * @property From
-     * @property To
-     */
-    function HeroSpeech(data) {
-        NexusObject.call(this, data);
-        this.owner = getById(this.From.id);
-        this.mate = getById(this.To.id);
-        this.OwnerIconSrc = this.owner ? this.owner.IconSrc : null;
-        this.MateIconSrc = this.mate ? this.mate.IconSrc : null;
-        if (this.SkinOwnerID == this.To.id) {
-            this.MateIconSrc = this.SkinIconSrc;
-        } else if (this.SkinOwnerID == this.From.id) {
-            this.OwnerIconSrc = this.SkinIconSrc;
-        }
-    }
-
+    HeroSpeech.prototype.getById = function(id) {return getById(id)};
     HeroOfNexus.prototype.loadDetails = function () {
         var that = this;
         if (!this.Speech.length) {
@@ -110,18 +108,8 @@ app.factory("heroes", function(nexusData, $routeParams, $location, $anchorScroll
         var id = $routeParams.heroName;
         if (id) {
             if (nexusData.items.length) {
-                nexusData.selectedItem = getByLink(id);
-                setTitle(nexusData.selectedItem.TitleRU);
-                nexusData.selectedItem.loadDetails();
-            } else {
-                hero.get({id: id},function(data) {
-                    nexusData.selectedItem = new HeroOfNexus(data);
-                    setTitle(nexusData.selectedItem.TitleRU);
-                    nexusData.selectedItem.loadDetails();
-                });
+                prepareHeroPage(id);
             }
-            $location.hash(""); // scroll top
-            $anchorScroll();
         } else {
             setTitle(nexusData.title);
         }
@@ -132,8 +120,18 @@ app.factory("heroes", function(nexusData, $routeParams, $location, $anchorScroll
                 for (var item in data.items) {
                     nexusData.items.push(new HeroOfNexus(data.items[item]));
                 }
+                if (id) {
+                    prepareHeroPage(id);
+                }
             });
         }
+    }
+
+    function prepareHeroPage(id) {
+        nexusData.selectedItem = getByLink(id);
+        setTitle(nexusData.selectedItem.TitleRU);
+        nexusData.selectedItem.loadDetails();
+        $anchorScroll();
     }
 
     /**
