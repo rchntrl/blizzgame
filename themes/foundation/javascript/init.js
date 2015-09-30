@@ -1,25 +1,37 @@
-jQuery(document).ready(function($){
-/*
-    var smallWindow = false;
+function DataObject(data) {
+    for (var key in data) {
+        this[key] = data[key];
+    }
+}
 
-    $(window).scroll(function() {
-        var scroll = $(window).scrollTop();
-        var logoImage = $('#logo-image');
-        if (scroll >= 50) {
-            logoImage.attr('src', logoImage.data("large-src"));
-            $(".important-class").addClass("padding-on-my-header");
-        }
-        if (scroll < 50) {
-            $(".important-class").removeClass("padding-on-my-header");
-            logoImage.attr('src', logoImage.data("small-src"));
-        }
-    }).resize(function(){
-            if ( !smallWindow && this.innerWidth <= 1024 ) {
-                smallWindow = true;
-                $('.top-bar-section').find('ul.right').hide(0).delay(500).show(0);
+var PageDetails = (function() {
+    var instance;
+    function init() {
+        var pageContainer = angular.element(document.querySelector("#pageConfigContainer"));
+        var url = pageContainer.data("pageUrl");
+        var baseUrl = document.querySelector("base").getAttribute("href");
+        var absoluteUrl = location.origin + url;
+
+        return {
+            baseUrl: baseUrl,
+            url: url,
+            absoluteUrl: absoluteUrl,
+            path: absoluteUrl.replace(baseUrl , "/"),
+            pageId: pageContainer.data("pageId"),
+            title: pageContainer.data("title"),
+            titlePattern: pageContainer.data("titlePattern"),
+            setTitle: function(title) {
+                var titleNode = document.querySelector("title");
+                titleNode.innerHTML = this.titlePattern.replace(/__title__/, title);
             }
-            if ( smallWindow && this.innerWidth > 1024 ) {
-                smallWindow = false;
+        }
+    }
+    return {
+        getInstance: function() {
+            if (!instance) {
+                instance = init();
             }
-        });/**/
-});
+            return instance;
+        }
+    }
+})();

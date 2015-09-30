@@ -1,4 +1,4 @@
-<h1>{{ nexusData.title }}</h1>
+<h1>{{ title }}</h1>
 <ul class="ency inline-list">
     <li class="large-3 small-4" data-ng-repeat="item in nexusData.items | filter:{Draft: 0} | orderBy:'TitleRU'" >
         <a class="element-link" data-ng-href="{{ item.Url }}" title="{{item.TitlRU }}">

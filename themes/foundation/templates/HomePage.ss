@@ -36,6 +36,6 @@
     <% include Footer %>
 </div>
     <%--See [Requirements](http://doc.silverstripe.org/framework/en/reference/requirements) for loading from controller--%>
-
+<div id="pageConfigContainer" data-title="$Title" data-page-id="$ID" data-page-url="$Link"></div>
 </body>
 </html>

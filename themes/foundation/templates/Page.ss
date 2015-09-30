@@ -38,6 +38,10 @@
         </div>
             <% include Footer %>
 <%--See [Requirements](http://doc.silverstripe.org/framework/en/reference/requirements) for loading from controller--%>
-
+        <div id="pageConfigContainer" data-title="$Title"
+             data-page-id="$ID"
+             data-page-url="$Link"
+             data-title-pattern="__title__ - <% if $SubsiteID %>$SiteConfig.Title: <% end_if %>BlizzGame">
+        </div>
 </body>
 </html>

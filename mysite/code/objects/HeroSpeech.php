@@ -11,6 +11,7 @@
  * @method StormHero To()
  * @method HeroTag ToSeveral()
  * @method HeroSkin Skin()
+ * @method HeroSpeech Speech()
  */
 class HeroSpeech extends DataObject {
     const
@@ -29,6 +30,7 @@ class HeroSpeech extends DataObject {
         'Skin' => 'HeroSkin',
         'ToSeveral' => 'HeroTag',
         'From' => 'StormHero',
+        'Speech' => 'HeroSpeech',
     );
 
     private static $default_sort = "\"ToID\" DESC, \"ToSeveralID\" DESC";
@@ -38,13 +40,14 @@ class HeroSpeech extends DataObject {
     );
 
     private static $searchable_fields = array(
-        'Type'
+        'Type', 'From.TitleRU'
     );
 
     private static $field_labels = array(
         'To.TitleRU' => 'Mate',
         'ToSeveral.TitleRU' => 'Tag',
         'Skin.TitleRU' => 'Skin',
+        'From.TitleRU' => 'Speech Owner (Ru)',
     );
 
     public static $api_access = array(
@@ -71,7 +74,14 @@ class HeroSpeech extends DataObject {
         $fields->replaceField('ToID', StormHero::getHeroesField('ToID', 'To'));
         $fields->replaceField('ToSeveralID', HeroTag::getListField('ToSeveralID', 'To'));
         $fields->replaceField('SkinID', HeroSkin::getListField('SkinID', 'Skin'));
+        if ($this->ID) {
+            $fields->replaceField('SpeechID', new HasOnePickerField($this, 'SpeechID', 'Mate Speech', $this->Speech()));
+        }
         return $fields;
+    }
+
+    public function getTitle() {
+        return $this->Phrase;
     }
 
     public function getIntro() {
@@ -109,6 +119,10 @@ class HeroSpeech extends DataObject {
      */
     public function getMateSpeech() {
         if (!$this->mateSpeech) {
+            if ($this->SpeechID) {
+                $this->mateSpeech = $this->Speech();
+                return $this->mateSpeech;
+            }
             $type = null;
             switch ($this->Type) {
                 case HeroSpeech::QUESTION:
