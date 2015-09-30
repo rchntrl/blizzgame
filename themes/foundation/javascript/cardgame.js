@@ -292,7 +292,7 @@ angular.module("localize").config(function($provide) {
 app.controller("cards", function(cardGame, cardGameData, $scope) {
     $scope.cardGameData = cardGameData;
     $scope.cardGame = cardGame;
-    $scope.title = pageConfig.title;
+    $scope.pageConfig = pageConfig;
     $scope.search = {
         Class: ""
     };
