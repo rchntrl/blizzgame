@@ -10,7 +10,9 @@
  * @property HTMLText Content
  * @method Image Image()
  * @method Image Icon()
- * @method ManyManyList Tags()[HeroTag]
+ * @method ManyManyList Tags() [HeroTag]
+ * @method HasManyList Speech() [HeroSpeech]
+ * @method HasManyList Skins() [HeroSkin]
  *
   */
 class StormHero extends DataObject implements PermissionProvider {
@@ -112,6 +114,21 @@ class StormHero extends DataObject implements PermissionProvider {
 
     public function getIconSrc() {
         return $this->Icon()->ID ? $this->Icon()->getURL() : SiteConfig::current_site_config()->DefaultElementImage()->getUrl();
+    }
+    public function IntroSpeech() {
+        return $this->Speech()->filter(array('type' => array('Question', 'Response')))->sort(array('ToID' => 'DESC', 'ToSeveralID' => 'Desc'));
+    }
+
+    public function BoastSpeech() {
+        return $this->Speech()->filter(array('type' => 'Boast'));
+    }
+
+    public function PissedSpeech() {
+        return $this->Speech()->filter(array('type' => 'Pissed'));
+    }
+
+    public function KillSpeech() {
+        return $this->Speech()->filter(array('type' => 'WhenKill'));
     }
 
     public function getCMSFields() {

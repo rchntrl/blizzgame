@@ -1,8 +1,8 @@
 
 <h1>{{ nexusData.selectedItem.TitleRU }} <small data-ng-bind="nexusData.selectedItem.IdentityTitle"></small></h1>
-<div class="large-12">
+<div class="medium-12">
     <p data-ng-bind-html="nexusData.selectedItem.Content | unsafe"></p>
-    <div class="large-9">
+    <div class="medium-9 columns">
         <h3 data-ng-if="introSpeech.length">Вступление</h3>
         <ul id="intro-speech" class="hero-speech intro">
             <li data-ng-repeat="item in introSpeech = nexusData.selectedItem.Speech | filter:{Intro: 1} |orderBy:['-To.id', '-ToSeveral.id']">
@@ -59,7 +59,7 @@
             </li>
         </ul>
     </div>
-    <div class="large-9">
+    <div class="medium-9 columns">
         <h3 data-ng-if="boastSpeech.length">Хвастовство перед боем</h3>
         <ul id="boast-speech" class="hero-speech">
             <li data-ng-repeat="item in boastSpeech = nexusData.selectedItem.Speech | filter:{Type: 'Boast'} | orderBy:'ID'">
@@ -73,7 +73,7 @@
             </li>
         </ul>
     </div>
-    <div class="large-9">
+    <div class="medium-9 columns">
         <h3 data-ng-if="pissedSpeech.length">Реплики при клике</h3>
         <ul id="pissed-speech" class="hero-speech">
             <li data-ng-repeat="item in pissedSpeech = nexusData.selectedItem.Speech | filter:{Type: 'Pissed'} | orderBy:'ID'">
@@ -87,7 +87,7 @@
             </li>
         </ul>
     </div>
-    <div class="large-9">
+    <div class="medium-9 columns">
         <h3 data-ng-if="killSpeech.length">Реплики при убийстве</h3>
         <ul id="kill-speech" class="hero-speech">
             <li data-ng-repeat="item in killSpeech = nexusData.selectedItem.Speech | filter:{Type: 'WhenKill'} | orderBy:['-To.id', '-ToSeveral.id']">
@@ -113,4 +113,5 @@
             </li>
         </ul>
     </div>
+    <div class="medium-3 columns"></div>
 </div>

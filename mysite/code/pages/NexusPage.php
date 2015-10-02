@@ -21,6 +21,8 @@ class NexusPage_Controller extends Page_Controller {
         Requirements::javascript(THEMES_DIR . "/foundation/bower_components/angular-route/angular-route.min.js");
         //Requirements::javascript(THEMES_DIR . "/foundation/bower_components/angular-foundation/mm-foundation.min.js");
         //Requirements::javascript(THEMES_DIR . "/foundation/bower_components/angular-foundation/mm-foundation-tpls.min.js");
+        //Requirements::javascript(THEMES_DIR . "/foundation/javascript/jquery.scrollTo.min.js");
+        //Requirements::javascript(THEMES_DIR . "/foundation/javascript/jquery.localScroll.min.js");
         Requirements::javascript(THEMES_DIR . "/foundation/javascript/nexus.js");
     }
 
@@ -45,6 +47,11 @@ class NexusPage_Controller extends Page_Controller {
             // Title будет хранить название страницы,а не объекта. Эта хитрость нужна для маршрутизации angular
             'MetaTitle' => $object->getTitle(),
             'MetaDescription' => $object->getMetaDescription(),
+            'Hero' => $object,
         ));
+    }
+
+    public function Heroes() {
+        return StormHero::get()->filter(array('Draft' => false))->sort('TitleRU');
     }
 }

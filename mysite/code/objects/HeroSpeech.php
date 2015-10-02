@@ -114,6 +114,14 @@ class HeroSpeech extends DataObject {
         return 0;
     }
 
+    public function getOwnerIconSrc() {
+        return $this->getSkinOwnerID() == $this->FromID ? $this->getSkinIconSrc() : $this->From()->getIconSrc();
+    }
+
+    public function getMateIconSrc() {
+        return $this->getSkinOwnerID() == $this->ToID ? $this->getSkinIconSrc() : $this->To()->getIconSrc();
+    }
+
     /**
      * @return HeroSpeech|null
      */
