@@ -1,10 +1,11 @@
-
-<h1>{{ nexusData.selectedItem.TitleRU }} <small data-ng-bind="nexusData.selectedItem.IdentityTitle"></small></h1>
-<div class="medium-12">
+<div class="medium-12 columns">
+    <h1>{{ nexusData.selectedItem.TitleRU }} <small data-ng-bind="nexusData.selectedItem.IdentityTitle"></small></h1>
     <p data-ng-bind-html="nexusData.selectedItem.Content | unsafe"></p>
-    <div class="medium-9 columns">
-        <h3 data-ng-if="introSpeech.length">Вступление</h3>
-        <ul id="intro-speech" class="hero-speech intro">
+</div>
+<div class="medium-9 columns">
+    <div class="speech-section">
+        <h3 id="intro-speech" data-ng-if="introSpeech.length">Вступление</h3>
+        <ul class="hero-speech intro">
             <li data-ng-repeat="item in introSpeech = nexusData.selectedItem.Speech | filter:{Intro: 1} |orderBy:['-To.id', '-ToSeveral.id']">
                 <div data-ng-if="item.Type == 'Question'" >
                     <div class="question">
@@ -59,9 +60,9 @@
             </li>
         </ul>
     </div>
-    <div class="medium-9 columns">
-        <h3 data-ng-if="boastSpeech.length">Хвастовство перед боем</h3>
-        <ul id="boast-speech" class="hero-speech">
+    <div class="speech-section">
+        <h3 id="boast-speech" data-ng-if="boastSpeech.length">Хвастовство перед боем</h3>
+        <ul class="hero-speech">
             <li data-ng-repeat="item in boastSpeech = nexusData.selectedItem.Speech | filter:{Type: 'Boast'} | orderBy:'ID'">
                 <div data-ng-if="item.SkinOwnerID != 0" class="element-link">
                     <div class="element-link-image">
@@ -73,9 +74,9 @@
             </li>
         </ul>
     </div>
-    <div class="medium-9 columns">
-        <h3 data-ng-if="pissedSpeech.length">Реплики при клике</h3>
-        <ul id="pissed-speech" class="hero-speech">
+    <div class="speech-section">
+        <h3 id="pissed-speech" data-ng-if="pissedSpeech.length">Реплики при клике</h3>
+        <ul class="hero-speech">
             <li data-ng-repeat="item in pissedSpeech = nexusData.selectedItem.Speech | filter:{Type: 'Pissed'} | orderBy:'ID'">
                 <div data-ng-if="item.SkinOwnerID != 0" class="element-link">
                     <div class="element-link-image">
@@ -87,9 +88,9 @@
             </li>
         </ul>
     </div>
-    <div class="medium-9 columns">
-        <h3 data-ng-if="killSpeech.length">Реплики при убийстве</h3>
-        <ul id="kill-speech" class="hero-speech">
+    <div class="speech-section">
+        <h3 id="kill-speech" data-ng-if="killSpeech.length">Реплики при убийстве</h3>
+        <ul class="hero-speech">
             <li data-ng-repeat="item in killSpeech = nexusData.selectedItem.Speech | filter:{Type: 'WhenKill'} | orderBy:['-To.id', '-ToSeveral.id']">
                 <div class="element-link">
                     <div class="element-link-image">
@@ -113,5 +114,5 @@
             </li>
         </ul>
     </div>
-    <div class="medium-3 columns"></div>
 </div>
+<div class="medium-3 columns"></div>

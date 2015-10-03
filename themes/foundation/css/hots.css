@@ -356,6 +356,9 @@
   background-position: -184px 0
 }
 
+.speech-section {
+  float: left;
+}
 .hero-speech {
   list-style-type: none;
   display: block;

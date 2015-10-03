@@ -12,12 +12,11 @@ var app = angular.module("blizzgame", [
  * @property LastLinkSegment String
  * @property Draft Int
  * @property Url String
- * @property IconSrc String
- * @property Speech Object
+ * @property SkinIconSrc String
  */
 function HeroOfNexus(data) {
     DataObject.call(this, data);
-    this.Url = this.Draft == 0 ?  pageConfig.url + data.LastLinkSegment : null;
+    this.Url = this.Draft == 0 ? pageConfig.url + data.LastLinkSegment : null;
     this.ImageSrc = null;
     this.Speech = [];
 }
@@ -32,18 +31,9 @@ function HeroOfNexus(data) {
  */
 function HeroSpeech(data) {
     DataObject.call(this, data);
-    this.owner = this.getById(this.From.id);
-    this.mate = this.getById(this.To.id);
-    this.OwnerIconSrc = this.owner ? this.owner.IconSrc : null;
-    this.MateIconSrc = this.mate ? this.mate.IconSrc : null;
-    if (this.SkinOwnerID == this.From.id) {
-        this.OwnerIconSrc= this.SkinIconSrc;
-    } else if (this.SkinOwnerID == this.To.id) {
-        this.MateIconSrc = this.SkinIconSrc;
-    }
 }
 
-app.config(function($routeProvider, $locationProvider) {
+app.config(function ($routeProvider, $locationProvider) {
     var path = pageConfig.path;
     $routeProvider
         .when(path, {
@@ -63,10 +53,10 @@ app.value("nexusData", {
     selectedItem: null,
     totalSize: 0,
     tags: [],
-    items:[]
+    items: []
 });
 
-app.factory("heroes", function(nexusData, $routeParams, $location, $anchorScroll, $resource) {
+app.factory("heroes", function (nexusData, $routeParams, $location, $anchorScroll, $resource) {
     var apiUrl = pageConfig.baseUrl + "api/blizz/";
     var hero = $resource(
         apiUrl + "StormHero/:id/:relation",
@@ -76,24 +66,38 @@ app.factory("heroes", function(nexusData, $routeParams, $location, $anchorScroll
         }
     );
 
-    HeroSpeech.prototype.getById = function(id) {
-        return getById(id)
+    HeroOfNexus.prototype.addSpeech = function (data) {
+        var speech = new HeroSpeech(data);
+        speech.owner = this;
+        speech.mate = getById(speech.To.id);
+        speech.OwnerIconSrc = speech.owner ? speech.owner.IconSrc : null;
+        speech.MateIconSrc = speech.mate ? speech.mate.IconSrc : null;
+        if (speech.SkinOwnerID == speech.From.id) {
+            speech.OwnerIconSrc = speech.SkinIconSrc;
+        } else if (speech.SkinOwnerID == speech.To.id) {
+            speech.MateIconSrc = speech.SkinIconSrc;
+        }
+        this.Speech.push(speech);
     };
-    HeroOfNexus.prototype.loadDetails = function () {
-        var that = this;
-        if (!this.Speech.length) {
-            hero.get({id: this.ID, relation: 'Speech'},function(data) {
+
+    /**
+     *
+     * @param obj HeroOfNexus
+     */
+    function loadDetails(obj) {
+        if (!obj.Speech.length) {
+            hero.get({id: obj.ID, relation: 'Speech'}, function (data) {
                 for (var key in data.items) {
-                    that.Speech.push(new HeroSpeech(data.items[key]));
+                    obj.addSpeech(data.items[key]);
                 }
             });
         }
-        if (!this.Skins) {
-            hero.get({id: this.ID, relation: 'Skins'},function(data) {
-                that.Skins = data.items;
+        if (!obj.Skins) {
+            hero.get({id: obj.ID, relation: 'Skins'}, function (data) {
+                obj.Skins = data.items;
             });
         }
-    };
+    }
 
     function load() {
         var id = $routeParams.heroName;
@@ -105,7 +109,7 @@ app.factory("heroes", function(nexusData, $routeParams, $location, $anchorScroll
             pageConfig.setTitle(pageConfig.title);
         }
         if (!nexusData.items.length) {
-            hero.get(function(data) {
+            hero.get(function (data) {
                 nexusData.totalSize = data.totalSize;
                 nexusData.items.length = 0;
                 for (var item in data.items) {
@@ -121,7 +125,7 @@ app.factory("heroes", function(nexusData, $routeParams, $location, $anchorScroll
     function prepareHeroPage(id) {
         nexusData.selectedItem = getByLink(id);
         pageConfig.setTitle(nexusData.selectedItem.TitleRU);
-        nexusData.selectedItem.loadDetails();
+        loadDetails(nexusData.selectedItem);
         $anchorScroll();
     }
 
@@ -131,7 +135,7 @@ app.factory("heroes", function(nexusData, $routeParams, $location, $anchorScroll
      * @returns {HeroOfNexus}
      */
     function getById(id) {
-        var data = nexusData.items.filter(function(obj) {
+        var data = nexusData.items.filter(function (obj) {
             return obj.ID == id;
         });
         return data[0];
@@ -143,7 +147,7 @@ app.factory("heroes", function(nexusData, $routeParams, $location, $anchorScroll
      * @returns {HeroOfNexus}
      */
     function getByLink(id) {
-        var data = nexusData.items.filter(function(obj) {
+        var data = nexusData.items.filter(function (obj) {
             return obj.LastLinkSegment == id;
         });
         return data[0];
@@ -156,22 +160,22 @@ app.factory("heroes", function(nexusData, $routeParams, $location, $anchorScroll
     };
 });
 
-app.controller("nexus",function(nexusData, heroes, $scope) {
+app.controller("nexus", function (nexusData, heroes, $scope) {
     $scope.nexusData = nexusData;
     $scope.title = pageConfig.title;
 });
 
-app.controller("loadNexusData",function(heroes) {
+app.controller("loadNexusData", function (heroes) {
     heroes.load();
 });
 
-app.controller("breadcrumbs",function(nexusData, $scope) {
+app.controller("breadcrumbs", function (nexusData, $scope) {
     $scope.breadCrumbs = nexusData.breadCrumbs;
 });
 
 
-app.filter("unsafe",function($sce) {
-    return function(val) {
+app.filter("unsafe", function ($sce) {
+    return function (val) {
         return $sce.trustAsHtml(val);
     };
 });

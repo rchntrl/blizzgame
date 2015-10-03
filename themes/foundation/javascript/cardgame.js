@@ -188,35 +188,38 @@ app.factory("cardGame", function(cardGameData, $http, $routeParams, $location, $
 
     }
 
-    Card.prototype.loadDetails = function() {
-        var that = this;
-        if (!this.CoverCard.Filename) {
+    /**
+     *
+     * @param obj Card
+     */
+    function loadDetails(obj) {
+        if (!obj.CoverCard.Filename) {
             $http({
                 url: this.CoverCard.href
             }).success(function(data) {
-                $.extend(that.CoverCard, data);
+                $.extend(obj.CoverCard, data);
             });
         }
-        if (!this.LinkToArt.Title) {
+        if (!obj.LinkToArt.Title) {
             $http({
                 url: this.LinkToArt.href
             }).success(function(data) {
-                $.extend(that.LinkToArt, data);
+                $.extend(obj.LinkToArt, data);
             });
         }
-        if (!this.Artist.TitleEN) {
+        if (!obj.Artist.TitleEN) {
             $http({
-                url: this.Artist.href
+                url: obj.Artist.href
             }).success(function(data) {
-                $.extend(that.Artist, data);
+                $.extend(obj.Artist, data);
             });
         }
-    };
+    }
 
     function preparePage(id) {
         cardGameData.selectedItem = getByLink(id);
         pageConfig.setTitle(cardGameData.selectedItem.TitleRU);
-        cardGameData.selectedItem.loadDetails();
+        loadDetails(cardGameData.selectedItem);
         $anchorScroll();
     }
 
