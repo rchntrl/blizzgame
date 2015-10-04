@@ -2,7 +2,7 @@
     <section class="home-page-content">
         <div class="medium-12 columns hide-for-small">
         <% with $HomePageConfig %>
-            <ul class="example-orbit" data-orbit data-options="variable_height:true;animation:fade;next_on_click:false;timer:false;navigation_arrows:true;bullets:false;slide_number:false;">
+            <ul class="example-orbit" data-orbit data-options="variable_height:true;animation:fade;next_on_click:false;navigation_arrows:true;bullets:false;slide_number:false;">
                 <li data-orbit-slide="heroes">
                     <div id="heroes-section" class="panel" style="background-image: url($HeroesBackground.getUrl());">
                         <h2 class="widget-title text-center">Heroes of the Storm</h2>
@@ -12,7 +12,7 @@
                                 <% loop $HeroesRotation %>
                                     <li class="hero-thumbnail released hexagon">
                                         <div class="hexagon__clip">
-                                            <a title="$TitleWithAccess" href="javascript:;" class="js-hero-thumbnail hero-thumbnail__link hexagon__item" data-slug="$Class"></a>
+                                            <a title="$TitleWithAccess" href="$Link" class="js-hero-thumbnail hero-thumbnail__link hexagon__item" data-slug="$Class"></a>
                                             <span class="hero-thumbnail__icon $Class"></span>
                                         </div>
                                     </li>

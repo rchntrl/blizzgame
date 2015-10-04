@@ -109,7 +109,11 @@ class StormHero extends DataObject implements PermissionProvider {
     }
 
     public function getURLPrefix() {
-        return '/nexus/';
+        return Director::baseURL() . 'nexus/';
+    }
+
+    public function getLink() {
+        return $this->getURLPrefix() . $this->LastLinkSegment;
     }
 
     public function getIconSrc() {

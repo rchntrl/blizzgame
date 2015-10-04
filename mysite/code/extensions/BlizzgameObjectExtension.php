@@ -87,23 +87,6 @@ class BlizzgameObjectExtension extends DataExtension {
         if ($this->owner instanceof File) {
             return Director::baseURL() . 'download/image/' . $this->owner->ID;
         }
-    }
-
-    /**
-     * @link http://www.silverstripe.org/community/forums/data-model-questions/show/6568
-     * Convert this object to a JSON string. It will includes all the has_one objects recursively.
-     * TODO: Including default values ???
-     * @return string The data as a JSON string.
-     */
-    public function toJSON() {
-        $array = array();
-        foreach($this->owner->has_one() as $relationship => $class) {
-            if (ClassInfo::exists($class)) {
-                $component = $this->owner->getComponent($relationship);
-                $array[$relationship] = $component->exists() ? $this->owner->obj($relationship)->toJSON() : null;
-            }
-        }
-        $array = array_merge($array, $this->owner->toMap());
-        return $array;
+        return null;
     }
 }
