@@ -63,7 +63,7 @@
         <ul class="left">
             <% loop Menu(1) %>
                 <li class="<% if $LinkingMode == "current" || $LinkingMode == "section" %>active<% end_if %>">
-                    <a href="$Link" title="На страницу $Title.ATT">$MenuTitle</a>
+                    <a href="$Link" title="На страницу $Title.ATT">$MenuTitle <%if $IsNew %><sup>Новинка</sup><% end_if %></a>
                 </li>
                 <% if not $Last %><li class="divider"></li><% end_if %>
             <% end_loop %>

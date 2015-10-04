@@ -55,6 +55,14 @@ class Page extends SiteTree {
         }
         return $summary;
     }
+
+    public function isNew() {
+        $now = SS_Datetime::now();
+        $d1 = mktime(0, 0, 0, date('m', strtotime($this->LastEdited)), $now->DayOfMonth(), $now->Year());
+        $d2 = mktime(0, 0, 0, date("m"), date("d") - 3, date("Y"));
+        //var_dump($d1, $d2); exit();
+        return ($d1 >= $d2) ? true : false;
+    }
 }
 
 /**

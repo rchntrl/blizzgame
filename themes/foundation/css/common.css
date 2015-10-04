@@ -30,6 +30,10 @@
     right: 0;
     margin: auto;
 }
+.top-bar-section ul li > a sup {
+    color: #0EFF00;
+    line-height: 0;
+}
 .top-bar-section ul li.game-icon > a {
     text-transform: uppercase;
 }
