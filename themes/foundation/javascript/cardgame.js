@@ -195,14 +195,14 @@ app.factory("cardGame", function(cardGameData, $http, $routeParams, $location, $
     function loadDetails(obj) {
         if (!obj.CoverCard.Filename) {
             $http({
-                url: this.CoverCard.href
+                url: obj.CoverCard.href
             }).success(function(data) {
                 $.extend(obj.CoverCard, data);
             });
         }
         if (!obj.LinkToArt.Title) {
             $http({
-                url: this.LinkToArt.href
+                url: obj.LinkToArt.href
             }).success(function(data) {
                 $.extend(obj.LinkToArt, data);
             });
