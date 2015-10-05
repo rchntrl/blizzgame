@@ -120,7 +120,7 @@ class StormHero extends DataObject implements PermissionProvider {
         return $this->Icon()->ID ? $this->Icon()->getURL() : SiteConfig::current_site_config()->DefaultElementImage()->getUrl();
     }
     public function IntroSpeech() {
-        return $this->Speech()->filter(array('type' => array('Question', 'Response')))->sort(array('ToID' => 'DESC', 'ToSeveralID' => 'Desc'));
+        return $this->Speech()->filter(array('type' => array('Question', 'Response')))->sort(array('ToID' => 'DESC', 'TagID' => 'Desc'));
     }
 
     public function BoastSpeech() {
