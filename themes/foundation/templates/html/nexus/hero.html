@@ -6,7 +6,7 @@
     <div class="speech-section">
         <h3 id="intro-speech" data-ng-if="introSpeech.length">Вступление</h3>
         <ul class="hero-speech intro">
-            <li data-ng-repeat="item in introSpeech = nexusData.selectedItem.Speech | filter:{Intro: 1} |orderBy:['-To.id', '-ToSeveral.id']">
+            <li data-ng-repeat="item in introSpeech = nexusData.selectedItem.Speech | filter:{Intro: 1} |orderBy:['-To.id', '-Tag.id']">
                 <div data-ng-if="item.Type == 'Question'" >
                     <div class="question">
                         <a class="element-link" data-ng-href="{{ item.owner.Url }}" title="{{ item.owner.TitleRU }}">
@@ -91,7 +91,7 @@
     <div class="speech-section">
         <h3 id="kill-speech" data-ng-if="killSpeech.length">Реплики при убийстве</h3>
         <ul class="hero-speech">
-            <li data-ng-repeat="item in killSpeech = nexusData.selectedItem.Speech | filter:{Type: 'WhenKill'} | orderBy:['-To.id', '-ToSeveral.id']">
+            <li data-ng-repeat="item in killSpeech = nexusData.selectedItem.Speech | filter:{Type: 'WhenKill'} | orderBy:['-To.id', '-Tag.id']">
                 <div class="element-link">
                     <div class="element-link-image">
                         <img class="icon-frame frame-56" data-ng-src="{{ item.OwnerIconSrc }}" />

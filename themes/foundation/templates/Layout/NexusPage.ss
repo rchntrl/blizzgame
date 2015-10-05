@@ -20,9 +20,9 @@
                                                         <img class="icon-frame frame-56" src="$OwnerIconSrc" />
                                                     </div>
                                                 </a>
-                                                <%if $ToSeveral %>
+                                                <%if $Tag %>
                                                     <div class="right element-link">
-                                                        <div title="$ToSeveral.TitleRU" class="element-link-image">
+                                                        <div title="$Tag.TitleRU" class="element-link-image">
                                                             <img class="icon-frame frame-56" src="$TagIconSrc" />
                                                         </div>
                                                     </div>
@@ -62,7 +62,7 @@
                                                 </a>
                                                 <%if $TagIconSrc %>
                                                     <div class="right element-link">
-                                                        <div title="$ToSeveral.TitleRU" class="element-link-image">
+                                                        <div title="$Tag.TitleRU" class="element-link-image">
                                                             <img class="icon-frame frame-56" src="$TagIconSrc" />
                                                         </div>
                                                     </div>
@@ -131,9 +131,9 @@
                                                     <img class="icon-frame frame-56" src="$MateIconSrc" />
                                                 </div>
                                             </a>
-                                        <% else_if $ToSeveral %>
+                                        <% else_if $Tag %>
                                             <div class="right element-link">
-                                                <div class="element-link-image" title="$ToSeveral.TitleRU">
+                                                <div class="element-link-image" title="$Tag.TitleRU">
                                                     <img class="icon-frame frame-56" src="$TagIconSrc" />
                                                 </div>
                                             </div>

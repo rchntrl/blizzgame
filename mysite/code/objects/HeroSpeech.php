@@ -9,7 +9,7 @@
  * @property String $OriginalPhrase
  * @method StormHero From()
  * @method StormHero To()
- * @method HeroTag ToSeveral()
+ * @method HeroTag Tag()
  * @method HeroSkin Skin()
  * @method HeroSpeech Speech()
  */
@@ -28,15 +28,15 @@ class HeroSpeech extends DataObject {
     private static $has_one = array(
         'To' => 'StormHero',
         'Skin' => 'HeroSkin',
-        'ToSeveral' => 'HeroTag',
+        'Tag' => 'HeroTag',
         'From' => 'StormHero',
         'Speech' => 'HeroSpeech',
     );
 
-    private static $default_sort = "\"ToID\" DESC, \"ToSeveralID\" DESC";
+    private static $default_sort = "\"ToID\" DESC, \"TagID\" DESC";
 
     private static $summary_fields = array(
-        'ID', 'Type', 'Phrase', 'To.TitleRU', 'ToSeveral.TitleRU', 'Skin.TitleRU'
+        'ID', 'Type', 'Phrase', 'To.TitleRU', 'Tag.TitleRU', 'Skin.TitleRU'
     );
 
     private static $searchable_fields = array(
@@ -45,7 +45,7 @@ class HeroSpeech extends DataObject {
 
     private static $field_labels = array(
         'To.TitleRU' => 'Mate',
-        'ToSeveral.TitleRU' => 'Tag',
+        'Tag.TitleRU' => 'Tag',
         'Skin.TitleRU' => 'Skin',
         'From.TitleRU' => 'Speech Owner (Ru)',
     );
@@ -72,7 +72,7 @@ class HeroSpeech extends DataObject {
         $fields->replaceField('Type', new OptionsetField('Type', 'Type', $fields->dataFieldByName('Type')->getSource()));
         $fields->replaceField('FromID', new HasOnePickerField($this, 'FromID', 'From', $this->From()));
         $fields->replaceField('ToID', StormHero::getHeroesField('ToID', 'To'));
-        $fields->replaceField('ToSeveralID', HeroTag::getListField('ToSeveralID', 'To'));
+        $fields->replaceField('TagID', HeroTag::getListField('TagID', 'To'));
         $fields->replaceField('SkinID', HeroSkin::getListField('SkinID', 'Skin'));
         if ($this->ID) {
             $fields->replaceField('SpeechID', new HasOnePickerField($this, 'SpeechID', 'Mate Speech', $this->Speech()));
@@ -97,7 +97,7 @@ class HeroSpeech extends DataObject {
     }
 
     public function getTagIconSrc() {
-        return $this->ToSeveralID ? $this->ToSeveral()->getIconSrc() : null;
+        return $this->TagID ? $this->Tag()->getIconSrc() : null;
     }
 
     public function getSkinIconSrc() {
@@ -160,7 +160,7 @@ class HeroSpeech extends DataObject {
                 // пробуем подставить фразу, обращенную к герою по его признаку
                 $this->mateSpeech = HeroSpeech::get_one('HeroSpeech',
                     'HeroSpeech.FromID = ' . $this->ToID
-                    . ' AND HeroSpeech.ToSeveralID IN(' . $idList . ')'
+                    . ' AND HeroSpeech.TagID IN(' . $idList . ')'
                     . ' AND HeroSpeech.Type = \'' . $type . '\''
                 );
             }
