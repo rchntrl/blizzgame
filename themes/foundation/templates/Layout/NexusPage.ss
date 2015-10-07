@@ -77,7 +77,7 @@
                     </div>
                     <div class="speech-section">
                         <h3 id="pissed-speech">Реплики при клике</h3>
-                        <ul class="hero-speech intro">
+                        <ul class="hero-speech">
                             <% loop $Hero.PissedSpeech() %>
                                 <li>
                                     <% if $SkinOwnerID > 0 %>
@@ -95,7 +95,7 @@
                     </div>
                     <div class="speech-section">
                         <h3 id="kill-speech">Реплики при убийстве</h3>
-                        <ul class="hero-speech intro">
+                        <ul class="hero-speech">
                             <% loop $Hero.KillSpeech() %>
                                 <li>
                                     <a class="element-link" data-ng-href="$Top.Link{$LastLinkSegment}" title="$From.Title">
@@ -124,7 +124,7 @@
                     </div>
                     <div class="speech-section">
                         <h3 id="other-speech">Прочее</h3>
-                        <ul class="hero-speech intro">
+                        <ul class="hero-speech">
                             <% loop $Hero.OtherSpeech() %>
                                 <li>
                                     <% if $SkinOwnerID > 0 %>
