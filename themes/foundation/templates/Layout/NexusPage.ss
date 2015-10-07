@@ -76,24 +76,6 @@
                         </ul>
                     </div>
                     <div class="speech-section">
-                        <h3 id="other-speech">Прочее</h3>
-                        <ul class="hero-speech intro">
-                            <% loop $Hero.OtherSpeech() %>
-                                <li>
-                                    <% if $SkinOwnerID > 0 %>
-                                        <a class="element-link" data-ng-href="$Top.Link{$LastLinkSegment}" title="$From.Title">
-                                            <div class="element-link-image">
-                                                <img class="icon-frame frame-56" src="$OwnerIconSrc" />
-                                            </div>
-                                        </a>
-                                    <% end_if %>
-                                    <div class="phrase">$Phrase</div>
-                                    <div class="original-phrase">$OriginalPhrase</div>
-                                </li>
-                            <% end_loop %>
-                        </ul>
-                    </div>
-                    <div class="speech-section">
                         <h3 id="pissed-speech">Реплики при клике</h3>
                         <ul class="hero-speech intro">
                             <% loop $Hero.PissedSpeech() %>
@@ -133,6 +115,24 @@
                                                 <img class="icon-frame frame-56" src="$TagIconSrc" />
                                             </div>
                                         </div>
+                                    <% end_if %>
+                                    <div class="phrase">$Phrase</div>
+                                    <div class="original-phrase">$OriginalPhrase</div>
+                                </li>
+                            <% end_loop %>
+                        </ul>
+                    </div>
+                    <div class="speech-section">
+                        <h3 id="other-speech">Прочее</h3>
+                        <ul class="hero-speech intro">
+                            <% loop $Hero.OtherSpeech() %>
+                                <li>
+                                    <% if $SkinOwnerID > 0 %>
+                                        <a class="element-link" data-ng-href="$Top.Link{$LastLinkSegment}" title="$From.Title">
+                                            <div class="element-link-image">
+                                                <img class="icon-frame frame-56" src="$OwnerIconSrc" />
+                                            </div>
+                                        </a>
                                     <% end_if %>
                                     <div class="phrase">$Phrase</div>
                                     <div class="original-phrase">$OriginalPhrase</div>

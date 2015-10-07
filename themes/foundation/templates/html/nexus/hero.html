@@ -62,20 +62,6 @@
         </ul>
     </div>
     <div class="speech-section">
-        <h3 id="other-speech" data-ng-if="otherSpeech.length">Прочее</h3>
-        <ul class="hero-speech">
-            <li data-ng-repeat="item in otherSpeech = nexusData.selectedItem.Speech | filter:{Type: 'Other'} | orderBy:'ID'">
-                <div data-ng-if="item.SkinOwnerID != 0" class="element-link">
-                    <div class="element-link-image">
-                        <img class="icon-frame frame-56" data-ng-src="{{ item.OwnerIconSrc }}" />
-                    </div>
-                </div>
-                <div class="phrase" data-ng-bind-html="item.Phrase | unsafe"></div>
-                <div class="original-phrase hide-for-small" data-ng-bind-html="item.OriginalPhrase | unsafe"></div>
-            </li>
-        </ul>
-    </div>
-    <div class="speech-section">
         <h3 id="pissed-speech" data-ng-if="pissedSpeech.length">Реплики при клике</h3>
         <ul class="hero-speech">
             <li data-ng-repeat="item in pissedSpeech = nexusData.selectedItem.Speech | filter:{Type: 'Pissed'} | orderBy:'ID'">
@@ -106,6 +92,20 @@
                 <div data-ng-if="item.TagIconSrc" class="right element-link">
                     <div class="element-link-image">
                         <img class="icon-frame frame-56" data-ng-src="{{ item.TagIconSrc}}" />
+                    </div>
+                </div>
+                <div class="phrase" data-ng-bind-html="item.Phrase | unsafe"></div>
+                <div class="original-phrase hide-for-small" data-ng-bind-html="item.OriginalPhrase | unsafe"></div>
+            </li>
+        </ul>
+    </div>
+    <div class="speech-section">
+        <h3 id="other-speech" data-ng-if="otherSpeech.length">Прочее</h3>
+        <ul class="hero-speech">
+            <li data-ng-repeat="item in otherSpeech = nexusData.selectedItem.Speech | filter:{Type: 'Other'} | orderBy:'ID'">
+                <div data-ng-if="item.SkinOwnerID != 0" class="element-link">
+                    <div class="element-link-image">
+                        <img class="icon-frame frame-56" data-ng-src="{{ item.OwnerIconSrc }}" />
                     </div>
                 </div>
                 <div class="phrase" data-ng-bind-html="item.Phrase | unsafe"></div>

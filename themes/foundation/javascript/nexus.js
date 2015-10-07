@@ -40,8 +40,6 @@ app.config(function ($componentLoaderProvider, $locationProvider) {
         var path;
         if(name == "breadcrumbs") {
             path = "common/" + name;
-        } else if (name == "index") {
-            path = "nexus/index";
         } else {
             path = "nexus/" + name;
         }
@@ -178,12 +176,6 @@ app.factory("heroes", function (nexusData, $location, $anchorScroll, $resource) 
 app.controller("common", function (nexusData, heroes, $router, $scope) {
     $router.config([
         {
-            path: "/",
-            components: {
-                "main": "index"
-            }
-        },
-        {
             path: pageConfig.path,
             components: {
                 "main": "list",
@@ -209,10 +201,6 @@ app.controller("ListController", function (heroes) {
 
 app.controller("HeroController", function (heroes, $routeParams) {
     heroes.prepareItem($routeParams.heroName);
-});
-
-app.controller("IndexController", function () {
-    //location.href = pageConfig.baseUrl;
 });
 
 app.controller("BreadcrumbsController", function (nexusData) {
