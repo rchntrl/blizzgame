@@ -19,10 +19,11 @@ class HeroSpeech extends DataObject {
         RESPONSE = 'Response';
 
     private static $db = array(
-        'Type' => "Enum('Pissed, Question, Response, WhenKill, Boast', 'Pissed')",
+        'Type' => "Enum('Pissed, Question, Response, WhenKill, Other', 'Pissed')",
         'Tone' => "Enum('None, Negative, Positive, Neutral, Other')",
         'Phrase' => 'Text',
         'OriginalPhrase' => 'Text',
+        'Reference' => 'Varchar',
     );
 
     private static $has_one = array(

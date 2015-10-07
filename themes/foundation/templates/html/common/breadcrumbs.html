@@ -1,0 +1,7 @@
+<ul class="breadcrumbs">
+    <li data-ng-repeat="item in breadcrumbs.items()" data-ng-class="{ current: $last && !$first}">
+        <a target="_self" data-ng-href="{{ item.Link }}" data-ng-if="$first">{{ item.Title }}</a>
+        <a data-ng-href="{{ item.Link }}" data-ng-if="!$last && !$first">{{ item.Title }}</a>
+        <span data-ng-if="$last && !$first">{{ item.Title }}</span>
+    </li>
+</ul>

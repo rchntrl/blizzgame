@@ -47,6 +47,10 @@ class HeroSkin extends DataObject {
         return $fields;
     }
 
+    public function getTitle() {
+        return $this->TitleRU;
+    }
+
     public function getImageSrc() {
         return $this->ImageID ? $this->Image()->getURL() : null;
     }

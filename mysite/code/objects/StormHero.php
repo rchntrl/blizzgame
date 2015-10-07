@@ -59,10 +59,10 @@ class StormHero extends DataObject implements PermissionProvider {
 
     public static $api_access = array(
        'view' => array(
-           'Title', 'TitleEN', 'TitleRU', 'IdentityTitle',
+           'Title', 'IdentityTitle',
            'LastLinkSegment', 'AccessLevel', 'Draft',
            'Role', 'Universe', 'Trailer', 'Spotlight',
-           'Content', 'IconSrc', 'Image'
+           'Content', 'IconSrc', 'Image', 'Tags'
        )
     );
 
@@ -123,8 +123,8 @@ class StormHero extends DataObject implements PermissionProvider {
         return $this->Speech()->filter(array('type' => array('Question', 'Response')))->sort(array('ToID' => 'DESC', 'TagID' => 'Desc'));
     }
 
-    public function BoastSpeech() {
-        return $this->Speech()->filter(array('type' => 'Boast'));
+    public function OtherSpeech() {
+        return $this->Speech()->filter(array('type' => 'Other'));
     }
 
     public function PissedSpeech() {

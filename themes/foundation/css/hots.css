@@ -373,6 +373,9 @@
   float: left;
   font-size: 0.8rem;
 }
+.hero-speech li .element-link {
+  float: left;
+}
 .hero-speech li:last-child {
   border-bottom: none;
 }
@@ -385,5 +388,12 @@
 .intro li .question,
 .intro li .response {
   position: relative;
-  height: 60px;
+  min-height: 60px;
 }
+
+.preloader {
+  height: 400px;
+  padding: 50px;
+  background: url('../images/preloader-horizontal.gif') no-repeat 50% 50% transparent;
+}
+

@@ -1,15 +1,16 @@
 <div class="medium-12 columns">
-    <h1>{{ nexusData.selectedItem.TitleRU }} <small data-ng-bind="nexusData.selectedItem.IdentityTitle"></small></h1>
+    <h1>{{ nexusData.selectedItem.Title }} <small data-ng-bind="nexusData.selectedItem.IdentityTitle"></small></h1>
     <p data-ng-bind-html="nexusData.selectedItem.Content | unsafe"></p>
 </div>
-<div class="medium-9 columns">
+<div ng-hide="nexusData.selectedItem.Speech.length" class="preloader"></div>
+<div class="medium-10 columns">
     <div class="speech-section">
         <h3 id="intro-speech" data-ng-if="introSpeech.length">Вступление</h3>
         <ul class="hero-speech intro">
             <li data-ng-repeat="item in introSpeech = nexusData.selectedItem.Speech | filter:{Intro: 1} |orderBy:['-To.id', '-Tag.id']">
                 <div data-ng-if="item.Type == 'Question'" >
                     <div class="question">
-                        <a class="element-link" data-ng-href="{{ item.owner.Url }}" title="{{ item.owner.TitleRU }}">
+                        <a class="element-link" data-ng-href="{{ item.owner.Link }}" title="{{ item.owner.Title }}">
                             <div class="element-link-image">
                                 <img class="icon-frame frame-56" data-ng-src="{{ item.OwnerIconSrc }}" />
                             </div>
@@ -20,30 +21,30 @@
                             </div>
                         </div>
                         <div class="phrase" data-ng-bind-html="item.Phrase | unsafe"></div>
-                        <div class="original-phrase" data-ng-bind-html="item.OriginalPhrase | unsafe"></div>
+                        <div class="original-phrase hide-for-small" data-ng-bind-html="item.OriginalPhrase | unsafe"></div>
                     </div>
                     <div class="response" data-ng-if="item.mate">
-                        <a class="element-link" data-ng-href="{{ item.mate.Url }}" title="{{ item.mate.TitleRU }}">
+                        <a class="element-link" data-ng-href="{{ item.mate.Link }}" title="{{ item.mate.Title }}">
                             <div class="element-link-image">
                                 <img class="icon-frame frame-56" data-ng-src="{{ item.MateIconSrc }}" />
                             </div>
                         </a>
                         <div class="phrase" data-ng-bind-html="item.MatePhrase | unsafe"></div>
-                        <div class="original-phrase" data-ng-bind-html="item.MateOriginalPhrase | unsafe"></div>
+                        <div class="original-phrase hide-for-small" data-ng-bind-html="item.MateOriginalPhrase | unsafe"></div>
                     </div>
                 </div>
                 <div data-ng-if="item.Type == 'Response'">
                     <div class="question" data-ng-if="item.mate">
-                        <a class="element-link" data-ng-href="{{ item.mate.Url }}" title="{{ item.mate.TitleRU }}">
+                        <a class="element-link" data-ng-href="{{ item.mate.Link }}" title="{{ item.mate.Title }}">
                             <div class="element-link-image">
                                 <img class="icon-frame frame-56" data-ng-src="{{ item.MateIconSrc }}" />
                             </div>
                         </a>
                         <div class="phrase" data-ng-bind-html="item.MatePhrase | unsafe"></div>
-                        <div class="original-phrase" data-ng-bind-html="item.MateOriginalPhrase | unsafe"></div>
+                        <div class="original-phrase hide-for-small" data-ng-bind-html="item.MateOriginalPhrase | unsafe"></div>
                     </div>
                     <div class="response">
-                        <a class="element-link" data-ng-href="{{ item.owner.Url }}" title="{{item.owner.TitleRU }}">
+                        <a class="element-link" data-ng-href="{{ item.owner.Link }}" title="{{item.owner.Title }}">
                             <div class="element-link-image">
                                 <img class="icon-frame frame-56" data-ng-src="{{ item.OwnerIconSrc }}" />
                             </div>
@@ -54,23 +55,23 @@
                             </div>
                         </div>
                         <div class="phrase" data-ng-bind-html="item.Phrase | unsafe"></div>
-                        <div class="original-phrase" data-ng-bind-html="item.OriginalPhrase | unsafe"></div>
+                        <div class="original-phrase hide-for-small" data-ng-bind-html="item.OriginalPhrase | unsafe"></div>
                     </div>
                 </div>
             </li>
         </ul>
     </div>
     <div class="speech-section">
-        <h3 id="boast-speech" data-ng-if="boastSpeech.length">Хвастовство перед боем</h3>
+        <h3 id="other-speech" data-ng-if="otherSpeech.length">Прочее</h3>
         <ul class="hero-speech">
-            <li data-ng-repeat="item in boastSpeech = nexusData.selectedItem.Speech | filter:{Type: 'Boast'} | orderBy:'ID'">
+            <li data-ng-repeat="item in otherSpeech = nexusData.selectedItem.Speech | filter:{Type: 'Other'} | orderBy:'ID'">
                 <div data-ng-if="item.SkinOwnerID != 0" class="element-link">
                     <div class="element-link-image">
                         <img class="icon-frame frame-56" data-ng-src="{{ item.OwnerIconSrc }}" />
                     </div>
                 </div>
                 <div class="phrase" data-ng-bind-html="item.Phrase | unsafe"></div>
-                <div class="original-phrase" data-ng-bind-html="item.OriginalPhrase | unsafe"></div>
+                <div class="original-phrase hide-for-small" data-ng-bind-html="item.OriginalPhrase | unsafe"></div>
             </li>
         </ul>
     </div>
@@ -84,7 +85,7 @@
                     </div>
                 </div>
                 <div class="phrase" data-ng-bind-html="item.Phrase | unsafe"></div>
-                <div class="original-phrase" data-ng-bind-html="item.OriginalPhrase | unsafe"></div>
+                <div class="original-phrase hide-for-small" data-ng-bind-html="item.OriginalPhrase | unsafe"></div>
             </li>
         </ul>
     </div>
@@ -97,11 +98,7 @@
                         <img class="icon-frame frame-56" data-ng-src="{{ item.OwnerIconSrc }}" />
                     </div>
                 </div>
-                <div class="left">
-                    <div class="phrase" data-ng-bind-html="item.Phrase | unsafe"></div>
-                    <div class="original-phrase" data-ng-bind-html="item.OriginalPhrase | unsafe"></div>
-                </div>
-                <a data-ng-if="item.mate" class="right element-link" data-ng-href="{{ item.mate.Url }}" title="{{ item.mate.TitleRU }}">
+                <a data-ng-if="item.mate" class="right element-link" data-ng-href="{{ item.mate.Link }}" title="{{ item.mate.Title }}">
                     <div class="element-link-image">
                         <img class="icon-frame frame-56" data-ng-src="{{ item.mate.IconSrc }}" />
                     </div>
@@ -111,8 +108,10 @@
                         <img class="icon-frame frame-56" data-ng-src="{{ item.TagIconSrc}}" />
                     </div>
                 </div>
+                <div class="phrase" data-ng-bind-html="item.Phrase | unsafe"></div>
+                <div class="original-phrase hide-for-small" data-ng-bind-html="item.OriginalPhrase | unsafe"></div>
             </li>
         </ul>
     </div>
 </div>
-<div class="medium-3 columns"></div>
+<div class="medium-2 columns"></div>

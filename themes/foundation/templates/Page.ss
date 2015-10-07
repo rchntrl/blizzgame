@@ -30,9 +30,9 @@
             <% include TopBar %>
         </header>
         <!-- CONTENT SECTION -->
-        <div class="row content-section">
+        <div data-ng-app="blizzgame" data-ng-controller="common" class="row content-section">
             <% include Breadcrumbs %>
-            <div data-ng-app="blizzgame" data-ng-init="titlePattern = ' __title__ - <% if $SubsiteID %>$SiteConfig.Title: <% end_if %>BlizzGame'" class="main-content">
+            <div class="main-content">
                 $Layout
             </div>
         </div>
@@ -41,6 +41,8 @@
         <div id="pageConfigContainer" data-title="$Title"
              data-page-id="$ID"
              data-page-url="$Link"
+             data-site-title="$SiteConfig.Title"
+             data-breadcrumbs="$breadcrumbsJSON()"
              data-title-pattern="__title__ - <% if $SubsiteID %>$SiteConfig.Title: <% end_if %>BlizzGame">
         </div>
 </body>

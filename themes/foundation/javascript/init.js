@@ -1,11 +1,17 @@
 function DataObject(data) {
-    for (var key in data) {
-        this[key] = data[key];
+    if (data) {
+        for (var key in data) {
+            this[key] = data[key];
+        }
     }
 }
 
-function DataList() {
-    this.items = [];
+function DataList(list) {
+    if (typeof list  == "object") {
+        this.items = list;
+    } else {
+        this.items = [];
+    }
 }
 DataList.prototype.add = function(obj) {
     this.items.push(obj);
@@ -47,7 +53,9 @@ var PageDetails = (function() {
             path: absoluteUrl.replace(baseUrl , "/"),
             pageId: pageContainer.data("pageId"),
             title: pageContainer.data("title"),
+            siteTitle: pageContainer.data("siteTitle"),
             titlePattern: pageContainer.data("titlePattern"),
+            breadcrumbs: pageContainer.data("breadcrumbs"),
             setTitle: function(title) {
                 var titleNode = document.querySelector("title");
                 titleNode.innerHTML = this.titlePattern.replace(/__title__/, title);

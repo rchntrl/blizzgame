@@ -60,8 +60,40 @@ class Page extends SiteTree {
         $now = SS_Datetime::now();
         $d1 = mktime(0, 0, 0, date('m', strtotime($this->LastEdited)), $now->DayOfMonth(), $now->Year());
         $d2 = mktime(0, 0, 0, date("m"), date("d") - 3, date("Y"));
-        //var_dump($d1, $d2); exit();
         return ($d1 >= $d2) ? true : false;
+    }
+
+    public function breadcrumbsJSON($maxDepth = 20, $unlinked = false, $stopAtPageType = false, $showHidden = false) {
+        return htmlspecialchars(Convert::array2json($this->breadcrumbsMap()));
+    }
+
+    public function breadcrumbsMap($maxDepth = 20, $unlinked = false, $stopAtPageType = false, $showHidden = false) {
+        $pages = array();
+        $page = $this;
+        $originalPage = $page;
+        while(
+            $page
+            && (!$maxDepth || count($pages) < $maxDepth)
+            && (!$stopAtPageType || $page->ClassName != $stopAtPageType)
+        ) {
+            if($showHidden || $page->ShowInMenus || ($page->ID == $originalPage->ID)) {
+                $pages[] = $page;
+            }
+            $page = $page->Parent;
+        }
+        $crumbs = [];
+        $crumbs[] = array(
+            'Title' => SiteConfig::current_site_config()->Title,
+            'Link' => Director::absoluteBaseURL(),
+        );
+        /** @var SiteTree $crumb */
+        foreach ($pages as $crumb) {
+            $crumbs[] = array(
+                'Title' => $crumb->Title,
+                'Link' => $crumb->Link()
+            );
+        }
+        return $crumbs;
     }
 }
 

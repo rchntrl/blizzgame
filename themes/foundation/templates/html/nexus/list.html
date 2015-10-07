@@ -1,11 +1,11 @@
-<h1>{{ title }}</h1>
+<h1>{{ list.title }}</h1>
 <ul class="ency inline-list">
-    <li class="large-3 small-4" data-ng-repeat="item in nexusData.items | filter:{Draft: 0} | orderBy:'TitleRU'" >
-        <a class="element-link" data-ng-href="{{ item.Url }}" title="{{item.TitleRU }}">
+    <li class="large-3 small-4" data-ng-repeat="item in nexusData.items | filter:{Draft: 0} | orderBy:'Title'" >
+        <a class="element-link" data-ng-href="{{ item.Link }}" title="{{item.Title }}">
             <div class="element-link-image">
-                <img class="icon-frame frame-56" alt="{{ item.TitleRU }}" data-ng-src="{{ item.IconSrc }}" />
+                <img class="icon-frame frame-56" alt="{{ item.Title }}" data-ng-src="{{ item.IconSrc }}" />
             </div>
-            <span class="element-link-title">{{ item.TitleRU }}</span>
+            <span class="element-link-title">{{ item.Title }}</span>
         </a>
     </li>
 </ul>
