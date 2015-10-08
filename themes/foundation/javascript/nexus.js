@@ -123,7 +123,7 @@ app.factory("heroes", function (nexusData, breadcrumbsService, $location, $ancho
             nexusData.selectedItem = getByLink(heroId);
             breadcrumbsService.set(pageConfig.breadcrumbs);
             breadcrumbsService.add(nexusData.selectedItem);
-            pageConfig.setTitle(nexusData.selectedItem.Title);
+            pageConfig.setTitle(nexusData.selectedItem.Title + ' | ' + pageConfig.title);
             loadDetails(nexusData.selectedItem);
             $anchorScroll();
         }

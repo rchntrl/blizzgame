@@ -45,7 +45,7 @@ class NexusPage_Controller extends Page_Controller {
         }
         return $this->customise(array(
             // Title будет хранить название страницы,а не объекта. Эта хитрость нужна для маршрутизации angular
-            'MetaTitle' => $object->getTitle() . ' - ' . $this->Title,
+            'MetaTitle' => $object->getTitle() . ' | ' . $this->Title,
             'MetaDescription' => $object->getMetaDescription(),
             'Hero' => $object,
         ));
