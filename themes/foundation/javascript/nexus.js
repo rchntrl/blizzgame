@@ -198,13 +198,15 @@ app.controller("common", function (nexusData, heroes, $router, $scope) {
     heroes.load();
 });
 
-app.controller("ListController", function (heroes) {
+app.controller("ListController", function (heroes, $window, $location) {
     this.title = pageConfig.title;
     heroes.prepareList();
+    $window.ga('send', 'pageview', { page: $location.url() });
 });
 
-app.controller("HeroController", function (heroes, nexusData, $routeParams) {
+app.controller("HeroController", function (heroes, nexusData, $routeParams, $window, $location) {
     heroes.prepareItem($routeParams.heroName);
+    $window.ga('send', 'pageview', { page: $location.url() });
 });
 
 app.controller("BreadcrumbsController", function (breadcrumbsService) {
