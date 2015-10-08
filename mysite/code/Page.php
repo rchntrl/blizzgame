@@ -64,7 +64,7 @@ class Page extends SiteTree {
     }
 
     public function breadcrumbsJSON($maxDepth = 20, $unlinked = false, $stopAtPageType = false, $showHidden = false) {
-        return htmlspecialchars(Convert::array2json($this->breadcrumbsMap()));
+        return htmlspecialchars(Convert::array2json($this->breadcrumbsMap($maxDepth, $unlinked, $stopAtPageType, $showHidden)));
     }
 
     public function breadcrumbsMap($maxDepth = 20, $unlinked = false, $stopAtPageType = false, $showHidden = false) {
@@ -144,10 +144,6 @@ class Page_Controller extends ContentController {
         }
         if ($this->getBrowser()->getName() == 'opera') {
             return $this->getBrowser()->getVersion() >= 15;
-        }
-
-        if (!Member::currentUser()) {
-            return permission::check('EDIT_GALLERY') ? true : false;
         }
 
         return true;
