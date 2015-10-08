@@ -111,6 +111,10 @@ li.focused .th .details p {
     border-radius: 50px;
 }
 
+.card-classes .button-group > li .button.active {
+    border: 4px solid #008CBA;
+}
+
 .card-classes .all {
     background-position: -4px -196px;
 }

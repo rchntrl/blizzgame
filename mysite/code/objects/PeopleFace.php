@@ -58,7 +58,7 @@ class PeopleFace extends DataObject implements ObjectAsPageProvider {
 
     public static $api_access = array(
         'view' => array(
-            'TitleEN',  'TitleEN', 'TitleRU', 'Nick', 'LastLinkSegment', 'WebLink',
+            'Title',  'TitleEN', 'TitleRU', 'Nick', 'LastLinkSegment', 'WebLink',
             'Writer', 'Artist', 'Composer', 'Developer', 'Actor'
         ),
     );
