@@ -9,7 +9,7 @@
     <%--http://ogp.me/--%>
     <meta property="og:site_name" content="$SiteConfig.Title.ATT" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="$Title.ATT" />
+    <meta property="og:title" content="<% if $MetaTitle %>$MetaTitle..ATT<% else %>$Title.ATT<% end_if %>" />
     <meta property="og:description" content="$MetaDescription.ATT" />
     <meta property="og:url" content="$AbsoluteLink.ATT" />
     <% if $Image %>
