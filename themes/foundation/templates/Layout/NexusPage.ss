@@ -1,6 +1,6 @@
 <div class="page-section large-12 columns">
     <div ng-hide="nexusData.totalSize > 0" class="preloader"></div>
-    <div data-ng-show="nexusData.items.length" class="layout">
+    <div data-ng-show="nexusData.totalSize > 0" class="layout">
         <div ng-viewport="main">
             <% if $Hero %>
                 <div class="medium-12 columns">
