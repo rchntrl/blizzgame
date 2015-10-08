@@ -82,18 +82,19 @@ class Page extends SiteTree {
             $page = $page->Parent;
         }
         $crumbs = [];
-        $crumbs[] = array(
-            'Title' => SiteConfig::current_site_config()->Title,
-            'Link' => Director::absoluteBaseURL(),
-        );
         /** @var SiteTree $crumb */
         foreach ($pages as $crumb) {
             $crumbs[] = array(
                 'Title' => $crumb->Title,
-                'Link' => $crumb->Link()
+                'Link' => $crumb->Link(),
+                'Self' => $crumb->ID != $this->ID
             );
         }
-        return $crumbs;
+        $crumbs[] = array(
+            'Title' => SiteConfig::current_site_config()->Title,
+            'Link' => Director::absoluteBaseURL(),
+        );
+        return array_reverse($crumbs);
     }
 }
 

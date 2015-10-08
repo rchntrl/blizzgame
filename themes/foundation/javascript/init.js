@@ -71,3 +71,21 @@ var PageDetails = (function() {
         }
     }
 })();
+
+function BreadcrumbsService() {
+    return {
+        items: [],
+        add: function(data) {
+            this.items.push(data);
+        },
+        remove: function() {
+
+        },
+        set: function(data) {
+            this.items.length = 0;
+            for (var key in data) {
+                this.add(data[key]);
+            }
+        }
+    }
+}

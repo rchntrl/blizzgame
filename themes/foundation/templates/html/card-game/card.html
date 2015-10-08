@@ -1,7 +1,4 @@
 <h1 data-ng-bind-html="cardGameData.selectedItem.TitleRU | unsafe"></h1>
-<div class="medium-12">
-    <a data-ng-href="{{ pageConfig.url }}" class="small button secondary all" title="Вернуться к списку"><i class="fi-thumbnails"></i></a>
-</div>
 <div class="medium-4 column art-container">
     <img data-ng-src="{{ cardGameData.selectedItem.CoverCard.Filename }}" />
 </div>
@@ -9,12 +6,12 @@
     <div class="book-info">
         <dl>
             <dt>Набор:</dt>
-            <dd data-ng-bind="cardGameData.title">
+            <dd data-ng-bind="cardGameData.selectedItem.nameOfSet">
             </dd>
-            <dt>Тип:</dt><dd localize="{{ cardGameData.selectedItem.Type }}"></dd>
-            <dt>Класс:</dt><dd localize="{{ cardGameData.selectedItem.Class }}"></dd>
-            <dt>Качество:</dt><dd localize="{{ cardGameData.selectedItem.Rarity }}"></dd>
-            <dt>Художник :</dt><dd data-ng-bind="cardGameData.selectedItem.Artist.TitleEN"></dd>
+            <dt>Тип:</dt><dd>{{ cardGameData.selectedItem.Type }}</dd>
+            <dt>Класс:</dt><dd>{{ cardGameData.selectedItem.Class }}</dd>
+            <dt>Качество:</dt><dd>{{ cardGameData.selectedItem.Rarity }}</dd>
+            <dt>Художник :</dt><dd data-ng-bind="cardGameData.selectedItem.Artist.Title"></dd>
         </dl>
     </div>
 </div>

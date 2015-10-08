@@ -1,3 +1,3 @@
-<div data-ng-controller="cards">
-    <div data-ng-view=""></div>
+<div>
+    <div data-ng-viewport="main"></div>
 </div>

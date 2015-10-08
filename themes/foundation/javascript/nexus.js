@@ -51,12 +51,11 @@ app.config(function ($componentLoaderProvider, $locationProvider) {
 app.value("nexusData", {
     selectedItem: null,
     totalSize: 0,
-    breadcrumbs: [],
     tags: [],
     items: []
 });
 
-app.factory("heroes", function (nexusData, $location, $anchorScroll, $resource) {
+app.factory("heroes", function (nexusData, breadcrumbsService, $location, $anchorScroll, $resource) {
     var apiUrl = pageConfig.baseUrl + "api/blizz/";
     var heroId;
     var resource = $resource(
@@ -80,17 +79,6 @@ app.factory("heroes", function (nexusData, $location, $anchorScroll, $resource) 
         }
         this.Speech.push(speech);
     };
-
-    function setBreadcrumbs(data) {
-        nexusData.breadcrumbs.length = 0;
-        for (var key in data) {
-            nexusData.breadcrumbs.push(data[key]);
-        }
-    }
-
-    function addToBreadcrumbs(data) {
-        nexusData.breadcrumbs.push(data);
-    }
 
     /**
      *
@@ -133,8 +121,8 @@ app.factory("heroes", function (nexusData, $location, $anchorScroll, $resource) 
         heroId = id;
         if (nexusData.items.length) {
             nexusData.selectedItem = getByLink(heroId);
-            setBreadcrumbs(pageConfig.breadcrumbs);
-            addToBreadcrumbs(nexusData.selectedItem);
+            breadcrumbsService.set(pageConfig.breadcrumbs);
+            breadcrumbsService.add(nexusData.selectedItem);
             pageConfig.setTitle(nexusData.selectedItem.Title);
             loadDetails(nexusData.selectedItem);
             $anchorScroll();
@@ -170,10 +158,23 @@ app.factory("heroes", function (nexusData, $location, $anchorScroll, $resource) 
         prepareList: function() {
             heroId = null;
             pageConfig.setTitle(pageConfig.title);
-            setBreadcrumbs(pageConfig.breadcrumbs);
+            breadcrumbsService.set(pageConfig.breadcrumbs);
         },
         load: load
     };
+});
+
+app.value("breadcrumbsService", {
+    items: [],
+    add: function(data) {
+        this.items.push(data);
+    },
+    set: function(data) {
+        this.items.length = 0;
+        for (var key in data) {
+            this.items.push(data[key]);
+        }
+    }
 });
 
 app.controller("common", function (nexusData, heroes, $router, $scope) {
@@ -202,13 +203,13 @@ app.controller("ListController", function (heroes) {
     heroes.prepareList();
 });
 
-app.controller("HeroController", function (heroes, $routeParams) {
+app.controller("HeroController", function (heroes, nexusData, $routeParams) {
     heroes.prepareItem($routeParams.heroName);
 });
 
-app.controller("BreadcrumbsController", function (nexusData) {
+app.controller("BreadcrumbsController", function (breadcrumbsService) {
     this.items = function() {
-        return nexusData.breadcrumbs
+        return breadcrumbsService.items;
     };
 });
 

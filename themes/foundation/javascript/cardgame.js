@@ -1,39 +1,8 @@
-window.i18n = {
-    "Ally": "Союзник",
-    "Armor": "Броня",
-    "Boss": "Босс",
-    "Hero": "Герой",
-    "Item": "Предмет",
-    "Location": "Локация",
-    "Main Hero": "Главный герой",
-    "Quest": "Задание",
-    "Spell": "Заклинание",
-    "Weapon": "Оружие",
-
-    "Warrior": "Воин",
-    "Druid": "Друид",
-    "Priest": "Жрец",
-    "Mage": "Маг",
-    "Monk": "Монах",
-    "Hunter": "Охотник",
-    "Paladin": "Паладин",
-    "Rogue": "Разбойник",
-    "Death Knight": "Рыцарь смерти",
-    "Warlock": "Чернокнижник",
-    "Shaman": "Шаман",
-
-    "Free": "Низкий",
-    "Common": "Обычный",
-    "Uncommon": "Необычный",
-    "Rare": "Редкий",
-    "Epic": "Эпический",
-    "Legendary": "Легендарный"
-};
-
 /**
  *
  * @param data
  * @constructor
+ * @property Title
  * @property CoverCard
  * @property LinkToArt
  * @property Artist
@@ -41,16 +10,29 @@ window.i18n = {
  */
 function Card(data) {
     DataObject.call(this, data);
+    this.Link = this.Class == 'None' ? '' : pageConfig.url + this.LastLinkSegment;
+    this.nameOfSet = pageConfig.title;
 }
 
 var pageConfig = PageDetails.getInstance();
 var app = angular.module("blizzgame", [
-    "ngRoute",
-    "localize",
+    "ngNewRouter",
     "ngResource",
     "mm.foundation"
 ]);
 
+app.value("breadcrumbsService", {
+    items: [],
+    add: function(data) {
+        this.items.push(data);
+    },
+    set: function(data) {
+        this.items.length = 0;
+        for (var key in data) {
+            this.items.push(data[key]);
+        }
+    }
+});
 
 app.value("cardGameData", {
     pageID: pageConfig.pageId,
@@ -146,30 +128,36 @@ app.value("cardGameData", {
     ]
 });
 
-app.factory("cardGame", function(cardGameData, $http, $routeParams, $location, $anchorScroll, $resource) {
+app.config(function ($componentLoaderProvider, $locationProvider) {
+    $componentLoaderProvider.setTemplateMapping(function (name) {
+        var path;
+        if(name == "breadcrumbs") {
+            path = "common/" + name;
+        } else {
+            path = "card-game/" + name;
+        }
+        return pageConfig.baseUrl + "themes/foundation/templates/html/" + path + ".html";
+    });
+    $locationProvider.html5Mode(true);
+});
+
+app.factory("cardGame", function(cardGameData, breadcrumbsService, $http, $location, $anchorScroll, $resource) {
+    var itemId;
     var apiUrl = pageConfig.baseUrl + "api/blizz/";
     var start = 0;
     var size = 20;
     var currentPage = 1;
-    var card = $resource(apiUrl + ":object/:id/:relation", {
+    var resource = $resource(apiUrl + ":object/:id/:relation", {
         object: "@object",
         id: "@id",
         relation: "@relation"
     }, {});
 
     function load() {
-        var id = $routeParams.pageName;
-        if (id) {
-            if (cardGameData.items.length) {
-                preparePage(id);
-            }
-        } else {
-            pageConfig.setTitle(pageConfig.title);
-        }
         if (!cardGameData.items.length) {
-            card.get({
+            resource.get({
                 object: "CardGamePage",
-                id: cardGameData.pageID,
+                id: pageConfig.pageId,
                 relation: "Items"
             }, function(data) {
                 cardGameData.totalSize = data.totalSize;
@@ -180,8 +168,8 @@ app.factory("cardGame", function(cardGameData, $http, $routeParams, $location, $
                 if (cardGameData.items[0].Hearthstone == 0) {
                     cardGameData.filterByClasses = {onlyHeartStone: false};
                 }
-                if (id) {
-                    preparePage(id);
+                if (itemId) {
+                    preparePage(itemId);
                 }
             });
         }
@@ -193,32 +181,38 @@ app.factory("cardGame", function(cardGameData, $http, $routeParams, $location, $
      * @param obj Card
      */
     function loadDetails(obj) {
-        if (!obj.CoverCard.Filename) {
-            $http({
-                url: obj.CoverCard.href
-            }).success(function(data) {
-                $.extend(obj.CoverCard, data);
-            });
-        }
-        if (!obj.LinkToArt.Title) {
-            $http({
-                url: obj.LinkToArt.href
-            }).success(function(data) {
-                $.extend(obj.LinkToArt, data);
-            });
-        }
-        if (!obj.Artist.TitleEN) {
-            $http({
-                url: obj.Artist.href
-            }).success(function(data) {
-                $.extend(obj.Artist, data);
-            });
+        if (!obj.loadDetailsFired) {
+            obj.loadDetailsFired = true;
+            if (!obj.CoverCard.Filename) {
+                $http({
+                    url: obj.CoverCard.href
+                }).success(function(data) {
+                    $.extend(obj.CoverCard, data);
+                });
+            }
+            if (!obj.LinkToArt.Title) {
+                $http({
+                    url: obj.LinkToArt.href
+                }).success(function(data) {
+                    $.extend(obj.LinkToArt, data);
+                });
+            }
+            if (!obj.Artist.TitleEN) {
+                $http({
+                    url: obj.Artist.href
+                }).success(function(data) {
+                    $.extend(obj.Artist, data);
+                });
+            }
         }
     }
 
     function preparePage(id) {
-        cardGameData.selectedItem = getByLink(id);
-        pageConfig.setTitle(cardGameData.selectedItem.TitleRU);
+        itemId = id;
+        cardGameData.selectedItem = getByLink(itemId);
+        breadcrumbsService.set(pageConfig.breadcrumbs);
+        breadcrumbsService.add(cardGameData.selectedItem);
+        pageConfig.setTitle(cardGameData.selectedItem.Title);
         loadDetails(cardGameData.selectedItem);
         $anchorScroll();
     }
@@ -258,31 +252,14 @@ app.factory("cardGame", function(cardGameData, $http, $routeParams, $location, $
             size = s;
         },
         getByLink: getByLink,
+        prepareItem: preparePage,
+        prepareList: function() {
+            itemId = null;
+            pageConfig.setTitle(pageConfig.title);
+            breadcrumbsService.set(pageConfig.breadcrumbs);
+        },
         load: load
     };
-});
-
-app.config(function($routeProvider, $locationProvider) {
-    var baseHref = pageConfig.baseUrl;
-    var path = pageConfig.path;
-    $routeProvider
-        .when(path, {
-            controller: "loadCardGameData",
-            templateUrl: baseHref + "themes/foundation/templates/html/card-game/list.html"
-        })
-        .when(path + ":pageName", {
-            controller: "loadCardGameData",
-            templateUrl: baseHref + "themes/foundation/templates/html/card-game/card.html"
-        })
-    ;
-    $locationProvider.html5Mode(true);
-});
-
-angular.module("localize").config(function($provide) {
-    $provide.decorator("localizeConfig", function($delegate) {
-        $delegate.observableAttrs = /^data-(?!ng-|localize)/;
-        return $delegate;
-    });
 });
 
 /**
@@ -292,21 +269,49 @@ angular.module("localize").config(function($provide) {
  * @description
  * cards pagination, view, filter
  */
-app.controller("cards", function(cardGame, cardGameData, $scope) {
+app.controller("common", function(cardGame, cardGameData, $scope, $router) {
     $scope.cardGameData = cardGameData;
     $scope.cardGame = cardGame;
     $scope.pageConfig = pageConfig;
     $scope.search = {
         Class: ""
     };
-
+    $router.config([
+        {
+            path: pageConfig.path,
+            components: {
+                "main": "list",
+                "breadcrumbs": "breadcrumbs"
+            }
+        },
+        {
+            path: pageConfig.path + ":cardName",
+            component: {
+                "main": "card",
+                "breadcrumbs": "breadcrumbs"
+            }
+        }
+    ]);
+    cardGame.load();
     $scope.paginate = function(page) {
         cardGame.setCurrentPage(page);
     };
 });
 
-app.controller("loadCardGameData", function(cardGame) {
-    cardGame.load();
+
+app.controller("ListController", function(cardGame) {
+    this.Title = pageConfig.Title;
+    cardGame.prepareList();
+});
+
+app.controller("CardController", function(cardGame, $routeParams) {
+    cardGame.prepareItem($routeParams.cardName);
+});
+
+app.controller("BreadcrumbsController", function (breadcrumbsService) {
+    this.items = function() {
+        return breadcrumbsService.items;
+    };
 });
 
 app.filter("unsafe", function($sce) {

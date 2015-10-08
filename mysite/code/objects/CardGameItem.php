@@ -46,7 +46,7 @@ class CardGameItem extends DataObject implements PermissionProvider {
 
     private static $api_access = array(
         'view' => array(
-            'Title', 'TitleEN', 'TitleRU', 'LastLinkSegment', 'Link',
+            'Title', 'TitleEN', 'TitleRU', 'LastLinkSegment',
             'Order', 'Hearthstone', 'Rules', 'Flavor', 'Comment',
             'Rarity', 'Type', 'Faction', 'Class', 'CreatureType',
             'Cost', 'Attack', 'Health', 'Defense', 'Set', 'Keywords',
