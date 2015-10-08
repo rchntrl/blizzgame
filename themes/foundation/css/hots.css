@@ -358,6 +358,7 @@
 
 .speech-section {
   float: left;
+  width: 100%;
 }
 .hero-speech {
   list-style-type: none;

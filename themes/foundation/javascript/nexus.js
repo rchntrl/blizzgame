@@ -97,18 +97,21 @@ app.factory("heroes", function (nexusData, $location, $anchorScroll, $resource) 
      * @param obj HeroOfNexus
      */
     function loadDetails(obj) {
-        if (!obj.Speech.length) {
-            resource.get({id: obj.ID, relation: "Speech"}, function (data) {
-                for (var key in data.items) {
-                    obj.addSpeech(data.items[key]);
-                }
-            });
+        if (!obj.loadDetailsFired) {
+            obj.loadDetailsFired = true;
+            if (!obj.Speech.length) {
+                resource.get({id: obj.ID, relation: "Speech"}, function (data) {
+                    for (var key in data.items) {
+                        obj.addSpeech(data.items[key]);
+                    }
+                });
+            }
+            /*if (!obj.Skins) {
+             resource.get({id: obj.ID, relation: "Skins"}, function (data) {
+             obj.Skins = data.items;
+             });
+             }*/
         }
-        /*if (!obj.Skins) {
-            resource.get({id: obj.ID, relation: "Skins"}, function (data) {
-                obj.Skins = data.items;
-            });
-        }*/
     }
 
     function load() {

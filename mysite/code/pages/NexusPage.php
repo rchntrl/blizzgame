@@ -18,8 +18,7 @@ class NexusPage_Controller extends Page_Controller {
         Requirements::themedCSS('hots');
         Requirements::javascript(THEMES_DIR . "/foundation/bower_components/angular/angular.min.js");
         Requirements::javascript(THEMES_DIR . "/foundation/bower_components/angular-resource/angular-resource.min.js");
-        //Requirements::javascript(THEMES_DIR . "/foundation/bower_components/angular-route/angular-route.min.js");
-        Requirements::javascript(THEMES_DIR . "/foundation/bower_components/angular-new-router/dist/router.es5.js");
+        Requirements::javascript(THEMES_DIR . "/foundation/bower_components/angular-new-router/dist/router.es5.min.js");
         //Requirements::javascript(THEMES_DIR . "/foundation/bower_components/angular-foundation/mm-foundation.min.js");
         //Requirements::javascript(THEMES_DIR . "/foundation/bower_components/angular-foundation/mm-foundation-tpls.min.js");
         //Requirements::javascript(THEMES_DIR . "/foundation/javascript/jquery.scrollTo.min.js");
