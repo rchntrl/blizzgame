@@ -93,7 +93,7 @@ class Page extends SiteTree {
         $crumbs[] = array(
             'Title' => SiteConfig::current_site_config()->Title,
             'Link' => Director::absoluteBaseURL(),
-            'Self' => false,
+            'Self' => true,
         );
         return array_reverse($crumbs);
     }
