@@ -55,6 +55,7 @@ class HeroSpeech extends DataObject {
         'view' => array(
             'Type', 'Tone', 'Phrase', 'OriginalPhrase', 'Intro', 'MateOriginalPhrase', 'MatePhrase',
             'SkinOwnerID', 'SkinIconSrc', 'TagIconSrc',
+            'TagTitle'
         ),
     );
 
@@ -83,6 +84,10 @@ class HeroSpeech extends DataObject {
 
     public function getTitle() {
         return $this->Phrase;
+    }
+
+    public function getTagTitle() {
+        return $this->Tag()->getTitle();
     }
 
     public function getIntro() {
