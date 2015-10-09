@@ -299,13 +299,15 @@ app.controller("common", function(cardGame, cardGameData, $scope, $router) {
 });
 
 
-app.controller("ListController", function(cardGame) {
+app.controller("ListController", function(cardGame, $window, $location) {
     this.Title = pageConfig.Title;
     cardGame.prepareList();
+    $window.ga('send', 'pageview', { page: $location.url() });
 });
 
-app.controller("CardController", function(cardGame, $routeParams) {
+app.controller("CardController", function(cardGame, $routeParams, $window, $location) {
     cardGame.prepareItem($routeParams.cardName);
+    $window.ga('send', 'pageview', { page: $location.url() });
 });
 
 app.controller("BreadcrumbsController", function (breadcrumbsService) {
