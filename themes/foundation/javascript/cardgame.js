@@ -10,7 +10,7 @@
  */
 function Card(data) {
     DataObject.call(this, data);
-    this.Link = this.Class == 'None' ? '' : pageConfig.url + this.LastLinkSegment;
+    this.Link = this.Type == 'None' ? '' : pageConfig.url + this.LastLinkSegment;
     this.nameOfSet = pageConfig.title;
 }
 
