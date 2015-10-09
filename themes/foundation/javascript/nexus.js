@@ -202,15 +202,11 @@ app.controller("ListController", function (heroes, $window, $location) {
     this.title = pageConfig.title;
     heroes.prepareList();
     $window.ga('send', 'pageview', { page: $location.url() });
-    kament_page_name = 'NexusPage_' + pageConfig.pageId;
-    kament_page_url = $location.url();
 });
 
 app.controller("HeroController", function (heroes, nexusData, $routeParams, $window, $location) {
     heroes.prepareItem($routeParams.heroName);
     $window.ga('send', 'pageview', { page: $location.url() });
-    kament_page_name = 'StormHero_' + $routeParams.heroName;
-    kament_page_url = $location.url();
 });
 
 app.controller("BreadcrumbsController", function (breadcrumbsService) {
