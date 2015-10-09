@@ -102,6 +102,10 @@ class CardGameItem extends DataObject implements PermissionProvider {
         return $this->TitleRU;
     }
 
+    public function getMetaTitle() {
+        return $this->getTitle() . ' | ' . $this->HolderPage()->Title;
+    }
+
     public function getMetaDescription() {
         return strip_tags($this->Rules) . ' | ' . strip_tags($this->Flavor);
     }

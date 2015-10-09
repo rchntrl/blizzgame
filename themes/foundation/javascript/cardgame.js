@@ -212,7 +212,7 @@ app.factory("cardGame", function(cardGameData, breadcrumbsService, $http, $locat
         cardGameData.selectedItem = getByLink(itemId);
         breadcrumbsService.set(pageConfig.breadcrumbs);
         breadcrumbsService.add(cardGameData.selectedItem);
-        pageConfig.setTitle(cardGameData.selectedItem.Title);
+        pageConfig.setTitle(cardGameData.selectedItem.Title + ' | ' + pageConfig.title);
         loadDetails(cardGameData.selectedItem);
         $anchorScroll();
     }

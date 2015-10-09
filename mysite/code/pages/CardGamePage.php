@@ -72,7 +72,7 @@ class CardGamePage_Controller extends Page_Controller {
         }
 
         return $this->customise(array(
-            'MetaTitle' => $object->getTitle(),
+            'MetaTitle' => $object->getMetaTitle(),
             'MetaDescription' => $object->getMetaDescription(),
         ));
    }
