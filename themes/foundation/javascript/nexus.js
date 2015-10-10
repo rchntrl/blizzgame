@@ -135,6 +135,9 @@ app.factory("heroes", function (nexusData, breadcrumbsService, $location, $ancho
      * @returns {HeroOfNexus}
      */
     function getById(id) {
+        if (!id) {
+            return null;
+        }
         var data = nexusData.items.filter(function (obj) {
             return obj.ID == id;
         });

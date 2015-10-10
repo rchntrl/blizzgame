@@ -35,7 +35,6 @@ app.value("breadcrumbsService", {
 });
 
 app.value("cardGameData", {
-    pageID: pageConfig.pageId,
     totalSize: 1,
     selectedItem: null,
     filterByClasses: {hearthStone: true},
