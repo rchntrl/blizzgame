@@ -27,6 +27,10 @@ class ChronicleItem extends DataObject implements PermissionProvider {
         'HolderPage' => 'ChroniclePage'
     );
 
+    private static $has_many = array (
+        'Elements' => 'PageElement',
+    );
+
     private static $default_sort = 'NumberSort ASC';
 
     public function providePermissions()
@@ -61,6 +65,12 @@ class ChronicleItem extends DataObject implements PermissionProvider {
         $uploadField = $fields->dataFieldByName('MenuImage');
         $uploadField->setFolderName('Chronicles/' . Subsite::currentSubsiteID() . '/MenuItems/');
         $fields->addFieldsToTab('Root', $this->getElementLinksTab());
+        if ($fields->dataFieldByName('Elements')) {
+            /** @var GridFieldConfig $gridFieldConfig */
+            $gridFieldConfig = $fields->dataFieldByName('Elements')->getConfig();
+            $gridFieldConfig->addComponent(new GridFieldOrderableRows('SortOrder'));
+            $fields->dataFieldByName('Elements')->setConfig($gridFieldConfig);
+        }
         return $fields;
     }
 

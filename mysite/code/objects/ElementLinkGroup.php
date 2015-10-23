@@ -31,7 +31,7 @@ class ElementLinkGroup extends  DataObject {
     function canCreate($Member = null) {return (permission::check('CREATE_EDIT_TAG')) ? true : false;}
     function canEdit($Member = null) {return (permission::check('CREATE_EDIT_TAG')) ? true : false;}
     function canDelete($Member = null) {return (permission::check('DELETE_TAG')) ? true : false;}
-    function canView($Member = null) {return (permission::check('VIEW_TAG')) ? true : false;}
+    function canView($Member = null) {return true;}
 
     public function getCMSFields() {
         $fields = parent::getCMSFields();
