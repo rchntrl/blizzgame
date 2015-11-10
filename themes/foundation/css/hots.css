@@ -124,6 +124,7 @@
 .hero-thumbnail:before {
   content: "";
   position: absolute;
+  top: -15px;
   left: -10px;
   width: 90px;
   height: 100px;
