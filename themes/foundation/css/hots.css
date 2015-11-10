@@ -314,6 +314,18 @@
   background-position: 0 -4000px
 }
 
+.hero-thumbnail__icon.lt-morales {
+  background-position: 0 -4100px
+}
+
+.hero-thumbnail__icon.artanis {
+  background-position: 0 -4200px
+}
+
+.hero-thumbnail__icon.chogall {
+  background-position: 0 -4300px
+}
+
 @media (-webkit-min-device-pixel-ratio: 2),(min-resolution: 2dppx) {
   .hero-thumbnail__icon {
     background-image: url(../images/heroes/thumbnails-hexagon@2x.png)
