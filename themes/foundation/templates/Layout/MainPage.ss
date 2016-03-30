@@ -8,13 +8,18 @@
                         <h2 class="widget-title text-center">Heroes of the Storm</h2>
                         <h3 class="widget-title text-center">Герои недели</h3>
                         <div class="hero-select-area">
-                            <ul class="hero-widget__thumbnail-list">
+                            <ul class="ency inline-list">
                                 <% loop $HeroesRotation %>
-                                    <li class="hero-thumbnail released hexagon">
-                                        <div class="hexagon__clip">
-                                            <a title="$TitleWithAccess" href="$Link" class="js-hero-thumbnail hero-thumbnail__link hexagon__item" data-slug="$Class"></a>
-                                            <span class="hero-thumbnail__icon $Class"></span>
-                                        </div>
+                                    <li class="large-1 small-4">
+                                        <a class="element-link" href="{$Link}" title="$TitleWithAccess.ATT">
+                                            <div class="element-link-image">
+                                                <% if Icon %>
+                                                    <img class="icon-frame frame-56" alt="$Title" src="$Icon.setSize(56, 56).getUrl()" />
+                                                <% else %>
+                                                    <img class="icon-frame frame-56" src="$Top.SiteConfig.DefaultElementImage().setSize(56, 56).getUrl()" />
+                                                <% end_if %>
+                                            </div>
+                                        </a>
                                     </li>
                                 <% end_loop %>
                             </ul>
