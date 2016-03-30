@@ -10,7 +10,7 @@
                         <div class="hero-select-area">
                             <ul class="inline-list">
                                 <% loop $HeroesRotation %>
-                                    <li class="large-1 column">
+                                    <li class="large-2 column">
                                         <a class="element-link" href="{$Link}" title="$TitleWithAccess.ATT">
                                             <div class="element-link-image">
                                                 <% if Icon %>
