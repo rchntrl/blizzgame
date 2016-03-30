@@ -19,6 +19,7 @@
                                                     <img class="icon-frame frame-56" src="$Top.SiteConfig.DefaultElementImage().setSize(56, 56).getUrl()" />
                                                 <% end_if %>
                                             </div>
+                                            <span class="element-link-title">$TitleWithAccess</span>
                                         </a>
                                     </li>
                                 <% end_loop %>
