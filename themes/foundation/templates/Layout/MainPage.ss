@@ -8,9 +8,9 @@
                         <h2 class="widget-title text-center">Heroes of the Storm</h2>
                         <h3 class="widget-title text-center">Герои недели</h3>
                         <div class="hero-select-area">
-                            <ul class="ency inline-list">
+                            <ul class="inline-list">
                                 <% loop $HeroesRotation %>
-                                    <li class="large-1 small-4">
+                                    <li class="large-1 column">
                                         <a class="element-link" href="{$Link}" title="$TitleWithAccess.ATT">
                                             <div class="element-link-image">
                                                 <% if Icon %>
